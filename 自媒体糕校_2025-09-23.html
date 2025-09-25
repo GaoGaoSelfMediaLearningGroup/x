@@ -188,7 +188,7 @@
             </h2>
             <div class="bento-card p-8 bg-gradient-to-br from-[#EC4899]/20 via-[#EC4899]/10 to-[#EC4899]/5 text-center rounded-2xl">
                 <div class="number-display text-[#4D6BFE]">
-                    768
+                    448
                 </div>
                 <p class="text-xl font-semibold text-black mt-3">总消息数量</p>
             </div>
@@ -636,7 +636,9 @@
     <script>
         // 自媒体糕校日报：历史汇总与导航（新增）
         const GJ_BASE_URL = 'https://gaogaoselfmedialearninggroup.github.io/x';
-        const GJ_PREFIX = '自媒体糕校日报/自媒体糕校_';
+        // 动态路径前缀兼容：根目录 或 子目录 自媒体糕校日报/
+        const GJ_DIR = window.location.pathname.includes('自媒体糕校日报/') ? '自媒体糕校日报/' : '';
+        const GJ_FILE_PREFIX = '自媒体糕校_';
         const GJ_SUFFIX = '.html';
 
         document.addEventListener('DOMContentLoaded', function() {
@@ -680,7 +682,11 @@
             try {
                 const historyLink = document.getElementById('history-link');
                 if (historyLink) {
-                    historyLink.href = `${GJ_BASE_URL}/自媒体糕校历史汇总.html`;
+                    const histWithDir = `${GJ_BASE_URL}/${GJ_DIR}自媒体糕校历史汇总.html`;
+                    const histRoot = `${GJ_BASE_URL}/自媒体糕校历史汇总.html`;
+                    fetch(histWithDir, { method: 'HEAD', cache: 'no-store' }).then(r => r.ok ? r : fetch(histWithDir, { method: 'GET', cache: 'no-store' }))
+                        .then(r => { historyLink.href = r.ok ? histWithDir : histRoot; })
+                        .catch(() => { historyLink.href = histRoot; });
                 }
                 initDailyNavigation();
             } catch (e) {
@@ -704,17 +710,17 @@
 
             Promise.all([checkExists(prevStr), checkExists(nextStr)]).then(([pe, ne]) => {
                 if (prevBtn) {
-                    if (pe) {
+                    if (pe.ok) {
                         prevBtn.disabled = false;
-                        prevBtn.onclick = () => window.location.href = `${GJ_BASE_URL}/${GJ_PREFIX}${prevStr}${GJ_SUFFIX}`;
+                        prevBtn.onclick = () => window.location.href = pe.url;
                     } else {
                         prevBtn.disabled = true;
                     }
                 }
                 if (nextBtn) {
-                    if (ne) {
+                    if (ne.ok) {
                         nextBtn.disabled = false;
-                        nextBtn.onclick = () => window.location.href = `${GJ_BASE_URL}/${GJ_PREFIX}${nextStr}${GJ_SUFFIX}`;
+                        nextBtn.onclick = () => window.location.href = ne.url;
                     } else {
                         nextBtn.disabled = true;
                     }
@@ -723,9 +729,20 @@
         }
 
         function checkExists(dateStr) {
-            return fetch(`${GJ_BASE_URL}/${GJ_PREFIX}${dateStr}${GJ_SUFFIX}`, { method: 'HEAD' })
-                .then(r => r.ok)
-                .catch(() => false);
+            // 优先使用当前目录结构，然后回退到另一种结构
+            const urlWithDir = `${GJ_BASE_URL}/${GJ_DIR}${GJ_FILE_PREFIX}${dateStr}${GJ_SUFFIX}`;
+            const urlRoot = `${GJ_BASE_URL}/${GJ_FILE_PREFIX}${dateStr}${GJ_SUFFIX}`;
+            return fetch(urlWithDir, { method: 'HEAD', cache: 'no-store' })
+                .then(r => r.ok ? r : fetch(urlWithDir, { method: 'GET', cache: 'no-store' }))
+                .then(r => r.ok ? { ok: true, url: urlWithDir } : fetch(urlRoot, { method: 'HEAD', cache: 'no-store' })
+                    .then(r2 => r2.ok ? r2 : fetch(urlRoot, { method: 'GET', cache: 'no-store' }))
+                    .then(r2 => r2.ok ? { ok: true, url: urlRoot } : { ok: false })
+                )
+                .catch(() => fetch(urlRoot, { method: 'HEAD', cache: 'no-store' })
+                    .then(r2 => r2.ok ? r2 : fetch(urlRoot, { method: 'GET', cache: 'no-store' }))
+                    .then(r2 => r2.ok ? { ok: true, url: urlRoot } : { ok: false })
+                    .catch(() => ({ ok: false }))
+                );
         }
 
         function getCurrentDateFromPage() {
