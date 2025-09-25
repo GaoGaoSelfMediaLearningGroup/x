@@ -213,9 +213,28 @@
 
         async function checkLinkExists(url) {
             try {
-                const r = await fetch(url, { method:'HEAD' });
-                return r.ok;
+                try {
+                    let r = await fetch(url, { method: 'HEAD', cache: 'no-store' });
+                    if (r.ok) return true;
+                    r = await fetch(url, { method: 'GET', cache: 'no-store' });
+                    return r.ok;
+                } catch (e) {
+                    try {
+                        const r2 = await fetch(url, { method: 'GET', cache: 'no-store' });
+                        return r2.ok;
+                    } catch {
+                        return false;
+                    }
+                }
             } catch { return false; }
+        }
+        // 同时兼容两种部署位置：子目录 与 根目录
+        async function resolveExistingUrl(dateStr) {
+            const urlWithDir = `${BASE_URL}/自媒体糕校日报/自媒体糕校_${dateStr}${REPORT_FILENAME_SUFFIX}`;
+            const urlRoot = `${BASE_URL}/自媒体糕校_${dateStr}${REPORT_FILENAME_SUFFIX}`;
+            if (await checkLinkExists(urlWithDir)) return urlWithDir;
+            if (await checkLinkExists(urlRoot)) return urlRoot;
+            return '';
         }
 
         async function fetchAndDisplayReports(year, month) {
@@ -233,18 +252,20 @@
             const infos = [];
             for (let d = dayStart; d <= dayEnd; d++) {
                 const dateStr = `${year}-${String(month).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
-                const url = `${BASE_URL}/${REPORT_FILENAME_PREFIX}${dateStr}${REPORT_FILENAME_SUFFIX}`;
                 infos.push({
-                    date: dateStr, url, day:d, year, month,
+                    date: dateStr, day:d, year, month,
                     weekday: getWeekdayName(year, month, d)
                 });
-                tasks.push(checkLinkExists(url));
+                tasks.push(resolveExistingUrl(dateStr));
             }
 
             try {
                 const results = await Promise.all(tasks);
                 const existing = [];
-                for (let i=0;i<results.length;i++) if (results[i]) existing.push(infos[i]);
+                for (let i=0;i<results.length;i++) {
+                    const url = results[i];
+                    if (url) existing.push({ ...infos[i], url });
+                }
                 existing.sort((a,b)=> b.day - a.day);
 
                 const header = document.getElementById('reports-header');
