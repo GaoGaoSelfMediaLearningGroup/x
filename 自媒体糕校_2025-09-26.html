@@ -1,0 +1,942 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>群聊日报 2025-09-26</title>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-6C9T7FPDT2"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-6C9T7FPDT2');
+    </script>
+    <!-- 正常标题格式应为：群聊日报 yyyy-mm-dd，以便外部链接查看时了解日报日期 -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+        * {
+            font-family: 'Inter', ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+        }
+
+        body {
+            background-color: #ffffff;
+            color: #000000;
+        }
+
+        .bento-card {
+            background-color: #ffffff;
+            border: 1px solid #e9e9eb;
+            border-radius: 1rem; /* 16px */
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.07), 0 2px 4px -2px rgba(0,0,0,0.05);
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        .bento-card:hover {
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.07), 0 4px 6px -4px rgba(0,0,0,0.05);
+            transform: translateY(-3px);
+        }
+
+        .number-display {
+            font-weight: 900; /* black */
+            font-size: 4rem;
+            line-height: 1;
+            /* Color will be set by Tailwind, e.g., text-[#4D6BFE] or text-black */
+        }
+
+        .section-title {
+            font-weight: 800; /* extrabold */
+            font-size: 2.25rem; /* 36px */
+            color: #000000;
+            margin-bottom: 2rem; /* 32px, consistent with Tailwind mb-8 */
+        }
+
+        .tag-item {
+            background-color: rgba(236, 72, 153, 0.10); /* pink-500 @ 10% */
+            color: #EC4899; /* pink-500 */
+            padding: 0.25rem 0.75rem; /* py-1 px-3 */
+            border-radius: 9999px; /* rounded-full */
+            font-size: 0.75rem; /* text-xs */
+            font-weight: 500; /* medium */
+        }
+
+
+        /* HTML注释: 展开功能相关样式 */
+        .expandable-content {
+            position: relative;
+        }
+
+        .content-preview.collapsed {
+            overflow: hidden;
+            position: relative;
+        }
+
+        .content-preview.collapsed::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 30px;
+            background: linear-gradient(transparent, rgba(255, 255, 255, 0.9));
+            pointer-events: none;
+        }
+
+        .expand-btn {
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+            background: none;
+            padding: 0;
+        }
+
+        .expand-btn:hover {
+            transform: translateY(-1px);
+        }
+
+        .expand-icon {
+            transition: transform 0.3s ease;
+        }
+
+        .expand-btn.expanded .expand-icon {
+            transform: rotate(180deg);
+        }
+
+        /* 粉色主题覆盖：将原蓝色/紫色强调统一替换为粉色系 */
+        /* 蓝色自定义类 -> 粉色 */
+        .text-\[\#4D6BFE\] { color: #EC4899 !important; }              /* pink-500 */
+        .border-\[\#4D6BFE\] { border-color: #EC4899 !important; }
+        .border-\[\#93c5fd\] { border-color: #F9A8D4 !important; }    /* pink-300 */
+        /* 渐变片段中的 from/via/to 使用 #EC4899 系列覆盖困难，已在模板处进行类名替换；此处保留覆盖备用 */
+        .from-\[\#4D6BFE\]\/20 { --tw-gradient-from: rgb(236 72 153 / 0.20) !important; }
+        .via-\[\#4D6BFE\]\/10 { --tw-gradient-stops: var(--tw-gradient-from), rgb(236 72 153 / 0.10), var(--tw-gradient-to) !important; }
+        .to-\[\#4D6BFE\]\/5   { --tw-gradient-to: rgb(236 72 153 / 0.05) !important; }
+
+        /* 紫色块（爬楼关键词） -> 粉色 */
+        .bg-purple-50   { background-color: #FDF2F8 !important; }     /* pink-50 */
+        .border-purple-200 { border-color: #FBCFE8 !important; }      /* pink-200 */
+        .text-purple-700   { color: #BE185D !important; }             /* pink-700 */
+        .text-purple-600   { color: #DB2777 !important; }             /* pink-600 */
+
+        /* 关键结论左侧色条 -> 粉色 */
+        .border-\[\#4D6BFE\] { border-color: #EC4899 !important; }
+
+        /* 统一交互与背景为粉色 */
+        .hover\:text-blue-700:hover { color: #BE185D !important; }    /* pink-700 on hover */
+        .bg-blue-50 { background-color: #FDF2F8 !important; }         /* replace light blue with pink-50 */
+
+    </style>
+</head>
+<body class="bg-white text-black min-h-screen">
+    <!-- HTML注释: 整体宽度通过 max-w-4xl 控制，实现日报宽度调小并保持响应式。-->
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+
+        <!-- === "群聊日报" 文件头区域 开始 === -->
+        <!-- HTML注释: 此模块作为单独一行，占据整行宽度。包含日报主标题、报告日期和时间范围。 -->
+        <!-- HTML注释: 新增了"群聊历史日报"链接，样式与整体设计保持统一协调 -->
+        <header class="w-full mb-8">
+            <div class="bento-card p-8">
+                <div class="text-center">
+                    <h1 class="text-5xl font-black text-black mb-6">
+                        自媒体糕校
+                    </h1>
+                    <div class="flex flex-col sm:flex-row justify-center items-center space-y-2 sm:space-y-0 sm:space-x-6 text-lg mb-4">
+                        <div class="flex items-center text-gray-700">
+                            <i class="fas fa-calendar-alt mr-2 text-[#4D6BFE]"></i>
+                            <span id="report-date">2025年9月26日</span>
+                        </div>
+                        <div class="flex items-center text-gray-700">
+                            <i class="fas fa-clock mr-2 text-[#4D6BFE]"></i>
+                            <span>07:17 - 02:16 (次日)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- === "群聊日报" 文件头区域 结束 === -->
+        <!-- 导航与历史入口（新增） -->
+        <nav class="w-full mb-8">
+            <div class="bento-card p-4">
+                <div class="flex items-center justify-between">
+                    <button id="prev-day" class="inline-flex items-center gap-2 bg-pink-500 hover:bg-pink-600 text-white px-4 py-2 rounded-lg shadow disabled:bg-gray-200 disabled:text-gray-400">
+                        <i class="fas fa-chevron-left"></i>
+                        上一天
+                    </button>
+                    <button id="next-day" class="inline-flex items-center gap-2 bg-pink-500 hover:bg-pink-600 text-white px-4 py-2 rounded-lg shadow disabled:bg-gray-200 disabled:text-gray-400">
+                        下一天
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+        </nav>
+
+
+        <!-- === 模块一：总消息概览 开始 === -->
+        <!-- HTML注释: 此模块作为单独一行，占据整行宽度。显示当日群聊总消息数量。 -->
+        <section class="w-full mb-12">
+            <h2 class="section-title">
+                一、总消息概览
+            </h2>
+            <div class="bento-card p-8 bg-gradient-to-br from-[#EC4899]/20 via-[#EC4899]/10 to-[#EC4899]/5 text-center rounded-2xl">
+                <div class="number-display text-[#4D6BFE]">
+                    1187
+                </div>
+                <p class="text-xl font-semibold text-black mt-3">总消息数量</p>
+            </div>
+        </section>
+        <!-- === 模块一：总消息概览 结束 === -->
+
+        <!-- === 模块二：火花碰撞时刻・热点话题 开始 === -->
+        <!-- HTML注释: 此模块作为单独一行，占据整行宽度。用于展示群内讨论的热点话题。 -->
+        <section class="w-full mb-12">
+            <h2 class="section-title">
+                二、高能辩论场・焦点议题
+            </h2>
+            <!-- 列表容器: 讨论话题 -->
+            <div class="space-y-8">
+                
+                <!-- 热点话题卡片 开始 -->
+                <div class="bento-card p-6 rounded-xl">
+                    <div class="flex flex-col sm:flex-row items-start justify-between mb-4">
+                        <h4 class="text-xl font-bold text-black flex-1 mb-2 sm:mb-0">
+                            关于“自爆”与“钝感力”的深度探讨
+                        </h4>
+                        <span class="text-sm text-gray-600 ml-0 sm:ml-4 whitespace-nowrap bg-gray-100 px-3 py-1.5 rounded-md">
+                            <i class="fas fa-clock mr-1.5 text-gray-500"></i>
+                            15:20 - 16:30
+                        </span>
+                    </div>
+
+                    <div class="mb-4 bg-purple-50 border border-purple-200 rounded-md p-3">
+                        <p class="text-sm font-medium text-purple-700 mb-1">爬楼关键词</p>
+                        <p class="text-sm text-purple-600 italic">
+                            昍：大壮就容易患得患失，所以我和他说话一般都特别难听[爱心]
+                        </p>
+                    </div>
+
+                    <div class="mb-5">
+                        <p class="text-sm font-semibold text-gray-800 mb-2">相关关键词</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="tag-item">情绪管理</span>
+                            <span class="tag-item">心态建设</span>
+                            <span class="tag-item">自我认知</span>
+                            <span class="tag-item">钝感力</span>
+                            <span class="tag-item">创作瓶颈</span>
+                        </div>
+                    </div>
+
+                    <div class="mb-5">
+                        <p class="text-sm font-semibold text-gray-800 mb-2">详细内容</p>
+                        <div class="text-gray-700 text-base leading-relaxed bg-slate-50 p-4 rounded-md prose prose-sm max-w-none">
+                            <div class="expandable-content" data-char-limit="200">
+                                <div class="content-preview">
+                                    <b>一、话题背景与起因</b><br>话题由<b>昍</b>的一句评论引发：“<b>大壮就容易患得患失，所以我对他说话一般都特别难听</b>”。这句话开启了一场关于创作者心态、如何面对批评和自我成长瓶颈的深刻讨论。<br><br><b>二、主要观点与讨论详情</b><br>群成员围绕“自爆”（主动暴露弱点以求成长）、“钝感力”（对负面评价的承受能力）以及如何给予和接受反馈等话题展开了激烈讨论。<br><br><b>高大壮</b>首先剖析了自己“患得患失”的心态，并解释了为何他能接受并感激“难听”的真诚反馈。他认为，愿意对自己说重话是对方付出了情绪成本，是真正的帮助。同时，他解释自己之所以频繁“自爆”，是因为静态太久，需要通过这种方式打破僵局，获得最快、最痛的成长。<br><br><b>查理</b>、<b>啊怿子 -</b>、<b>NICK HU</b>等多位成员也分享了自己对于焦虑和负面反馈的看法。<b>查理</b>表示：“<b>最怕就是问哪里做得不好，人家说挺好的...这样我还是不能改进，焦虑症更严重了</b>”，表达了对真实反馈的渴望。<b>啊怿子 -</b>则一针见血地指出：“<b>你好话对他说，他接不住，你只能够重，重的他反而能接受</b>”，精准描绘了部分成员的心理状态。<br><br><b>向山</b>则自爆了害怕“自爆”的心理：“<b>感觉自爆太多会不会很暴露狂？...害怕让别人失望</b>”。这一观点也引发了共鸣，大家探讨了“第一责任人”心态的重要性。<br><br><b>三、结论与启发</b><br>本次讨论的核心结论是，创作者的成长不仅依赖于技能的提升，更取决于强大的心理素质。大家普遍认为，<b>真诚而直接的反馈，哪怕“难听”，也远比虚伪的客套更有价值</b>。同时，培养“钝感力”，学会将外界评价与自我价值分离，专注于事情本身而非情绪内耗，是持续创作的关键。<b>查理</b>的金句“<b>流量不好：正常；流量好：我应得的</b>”完美诠释了这种健康的创作心态。
+                                </div>
+                                <button class="expand-btn text-[#4D6BFE] hover:text-blue-700 text-sm font-medium mt-2 flex items-center" style="display: none;">
+                                    <span class="expand-text">展开全文</span>
+                                    <i class="fas fa-chevron-down ml-1 expand-icon"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <p class="text-sm font-semibold text-gray-800 mb-3">关键结论与金句时刻</p>
+                        <div class="space-y-6">
+                            <!-- 关键结论 1 开始 -->
+                            <div class="border border-gray-200 rounded-lg p-4 bg-gray-50">
+                                <div class="mb-4">
+                                    <h5 class="text-base font-semibold text-gray-800 mb-2">关键结论</h5>
+                                    <div class="border-l-4 border-[#4D6BFE] pl-4 py-3 bg-blue-50 rounded-r-md">
+                                        <p class="text-black text-base">
+                                            坦然“自爆”是打破个人成长僵局的有效方式，通过实践暴露问题，才能获得真实反馈并快速迭代。
+                                        </p>
+                                    </div>
+                                </div>
+                                <div>
+                                    <p class="text-sm font-medium text-gray-700 mb-2"><strong>金句时刻</strong></p>
+                                    <div class="space-y-2">
+                                        <div class="bg-amber-50 border-l-4 border-amber-400 p-3 rounded-r-md flex flex-col">
+                                            <p class="text-gray-800 italic text-sm">
+                                                我不能理解的是，为什么明明知道自爆的好处还不敢自爆。
+                                            </p>
+                                            <p class="text-gray-600 text-xs mt-1 self-end">
+                                                - <b>高大壮</b>
+                                            </p>
+                                        </div>
+                                        <div class="bg-amber-50 border-l-4 border-amber-400 p-3 rounded-r-md flex flex-col">
+                                            <p class="text-gray-800 italic text-sm">
+                                                实践能扛住的，才是真能扛住的。别人也才敢相信。
+                                            </p>
+                                            <p class="text-gray-600 text-xs mt-1 self-end">
+                                                - <b>昍</b>
+                                            </p>
+                                        </div>
+                                        <div class="bg-amber-50 border-l-4 border-amber-400 p-3 rounded-r-md flex flex-col">
+                                            <p class="text-gray-800 italic text-sm">
+                                                如果我求助的人，会因为我的不进步而失望，那我可能求助错人了。
+                                            </p>
+                                            <p class="text-gray-600 text-xs mt-1 self-end">
+                                                - <b>高大壮</b>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- 关键结论 1 结束 -->
+                            <!-- 关键结论 2 开始 -->
+                            <div class="border border-gray-200 rounded-lg p-4 bg-gray-50">
+                                <div class="mb-4">
+                                    <h5 class="text-base font-semibold text-gray-800 mb-2">关键结论</h5>
+                                    <div class="border-l-4 border-[#4D6BFE] pl-4 py-3 bg-blue-50 rounded-r-md">
+                                        <p class="text-black text-base">
+                                            “钝感力”是创作者应对外界评价和自我内耗的重要心态，应专注于事情本质而非情绪波动。
+                                        </p>
+                                    </div>
+                                </div>
+                                <div>
+                                    <p class="text-sm font-medium text-gray-700 mb-2"><strong>金句时刻</strong></p>
+                                    <div class="space-y-2">
+                                        <div class="bg-amber-50 border-l-4 border-amber-400 p-3 rounded-r-md flex flex-col">
+                                            <p class="text-gray-800 italic text-sm">
+                                                就怕是事情看不明白，但对情绪特别敏感，完犊子。
+                                            </p>
+                                            <p class="text-gray-600 text-xs mt-1 self-end">
+                                                - <b>昍</b>
+                                            </p>
+                                        </div>
+                                        <div class="bg-amber-50 border-l-4 border-amber-400 p-3 rounded-r-md flex flex-col">
+                                            <p class="text-gray-800 italic text-sm">
+                                                最怕就是问哪里做得不好，人家说挺好的...这样我还是不能改进，焦虑症更严重了。
+                                            </p>
+                                            <p class="text-gray-600 text-xs mt-1 self-end">
+                                                - <b>查理</b>
+                                            </p>
+                                        </div>
+                                        <div class="bg-amber-50 border-l-4 border-amber-400 p-3 rounded-r-md flex flex-col">
+                                            <p class="text-gray-800 italic text-sm">
+                                                流量不好：正常；流量好：我应得的。
+                                            </p>
+                                            <p class="text-gray-600 text-xs mt-1 self-end">
+                                                - <b>查理</b>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- 关键结论 2 结束 -->
+                            <!-- 关键结论 3 开始 -->
+                            <div class="border border-gray-200 rounded-lg p-4 bg-gray-50">
+                                <div class="mb-4">
+                                    <h5 class="text-base font-semibold text-gray-800 mb-2">关键结论</h5>
+                                    <div class="border-l-4 border-[#4D6BFE] pl-4 py-3 bg-blue-50 rounded-r-md">
+                                        <p class="text-black text-base">
+                                            敢于给出“难听”的真诚反馈是高价值的社交行为，因为它需要付出情绪成本，并能真正帮助对方。
+                                        </p>
+                                    </div>
+                                </div>
+                                <div>
+                                    <p class="text-sm font-medium text-gray-700 mb-2"><strong>金句时刻</strong></p>
+                                    <div class="space-y-2">
+                                        <div class="bg-amber-50 border-l-4 border-amber-400 p-3 rounded-r-md flex flex-col">
+                                            <p class="text-gray-800 italic text-sm">
+                                                大壮就容易患得患失，所以我和他说话一般都特别难听。
+                                            </p>
+                                            <p class="text-gray-600 text-xs mt-1 self-end">
+                                                - <b>昍</b>
+                                            </p>
+                                        </div>
+                                        <div class="bg-amber-50 border-l-4 border-amber-400 p-3 rounded-r-md flex flex-col">
+                                            <p class="text-gray-800 italic text-sm">
+                                                给别人说难听的话，需要付出成本的。对方愿意为我付出这样的成本，我的天？好人啊。恩人啊。
+                                            </p>
+                                            <p class="text-gray-600 text-xs mt-1 self-end">
+                                                - <b>高大壮</b>
+                                            </p>
+                                        </div>
+                                        <div class="bg-amber-50 border-l-4 border-amber-400 p-3 rounded-r-md flex flex-col">
+                                            <p class="text-gray-800 italic text-sm">
+                                                你好话对他说，他接不住，你只能够重，重的他反而能接受。
+                                            </p>
+                                            <p class="text-gray-600 text-xs mt-1 self-end">
+                                                - <b>啊怿子 -</b>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- 关键结论 3 结束 -->
+                        </div>
+                    </div>
+                </div>
+                <!-- 热点话题卡片 结束 -->
+                <!-- 热点话题卡片 开始 -->
+                <div class="bento-card p-6 rounded-xl">
+                    <div class="flex flex-col sm:flex-row items-start justify-between mb-4">
+                        <h4 class="text-xl font-bold text-black flex-1 mb-2 sm:mb-0">
+                            奶爸赛道爆款密码：热点对标+差异化创新
+                        </h4>
+                        <span class="text-sm text-gray-600 ml-0 sm:ml-4 whitespace-nowrap bg-gray-100 px-3 py-1.5 rounded-md">
+                            <i class="fas fa-clock mr-1.5 text-gray-500"></i>
+                            16:48 - 22:07
+                        </span>
+                    </div>
+
+                    <div class="mb-4 bg-purple-50 border border-purple-200 rounded-md p-3">
+                        <p class="text-sm font-medium text-purple-700 mb-1">爬楼关键词</p>
+                        <p class="text-sm text-purple-600 italic">
+                           高大壮：比如我最爆的那篇腹部按摩
+                        </p>
+                    </div>
+
+                    <div class="mb-5">
+                        <p class="text-sm font-semibold text-gray-800 mb-2">相关关键词</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="tag-item">母婴赛道</span>
+                            <span class="tag-item">内容创作</span>
+                            <span class="tag-item">爆款逻辑</span>
+                            <span class="tag-item">差异化</span>
+                            <span class="tag-item">知识科普</span>
+                        </div>
+                    </div>
+
+                    <div class="mb-5">
+                        <p class="text-sm font-semibold text-gray-800 mb-2">详细内容</p>
+                        <div class="text-gray-700 text-base leading-relaxed bg-slate-50 p-4 rounded-md prose prose-sm max-w-none">
+                            <div class="expandable-content" data-char-limit="200">
+                                <div class="content-preview">
+                                    <b>一、话题背景与起因</b><br><b>高大壮</b>分享了自己创作的一篇关于婴儿腹部按摩的爆款笔记，并由此引申出了一套在干货领域快速涨粉的创作方法论，引发了群内关于内容创新的深入讨论。<br><br><b>二、主要观点与讨论详情</b><br><b>高大壮</b>提出，他的核心方法是“<b>热点话题对标+创新</b>”。他以“腹部按摩”为例，虽然这个话题已有大量博主在做，但他发现绝大多数内容都是简单的“顺时针绕圈”，并未触及核心。通过研究婴儿肠道结构，他总结出了一个更精准的“亮点”——<b>按摩应遵循肠道走向，而非简单画圆</b>。他将这个差异化创新点突出展示，使得他的教程在众多同类内容中脱颖而出，被许多家长反馈为“唯一有用”的教程。<br><br><b>昍</b>对这一案例进行了更深层次的解读。他指出，该方法成功的关键不仅在于干货本身有用，更在于“<b>让用户觉得学到了干货才有用</b>”。这种“幻觉”或者说“获得感”，才是驱动用户关注和传播的核心动力。他强调，科普的精髓是“<b>科学地普及</b>”，而非单纯罗列科学事实。对于宝妈这类受众，她们尤其喜欢抓住某个“芝麻”般的细节并奉为圭臬，创作者若能提供这种“头头是道”的解释，即使本质差异不大，也能获得用户的极大认可。<br><br><b>三、结论与启发</b><br>本次讨论为内容创作者，特别是干货领域的创作者，提供了一套可复制的爆款方法论。核心在于，<b>不要畏惧红海赛道，而应深入研究现有内容，找到其中被忽视或普遍理解错误的细节作为突破口，进行差异化创新</b>。同时，要注重内容的呈现方式，通过清晰的逻辑和权威的论述，给予用户强烈的“获得感”，这比单纯堆砌信息更为重要。
+                                </div>
+                                <button class="expand-btn text-[#4D6BFE] hover:text-blue-700 text-sm font-medium mt-2 flex items-center" style="display: none;">
+                                    <span class="expand-text">展开全文</span>
+                                    <i class="fas fa-chevron-down ml-1 expand-icon"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <p class="text-sm font-semibold text-gray-800 mb-3">关键结论与金句时刻</p>
+                        <div class="space-y-6">
+                            <!-- 关键结论 1 开始 -->
+                            <div class="border border-gray-200 rounded-lg p-4 bg-gray-50">
+                                <div class="mb-4">
+                                    <h5 class="text-base font-semibold text-gray-800 mb-2">关键结论</h5>
+                                    <div class="border-l-4 border-[#4D6BFE] pl-4 py-3 bg-blue-50 rounded-r-md">
+                                        <p class="text-black text-base">
+                                            打造干货爆款的核心公式是“<b>热点话题对标+创新</b>”，即在成熟的热门选题中，找到一个被忽视或普遍误解的“创新点”进行深度挖掘。
+                                        </p>
+                                    </div>
+                                </div>
+                                <div>
+                                    <p class="text-sm font-medium text-gray-700 mb-2"><strong>金句时刻</strong></p>
+                                    <div class="space-y-2">
+                                        <div class="bg-amber-50 border-l-4 border-amber-400 p-3 rounded-r-md flex flex-col">
+                                            <p class="text-gray-800 italic text-sm">
+                                                热点话题对标+创新=爆款。
+                                            </p>
+                                            <p class="text-gray-600 text-xs mt-1 self-end">
+                                                - <b>高大壮</b>
+                                            </p>
+                                        </div>
+                                        <div class="bg-amber-50 border-l-4 border-amber-400 p-3 rounded-r-md flex flex-col">
+                                            <p class="text-gray-800 italic text-sm">
+                                                我就知道我抄的那些博主，他们自己也是抄的。如果真的研究过腹部按摩，不可能不知道这个「亮点」。
+                                            </p>
+                                            <p class="text-gray-600 text-xs mt-1 self-end">
+                                                - <b>高大壮</b>
+                                            </p>
+                                        </div>
+                                        <div class="bg-amber-50 border-l-4 border-amber-400 p-3 rounded-r-md flex flex-col">
+                                            <p class="text-gray-800 italic text-sm">
+                                                就光这一个点，足够支撑一个爆款。
+                                            </p>
+                                            <p class="text-gray-600 text-xs mt-1 self-end">
+                                                - <b>高大壮</b>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- 关键结论 1 结束 -->
+                            <!-- 关键结论 2 开始 -->
+                            <div class="border border-gray-200 rounded-lg p-4 bg-gray-50">
+                                <div class="mb-4">
+                                    <h5 class="text-base font-semibold text-gray-800 mb-2">关键结论</h5>
+                                    <div class="border-l-4 border-[#4D6BFE] pl-4 py-3 bg-blue-50 rounded-r-md">
+                                        <p class="text-black text-base">
+                                            真正有效的科普是“科学地普及”，关键在于让用户感觉学到了有价值的干货，而不仅仅是陈列事实。
+                                        </p>
+                                    </div>
+                                </div>
+                                <div>
+                                    <p class="text-sm font-medium text-gray-700 mb-2"><strong>金句时刻</strong></p>
+                                    <div class="space-y-2">
+                                        <div class="bg-amber-50 border-l-4 border-amber-400 p-3 rounded-r-md flex flex-col">
+                                            <p class="text-gray-800 italic text-sm">
+                                                一是干货有用！这肯定是错的。二是让用户觉得学到了干货才有用！这才是对的。
+                                            </p>
+                                            <p class="text-gray-600 text-xs mt-1 self-end">
+                                                - <b>昍</b>
+                                            </p>
+                                        </div>
+                                        <div class="bg-amber-50 border-l-4 border-amber-400 p-3 rounded-r-md flex flex-col">
+                                            <p class="text-gray-800 italic text-sm">
+                                                科普，不只是科学的普及，更是科学地普及。后者远比前者重要。
+                                            </p>
+                                            <p class="text-gray-600 text-xs mt-1 self-end">
+                                                - <b>昍</b>
+                                            </p>
+                                        </div>
+                                        <div class="bg-amber-50 border-l-4 border-amber-400 p-3 rounded-r-md flex flex-col">
+                                            <p class="text-gray-800 italic text-sm">
+                                                其实ab两个大差不差，但你要是说差很大，而且解释得头头是道，她们就觉得「学到了！老师真厉害！」
+                                            </p>
+                                            <p class="text-gray-600 text-xs mt-1 self-end">
+                                                - <b>昍</b>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- 关键结论 2 结束 -->
+                        </div>
+                    </div>
+                </div>
+                <!-- 热点话题卡片 结束 -->
+            </div>
+        </section>
+        <!-- === 模块二：火花碰撞时刻・热点话题 结束 === -->
+
+        <!-- === 模块三：解惑一点通・有问必答 开始 === -->
+        <section class="w-full mb-12">
+            <h2 class="section-title">
+                三、大佬喂饭局・有问必答
+            </h2>
+            <div class="space-y-8">
+                <!-- 问答卡片 开始 -->
+                <div class="bento-card p-6 rounded-xl border-l-4 border-[#93c5fd]">
+                    <div class="mb-4">
+                        <h4 class="text-xl font-semibold text-black flex items-center">
+                            <i class="fas fa-question-circle mr-2.5 text-[#4D6BFE] text-lg"></i>
+                            职场赛道流量低迷怎么办？
+                        </h4>
+                    </div>
+                    <div class="mb-4 bg-purple-50 border border-purple-200 rounded-md p-3">
+                        <p class="text-sm font-medium text-purple-700 mb-1">爬楼关键词</p>
+                        <p class="text-sm text-purple-600 italic">
+                            @宝鹅：大家好，我的问题简单描述一下：我最近发了一段小红书后，流量开始进入下降期了...
+                        </p>
+                    </div>
+
+                    <div class="border-t border-gray-200 pt-4">
+                        <h5 class="text-lg font-semibold text-green-700 flex items-center mb-2">
+                            <i class="fas fa-lightbulb mr-2.5 text-lg text-green-600"></i>
+                            解答
+                        </h5>
+                        <div class="text-gray-700 text-base leading-relaxed prose prose-sm max-w-none">
+                            <div class="expandable-content" data-char-limit="200">
+                                <div class="content-preview">
+                                    <b>一、问题背景</b><br>新成员<b>@宝鹅</b>入群求助，表示自己运营的职场主题小红书账号流量不佳，除了单篇情绪文破千外，其他干货内容数据惨淡，对是否要切换赛道感到困惑，并分享了具体笔记供大家诊断。<br><br><b>二、核心原因分析</b><br>群成员迅速定位了几个关键问题：<br>1. <b>标题抽象</b>：<b>糕某</b>指出，标题如“行业寒冬？看我如何‘抄底’多个Offer”过于文艺和抽象，无法让用户一眼get到核心价值。<br>2. <b>内容冗余</b>：<b>讨厌的橙子🍊</b>和<b>糕某</b>同时发现，笔记开头花费大量篇幅渲染“求职难”的普遍焦虑，信息密度低，用户在看到核心干货前就已经失去耐心。<br>3. <b>封面普通</b>：封面设计未能有效突出文章亮点，在信息流中不够“简单粗暴”，难以吸引点击。<br><br><b>三、解决方案与建议</b><br>针对以上问题，群内大佬们给出了具体可行的优化方案：<br>1. <b>标题直接化、数据化</b>：<b>糕某</b>建议标题应直接抛出最吸引人的成果，例如：“<b>7月考虑跳槽，2周时间重构简历...比上一份工作涨薪30%，我做对了哪几件事？</b>”，用具体数字和结果勾起用户好奇心。<br>2. <b>内容结构前置化</b>：建议采用“<b>太长不看版</b>”或“<b>先抛结论</b>”的结构，在文章开头就亮出核心干货总结，让用户感觉“有东西”，再展开详细论述。<br>3. <b>封面设计突出重点</b>：<b>糕某</b>分享了多个成功的职场博主案例，强调封面设计要一句话讲清楚核心内容，风格统一，让用户能快速识别价值。<br>4. <b>心态上大胆试错</b>：鼓励<b>@宝鹅</b>在账号数据不佳的阶段，勇于修改、隐藏甚至重发笔记，大胆测试不同标题和封面，通过实践找到最优解。<b>@宝鹅</b>采纳建议后，立即反馈新笔记数据有了明显改善。
+                                </div>
+                                <button class="expand-btn text-[#4D6BFE] hover:text-blue-700 text-sm font-medium mt-2 flex items-center" style="display: none;">
+                                    <span class="expand-text">展开全文</span>
+                                    <i class="fas fa-chevron-down ml-1 expand-icon"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-5 pt-4 border-t border-gray-200">
+                        <div class="flex flex-wrap gap-2">
+                            <span class="tag-item">职场赛道</span>
+                            <span class="tag-item">小红书运营</span>
+                            <span class="tag-item">标题优化</span>
+                            <span class="tag-item">内容结构</span>
+                            <span class="tag-item">封面设计</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- 问答卡片 结束 -->
+            </div>
+        </section>
+        <!-- === 模块三：解惑一点通・有问必答 结束 === -->
+
+        <!-- === 模块四：智慧火花匣・每日精选 开始 === -->
+        <section class="w-full mb-12">
+            <h2 class="section-title">
+                四、宝藏工具箱・干货精选
+            </h2>
+            <div class="space-y-8">
+                <!-- 知识卡片 开始 -->
+                <div class="bento-card p-6 rounded-xl border-l-4 border-[#93c5fd]">
+                    <h4 class="text-xl font-semibold text-black mb-3">
+                        图文笔记必备：平面设计排版五大原则
+                    </h4>
+                    <div class="mb-4 bg-purple-50 border border-purple-200 rounded-md p-3">
+                        <p class="text-sm font-medium text-purple-700 mb-1">爬楼关键词</p>
+                        <p class="text-sm text-purple-600 italic">
+                            查理：分享一点平面设计里排版的原则：
+                        </p>
+                    </div>
+
+                    <div class="text-gray-700 text-base mb-4 leading-relaxed prose prose-sm max-w-none">
+                        <div class="expandable-content" data-char-limit="200">
+                            <div class="content-preview">
+                                <b>一、推荐内容</b><br>群内设计专家<b>查理</b>分享了五条极其宝贵的平面设计排版原则，旨在帮助大家提升小红书图文笔记的视觉呈现效果和阅读体验。<br><br><b>二、核心价值与特点</b><br>这五条原则简单易懂，可操作性极强，是新手快速提升排版“审美”的捷径：<br>1. <b>字体控制</b>：一个页面中的字体不要超过3种，保持版面整洁统一。<br>2. <b>视觉引导</b>：观众的阅读顺序是可控的，<b>越靠上、字越大、字越粗的内容会越先被看到</b>，要善用此规律突出重点。<br>3. <b>图文融合</b>：在背景复杂的图片上，不要放置颜色相近的文字，以免影响阅读清晰度。<br>4. <b>段落划分</b>：分段至关重要，可以通过加边框、改变字体大小和颜色等形式，在视觉上错开段落。<br>5. <b>层级分明</b>：小标题应使用不同的字体、大小或边框与正文区别开，通常字号要大于正文，以建立清晰的信息层级。<br><br><b>三、适用场景或补充信息</b><br>这些原则不仅适用于小红书笔记的封面和内页制作，也同样适用于公众号文章、PPT等一切需要进行图文排版的场景。群成员纷纷表示“很有用”、“谢谢喂饭”，是提升内容专业感的必备技能。
+                            </div>
+                            <button class="expand-btn text-[#4D6BFE] hover:text-blue-700 text-sm font-medium mt-2 flex items-center" style="display: none;">
+                                <span class="expand-text">展开全文</span>
+                                <i class="fas fa-chevron-down ml-1 expand-icon"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="tag-item">平面设计</span>
+                        <span class="tag-item">小红书排版</span>
+                        <span class="tag-item">视觉设计</span>
+                        <span class="tag-item">内容美化</span>
+                    </div>
+                </div>
+                <!-- 知识卡片 结束 -->
+
+                <!-- 知识卡片 开始 -->
+                <div class="bento-card p-6 rounded-xl border-l-4 border-[#93c5fd]">
+                    <h4 class="text-xl font-semibold text-black mb-3">
+                        内容创作者神器：一站式产品对比网站Versus
+                    </h4>
+                    <div class="mb-4 bg-purple-50 border border-purple-200 rounded-md p-3">
+                        <p class="text-sm font-medium text-purple-700 mb-1">爬楼关键词</p>
+                        <p class="text-sm text-purple-600 italic">
+                            狗狗蹲马桶：https://versus.com/cn 发现了一个有意思的网站
+                        </p>
+                    </div>
+
+                    <div class="text-gray-700 text-base mb-4 leading-relaxed prose prose-sm max-w-none">
+                        <div class="expandable-content" data-char-limit="200">
+                            <div class="content-preview">
+                                <b>一、推荐内容</b><br>成员<b>狗狗蹲马桶</b>在群内分享了一个功能强大的产品对比网站——Versus。他指出，这个网站非常适合用于制作测评类内容。<br><br><b>二、核心价值与特点</b><br>Versus是一个一站式对比平台，用户可以在上面对各种产品（如手机、相机、耳机）乃至城市进行详细的参数和性能比较。其核心优点在于：<br>1. <b>数据全面</b>：收录了海量产品的详细规格，省去了创作者自己搜集、整理数据的繁琐工作。<br>2. <b>对比直观</b>：以清晰的图表和列表形式展示产品优劣，一目了然。<br>3. <b>覆盖广泛</b>：不仅限于电子产品，还支持多种不同类别的对比，为跨领域创作提供可能。<br><br><b>三、适用场景或补充信息</b><br>对于所有需要进行产品测评、撰写导购指南、或制作“XX和YY哪个好”这类内容的自媒体创作者来说，Versus是一个极佳的数据来源和效率工具。它可以帮助创作者快速获取客观依据，提升内容的专业性和说服力。
+                            </div>
+                            <button class="expand-btn text-[#4D6BFE] hover:text-blue-700 text-sm font-medium mt-2 flex items-center" style="display: none;">
+                                <span class="expand-text">展开全文</span>
+                                <i class="fas fa-chevron-down ml-1 expand-icon"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="tag-item">工具推荐</span>
+                        <span class="tag-item">内容创作</span>
+                        <span class="tag-item">测评</span>
+                        <span class="tag-item">数据网站</span>
+                    </div>
+                    <div class="flex justify-end">
+                        <a href="https://versus.com/cn" target="_blank" rel="noopener noreferrer" class="text-sm font-medium text-[#4D6BFE] hover:text-blue-700 hover:underline flex items-center">
+                            访问 Versus.com
+                            <i class="fas fa-external-link-alt ml-1.5 text-xs"></i>
+                        </a>
+                    </div>
+                </div>
+                <!-- 知识卡片 结束 -->
+                
+                <!-- 知识卡片 开始 -->
+                <div class="bento-card p-6 rounded-xl border-l-4 border-[#93c5fd]">
+                    <h4 class="text-xl font-semibold text-black mb-3">
+                       灵感枯竭？糕糕推荐的灵感神站Pinterest用法深挖
+                    </h4>
+
+                    <div class="mb-4 bg-purple-50 border border-purple-200 rounded-md p-3">
+                        <p class="text-sm font-medium text-purple-700 mb-1">爬楼关键词</p>
+                        <p class="text-sm text-purple-600 italic">
+                            糕某：我为啥推荐Pinterest，是因为它找图的算法挺精准的了
+                        </p>
+                    </div>
+
+                    <div class="text-gray-700 text-base mb-4 leading-relaxed prose prose-sm max-w-none">
+                        <div class="expandable-content" data-char-limit="200">
+                            <div class="content-preview">
+                                <b>一、推荐内容</b><br><b>糕某</b>分享了她获取内容灵感的“秘密武器”——图片分享网站Pinterest，并详细阐述了其独特优势。<br><br><b>二、核心价值与特点</b><br>相比其他图片网站，Pinterest的核心优势在于其智能算法和人性化设计，为创作者提供了源源不断的灵感：<br>1. <b>精准算法，无限延伸</b>：<b>查理</b>补充道，网站算法非常出色，只要找到一张对的图，就能推荐无数张风格相似的优质图片，实现灵感的无限延伸。<br>2. <b>反向触发创作</b>：糕某的核心用法是“<b>看到喜欢的图，再思考用什么文章去配它</b>”，这种由视觉驱动的创作流程，能有效解决“不知道写什么”的难题，并且直接解决了配图问题。<br>3. <b>分类管理，算法独立</b>：用户可以创建不同的画板（如“心理学”、“美妆”），将图片分类保存。各画板的推荐算法相互独立，不会因为你喜欢美妆就只给你推美妆，保证了灵感来源的多样性。<br>4. <b>人文关怀，体验极佳</b>：当用户搜索“sad”等负面关键词时，网站会弹出暖心的鼓励话语，询问是否需要帮助，这种人性化的细节备受好评。<br><br><b>三、适用场景或补充信息</b><br>对于所有图文创作者而言，Pinterest不仅是一个高质量的免费图库，更是一个强大的灵感激发和管理工具。无论是寻找封面配图，还是在选题上陷入瓶颈，都可以通过浏览Pinterest来打开思路。
+                            </div>
+                            <button class="expand-btn text-[#4D6BFE] hover:text-blue-700 text-sm font-medium mt-2 flex items-center" style="display: none;">
+                                <span class="expand-text">展开全文</span>
+                                <i class="fas fa-chevron-down ml-1 expand-icon"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="tag-item">灵感来源</span>
+                        <span class="tag-item">工具推荐</span>
+                        <span class="tag-item">图片素材</span>
+                        <span class="tag-item">创作流程</span>
+                    </div>
+                     <div class="flex justify-end">
+                        <a href="https://www.pinterest.com/" target="_blank" rel="noopener noreferrer" class="text-sm font-medium text-[#4D6BFE] hover:text-blue-700 hover:underline flex items-center">
+                            访问 Pinterest
+                            <i class="fas fa-external-link-alt ml-1.5 text-xs"></i>
+                        </a>
+                    </div>
+                </div>
+                <!-- 知识卡片 结束 -->
+
+            </div>
+        </section>
+        <!-- === 模块四：智慧火花匣・每日精选 结束 === -->
+
+        <!-- 历史日报按钮（下移） -->
+        <section class="w-full mb-8">
+            <div class="bento-card p-4 text-center">
+                <a id="history-link" href="#" class="inline-flex items-center gap-2 text-pink-600 bg-pink-50 hover:bg-pink-100 border border-pink-200 px-3 py-2 rounded-md">
+                    <i class="fas fa-history"></i>
+                    糕校历史日报
+                </a>
+            </div>
+        </section>
+
+        <!-- === 文件底部 开始 === -->
+        <footer class="w-full mt-16">
+            <div class="bento-card p-8">
+                <div class="text-center text-gray-700 space-y-3">
+                    <div class="flex flex-col sm:flex-row justify-center items-center space-y-2 sm:space-y-0 sm:space-x-6 text-base">
+                        <div class="flex items-center">
+                            <i class="fas fa-database mr-2 text-[#4D6BFE]"></i>
+                            <span>自媒体糕糕学习群</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-robot mr-2 text-[#4D6BFE]"></i>
+                            <span>2025-09-27 03:00:00</span>
+                        </div>
+                    </div>
+                    <p class="text-sm text-gray-500 max-w-2xl mx-auto leading-relaxed">
+                        本报告基于群聊数据自动生成，仅供参考。内容可能包含个人观点，不代表群组官方立场。数据处理过程中已尽量匿名化处理敏感信息。
+                    </p>
+                </div>
+            </div>
+        </footer>
+        <!-- === 文件底部 结束 === -->
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Bento card hover effect is handled by CSS :hover pseudo-class
+
+            // Number animation effect
+            const numberElements = document.querySelectorAll('.number-display');
+            numberElements.forEach(element => {
+                const finalValueText = element.textContent.replace(/,/g, '');
+                const finalValue = parseInt(finalValueText, 10);
+
+                if (isNaN(finalValue)) return;
+
+                let currentValue = 0;
+                const duration = 1500; // Animation duration in ms
+                const frameRate = 1000 / 60; // 60fps
+                const totalFrames = Math.round(duration / frameRate);
+                const increment = finalValue / totalFrames;
+
+                let currentFrame = 0;
+                const timer = setInterval(() => {
+                    currentFrame++;
+                    currentValue += increment;
+
+                    if (currentFrame >= totalFrames) {
+                        currentValue = finalValue;
+                        clearInterval(timer);
+                    }
+                    // Format number with commas for display
+                    element.textContent = Math.floor(currentValue).toLocaleString('en-US');
+                }, frameRate);
+            });
+
+
+            // HTML注释: 初始化展开功能
+            initExpandableContent();
+        });
+
+
+        // HTML注释: 从页面中提取当前日期
+        // HTML注释: 支持多种方式提取日期：优先从页面元素、URL文件名或页面标题
+        function getCurrentDateFromPage() {
+            // HTML注释: 方法1：从报告日期元素中提取（优先级最高）
+            const dateElement = document.getElementById('report-date');
+            if (dateElement) {
+                const dateText = dateElement.textContent;
+                const dateMatch = dateText.match(/(\d{4})年(\d{1,2})月(\d{1,2})日/);
+                if (dateMatch) {
+                    const year = dateMatch[1];
+                    const month = dateMatch[2].padStart(2, '0');
+                    const day = dateMatch[3].padStart(2, '0');
+                    return `${year}-${month}-${day}`;
+                }
+            }
+
+            // HTML注释: 方法2：从URL文件名中提取日期
+            const pathname = window.location.pathname;
+            const filenameMatch = pathname.match(/群聊群日报_(\d{4}-\d{2}-\d{2})\.html/);
+            if (filenameMatch) {
+                return filenameMatch[1];
+            }
+
+            // HTML注释: 方法3：从页面标题中提取日期
+            const titleMatch = document.title.match(/(\d{4}-\d{2}-\d{2})/);
+            if (titleMatch) {
+                return titleMatch[1];
+            }
+
+            return null;
+        }
+
+
+        // HTML注释: 格式化日期为YYYY-MM-DD格式
+        function formatDate(date) {
+            const year = date.getFullYear();
+            const month = String(date.getMonth() + 1).padStart(2, '0');
+            const day = String(date.getDate()).padStart(2, '0');
+            return `${year}-${month}-${day}`;
+        }
+
+        // HTML注释: 初始化展开功能
+        function initExpandableContent() {
+            const expandableContents = document.querySelectorAll('.expandable-content');
+            
+            expandableContents.forEach(container => {
+                const charLimit = parseInt(container.getAttribute('data-char-limit')) || 200;
+                const contentPreview = container.querySelector('.content-preview');
+                const expandBtn = container.querySelector('.expand-btn');
+                
+                if (!contentPreview || !expandBtn) return;
+                
+                const fullContent = contentPreview.innerHTML;
+                // Use a more robust way to get text content for length check
+                const tempDivForText = document.createElement('div');
+                tempDivForText.innerHTML = fullContent;
+                const fullText = tempDivForText.textContent || tempDivForText.innerText || "";
+                
+                if (fullText.length > charLimit) {
+                    contentPreview.classList.add('collapsed');
+                    expandBtn.style.display = 'flex';
+                    
+                    expandBtn.addEventListener('click', function() {
+                        const isExpanded = expandBtn.classList.contains('expanded');
+                        
+                        if (isExpanded) {
+                            contentPreview.classList.add('collapsed');
+                            expandBtn.querySelector('.expand-text').textContent = '展开全文';
+                            expandBtn.classList.remove('expanded');
+                        } else {
+                            contentPreview.classList.remove('collapsed');
+                            expandBtn.querySelector('.expand-text').textContent = '收起';
+                            expandBtn.classList.add('expanded');
+                        }
+                    });
+                } else {
+                    expandBtn.style.display = 'none';
+                }
+            });
+        }
+    // 自媒体糕校日报：历史汇总与上下日导航（新增）
+    (function(){
+        const GJ_BASE_URL = 'https://gaogaoselfmedialearninggroup.github.io/x';
+        const GJ_DIR = window.location.pathname.includes('自媒体糕校日报/') ? '自媒体糕校日报/' : '';
+        const GJ_FILE_PREFIX = '自媒体糕校_';
+        const GJ_SUFFIX = '.html';
+        // 本地文件浏览回退范围（仅在 file:// 下生效）
+        const GJ_LOCAL_MIN = '2025-09-24';
+        const GJ_LOCAL_MAX = '2025-09-27';
+
+        document.addEventListener('DOMContentLoaded', function() {
+            try {
+                const historyLink = document.getElementById('history-link');
+                if (historyLink) {
+                    const histWithDir = `${GJ_BASE_URL}/${GJ_DIR}自媒体糕校历史汇总.html`;
+                    const histRoot = `${GJ_BASE_URL}/自媒体糕校历史汇总.html`;
+                    fetch(histWithDir, { method: 'HEAD', cache: 'no-store' }).then(r => r.ok ? r : fetch(histWithDir, { method: 'GET', cache: 'no-store' }))
+                        .then(r => { historyLink.href = r.ok ? histWithDir : histRoot; })
+                        .catch(() => { historyLink.href = histRoot; });
+                }
+                initDailyNavigation2();
+            } catch (e) {
+                console.warn('初始化导航失败', e);
+            }
+        });
+
+        function initDailyNavigation2() {
+            const currentDateStr = getCurrentDateFromPage2();
+            if (!currentDateStr) return;
+
+            const dt = new Date(currentDateStr);
+            const prev = new Date(dt); prev.setDate(prev.getDate() - 1);
+            const next = new Date(dt); next.setDate(next.getDate() + 1);
+
+            const prevStr = formatDate2(prev);
+            const nextStr = formatDate2(next);
+
+            const prevBtn = document.getElementById('prev-day');
+            const nextBtn = document.getElementById('next-day');
+
+            Promise.all([checkExists2(prevStr), checkExists2(nextStr)]).then(([pe, ne]) => {
+                if (prevBtn) {
+                    if (pe.ok) {
+                        prevBtn.disabled = false;
+                        prevBtn.onclick = () => window.location.href = pe.url;
+                    } else {
+                        prevBtn.disabled = true;
+                    }
+                }
+                if (nextBtn) {
+                    if (ne.ok) {
+                        nextBtn.disabled = false;
+                        nextBtn.onclick = () => window.location.href = ne.url;
+                    } else {
+                        nextBtn.disabled = true;
+                    }
+                }
+            }).catch(()=>{});
+        }
+
+        function checkExists2(dateStr) {
+            const dir = window.location.pathname.replace(/[^\/]+$/, '');
+            const relUrl = `${dir}${GJ_FILE_PREFIX}${dateStr}${GJ_SUFFIX}`;
+
+            if (window.location.protocol === 'file:') {
+                const within = (dateStr >= GJ_LOCAL_MIN && dateStr <= GJ_LOCAL_MAX);
+                return Promise.resolve(within ? { ok: true, url: relUrl } : { ok: false });
+            }
+
+            const urlWithDir = `${GJ_BASE_URL}/${GJ_DIR}${GJ_FILE_PREFIX}${dateStr}${GJ_SUFFIX}`;
+            const urlRoot = `${GJ_BASE_URL}/${GJ_FILE_PREFIX}${dateStr}${GJ_SUFFIX}`;
+
+            const tryHead = (u) => fetch(u, { method: 'HEAD', cache: 'no-store' }).then(r => r.ok ? { ok: true, url: u } : Promise.reject());
+            const tryGet = (u) => fetch(u, { method: 'GET', cache: 'no-store' }).then(r => r.ok ? { ok: true, url: u } : Promise.reject());
+
+            return tryHead(urlWithDir).catch(() => tryGet(urlWithDir))
+                .catch(() => tryHead(urlRoot)).catch(() => tryGet(urlRoot))
+                .catch(() => ({ ok: false }));
+        }
+
+        // 优先从页面元素提取日期，其次从URL文件名，最后从标题
+        function getCurrentDateFromPage2() {
+            const el = document.getElementById('report-date');
+            if (el) {
+                const m = el.textContent.match(/(\d{4})年(\d{1,2})月(\d{1,2})日/);
+                if (m) return `${m[1]}-${m[2].padStart(2,'0')}-${m[3].padStart(2,'0')}`;
+            }
+            const fn = window.location.pathname.match(/自媒体糕校_(\d{4}-\d{2}-\d{2})\.html/);
+            if (fn) return fn[1];
+            const tm = document.title.match(/(\d{4}-\d{2}-\d{2})/);
+            if (tm) return tm[1];
+            return null;
+        }
+
+        function formatDate2(d) {
+            const y = d.getFullYear();
+            const m = String(d.getMonth()+1).padStart(2,'0');
+            const dd = String(d.getDate()).padStart(2,'0');
+            return `${y}-${m}-${dd}`;
+        }
+    })();
+    </script>
+</body>
+</html>
