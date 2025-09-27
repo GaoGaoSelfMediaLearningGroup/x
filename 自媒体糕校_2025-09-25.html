@@ -106,6 +106,33 @@
             transform: rotate(180deg);
         }
 
+        /* 收起态样式优化：收紧段间距，限制预览高度，弱化多余换行，避免空白过大 */
+        .content-preview.collapsed {
+            max-height: 11rem; /* 控制预览高度，结合渐变遮罩更紧凑 */
+        }
+        .content-preview.collapsed p,
+        .content-preview.collapsed ul,
+        .content-preview.collapsed ol,
+        .content-preview.collapsed li,
+        .content-preview.collapsed h1,
+        .content-preview.collapsed h2,
+        .content-preview.collapsed h3,
+        .content-preview.collapsed h4,
+        .content-preview.collapsed h5,
+        .content-preview.collapsed h6 {
+            margin-top: 0.25rem !important;
+            margin-bottom: 0.25rem !important;
+            line-height: 1.5 !important;
+        }
+        /* 多重 <br> 在收起态容易拉大间距，这里统一弱化 */
+        .content-preview.collapsed br {
+            display: none;
+        }
+        /* 允许小标题<b>后的首个换行保留，确保分行 */
+        .content-preview.collapsed b + br {
+            display: inline;
+        }
+
         /* 粉色主题覆盖：将原蓝色/紫色强调统一替换为粉色系 */
         /* 蓝色自定义类 -> 粉色 */
         .text-\[\#4D6BFE\] { color: #EC4899 !important; }              /* pink-500 */
@@ -147,7 +174,7 @@
                     <div class="flex flex-col sm:flex-row justify-center items-center space-y-2 sm:space-y-0 sm:space-x-6 text-lg mb-4">
                         <div class="flex items-center text-gray-700">
                             <i class="fas fa-calendar-alt mr-2 text-[#4D6BFE]"></i>
-                            <span id="report-date">2025年9月26日</span>
+                            <span id="report-date">2025年9月25日</span>
                         </div>
                         <div class="flex items-center text-gray-700">
                             <i class="fas fa-clock mr-2 text-[#4D6BFE]"></i>
@@ -165,10 +192,6 @@
                         <i class="fas fa-chevron-left"></i>
                         上一天
                     </button>
-                    <a id="history-link" href="#" class="inline-flex items-center gap-2 text-pink-600 bg-pink-50 hover:bg-pink-100 border border-pink-200 px-3 py-2 rounded-md">
-                        <i class="fas fa-history"></i>
-                        糕校历史日报
-                    </a>
                     <button id="next-day" class="inline-flex items-center gap-2 bg-pink-500 hover:bg-pink-600 text-white px-4 py-2 rounded-lg shadow disabled:bg-gray-200 disabled:text-gray-400">
                         下一天
                         <i class="fas fa-chevron-right"></i>
@@ -992,6 +1015,16 @@
         </section>
         <!-- === 模块四：灵感工具箱・干货分享 结束 === -->
 
+        <!-- 历史日报按钮（下移） -->
+        <section class="w-full mb-8">
+            <div class="bento-card p-4 text-center">
+                <a id="history-link" href="#" class="inline-flex items-center gap-2 text-pink-600 bg-pink-50 hover:bg-pink-100 border border-pink-200 px-3 py-2 rounded-md">
+                    <i class="fas fa-history"></i>
+                    糕校历史日报
+                </a>
+            </div>
+        </section>
+
         <!-- === 文件底部 开始 === -->
         <footer class="w-full mt-16">
             <div class="bento-card p-8">
@@ -1022,6 +1055,9 @@
         const GJ_DIR = window.location.pathname.includes('自媒体糕校日报/') ? '自媒体糕校日报/' : '';
         const GJ_FILE_PREFIX = '自媒体糕校_';
         const GJ_SUFFIX = '.html';
+        // 本地文件浏览回退范围（仅在 file:// 下生效）
+        const GJ_LOCAL_MIN = '2025-09-24';
+        const GJ_LOCAL_MAX = '2025-09-27';
 
         document.addEventListener('DOMContentLoaded', function() {
             // Bento card hover effect is handled by CSS :hover pseudo-class
@@ -1207,19 +1243,25 @@
         }
 
         function checkExists(dateStr) {
+            const dir = window.location.pathname.replace(/[^\/]+$/, ''); // 当前目录（含末尾斜杠）
+            const relUrl = `${dir}${GJ_FILE_PREFIX}${dateStr}${GJ_SUFFIX}`;
+
+            // 本地 file:// 环境：不使用 fetch，按日期边界启用/禁用，并直接返回相对链接
+            if (window.location.protocol === 'file:') {
+                const within = (dateStr >= GJ_LOCAL_MIN && dateStr <= GJ_LOCAL_MAX);
+                return Promise.resolve(within ? { ok: true, url: relUrl } : { ok: false });
+            }
+
+            // 线上 http(s) 环境：远端两种结构探测
             const urlWithDir = `${GJ_BASE_URL}/${GJ_DIR}${GJ_FILE_PREFIX}${dateStr}${GJ_SUFFIX}`;
             const urlRoot = `${GJ_BASE_URL}/${GJ_FILE_PREFIX}${dateStr}${GJ_SUFFIX}`;
-            return fetch(urlWithDir, { method: 'HEAD', cache: 'no-store' })
-                .then(r => r.ok ? r : fetch(urlWithDir, { method: 'GET', cache: 'no-store' }))
-                .then(r => r.ok ? { ok: true, url: urlWithDir } : fetch(urlRoot, { method: 'HEAD', cache: 'no-store' })
-                    .then(r2 => r2.ok ? r2 : fetch(urlRoot, { method: 'GET', cache: 'no-store' }))
-                    .then(r2 => r2.ok ? { ok: true, url: urlRoot } : { ok: false })
-                )
-                .catch(() => fetch(urlRoot, { method: 'HEAD', cache: 'no-store' })
-                    .then(r2 => r2.ok ? r2 : fetch(urlRoot, { method: 'GET', cache: 'no-store' }))
-                    .then(r2 => r2.ok ? { ok: true, url: urlRoot } : { ok: false })
-                    .catch(() => ({ ok: false }))
-                );
+
+            const tryHead = (u) => fetch(u, { method: 'HEAD', cache: 'no-store' }).then(r => r.ok ? { ok: true, url: u } : Promise.reject());
+            const tryGet = (u) => fetch(u, { method: 'GET', cache: 'no-store' }).then(r => r.ok ? { ok: true, url: u } : Promise.reject());
+
+            return tryHead(urlWithDir).catch(() => tryGet(urlWithDir))
+                .catch(() => tryHead(urlRoot)).catch(() => tryGet(urlRoot))
+                .catch(() => ({ ok: false }));
         }
 
         // 优先从页面元素提取日期，其次从URL文件名，最后从标题
