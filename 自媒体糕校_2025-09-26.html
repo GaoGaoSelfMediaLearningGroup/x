@@ -71,7 +71,15 @@
         }
 
         .content-preview.collapsed {
+            /* 多行裁切：优先使用 line-clamp，实现“收起”效果 */
+            display: -webkit-box;
+            -webkit-line-clamp: 6; /* 收起时显示的最大行数，可按需调整 */
+            -webkit-box-orient: vertical;
+
+            /* 回退方案：即使不支持 line-clamp，也通过高度限制进行裁切 */
+            max-height: 12rem; /* 根据行高约等于 ~6 行 */
             overflow: hidden;
+
             position: relative;
         }
 
