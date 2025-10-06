@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>自媒体糕校历史汇总</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+        * { font-family: 'Inter', ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"; }
+        body { background-color: #ffffff; color: #000000; }
+        .bento-card { background-color:#fff; border:1px solid #e9e9eb; border-radius:1rem; box-shadow:0 4px 6px -1px rgba(0,0,0,0.07),0 2px 4px -2px rgba(0,0,0,0.05); transition:all .3s cubic-bezier(.25,.8,.25,1); }
+        .bento-card:hover { box-shadow:0 10px 15px -3px rgba(0,0,0,0.07),0 4px 6px -4px rgba(0,0,0,0.05); transform:translateY(-2px); }
+        .section-title { font-weight:800; font-size:2rem; color:#000; margin-bottom:1rem; }
+        .report-container { border:1px solid #e9e9eb; border-radius:.75rem; padding:1rem; padding-right:7.5rem; margin-bottom:.75rem; position:relative; transition:all .2s ease; }
+        .report-container:hover { border-color:#EC4899; box-shadow:0 8px 12px -2px rgba(0,0,0,.08), 0 3px 6px -3px rgba(0,0,0,.06); }
+        .report-title-link { color:#EC4899; font-weight:600; font-size:1.125rem; text-decoration:none; display:block; margin-bottom:.25rem; }
+        .report-title-link:hover { text-decoration:underline; color:#DB2777; }
+        .report-date-info { color:#6b7280; font-size:.875rem; display:flex; align-items:center; }
+        .report-date-info i { margin-right:.5rem; color:#EC4899; }
+        .view-details-btn { background:#fdf2f8; color:#9d174d; border:1px solid #fbcfe8; border-radius:.5rem; padding:.5rem 1rem; font-size:.875rem; font-weight:500; display:inline-flex; align-items:center; position:absolute; right:1.25rem; top:50%; transform:translateY(-50%); }
+        .view-details-btn i { margin-right:.5rem; color:#9d174d; }
+        .loading-spinner { display:inline-block; width:20px; height:20px; border:3px solid #f3f3f3; border-top:3px solid #EC4899; border-radius:50%; animation:spin 1s linear infinite; }
+        @keyframes spin { 0%{transform:rotate(0)}100%{transform:rotate(360deg)} }
+        .error-message { display:none; color:#dc2626; background:#fef2f2; border:1px solid #fecaca; border-radius:.5rem; padding:1rem; margin:1rem 0; }
+        .error-message.active { display:block; }
+        select { appearance:none; background-image:url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e"); background-position:right .5rem center; background-repeat:no-repeat; background-size:1.25em 1.25em; padding-right:2rem; }
+        select:focus { outline:none; border-color:#EC4899; box-shadow:0 0 0 3px rgba(236,72,153,.1); }
+        select option:checked { background-color:#EC4899; color:#fff; }
+    </style>
+</head>
+<body class="bg-white text-black min-h-screen">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+        <header class="w-full mb-6">
+            <div class="bento-card p-8">
+                <div class="text-center">
+                    <h1 class="text-5xl font-black text-black mb-4">自媒体糕校历史汇总</h1>
+                    <div class="flex flex-col sm:flex-row justify-center items-center space-y-2 sm:space-y-0 sm:space-x-6 text-lg">
+                        <div class="flex items-center text-gray-700">
+                            <i class="fas fa-history mr-2 text-pink-500"></i>
+                            <span>按年/月快速检索</span>
+                        </div>
+                        <div class="flex items-center text-gray-700">
+                            <i class="fas fa-calendar-alt mr-2 text-pink-500"></i>
+                            <span>2025年9月起</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        
+
+        <div id="error-message" class="error-message">
+            <div class="flex items-center">
+                <i class="fas fa-exclamation-triangle mr-2"></i>
+                <span id="error-text">加载数据时出现错误，请稍后重试。</span>
+            </div>
+        </div>
+
+        <section class="w-full mb-6">
+            <div class="bento-card p-6">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                        <label for="yearSelector" class="block text-sm font-semibold text-gray-800 mb-2">
+                            <i class="fas fa-calendar mr-2 text-pink-500"></i>选择年份
+                        </label>
+                        <select id="yearSelector" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-pink-500 transition-colors">
+                            <option value="">请选择年份</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="monthSelector" class="block text-sm font-semibold text-gray-800 mb-2">
+                            <i class="fas fa-calendar-days mr-2 text-pink-500"></i>选择月份
+                        </label>
+                        <select id="monthSelector" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-pink-500 transition-colors" disabled>
+                            <option value="">请先选择年份</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="w-full mb-12">
+            <div class="bento-card p-6">
+                <div id="reports-header" class="mb-4" style="display: none;">
+                    <h2 class="section-title">
+                        <span id="selected-period">所选时期</span> 的日报
+                    </h2>
+                    <div class="flex items-center text-gray-600 mb-2">
+                        <i class="fas fa-file-alt mr-2 text-pink-500"></i>
+                        <span>共找到 <span id="reports-count" class="font-semibold text-pink-600">0</span> 份日报</span>
+                    </div>
+                </div>
+                <div id="reportLinksContainer" class="min-h-[160px]">
+                    <div class="text-center text-gray-500 py-8">
+                        <i class="fas fa-info-circle text-2xl mb-2"></i>
+                        <p>请选择年份和月份以查看日报</p>
+                    </div>
+                </div>
+                <div id="empty-state" class="text-center py-10" style="display: none;">
+                    <div class="bento-card p-8">
+                        <i class="fas fa-calendar-times text-gray-400 text-3xl mb-3"></i>
+                        <h3 class="text-lg font-semibold text-gray-700 mb-1">暂无日报数据</h3>
+                        <p class="text-gray-500 text-sm">所选时间段内没有找到相关的日报记录</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+
+        <section class="w-full mb-8">
+            <div class="bento-card p-6">
+                <h3 class="text-lg font-semibold text-gray-800 mb-3 flex items-center">
+                    <i class="fas fa-info-circle mr-2 text-pink-500"></i>使用说明
+                </h3>
+                <div class="space-y-2 text-sm text-gray-700">
+                    <div class="flex items-start">
+                        <i class="fas fa-search mr-2 text-pink-500 mt-0.5"></i>
+                        <span>使用上方的年份和月份选择器来筛选查看特定时期的日报</span>
+                    </div>
+                    <div class="flex items-start">
+                        <i class="fas fa-link mr-2 text-pink-500 mt-0.5"></i>
+                        <span>点击日报标题即可跳转到对应的详细日报页面</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // 常量
+        const BASE_URL = "https://gaogaoselfmedialearninggroup.github.io/x";
+        const REPORT_FILENAME_PREFIX = "自媒体糕校日报/自媒体糕校_";
+        const REPORT_FILENAME_SUFFIX = ".html";
+        const START_YEAR = 2025;
+        const START_MONTH_FOR_START_YEAR = 9; // 2025年9月起
+        const START_DAY_FOR_START_YEAR = 23;
+
+        let yearSelector, monthSelector, reportLinksContainer;
+
+        document.addEventListener('DOMContentLoaded', function() {
+            yearSelector = document.getElementById('yearSelector');
+            monthSelector = document.getElementById('monthSelector');
+            reportLinksContainer = document.getElementById('reportLinksContainer');
+
+            const today = getToday();
+            populateYearSelector(today.year);
+
+            yearSelector.addEventListener('change', handleYearChange);
+            monthSelector.addEventListener('change', handleMonthChange);
+        });
+
+        function getToday() {
+            const now = new Date();
+            return { year: now.getFullYear(), month: now.getMonth()+1, day: now.getDate() };
+        }
+        function daysInMonth(year, month) { return new Date(year, month, 0).getDate(); }
+        function getWeekdayName(year, month, day) {
+            const d = new Date(year, month-1, day);
+            const w = ['星期日','星期一','星期二','星期三','星期四','星期五','星期六'];
+            return w[d.getDay()];
+        }
+
+        function populateYearSelector(currentSystemYear) {
+            yearSelector.innerHTML = '';
+            for (let y = START_YEAR; y <= currentSystemYear; y++) {
+                const opt = document.createElement('option');
+                opt.value = y; opt.textContent = y + '年';
+                yearSelector.appendChild(opt);
+            }
+            yearSelector.value = currentSystemYear;
+            populateMonthSelector(currentSystemYear, currentSystemYear, getToday().month);
+        }
+
+        function populateMonthSelector(selectedYear, currentSystemYear, currentSystemMonth) {
+            monthSelector.innerHTML = '';
+            monthSelector.disabled = false;
+
+            let startMonth, endMonth;
+            if (selectedYear == START_YEAR) {
+                startMonth = START_MONTH_FOR_START_YEAR;
+                endMonth = (selectedYear == currentSystemYear) ? currentSystemMonth : 12;
+            } else if (selectedYear > START_YEAR && selectedYear < currentSystemYear) {
+                startMonth = 1; endMonth = 12;
+            } else {
+                startMonth = 1; endMonth = currentSystemMonth;
+            }
+
+            for (let m = startMonth; m <= endMonth; m++) {
+                const opt = document.createElement('option');
+                opt.value = m; opt.textContent = m + '月';
+                monthSelector.appendChild(opt);
+            }
+            monthSelector.value = (selectedYear == currentSystemYear) ? currentSystemMonth : endMonth;
+            if (monthSelector.value) fetchAndDisplayReports(selectedYear, parseInt(monthSelector.value));
+        }
+
+        function handleYearChange() {
+            const y = parseInt(yearSelector.value);
+            if (y) {
+                const t = getToday();
+                populateMonthSelector(y, t.year, t.month);
+            } else {
+                monthSelector.innerHTML = '<option value="">请先选择年份</option>';
+                monthSelector.disabled = true;
+                showDefaultMessage();
+            }
+        }
+        function handleMonthChange() {
+            const y = parseInt(yearSelector.value);
+            const m = parseInt(monthSelector.value);
+            if (y && m) fetchAndDisplayReports(y, m);
+        }
+
+        async function checkLinkExists(url) {
+            try {
+                try {
+                    let r = await fetch(url, { method: 'HEAD', cache: 'no-store' });
+                    if (r.ok) return true;
+                    r = await fetch(url, { method: 'GET', cache: 'no-store' });
+                    return r.ok;
+                } catch (e) {
+                    try {
+                        const r2 = await fetch(url, { method: 'GET', cache: 'no-store' });
+                        return r2.ok;
+                    } catch {
+                        return false;
+                    }
+                }
+            } catch { return false; }
+        }
+        // 同时兼容两种部署位置：子目录 与 根目录
+        async function resolveExistingUrl(dateStr) {
+            const urlWithDir = `${BASE_URL}/自媒体糕校日报/自媒体糕校_${dateStr}${REPORT_FILENAME_SUFFIX}`;
+            const urlRoot = `${BASE_URL}/自媒体糕校_${dateStr}${REPORT_FILENAME_SUFFIX}`;
+            if (await checkLinkExists(urlWithDir)) return urlWithDir;
+            if (await checkLinkExists(urlRoot)) return urlRoot;
+            return '';
+        }
+
+        async function fetchAndDisplayReports(year, month) {
+            reportLinksContainer.innerHTML = `
+                <div class="text-center text-gray-500 py-8">
+                    <div class="loading-spinner mx-auto mb-3"></div>
+                    <p>正在检查日报文件...</p>
+                </div>
+            `;
+            const today = getToday();
+            let dayStart = (year==START_YEAR && month==START_MONTH_FOR_START_YEAR) ? START_DAY_FOR_START_YEAR : 1;
+            let dayEnd = (year==today.year && month==today.month) ? today.day : daysInMonth(year, month);
+
+            const tasks = [];
+            const infos = [];
+            for (let d = dayStart; d <= dayEnd; d++) {
+                const dateStr = `${year}-${String(month).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
+                infos.push({
+                    date: dateStr, day:d, year, month,
+                    weekday: getWeekdayName(year, month, d)
+                });
+                tasks.push(resolveExistingUrl(dateStr));
+            }
+
+            try {
+                const results = await Promise.all(tasks);
+                const existing = [];
+                for (let i=0;i<results.length;i++) {
+                    const url = results[i];
+                    if (url) existing.push({ ...infos[i], url });
+                }
+                existing.sort((a,b)=> b.day - a.day);
+
+                const header = document.getElementById('reports-header');
+                const sel = document.getElementById('selected-period');
+                const cnt = document.getElementById('reports-count');
+
+                if (existing.length) {
+                    header.style.display = 'block';
+                    sel.textContent = `${year}年${month}月`;
+                    cnt.textContent = existing.length;
+
+                    reportLinksContainer.innerHTML = existing.map(r => `
+                        <div class="report-container">
+                            <a href="${r.url}" class="report-title-link" target="_blank">
+                                自媒体糕校 ${r.year}.${r.month}.${r.day}
+                            </a>
+                            <div class="report-date-info">
+                                <i class="fas fa-calendar-day"></i>
+                                <span>${r.weekday}</span>
+                            </div>
+                            <a href="${r.url}" class="view-details-btn" target="_blank">
+                                <i class="fas fa-external-link-alt"></i>
+                                查看详情
+                            </a>
+                        </div>
+                    `).join('');
+                } else {
+                    header.style.display = 'none';
+                    reportLinksContainer.innerHTML = `
+                        <div class="text-center text-gray-500 py-8">
+                            <i class="fas fa-calendar-times text-2xl mb-2"></i>
+                            <p>该月份暂无日报</p>
+                            <p class="text-sm mt-1">请选择其他月份或等待新日报上传</p>
+                        </div>
+                    `;
+                }
+            } catch (e) {
+                console.error(e);
+                const header = document.getElementById('reports-header');
+                header.style.display = 'none';
+                reportLinksContainer.innerHTML = `
+                    <div class="text-center text-red-500 py-8">
+                        <i class="fas fa-exclamation-triangle text-2xl mb-2"></i>
+                        <p>加载日报列表时出现错误</p>
+                        <p class="text-sm mt-1">请稍后重试</p>
+                    </div>
+                `;
+            }
+        }
+
+        function showDefaultMessage() {
+            const header = document.getElementById('reports-header');
+            if (header) header.style.display = 'none';
+            reportLinksContainer.innerHTML = `
+                <div class="text-center text-gray-500 py-8">
+                    <i class="fas fa-info-circle text-2xl mb-2"></i>
+                    <p>请选择年份和月份以查看日报</p>
+                </div>
+            `;
+        }
+
+        window.addEventListener('load', function() {
+            if (yearSelector.value && monthSelector.value) {
+                fetchAndDisplayReports(parseInt(yearSelector.value), parseInt(monthSelector.value));
+            }
+        });
+    </script>
+</body>
+</html>

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>自媒体糕糕学习群日报 2025-09-25</title>
+    <title>自媒体糕校日报 2025-09-25</title>
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-6C9T7FPDT2"></script>
     <script>
@@ -71,6 +71,7 @@
         }
 
         .content-preview.collapsed {
+            max-height: 11rem; /* 控制预览高度，结合渐变遮罩更紧凑 */
             overflow: hidden;
             position: relative;
         }
@@ -84,6 +85,30 @@
             height: 30px;
             background: linear-gradient(transparent, rgba(255, 255, 255, 0.9));
             pointer-events: none;
+        }
+
+        /* 收起态样式优化：收紧段间距，弱化多余换行，避免空白过大 */
+        .content-preview.collapsed p,
+        .content-preview.collapsed ul,
+        .content-preview.collapsed ol,
+        .content-preview.collapsed li,
+        .content-preview.collapsed h1,
+        .content-preview.collapsed h2,
+        .content-preview.collapsed h3,
+        .content-preview.collapsed h4,
+        .content-preview.collapsed h5,
+        .content-preview.collapsed h6 {
+            margin-top: 0.25rem !important;
+            margin-bottom: 0.25rem !important;
+            line-height: 1.5 !important;
+        }
+        /* 多重 <br> 在收起态容易拉大间距，这里统一弱化 */
+        .content-preview.collapsed br {
+            display: none;
+        }
+        /* 允许小标题<b>后的首个换行保留，确保分行 */
+        .content-preview.collapsed b + br {
+            display: inline;
         }
 
         .expand-btn {
@@ -106,10 +131,7 @@
             transform: rotate(180deg);
         }
 
-        /* 收起态样式优化：收紧段间距，限制预览高度，弱化多余换行，避免空白过大 */
-        .content-preview.collapsed {
-            max-height: 11rem; /* 控制预览高度，结合渐变遮罩更紧凑 */
-        }
+        /* 收起态样式优化：收紧段间距，弱化多余换行，避免空白过大 */
         .content-preview.collapsed p,
         .content-preview.collapsed ul,
         .content-preview.collapsed ol,
@@ -123,14 +145,6 @@
             margin-top: 0.25rem !important;
             margin-bottom: 0.25rem !important;
             line-height: 1.5 !important;
-        }
-        /* 多重 <br> 在收起态容易拉大间距，这里统一弱化 */
-        .content-preview.collapsed br {
-            display: none;
-        }
-        /* 允许小标题<b>后的首个换行保留，确保分行 */
-        .content-preview.collapsed b + br {
-            display: inline;
         }
 
         /* 粉色主题覆盖：将原蓝色/紫色强调统一替换为粉色系 */
@@ -220,7 +234,7 @@
         <!-- === 模块二：糕糕划重点・热点话题 开始 === -->
         <section class="w-full mb-12">
             <h2 class="section-title">
-                二、糕糕划重点・热点话题
+                二、糕论时刻・深度话题
             </h2>
             <!-- 列表容器: 讨论话题 -->
             <div class="space-y-8">
@@ -259,7 +273,7 @@
                     <div class="mb-5">
                         <p class="text-sm font-semibold text-gray-800 mb-2">详细内容</p>
                         <div class="text-gray-700 text-base leading-relaxed bg-slate-50 p-4 rounded-md prose prose-sm max-w-none">
-                            <div class="expandable-content" data-char-limit="250">
+                            <div class="expandable-content" data-char-limit="200">
                                 <div class="content-preview">
                                     <b>一、话题背景与起因</b><br>
                                     讨论由群成员<b>高大壮</b>对自己是否属于小红书“买手”身份的疑问开启。这一问题迅速演变成一场关于小红书从基础功能到高级运营策略的全方位深度研讨。<br><br>
@@ -446,7 +460,7 @@
                     <div class="mb-5">
                         <p class="text-sm font-semibold text-gray-800 mb-2">详细内容</p>
                         <div class="text-gray-700 text-base leading-relaxed bg-slate-50 p-4 rounded-md prose prose-sm max-w-none">
-                            <div class="expandable-content" data-char-limit="250">
+                            <div class="expandable-content" data-char-limit="200">
                                 <div class="content-preview">
                                     <b>一、话题背景与起因</b><br>
                                     <b>糕某</b>分享了一个排版优秀的知识博主“Mindbrew思维精酿”作为参考案例。艺术专业出身的<b>查理</b>敏锐地指出，其配图并非AI生成，由此引发了一场关于AI绘画与人类艺术创作在审美层面差异的深度探讨。<br><br>
@@ -632,7 +646,7 @@
                     <div class="mb-5">
                         <p class="text-sm font-semibold text-gray-800 mb-2">详细内容</p>
                         <div class="text-gray-700 text-base leading-relaxed bg-slate-50 p-4 rounded-md prose prose-sm max-w-none">
-                            <div class="expandable-content" data-char-limit="250">
+                            <div class="expandable-content" data-char-limit="200">
                                 <div class="content-preview">
                                     <b>一、话题背景与起因</b><br>
                                     <b>讨厌的橙子🍊</b>在深夜表达了对自己内容创作方向的焦虑和迷茫，感觉自己虽在更新，但进步缓慢，缺乏方向。这一真诚的困惑，引发了<b>昍</b>关于创作者核心心态的深刻剖析。<br><br>
@@ -751,7 +765,7 @@
         <!-- === 模块三：高手请回答・疑难速解 开始 === -->
         <section class="w-full mb-12">
             <h2 class="section-title">
-                三、高手请回答・疑难速解
+                三、避坑指南・问答精选
             </h2>
             <div class="space-y-8">
                 <!-- 问答卡片 1 开始 -->
@@ -921,7 +935,7 @@
         <!-- === 模块四：灵感工具箱・干货分享 开始 === -->
         <section class="w-full mb-12">
             <h2 class="section-title">
-                四、灵感工具箱・干货分享
+                四、宝藏分享・高能精选
             </h2>
             <div class="space-y-8">
                 <!-- 知识卡片 1 开始 -->
@@ -1056,8 +1070,8 @@
         const GJ_FILE_PREFIX = '自媒体糕校_';
         const GJ_SUFFIX = '.html';
         // 本地文件浏览回退范围（仅在 file:// 下生效）
-        const GJ_LOCAL_MIN = '2025-09-24';
-        const GJ_LOCAL_MAX = '2025-09-27';
+        const GJ_LOCAL_MIN = '2025-09-23';
+        const GJ_LOCAL_MAX = '2025-09-29';
 
         document.addEventListener('DOMContentLoaded', function() {
             // Bento card hover effect is handled by CSS :hover pseudo-class
