@@ -968,8 +968,8 @@
     // 自媒体糕校日报：历史汇总与上下日导航（新增）
     (function(){
         const GJ_BASE_URL = 'https://gaogaoselfmedialearninggroup.github.io/x';
-        const GJ_DIR = window.location.pathname.includes('自媒体糕校日报/') ? '自媒体糕校日报/' : '';
-        const GJ_FILE_PREFIX = '自媒体糕校_';
+        const GJ_DIR = window.location.pathname.includes('gaos_daily_report/') ? 'gaos_daily_report/' : '';
+        const GJ_FILE_PREFIX = 'daily_report_';
         const GJ_SUFFIX = '.html';
         // 本地文件浏览回退范围（仅在 file:// 下生效）
         const GJ_LOCAL_MIN = '2025-09-23';
@@ -979,8 +979,8 @@
             try {
                 const historyLink = document.getElementById('history-link');
                 if (historyLink) {
-                    const histWithDir = `${GJ_BASE_URL}/${GJ_DIR}自媒体糕校历史汇总.html`;
-                    const histRoot = `${GJ_BASE_URL}/自媒体糕校历史汇总.html`;
+                    const histWithDir = `${GJ_BASE_URL}/${GJ_DIR}historical_page_summary.html`;
+                    const histRoot = `${GJ_BASE_URL}/historical_page_summary.html`;
                     fetch(histWithDir, { method: 'HEAD', cache: 'no-store' }).then(r => r.ok ? r : fetch(histWithDir, { method: 'GET', cache: 'no-store' }))
                         .then(r => { historyLink.href = r.ok ? histWithDir : histRoot; })
                         .catch(() => { historyLink.href = histRoot; });
