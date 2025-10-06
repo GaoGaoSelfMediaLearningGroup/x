@@ -133,8 +133,6 @@
     <script>
         // 常量
         const BASE_URL = "https://gaogaoselfmedialearninggroup.github.io/x";
-        const REPORT_FILENAME_PREFIX = "自媒体糕校日报/自媒体糕校_";
-        const REPORT_FILENAME_SUFFIX = ".html";
         const START_YEAR = 2025;
         const START_MONTH_FOR_START_YEAR = 9; // 2025年9月起
         const START_DAY_FOR_START_YEAR = 23;
@@ -232,12 +230,15 @@
                 }
             } catch { return false; }
         }
-        // 同时兼容两种部署位置：子目录 与 根目录
+        // 使用层级目录结构
         async function resolveExistingUrl(dateStr) {
-            const urlWithDir = `${BASE_URL}/自媒体糕校日报/自媒体糕校_${dateStr}${REPORT_FILENAME_SUFFIX}`;
-            const urlRoot = `${BASE_URL}/自媒体糕校_${dateStr}${REPORT_FILENAME_SUFFIX}`;
-            if (await checkLinkExists(urlWithDir)) return urlWithDir;
-            if (await checkLinkExists(urlRoot)) return urlRoot;
+            // 从日期字符串中提取年月 (格式: YYYY-MM-DD)
+            const [year, month] = dateStr.split('-');
+            
+            // 新的层级目录结构: YYYY/MM/daily_report_YYYY-MM-DD.html
+            const url = `${BASE_URL}/${year}/${month}/daily_report_${dateStr}.html`;
+            if (await checkLinkExists(url)) return url;
+            
             return '';
         }
 
