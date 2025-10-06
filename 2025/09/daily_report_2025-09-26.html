@@ -199,6 +199,16 @@
             </div>
         </nav>
 
+        <!-- 历史日报链接 -->
+        <section class="w-full mb-8">
+            <div class="bento-card p-4 text-center">
+                <a id="history-link" href="https://gaogaoselfmedialearninggroup.github.io/x/historical_page_summary.html" class="inline-flex items-center gap-2 text-pink-600 bg-pink-50 hover:bg-pink-100 border border-pink-200 px-3 py-2 rounded-md">
+                    <i class="fas fa-history"></i>
+                    糕校历史日报
+                </a>
+            </div>
+        </section>
+
 
         <!-- === 模块一：总消息概览 开始 === -->
         <!-- HTML注释: 此模块作为单独一行，占据整行宽度。显示当日群聊总消息数量。 -->
@@ -710,16 +720,6 @@
         </section>
         <!-- === 模块四：智慧火花匣・每日精选 结束 === -->
 
-        <!-- 历史日报按钮（下移） -->
-        <section class="w-full mb-8">
-            <div class="bento-card p-4 text-center">
-                <a id="history-link" href="#" class="inline-flex items-center gap-2 text-pink-600 bg-pink-50 hover:bg-pink-100 border border-pink-200 px-3 py-2 rounded-md">
-                    <i class="fas fa-history"></i>
-                    糕校历史日报
-                </a>
-            </div>
-        </section>
-
         <!-- === 文件底部 开始 === -->
         <footer class="w-full mt-16">
             <div class="bento-card p-8">
@@ -873,14 +873,6 @@
 
         document.addEventListener('DOMContentLoaded', function() {
             try {
-                const historyLink = document.getElementById('history-link');
-                if (historyLink) {
-                    const histWithDir = `${GJ_BASE_URL}/${GJ_DIR}historical_page_summary.html`;
-                    const histRoot = `${GJ_BASE_URL}/historical_page_summary.html`;
-                    fetch(histWithDir, { method: 'HEAD', cache: 'no-store' }).then(r => r.ok ? r : fetch(histWithDir, { method: 'GET', cache: 'no-store' }))
-                        .then(r => { historyLink.href = r.ok ? histWithDir : histRoot; })
-                        .catch(() => { historyLink.href = histRoot; });
-                }
                 initDailyNavigation();
             } catch (e) {
                 console.warn('初始化导航失败', e);
@@ -922,25 +914,17 @@
         }
 
         function checkExists(dateStr) {
-            const dir = window.location.pathname.replace(/[^\/]+$/, '');
-            const relUrl = `${dir}${GJ_FILE_PREFIX}${dateStr}${GJ_SUFFIX}`;
-
-            if (window.location.protocol === 'file:') {
-                const within = (dateStr >= GJ_LOCAL_MIN && dateStr <= GJ_LOCAL_MAX);
-                return Promise.resolve(within ? { ok: true, url: relUrl } : { ok: false });
-            }
-
+            // 从日期字符串中提取年月 (格式: YYYY-MM-DD)
             const [year, month] = dateStr.split('-');
-            const urlHierarchy = `${GJ_BASE_URL}/gaos_daily_report/${year}/${month}/${GJ_FILE_PREFIX}${dateStr}${GJ_SUFFIX}`;
-            const urlWithDir = `${GJ_BASE_URL}/${GJ_DIR}${GJ_FILE_PREFIX}${dateStr}${GJ_SUFFIX}`;
-            const urlRoot = `${GJ_BASE_URL}/${GJ_FILE_PREFIX}${dateStr}${GJ_SUFFIX}`;
-
-            const tryHead = (u) => fetch(u, { method: 'HEAD', cache: 'no-store' }).then(r => r.ok ? { ok: true, url: u } : Promise.reject());
-            const tryGet = (u) => fetch(u, { method: 'GET', cache: 'no-store' }).then(r => r.ok ? { ok: true, url: u } : Promise.reject());
-
-            return tryHead(urlHierarchy).catch(() => tryGet(urlHierarchy))
-                .catch(() => tryHead(urlWithDir)).catch(() => tryGet(urlWithDir))
-                .catch(() => tryHead(urlRoot)).catch(() => tryGet(urlRoot))
+            
+            // 新的层级目录结构: gaos_daily_report/YYYY/MM/daily_report_YYYY-MM-DD.html
+            const url = `${GJ_BASE_URL}/${year}/${month}/${GJ_FILE_PREFIX}${dateStr}${GJ_SUFFIX}`;
+            
+            return fetch(url, { method: 'HEAD', cache: 'no-store' })
+                .then(r => r.ok ? { ok: true, url: url } : 
+                    fetch(url, { method: 'GET', cache: 'no-store' })
+                        .then(r2 => r2.ok ? { ok: true, url: url } : { ok: false })
+                )
                 .catch(() => ({ ok: false }));
         }
     })();

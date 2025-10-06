@@ -200,6 +200,16 @@
         </nav>
         <!-- === "群聊日报" 文件头区域 结束 === -->
 
+        <!-- 历史日报链接 -->
+        <section class="w-full mb-8">
+            <div class="bento-card p-4 text-center">
+                <a id="history-link" href="https://gaogaoselfmedialearninggroup.github.io/x/historical_page_summary.html" class="inline-flex items-center gap-2 text-pink-600 bg-pink-50 hover:bg-pink-100 border border-pink-200 px-3 py-2 rounded-md">
+                    <i class="fas fa-history"></i>
+                    糕校历史日报
+                </a>
+            </div>
+        </section>
+
 
         <!-- === 模块一：总消息概览 开始 === -->
         <!-- HTML注释: 此模块作为单独一行，占据整行宽度。显示当日群聊总消息数量。 -->
@@ -633,16 +643,6 @@
         </section>
         <!-- === 模块四：智慧火花匣・每日精选 结束 === -->
 
-        <!-- 历史日报按钮（下移） -->
-        <section class="w-full mb-8">
-            <div class="bento-card p-4 text-center">
-                <a id="history-link" href="#" class="inline-flex items-center gap-2 text-pink-600 bg-pink-50 hover:bg-pink-100 border border-pink-200 px-3 py-2 rounded-md">
-                    <i class="fas fa-history"></i>
-                    糕校历史日报
-                </a>
-            </div>
-        </section>
-
         <!-- === 文件底部 开始 === -->
         <footer class="w-full mt-16">
             <div class="bento-card p-8">
@@ -713,17 +713,9 @@
             initExpandableContent();
         });
 
-        // 初始化日报导航与历史链接
+        // 初始化日报导航
         document.addEventListener('DOMContentLoaded', function() {
             try {
-                const historyLink = document.getElementById('history-link');
-                if (historyLink) {
-                    const histWithDir = `${GJ_BASE_URL}/${GJ_DIR}historical_page_summary.html`;
-                    const histRoot = `${GJ_BASE_URL}/historical_page_summary.html`;
-                    fetch(histWithDir, { method: 'HEAD', cache: 'no-store' }).then(r => r.ok ? r : fetch(histWithDir, { method: 'GET', cache: 'no-store' }))
-                        .then(r => { historyLink.href = r.ok ? histWithDir : histRoot; })
-                        .catch(() => { historyLink.href = histRoot; });
-                }
                 initDailyNavigation();
             } catch (e) {
                 console.warn('初始化导航失败', e);
@@ -768,23 +760,13 @@
             // 从日期字符串中提取年月 (格式: YYYY-MM-DD)
             const [year, month] = dateStr.split('-');
             
-            // 优先尝试新的层级目录结构: gaos_daily_report/YYYY/MM/daily_report_YYYY-MM-DD.html
-            const urlHierarchy = `${GJ_BASE_URL}/gaos_daily_report/${year}/${month}/${GJ_FILE_PREFIX}${dateStr}${GJ_SUFFIX}`;
-            // 兼容旧的扁平结构: gaos_daily_report/daily_report_YYYY-MM-DD.html
-            const urlWithDir = `${GJ_BASE_URL}/${GJ_DIR}${GJ_FILE_PREFIX}${dateStr}${GJ_SUFFIX}`;
-            // 兼容根目录: daily_report_YYYY-MM-DD.html
-            const urlRoot = `${GJ_BASE_URL}/${GJ_FILE_PREFIX}${dateStr}${GJ_SUFFIX}`;
+            // 新的层级目录结构: gaos_daily_report/YYYY/MM/daily_report_YYYY-MM-DD.html
+            const url = `${GJ_BASE_URL}/${year}/${month}/${GJ_FILE_PREFIX}${dateStr}${GJ_SUFFIX}`;
             
-            return fetch(urlHierarchy, { method: 'HEAD', cache: 'no-store' })
-                .then(r => r.ok ? r : fetch(urlHierarchy, { method: 'GET', cache: 'no-store' }))
-                .then(r => r.ok ? { ok: true, url: urlHierarchy } : 
-                    fetch(urlWithDir, { method: 'HEAD', cache: 'no-store' })
-                        .then(r2 => r2.ok ? r2 : fetch(urlWithDir, { method: 'GET', cache: 'no-store' }))
-                        .then(r2 => r2.ok ? { ok: true, url: urlWithDir } :
-                            fetch(urlRoot, { method: 'HEAD', cache: 'no-store' })
-                                .then(r3 => r3.ok ? r3 : fetch(urlRoot, { method: 'GET', cache: 'no-store' }))
-                                .then(r3 => r3.ok ? { ok: true, url: urlRoot } : { ok: false })
-                        )
+            return fetch(url, { method: 'HEAD', cache: 'no-store' })
+                .then(r => r.ok ? { ok: true, url: url } : 
+                    fetch(url, { method: 'GET', cache: 'no-store' })
+                        .then(r2 => r2.ok ? { ok: true, url: url } : { ok: false })
                 )
                 .catch(() => ({ ok: false }));
         }
