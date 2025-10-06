@@ -183,32 +183,37 @@
             </div>
         </header>
         
-        <!-- 导航与历史入口（新增） -->
+        <!-- 导航与历史入口 -->
         <nav class="w-full mb-8">
-            <div class="bento-card p-4">
-                <div class="flex items-center justify-between">
-                    <button id="prev-day" class="inline-flex items-center gap-2 bg-pink-500 hover:bg-pink-600 text-white px-4 py-2 rounded-lg shadow disabled:bg-gray-200 disabled:text-gray-400">
+            <div class="bento-card p-5">
+                <!-- 日期导航 -->
+                <div class="flex items-center justify-between mb-4">
+                    <button id="prev-day" class="inline-flex items-center gap-2 bg-pink-500 hover:bg-pink-600 text-white px-4 py-2 rounded-lg shadow disabled:bg-gray-200 disabled:text-gray-400 transition-all">
                         <i class="fas fa-chevron-left"></i>
-                        上一天
+                        <span class="hidden sm:inline">上一天</span>
+                        <span class="sm:hidden">上一天</span>
                     </button>
-                    <button id="next-day" class="inline-flex items-center gap-2 bg-pink-500 hover:bg-pink-600 text-white px-4 py-2 rounded-lg shadow disabled:bg-gray-200 disabled:text-gray-400">
-                        下一天
+                    <button id="next-day" class="inline-flex items-center gap-2 bg-pink-500 hover:bg-pink-600 text-white px-4 py-2 rounded-lg shadow disabled:bg-gray-200 disabled:text-gray-400 transition-all">
+                        <span class="hidden sm:inline">下一天</span>
+                        <span class="sm:hidden">下一天</span>
                         <i class="fas fa-chevron-right"></i>
                     </button>
+                </div>
+                
+                <!-- 分隔线 -->
+                <div class="border-t border-gray-200 mb-4"></div>
+                
+                <!-- 历史日报入口 -->
+                <div class="text-center">
+                    <a id="history-link" href="https://gaogaoselfmedialearninggroup.github.io/x/historical_page_summary.html" 
+                       class="inline-flex items-center gap-2 text-pink-600 hover:text-pink-700 bg-pink-50 hover:bg-pink-100 border border-pink-200 hover:border-pink-300 px-4 py-2 rounded-lg transition-all text-sm font-medium">
+                        <i class="fas fa-history"></i>
+                        <span>查看历史日报</span>
+                    </a>
                 </div>
             </div>
         </nav>
         <!-- === "群聊日报" 文件头区域 结束 === -->
-
-        <!-- 历史日报链接 -->
-        <section class="w-full mb-8">
-            <div class="bento-card p-4 text-center">
-                <a id="history-link" href="https://gaogaoselfmedialearninggroup.github.io/x/historical_page_summary.html" class="inline-flex items-center gap-2 text-pink-600 bg-pink-50 hover:bg-pink-100 border border-pink-200 px-3 py-2 rounded-md">
-                    <i class="fas fa-history"></i>
-                    糕校历史日报
-                </a>
-            </div>
-        </section>
 
 
         <!-- === 模块一：总消息概览 开始 === -->
