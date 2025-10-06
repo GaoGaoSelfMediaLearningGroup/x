@@ -1266,14 +1266,17 @@
                 return Promise.resolve(within ? { ok: true, url: relUrl } : { ok: false });
             }
 
-            // 线上 http(s) 环境：远端两种结构探测
+            // 线上 http(s) 环境：远端三种结构探测
+            const [year, month] = dateStr.split('-');
+            const urlHierarchy = `${GJ_BASE_URL}/gaos_daily_report/${year}/${month}/${GJ_FILE_PREFIX}${dateStr}${GJ_SUFFIX}`;
             const urlWithDir = `${GJ_BASE_URL}/${GJ_DIR}${GJ_FILE_PREFIX}${dateStr}${GJ_SUFFIX}`;
             const urlRoot = `${GJ_BASE_URL}/${GJ_FILE_PREFIX}${dateStr}${GJ_SUFFIX}`;
 
             const tryHead = (u) => fetch(u, { method: 'HEAD', cache: 'no-store' }).then(r => r.ok ? { ok: true, url: u } : Promise.reject());
             const tryGet = (u) => fetch(u, { method: 'GET', cache: 'no-store' }).then(r => r.ok ? { ok: true, url: u } : Promise.reject());
 
-            return tryHead(urlWithDir).catch(() => tryGet(urlWithDir))
+            return tryHead(urlHierarchy).catch(() => tryGet(urlHierarchy))
+                .catch(() => tryHead(urlWithDir)).catch(() => tryGet(urlWithDir))
                 .catch(() => tryHead(urlRoot)).catch(() => tryGet(urlRoot))
                 .catch(() => ({ ok: false }));
         }
