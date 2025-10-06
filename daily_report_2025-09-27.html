@@ -846,7 +846,7 @@
 
             // HTML注释: 方法2：从URL文件名中提取日期
             const pathname = window.location.pathname;
-            const filenameMatch = pathname.match(/自媒体糕校_(\d{4}-\d{2}-\d{2})\.html/);
+            const filenameMatch = pathname.match(/daily_report_(\d{4}-\d{2}-\d{2})\.html/);
             if (filenameMatch) {
                 return filenameMatch[1];
             }

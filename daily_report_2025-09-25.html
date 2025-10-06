@@ -1285,7 +1285,7 @@
                 const m = el.textContent.match(/(\d{4})年(\d{1,2})月(\d{1,2})日/);
                 if (m) return `${m[1]}-${m[2].padStart(2,'0')}-${m[3].padStart(2,'0')}`;
             }
-            const fn = window.location.pathname.match(/自媒体糕校_(\d{4}-\d{2}-\d{2})\.html/);
+            const fn = window.location.pathname.match(/daily_report_(\d{4}-\d{2}-\d{2})\.html/);
             if (fn) return fn[1];
             const tm = document.title.match(/(\d{4}-\d{2}-\d{2})/);
             if (tm) return tm[1];
