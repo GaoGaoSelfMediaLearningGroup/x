@@ -45,6 +45,7 @@
                             <i class="fas fa-calendar-alt mr-2 text-pink-500"></i>
                             <span>2025年9月起</span>
                         </div>
+                        <div id="env-indicator" class="flex items-center text-gray-600 text-sm"></div>
                     </div>
                 </div>
             </div>
@@ -132,7 +133,12 @@
 
     <script>
         // 常量
-        const BASE_URL = "https://gaogaoselfmedialearninggroup.github.io/x";
+        // 自动检测环境：如果是本地文件，使用相对路径；如果是线上，使用完整URL
+        const isLocalFile = window.location.protocol === 'file:';
+        const BASE_URL = isLocalFile 
+            ? "." // 相对路径，相对于当前 historical_page_summary.html 文件
+            : "https://gaogaoselfmedialearninggroup.github.io/x";
+        
         const START_YEAR = 2025;
         const START_MONTH_FOR_START_YEAR = 9; // 2025年9月起
         const START_DAY_FOR_START_YEAR = 23;
@@ -143,6 +149,14 @@
             yearSelector = document.getElementById('yearSelector');
             monthSelector = document.getElementById('monthSelector');
             reportLinksContainer = document.getElementById('reportLinksContainer');
+
+            // 显示环境指示器
+            const envIndicator = document.getElementById('env-indicator');
+            if (envIndicator) {
+                const icon = isLocalFile ? 'fa-folder-open' : 'fa-globe';
+                const text = isLocalFile ? '本地模式' : '在线模式';
+                envIndicator.innerHTML = `<i class="fas ${icon} mr-2 text-pink-500"></i><span>${text}</span>`;
+            }
 
             const today = getToday();
             populateYearSelector(today.year);
@@ -214,6 +228,13 @@
         }
 
         async function checkLinkExists(url) {
+            // 本地文件环境下，由于浏览器安全限制，直接返回 true
+            // 用户点击链接时会自然发现文件是否存在
+            if (isLocalFile) {
+                return true;
+            }
+            
+            // 线上环境使用 fetch 检测
             try {
                 try {
                     let r = await fetch(url, { method: 'HEAD', cache: 'no-store' });
@@ -236,6 +257,7 @@
             const [year, month] = dateStr.split('-');
             
             // 新的层级目录结构: YYYY/MM/daily_report_YYYY-MM-DD.html
+            // 确保月份是两位数格式 (如 09)
             const url = `${BASE_URL}/${year}/${month}/daily_report_${dateStr}.html`;
             if (await checkLinkExists(url)) return url;
             
@@ -243,10 +265,14 @@
         }
 
         async function fetchAndDisplayReports(year, month) {
+            const loadingMsg = isLocalFile 
+                ? '正在生成日报列表...' 
+                : '正在检查日报文件...';
+            
             reportLinksContainer.innerHTML = `
                 <div class="text-center text-gray-500 py-8">
                     <div class="loading-spinner mx-auto mb-3"></div>
-                    <p>正在检查日报文件...</p>
+                    <p>${loadingMsg}</p>
                 </div>
             `;
             const today = getToday();
