@@ -4,6 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>自媒体糕校历史汇总</title>
+    
+    <!-- 深色模式预加载脚本 - 防止页面切换时闪烁 -->
+    <script>
+        (function() {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                document.documentElement.classList.add('dark-mode-preload');
+                const style = document.createElement('style');
+                style.textContent = `
+                    html, body { background-color: #1a1a1a !important; color: #e5e5e5 !important; }
+                `;
+                document.head.appendChild(style);
+            }
+        })();
+    </script>
+    
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -25,9 +41,133 @@
         @keyframes spin { 0%{transform:rotate(0)}100%{transform:rotate(360deg)} }
         .error-message { display:none; color:#dc2626; background:#fef2f2; border:1px solid #fecaca; border-radius:.5rem; padding:1rem; margin:1rem 0; }
         .error-message.active { display:block; }
-        select { appearance:none; background-image:url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e"); background-position:right .5rem center; background-repeat:no-repeat; background-size:1.25em 1.25em; padding-right:2rem; }
+        select { appearance:none; background-image:url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e"); background-position:right .5rem center; background-repeat:no-repeat; background-size:1.25em 1.25em; padding-right:2rem; color: #1f2937; font-weight: 500; }
         select:focus { outline:none; border-color:#EC4899; box-shadow:0 0 0 3px rgba(236,72,153,.1); }
+        select option { color: #1f2937; background-color: #fff; }
         select option:checked { background-color:#EC4899; color:#fff; }
+        
+        /* === 深色模式样式 === */
+        html.dark-mode-preload,
+        html.dark-mode-preload body,
+        body.dark-mode {
+            background-color: #1a1a1a;
+            color: #e5e5e5;
+        }
+        
+        html.dark-mode-preload .bento-card,
+        body.dark-mode .bento-card {
+            background-color: #2a2a2a;
+            border-color: #3a3a3a;
+        }
+        
+        body.dark-mode .section-title {
+            color: #f5f5f5;
+        }
+        
+        body.dark-mode .text-black {
+            color: #e5e5e5 !important;
+        }
+        
+        body.dark-mode .text-gray-700 {
+            color: #a0a0a0 !important;
+        }
+        
+        body.dark-mode .text-gray-600 {
+            color: #909090 !important;
+        }
+        
+        body.dark-mode .text-gray-800 {
+            color: #c0c0c0 !important;
+        }
+        
+        body.dark-mode .text-gray-500 {
+            color: #808080 !important;
+        }
+        
+        body.dark-mode .text-gray-400 {
+            color: #707070 !important;
+        }
+        
+        body.dark-mode .text-red-500 {
+            color: #ef4444 !important;
+        }
+        
+        body.dark-mode .bg-gray-100 {
+            background-color: #333333 !important;
+        }
+        
+        body.dark-mode .border-gray-300 {
+            border-color: #4a4a4a !important;
+        }
+        
+        body.dark-mode .report-container {
+            background-color: #2a2a2a;
+            border-color: #3a3a3a;
+        }
+        
+        body.dark-mode .report-container:hover {
+            border-color: #EC4899;
+            background-color: #2f2f2f;
+        }
+        
+        body.dark-mode .report-title-link {
+            color: #EC4899;
+        }
+        
+        body.dark-mode .report-title-link:hover {
+            color: #F9A8D4;
+        }
+        
+        body.dark-mode .view-details-btn {
+            background-color: #3d2940;
+            color: #F9A8D4;
+            border-color: #5a3a5f;
+        }
+        
+        body.dark-mode .view-details-btn:hover {
+            background-color: #4d2950;
+        }
+        
+        body.dark-mode select {
+            background-color: #2a2a2a;
+            color: #e5e5e5;
+            border-color: #4a4a4a;
+        }
+        
+        /* 主题切换按钮 */
+        .theme-toggle {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 3rem;
+            height: 3rem;
+            background: #EC4899;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(236, 72, 153, 0.3);
+            z-index: 1000;
+        }
+        
+        .theme-toggle:hover {
+            background: #DB2777;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 16px rgba(236, 72, 153, 0.4);
+        }
+        
+        /* 移动端优化 */
+        @media (max-width: 640px) {
+            .theme-toggle {
+                bottom: 1rem;
+                right: 1rem;
+                width: 2.5rem;
+                height: 2.5rem;
+            }
+        }
     </style>
 </head>
 <body class="bg-white text-black min-h-screen">
@@ -131,6 +271,11 @@
         </section>
     </div>
 
+    <!-- 主题切换按钮 -->
+    <button class="theme-toggle" id="themeToggle" aria-label="切换主题" title="切换深色/浅色模式">
+        <i class="fas fa-moon" id="themeIcon"></i>
+    </button>
+
     <script>
         // 常量
         // 自动检测环境：如果是本地文件，使用相对路径；如果是线上，使用完整URL
@@ -146,6 +291,9 @@
         let yearSelector, monthSelector, reportLinksContainer;
 
         document.addEventListener('DOMContentLoaded', function() {
+            // 初始化深色模式
+            initThemeToggle();
+            
             yearSelector = document.getElementById('yearSelector');
             monthSelector = document.getElementById('monthSelector');
             reportLinksContainer = document.getElementById('reportLinksContainer');
@@ -363,6 +511,38 @@
                 fetchAndDisplayReports(parseInt(yearSelector.value), parseInt(monthSelector.value));
             }
         });
+        
+        // 主题切换功能
+        function initThemeToggle() {
+            const btn = document.getElementById('themeToggle');
+            const icon = document.getElementById('themeIcon');
+            
+            // 将预加载类转换为正式的dark-mode类
+            document.documentElement.classList.remove('dark-mode-preload');
+            
+            // 检查本地存储的主题设置
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                document.body.classList.add('dark-mode');
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
+            }
+            
+            btn.addEventListener('click', () => {
+                document.body.classList.toggle('dark-mode');
+                const isDark = document.body.classList.contains('dark-mode');
+                
+                if (isDark) {
+                    icon.classList.remove('fa-moon');
+                    icon.classList.add('fa-sun');
+                    localStorage.setItem('theme', 'dark');
+                } else {
+                    icon.classList.remove('fa-sun');
+                    icon.classList.add('fa-moon');
+                    localStorage.setItem('theme', 'light');
+                }
+            });
+        }
     </script>
 </body>
 </html>
