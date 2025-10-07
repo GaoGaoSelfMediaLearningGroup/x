@@ -937,24 +937,46 @@
             const prevBtn = document.getElementById('prev-day');
             const nextBtn = document.getElementById('next-day');
 
-            Promise.all([checkExists(prevStr), checkExists(nextStr)]).then(([pe, ne]) => {
+            // 检测是否是本地文件协议
+            const isLocalFile = window.location.protocol === 'file:';
+            
+            if (isLocalFile) {
+                // 本地文件模式：使用相对路径，直接启用按钮
                 if (prevBtn) {
-                    if (pe.ok) {
-                        prevBtn.disabled = false;
-                        prevBtn.onclick = () => window.location.href = pe.url;
-                    } else {
-                        prevBtn.disabled = true;
-                    }
+                    prevBtn.disabled = false;
+                    prevBtn.onclick = () => {
+                        const [year, month] = prevStr.split('-');
+                        window.location.href = `../${month}/${GJ_FILE_PREFIX}${prevStr}${GJ_SUFFIX}`;
+                    };
                 }
                 if (nextBtn) {
-                    if (ne.ok) {
-                        nextBtn.disabled = false;
-                        nextBtn.onclick = () => window.location.href = ne.url;
-                    } else {
-                        nextBtn.disabled = true;
-                    }
+                    nextBtn.disabled = false;
+                    nextBtn.onclick = () => {
+                        const [year, month] = nextStr.split('-');
+                        window.location.href = `../${month}/${GJ_FILE_PREFIX}${nextStr}${GJ_SUFFIX}`;
+                    };
                 }
-            }).catch(()=>{});
+            } else {
+                // GitHub Pages模式：使用fetch检查文件是否存在
+                Promise.all([checkExists(prevStr), checkExists(nextStr)]).then(([pe, ne]) => {
+                    if (prevBtn) {
+                        if (pe.ok) {
+                            prevBtn.disabled = false;
+                            prevBtn.onclick = () => window.location.href = pe.url;
+                        } else {
+                            prevBtn.disabled = true;
+                        }
+                    }
+                    if (nextBtn) {
+                        if (ne.ok) {
+                            nextBtn.disabled = false;
+                            nextBtn.onclick = () => window.location.href = ne.url;
+                        } else {
+                            nextBtn.disabled = true;
+                        }
+                    }
+                }).catch(()=>{});
+            }
         }
 
         function checkExists(dateStr) {
