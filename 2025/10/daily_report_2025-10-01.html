@@ -4,6 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>自媒体糕校日报 2025-10-01</title>
+    
+    <!-- SEO 元数据 -->
+    <meta name="description" content="自媒体糕校日报 2025-10-01 - 群聊精华总结，自媒体运营干货分享">
+    <meta name="keywords" content="自媒体,糕校日报,小红书运营,内容创作,知识变现">
+    <meta name="author" content="自媒体糕校">
+    
+    <!-- Open Graph / 社交媒体分享标签 -->
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="自媒体糕校日报 2025-10-01">
+    <meta property="og:description" content="群聊精华总结，自媒体运营干货分享">
+    <meta property="og:site_name" content="自媒体糕校">
+    <meta property="og:locale" content="zh_CN">
+    
+    <!-- Twitter Card 标签 -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="自媒体糕校日报 2025-10-01">
+    <meta name="twitter:description" content="群聊精华总结，自媒体运营干货分享">
+    
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-6C9T7FPDT2"></script>
     <script>
@@ -13,7 +31,26 @@
 
       gtag('config', 'G-6C9T7FPDT2');
     </script>
-    <!-- 正常标题格式应为：自媒体糕校日报 yyyy-mm-dd，以便外部链接查看时了解日报日期 -->
+    
+    <!-- 深色模式预加载脚本 - 终极防闪烁方案 -->
+    <script>
+        // 在DOM解析前立即执行，最大程度避免闪烁
+        (function() {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                // 方案1：为html元素添加类
+                document.documentElement.classList.add('dark-mode-preload');
+                
+                // 方案2：直接设置body的内联样式（更早生效）
+                const style = document.createElement('style');
+                style.textContent = `
+                    html, body { background-color: #1a1a1a !important; color: #e5e5e5 !important; }
+                `;
+                document.head.appendChild(style);
+            }
+        })();
+    </script>
+        <!-- 正常标题格式应为：自媒体糕校日报 yyyy-mm-dd，以便外部链接查看时了解日报日期 -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -174,28 +211,297 @@
             transform: rotate(180deg);
         }
 
-        /* 粉色主题覆盖：将原蓝色/紫色强调统一替换为粉色系 */
-        /* 蓝色自定义类 -> 粉色 */
+        /* === 粉色主题统一样式 === */
+        /* 蓝色元素统一替换为粉色 */
         .text-\[\#4D6BFE\] { color: #EC4899 !important; }              /* pink-500 */
         .border-\[\#4D6BFE\] { border-color: #EC4899 !important; }
         .border-\[\#93c5fd\] { border-color: #F9A8D4 !important; }    /* pink-300 */
-        /* 渐变片段中的 from/via/to 使用 #EC4899 系列覆盖困难，已在模板处进行类名替换；此处保留覆盖备用 */
+        
+        /* 渐变色统一为粉色 */
         .from-\[\#4D6BFE\]\/20 { --tw-gradient-from: rgb(236 72 153 / 0.20) !important; }
         .via-\[\#4D6BFE\]\/10 { --tw-gradient-stops: var(--tw-gradient-from), rgb(236 72 153 / 0.10), var(--tw-gradient-to) !important; }
-        .to-\[\#4D6BFE\]\/5   { --tw-gradient-to: rgb(236 72 153 / 0.05) !important; }
+        .to-\[\#4D6BFE\]\/5 { --tw-gradient-to: rgb(236 72 153 / 0.05) !important; }
 
-        /* 紫色块（爬楼关键词） -> 粉色 */
+        /* 紫色块（爬楼关键词）替换为粉色 */
         .bg-purple-50   { background-color: #FDF2F8 !important; }     /* pink-50 */
         .border-purple-200 { border-color: #FBCFE8 !important; }      /* pink-200 */
         .text-purple-700   { color: #BE185D !important; }             /* pink-700 */
         .text-purple-600   { color: #DB2777 !important; }             /* pink-600 */
+        
+        /* 交互与背景色 */
+        .hover\:text-blue-700:hover { color: #BE185D !important; }
+        .bg-blue-50 { background-color: #FDF2F8 !important; }
 
-        /* 关键结论左侧色条 -> 粉色 */
-        .border-\[\#4D6BFE\] { border-color: #EC4899 !important; }
+        /* === 新增功能样式 === */
+        
+        /* 目录导航样式 */
+        .toc-container {
+            position: sticky;
+            top: 20px;
+            max-height: calc(100vh - 40px);
+            overflow-y: auto;
+        }
+        
+        .toc-toggle {
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .toc-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+        
+        .toc-content.active {
+            max-height: 600px;
+        }
+        
+        .toc-link {
+            display: block;
+            padding: 0.5rem 0.75rem;
+            color: #6b7280;
+            text-decoration: none;
+            font-size: 0.875rem;
+            transition: all 0.2s ease;
+            border-left: 2px solid transparent;
+        }
+        
+        .toc-link:hover {
+            color: #EC4899;
+            background-color: #FDF2F8;
+            border-left-color: #EC4899;
+        }
+        
+        .toc-link.active {
+            color: #EC4899;
+            font-weight: 600;
+            border-left-color: #EC4899;
+            background-color: #FDF2F8;
+        }
+        
+        /* 返回顶部按钮样式 */
+        .back-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 3rem;
+            height: 3rem;
+            background: #EC4899;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(236, 72, 153, 0.3);
+            z-index: 1000;
+        }
+        
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .back-to-top:hover {
+            background: #DB2777;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 16px rgba(236, 72, 153, 0.4);
+        }
+        
+        /* 复制按钮样式 */
+        .copy-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.25rem;
+            padding: 0.25rem 0.5rem;
+            background: transparent;
+            color: #EC4899;
+            border: 1px solid #EC4899;
+            border-radius: 0.375rem;
+            font-size: 0.75rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .copy-btn:hover {
+            background: #EC4899;
+            color: white;
+        }
+        
+        .copy-btn.copied {
+            background: #10b981;
+            border-color: #10b981;
+            color: white;
+        }
+        
+        /* 暗色模式样式 */
+        /* 预加载深色模式类 - 防止闪烁 */
+        html.dark-mode-preload,
+        html.dark-mode-preload body,
+        body.dark-mode {
+            background-color: #1a1a1a;
+            color: #e5e5e5;
+        }
+        
 
-        /* 统一交互与背景为粉色 */
-        .hover\:text-blue-700:hover { color: #BE185D !important; }    /* pink-700 on hover */
-        .bg-blue-50 { background-color: #FDF2F8 !important; }         /* replace light blue with pink-50 */
+        html.dark-mode-preload .bento-card,
+        body.dark-mode .bento-card {
+            background-color: #2a2a2a;
+            border-color: #3a3a3a;
+        }
+        
+        body.dark-mode .section-title {
+            color: #f5f5f5;
+        }
+        
+        body.dark-mode .text-black {
+            color: #e5e5e5 !important;
+        }
+        
+        body.dark-mode .text-gray-700 {
+            color: #a0a0a0 !important;
+        }
+        
+        body.dark-mode .text-gray-600 {
+            color: #909090 !important;
+        }
+        
+        body.dark-mode .text-gray-800 {
+            color: #c0c0c0 !important;
+        }
+        
+        body.dark-mode .bg-slate-50 {
+            background-color: #2f2f2f !important;
+        }
+        
+        body.dark-mode .bg-gray-50 {
+            background-color: #2f2f2f !important;
+        }
+        
+        body.dark-mode .bg-gray-100 {
+            background-color: #333333 !important;
+        }
+        
+        body.dark-mode .bg-purple-50 {
+            background-color: #3d2940 !important;
+        }
+        
+        body.dark-mode .bg-amber-50 {
+            background-color: #3d3420 !important;
+        }
+        
+        body.dark-mode .border-gray-200 {
+            border-color: #3a3a3a !important;
+        }
+        
+        body.dark-mode .border-purple-200 {
+            border-color: #5a3a5f !important;
+        }
+        
+        body.dark-mode .bg-blue-50 {
+            background-color: #1e3a5f !important;
+        }
+        
+        body.dark-mode .border-amber-400 {
+            border-color: #d97706 !important;
+        }
+        
+        /* 深色模式下的渐变遮罩 */
+        body.dark-mode .content-preview.collapsed::after {
+            background: linear-gradient(transparent, rgba(26, 26, 26, 0.95));
+        }
+        
+        /* 主题切换按钮 */
+        .theme-toggle {
+            position: fixed;
+            bottom: 6rem;
+            right: 2rem;
+            width: 3rem;
+            height: 3rem;
+            background: #EC4899;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(236, 72, 153, 0.3);
+            z-index: 1000;
+        }
+        
+        .theme-toggle:hover {
+            background: #DB2777;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 16px rgba(236, 72, 153, 0.4);
+        }
+        
+        /* 打印样式 */
+        @media print {
+            .back-to-top, .theme-toggle, nav, .copy-btn, .expand-btn, .toc-container {
+                display: none !important;
+            }
+            
+            body {
+                background: white;
+                color: black;
+            }
+            
+            .bento-card {
+                box-shadow: none;
+                border: 1px solid #ddd;
+                page-break-inside: avoid;
+            }
+            
+            .content-preview.collapsed {
+                max-height: none !important;
+            }
+            
+            .content-preview.collapsed::after {
+                display: none;
+            }
+        }
+        
+        /* 移动端优化 */
+        @media (max-width: 640px) {
+            .back-to-top {
+                bottom: 1rem;
+                right: 1rem;
+                width: 2.5rem;
+                height: 2.5rem;
+            }
+            
+            .theme-toggle {
+                bottom: 4.5rem;
+                right: 1rem;
+                width: 2.5rem;
+                height: 2.5rem;
+            }
+            
+            .toc-container {
+                position: relative;
+                top: 0;
+                max-height: none;
+            }
+        }
+
+        /* 页面淡入效果 - 让切换更平滑 */
+        body {
+            animation: fadeIn 0.3s ease-in;
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
 
     </style>
 </head>
@@ -206,7 +512,7 @@
         <!-- === "群聊日报" 文件头区域 开始 === -->
         <!-- HTML注释: 此模块作为单独一行，占据整行宽度。包含日报主标题、报告日期和时间范围。 -->
         <!-- HTML注释: 新增了"群聊历史日报"链接，样式与整体设计保持统一协调 -->
-        <header class="w-full mb-8">
+        <header class="w-full mb-8" role="banner">
             <div class="bento-card p-8">
                 <div class="text-center">
                     <h1 class="text-5xl font-black text-black mb-6">
@@ -235,16 +541,16 @@
         </header>
         <!-- === "群聊日报" 文件头区域 结束 === -->
         <!-- 导航与历史入口 -->
-        <nav class="w-full mb-8">
+        <nav class="w-full mb-8" aria-label="日期导航">
             <div class="bento-card p-5">
                 <!-- 日期导航 -->
                 <div class="flex items-center justify-between mb-4">
-                    <button id="prev-day" class="inline-flex items-center gap-2 bg-pink-500 hover:bg-pink-600 text-white px-4 py-2 rounded-lg shadow disabled:bg-gray-200 disabled:text-gray-400 transition-all">
+                    <button id="prev-day" class="inline-flex items-center gap-2 bg-pink-500 hover:bg-pink-600 text-white px-4 py-2 rounded-lg shadow disabled:bg-gray-200 disabled:text-gray-400 transition-all" aria-label="查看前一天日报">
                         <i class="fas fa-chevron-left"></i>
                         <span class="hidden sm:inline">上一天</span>
                         <span class="sm:hidden">上一天</span>
                     </button>
-                    <button id="next-day" class="inline-flex items-center gap-2 bg-pink-500 hover:bg-pink-600 text-white px-4 py-2 rounded-lg shadow disabled:bg-gray-200 disabled:text-gray-400 transition-all">
+                    <button id="next-day" class="inline-flex items-center gap-2 bg-pink-500 hover:bg-pink-600 text-white px-4 py-2 rounded-lg shadow disabled:bg-gray-200 disabled:text-gray-400 transition-all" aria-label="查看后一天日报">
                         <span class="hidden sm:inline">下一天</span>
                         <span class="sm:hidden">下一天</span>
                         <i class="fas fa-chevron-right"></i>
@@ -253,10 +559,42 @@
             </div>
         </nav>
 
+
+        <!-- === 内容目录导航 开始 === -->
+        <aside class="w-full mb-8">
+            <div class="bento-card p-5 toc-container">
+                <div class="toc-toggle flex items-center justify-between" onclick="toggleToc()">
+                    <h3 class="text-lg font-bold text-black flex items-center">
+                        <i class="fas fa-list mr-2 text-pink-500"></i>
+                        <span>内容导航</span>
+                    </h3>
+                    <i id="toc-icon" class="fas fa-chevron-down text-pink-500 transition-transform"></i>
+                </div>
+                <nav class="toc-content" id="toc-content" aria-label="内容导航">
+                    <div class="mt-4 space-y-1">
+                        <a href="#section-overview" class="toc-link" onclick="smoothScroll(event, 'section-overview')">
+                            <i class="fas fa-chart-line mr-2"></i>今日群聊速览
+                        </a>
+                        <a href="#section-topics" class="toc-link" onclick="smoothScroll(event, 'section-topics')">
+                            <i class="fas fa-fire mr-2"></i>糕论时刻・深度话题
+                        </a>
+                        <a href="#section-qa" class="toc-link" onclick="smoothScroll(event, 'section-qa')">
+                            <i class="fas fa-question-circle mr-2"></i>避坑指南・问答精选
+                        </a>
+                        <a href="#section-highlights" class="toc-link" onclick="smoothScroll(event, 'section-highlights')">
+                            <i class="fas fa-star mr-2"></i>宝藏分享・高能精选
+                        </a>
+                    </div>
+                </nav>
+            </div>
+        </aside>
+        <!-- === 内容目录导航 结束 === -->
+
+
         <!-- === 模块一：总消息概览 开始 === -->
         <!-- HTML注释: 此模块作为单独一行，占据整行宽度。显示当日群聊总消息数量。 -->
-        <section class="w-full mb-12">
-            <h2 class="section-title">
+        <section id="section-overview" class="w-full mb-12" aria-labelledby="section-overview-title">
+            <h2 id="section-overview-title" class="section-title">
                 一、今日群聊速览
             </h2>
             <div class="bento-card p-8 bg-gradient-to-br from-[#EC4899]/20 via-[#EC4899]/10 to-[#EC4899]/5 text-center rounded-2xl">
@@ -275,8 +613,8 @@
         <!-- 2. 关键结论: 每个话题下可以包含多个关键结论 (模板结构示例展示支持最多3个关键结论，如需更多可复制结构)；关键结论应按照话题讨论的时间线来编写。 -->
         <!-- 3. **金句时刻**: 每个关键结论下对应约3个**金句时刻**金句必须是让人获得"啊哈"或恍然大悟的发言。 -->
         <!-- HTML注释: "爬楼关键词"说明: 每个话题卡片中包含爬楼关键词区域，话题讨论起始句，用于用户快速定位到群聊记录中的对应讨论位置。填写时需要包含相关用户的昵称，格式示例：[用户昵称]：[关键词内容]，但不要包含微信ID。 -->
-        <section class="w-full mb-12">
-            <h2 class="section-title">
+        <section id="section-topics" class="w-full mb-12" aria-labelledby="section-topics-title">
+            <h2 id="section-topics-title" class="section-title">
                 二、糕论时刻・深度话题
             </h2>
             <!-- 列表容器: 讨论话题 -->
@@ -343,25 +681,40 @@
                                     <p class="text-sm font-medium text-gray-700 mb-2"><strong>金句时刻</strong></p>
                                     <div class="space-y-2">
                                         <div class="bg-amber-50 border-l-4 border-amber-400 p-3 rounded-r-md flex flex-col">
-                                            <p class="text-gray-800 italic text-sm">
-                                                圆头扎马尾好看。
-                                            </p>
+                                            <div class="flex items-start justify-between mb-2">
+                                                <p class="text-gray-800 italic text-sm flex-1">
+                                                    圆头扎马尾好看。
+                                                </p>
+                                                <button class="copy-btn ml-2" onclick="copyQuote(this, '圆头扎马尾好看。 - 光之咸鱼小玖💤')" title="复制金句">
+                                                    <i class="fas fa-copy"></i>
+                                                </button>
+                                            </div>
                                             <p class="text-gray-600 text-xs mt-1 self-end">
                                                 - <b>光之咸鱼小玖💤</b>
                                             </p>
                                         </div>
                                         <div class="bg-amber-50 border-l-4 border-amber-400 p-3 rounded-r-md flex flex-col">
-                                            <p class="text-gray-800 italic text-sm">
-                                                以前看过好多血泪控诉家里老人喜欢扁头把孩子后脑勺睡的跟刀削一样的。
-                                            </p>
+                                            <div class="flex items-start justify-between mb-2">
+                                                <p class="text-gray-800 italic text-sm flex-1">
+                                                    以前看过好多血泪控诉家里老人喜欢扁头把孩子后脑勺睡的跟刀削一样的。
+                                                </p>
+                                                <button class="copy-btn ml-2" onclick="copyQuote(this, '以前看过好多血泪控诉家里老人喜欢扁头把孩子后脑勺睡的跟刀削一样的。 - 光之咸鱼小玖💤')" title="复制金句">
+                                                    <i class="fas fa-copy"></i>
+                                                </button>
+                                            </div>
                                             <p class="text-gray-600 text-xs mt-1 self-end">
                                                 - <b>光之咸鱼小玖💤</b>
                                             </p>
                                         </div>
                                         <div class="bg-amber-50 border-l-4 border-amber-400 p-3 rounded-r-md flex flex-col">
-                                            <p class="text-gray-800 italic text-sm">
-                                                我妈到现在都觉得扁头好看，我天赋异禀竟然没有被她整得头扁。
-                                            </p>
+                                            <div class="flex items-start justify-between mb-2">
+                                                <p class="text-gray-800 italic text-sm flex-1">
+                                                    我妈到现在都觉得扁头好看，我天赋异禀竟然没有被她整得头扁。
+                                                </p>
+                                                <button class="copy-btn ml-2" onclick="copyQuote(this, '我妈到现在都觉得扁头好看，我天赋异禀竟然没有被她整得头扁。 - 糕某')" title="复制金句">
+                                                    <i class="fas fa-copy"></i>
+                                                </button>
+                                            </div>
                                             <p class="text-gray-600 text-xs mt-1 self-end">
                                                 - <b>糕某</b>
                                             </p>
@@ -382,25 +735,40 @@
                                     <p class="text-sm font-medium text-gray-700 mb-2"><strong>金句时刻</strong></p>
                                     <div class="space-y-2">
                                         <div class="bg-amber-50 border-l-4 border-amber-400 p-3 rounded-r-md flex flex-col">
-                                            <p class="text-gray-800 italic text-sm">
-                                                那你不如写睡圆头都是情绪价值。
-                                            </p>
+                                            <div class="flex items-start justify-between mb-2">
+                                                <p class="text-gray-800 italic text-sm flex-1">
+                                                    那你不如写睡圆头都是情绪价值。
+                                                </p>
+                                                <button class="copy-btn ml-2" onclick="copyQuote(this, '那你不如写睡圆头都是情绪价值。 - 狗狗蹲马桶')" title="复制金句">
+                                                    <i class="fas fa-copy"></i>
+                                                </button>
+                                            </div>
                                             <p class="text-gray-600 text-xs mt-1 self-end">
                                                 - <b>狗狗蹲马桶</b>
                                             </p>
                                         </div>
                                         <div class="bg-amber-50 border-l-4 border-amber-400 p-3 rounded-r-md flex flex-col">
-                                            <p class="text-gray-800 italic text-sm">
-                                                宝妈不用焦虑，头型不影响，但是架不住好看啊。
-                                            </p>
+                                            <div class="flex items-start justify-between mb-2">
+                                                <p class="text-gray-800 italic text-sm flex-1">
+                                                    宝妈不用焦虑，头型不影响，但是架不住好看啊。
+                                                </p>
+                                                <button class="copy-btn ml-2" onclick="copyQuote(this, '宝妈不用焦虑，头型不影响，但是架不住好看啊。 - 狗狗蹲马桶')" title="复制金句">
+                                                    <i class="fas fa-copy"></i>
+                                                </button>
+                                            </div>
                                             <p class="text-gray-600 text-xs mt-1 self-end">
                                                 - <b>狗狗蹲马桶</b>
                                             </p>
                                         </div>
                                         <div class="bg-amber-50 border-l-4 border-amber-400 p-3 rounded-r-md flex flex-col">
-                                            <p class="text-gray-800 italic text-sm">
-                                                但做自媒体是为了........
-                                            </p>
+                                            <div class="flex items-start justify-between mb-2">
+                                                <p class="text-gray-800 italic text-sm flex-1">
+                                                    但做自媒体是为了........
+                                                </p>
+                                                <button class="copy-btn ml-2" onclick="copyQuote(this, '但做自媒体是为了........ - 高大壮')" title="复制金句">
+                                                    <i class="fas fa-copy"></i>
+                                                </button>
+                                            </div>
                                             <p class="text-gray-600 text-xs mt-1 self-end">
                                                 - <b>高大壮</b>
                                             </p>
@@ -474,25 +842,40 @@
                                     <p class="text-sm font-medium text-gray-700 mb-2"><strong>金句时刻</strong></p>
                                     <div class="space-y-2">
                                         <div class="bg-amber-50 border-l-4 border-amber-400 p-3 rounded-r-md flex flex-col">
-                                            <p class="text-gray-800 italic text-sm">
-                                                一个公司也就那么几个人能抗事。
-                                            </p>
+                                            <div class="flex items-start justify-between mb-2">
+                                                <p class="text-gray-800 italic text-sm flex-1">
+                                                    一个公司也就那么几个人能抗事。
+                                                </p>
+                                                <button class="copy-btn ml-2" onclick="copyQuote(this, '一个公司也就那么几个人能抗事。 - 查理')" title="复制金句">
+                                                    <i class="fas fa-copy"></i>
+                                                </button>
+                                            </div>
                                             <p class="text-gray-600 text-xs mt-1 self-end">
                                                 - <b>查理</b>
                                             </p>
                                         </div>
                                         <div class="bg-amber-50 border-l-4 border-amber-400 p-3 rounded-r-md flex flex-col">
-                                            <p class="text-gray-800 italic text-sm">
-                                                都是草台班子。
-                                            </p>
+                                            <div class="flex items-start justify-between mb-2">
+                                                <p class="text-gray-800 italic text-sm flex-1">
+                                                    都是草台班子。
+                                                </p>
+                                                <button class="copy-btn ml-2" onclick="copyQuote(this, '都是草台班子。 - 宇世无争')" title="复制金句">
+                                                    <i class="fas fa-copy"></i>
+                                                </button>
+                                            </div>
                                             <p class="text-gray-600 text-xs mt-1 self-end">
                                                 - <b>宇世无争</b>
                                             </p>
                                         </div>
                                         <div class="bg-amber-50 border-l-4 border-amber-400 p-3 rounded-r-md flex flex-col">
-                                            <p class="text-gray-800 italic text-sm">
-                                                合伙人对于自己的生态位，毫无认知。
-                                            </p>
+                                            <div class="flex items-start justify-between mb-2">
+                                                <p class="text-gray-800 italic text-sm flex-1">
+                                                    合伙人对于自己的生态位，毫无认知。
+                                                </p>
+                                                <button class="copy-btn ml-2" onclick="copyQuote(this, '合伙人对于自己的生态位，毫无认知。 - NICK HU')" title="复制金句">
+                                                    <i class="fas fa-copy"></i>
+                                                </button>
+                                            </div>
                                             <p class="text-gray-600 text-xs mt-1 self-end">
                                                 - <b>NICK HU</b>
                                             </p>
@@ -513,25 +896,40 @@
                                     <p class="text-sm font-medium text-gray-700 mb-2"><strong>金句时刻</strong></p>
                                     <div class="space-y-2">
                                         <div class="bg-amber-50 border-l-4 border-amber-400 p-3 rounded-r-md flex flex-col">
-                                            <p class="text-gray-800 italic text-sm">
-                                                当时我的合伙人跟我说，不要以为公司没了你就运转不了了。我就走了。后来三个月不到就倒闭了。
-                                            </p>
+                                            <div class="flex items-start justify-between mb-2">
+                                                <p class="text-gray-800 italic text-sm flex-1">
+                                                    当时我的合伙人跟我说，不要以为公司没了你就运转不了了。我就走了。后来三个月不到就倒闭了。
+                                                </p>
+                                                <button class="copy-btn ml-2" onclick="copyQuote(this, '当时我的合伙人跟我说，不要以为公司没了你就运转不了了。我就走了。后来三个月不到就倒闭了。 - 糕某')" title="复制金句">
+                                                    <i class="fas fa-copy"></i>
+                                                </button>
+                                            </div>
                                             <p class="text-gray-600 text-xs mt-1 self-end">
                                                 - <b>糕某</b>
                                             </p>
                                         </div>
                                         <div class="bg-amber-50 border-l-4 border-amber-400 p-3 rounded-r-md flex flex-col">
-                                            <p class="text-gray-800 italic text-sm">
-                                                以为谁都像我一样抗揍呢。
-                                            </p>
+                                            <div class="flex items-start justify-between mb-2">
+                                                <p class="text-gray-800 italic text-sm flex-1">
+                                                    以为谁都像我一样抗揍呢。
+                                                </p>
+                                                <button class="copy-btn ml-2" onclick="copyQuote(this, '以为谁都像我一样抗揍呢。 - 糕某')" title="复制金句">
+                                                    <i class="fas fa-copy"></i>
+                                                </button>
+                                            </div>
                                             <p class="text-gray-600 text-xs mt-1 self-end">
                                                 - <b>糕某</b>
                                             </p>
                                         </div>
                                         <div class="bg-amber-50 border-l-4 border-amber-400 p-3 rounded-r-md flex flex-col">
-                                            <p class="text-gray-800 italic text-sm">
-                                                要不是有钱赚，我才不跟这群虫豸一起工作。
-                                            </p>
+                                            <div class="flex items-start justify-between mb-2">
+                                                <p class="text-gray-800 italic text-sm flex-1">
+                                                    要不是有钱赚，我才不跟这群虫豸一起工作。
+                                                </p>
+                                                <button class="copy-btn ml-2" onclick="copyQuote(this, '要不是有钱赚，我才不跟这群虫豸一起工作。 - 宇世无争')" title="复制金句">
+                                                    <i class="fas fa-copy"></i>
+                                                </button>
+                                            </div>
                                             <p class="text-gray-600 text-xs mt-1 self-end">
                                                 - <b>宇世无争</b>
                                             </p>
@@ -605,25 +1003,40 @@
                                     <p class="text-sm font-medium text-gray-700 mb-2"><strong>金句时刻</strong></p>
                                     <div class="space-y-2">
                                         <div class="bg-amber-50 border-l-4 border-amber-400 p-3 rounded-r-md flex flex-col">
-                                            <p class="text-gray-800 italic text-sm">
-                                                白女大多数都很好看...亚洲的就专门选丑的。
-                                            </p>
+                                            <div class="flex items-start justify-between mb-2">
+                                                <p class="text-gray-800 italic text-sm flex-1">
+                                                    白女大多数都很好看...亚洲的就专门选丑的。
+                                                </p>
+                                                <button class="copy-btn ml-2" onclick="copyQuote(this, '白女大多数都很好看...亚洲的就专门选丑的。 - 糕某')" title="复制金句">
+                                                    <i class="fas fa-copy"></i>
+                                                </button>
+                                            </div>
                                             <p class="text-gray-600 text-xs mt-1 self-end">
                                                 - <b>糕某</b>
                                             </p>
                                         </div>
                                         <div class="bg-amber-50 border-l-4 border-amber-400 p-3 rounded-r-md flex flex-col">
-                                            <p class="text-gray-800 italic text-sm">
-                                                增加了人们对这种面相的刻板印象。
-                                            </p>
+                                            <div class="flex items-start justify-between mb-2">
+                                                <p class="text-gray-800 italic text-sm flex-1">
+                                                    增加了人们对这种面相的刻板印象。
+                                                </p>
+                                                <button class="copy-btn ml-2" onclick="copyQuote(this, '增加了人们对这种面相的刻板印象。 - 啊怿子 -')" title="复制金句">
+                                                    <i class="fas fa-copy"></i>
+                                                </button>
+                                            </div>
                                             <p class="text-gray-600 text-xs mt-1 self-end">
                                                 - <b>啊怿子 -</b>
                                             </p>
                                         </div>
                                         <div class="bg-amber-50 border-l-4 border-amber-400 p-3 rounded-r-md flex flex-col">
-                                            <p class="text-gray-800 italic text-sm">
-                                                我对时尚的理解就是「特别丑但别人都说好看」。
-                                            </p>
+                                            <div class="flex items-start justify-between mb-2">
+                                                <p class="text-gray-800 italic text-sm flex-1">
+                                                    我对时尚的理解就是「特别丑但别人都说好看」。
+                                                </p>
+                                                <button class="copy-btn ml-2" onclick="copyQuote(this, '我对时尚的理解就是「特别丑但别人都说好看」。 - 昍')" title="复制金句">
+                                                    <i class="fas fa-copy"></i>
+                                                </button>
+                                            </div>
                                             <p class="text-gray-600 text-xs mt-1 self-end">
                                                 - <b>昍</b>
                                             </p>
@@ -644,25 +1057,40 @@
                                     <p class="text-sm font-medium text-gray-700 mb-2"><strong>金句时刻</strong></p>
                                     <div class="space-y-2">
                                         <div class="bg-amber-50 border-l-4 border-amber-400 p-3 rounded-r-md flex flex-col">
-                                            <p class="text-gray-800 italic text-sm">
-                                                黑珍珠台步无敌啊，自己打出来的江山。
-                                            </p>
+                                            <div class="flex items-start justify-between mb-2">
+                                                <p class="text-gray-800 italic text-sm flex-1">
+                                                    黑珍珠台步无敌啊，自己打出来的江山。
+                                                </p>
+                                                <button class="copy-btn ml-2" onclick="copyQuote(this, '黑珍珠台步无敌啊，自己打出来的江山。 - 糕某')" title="复制金句">
+                                                    <i class="fas fa-copy"></i>
+                                                </button>
+                                            </div>
                                             <p class="text-gray-600 text-xs mt-1 self-end">
                                                 - <b>糕某</b>
                                             </p>
                                         </div>
                                         <div class="bg-amber-50 border-l-4 border-amber-400 p-3 rounded-r-md flex flex-col">
-                                            <p class="text-gray-800 italic text-sm">
-                                                吉娘娘要不是麦昆那场全裸，她也没机会。
-                                            </p>
+                                            <div class="flex items-start justify-between mb-2">
+                                                <p class="text-gray-800 italic text-sm flex-1">
+                                                    吉娘娘要不是麦昆那场全裸，她也没机会。
+                                                </p>
+                                                <button class="copy-btn ml-2" onclick="copyQuote(this, '吉娘娘要不是麦昆那场全裸，她也没机会。 - 糕某')" title="复制金句">
+                                                    <i class="fas fa-copy"></i>
+                                                </button>
+                                            </div>
                                             <p class="text-gray-600 text-xs mt-1 self-end">
                                                 - <b>糕某</b>
                                             </p>
                                         </div>
                                         <div class="bg-amber-50 border-l-4 border-amber-400 p-3 rounded-r-md flex flex-col">
-                                            <p class="text-gray-800 italic text-sm">
-                                                神胸出战，一战成名。
-                                            </p>
+                                            <div class="flex items-start justify-between mb-2">
+                                                <p class="text-gray-800 italic text-sm flex-1">
+                                                    神胸出战，一战成名。
+                                                </p>
+                                                <button class="copy-btn ml-2" onclick="copyQuote(this, '神胸出战，一战成名。 - 糕某')" title="复制金句">
+                                                    <i class="fas fa-copy"></i>
+                                                </button>
+                                            </div>
                                             <p class="text-gray-600 text-xs mt-1 self-end">
                                                 - <b>糕某</b>
                                             </p>
@@ -736,25 +1164,40 @@
                                     <p class="text-sm font-medium text-gray-700 mb-2"><strong>金句时刻</strong></p>
                                     <div class="space-y-2">
                                         <div class="bg-amber-50 border-l-4 border-amber-400 p-3 rounded-r-md flex flex-col">
-                                            <p class="text-gray-800 italic text-sm">
-                                                我姑还试图让我吃我自己的胎盘。
-                                            </p>
+                                            <div class="flex items-start justify-between mb-2">
+                                                <p class="text-gray-800 italic text-sm flex-1">
+                                                    我姑还试图让我吃我自己的胎盘。
+                                                </p>
+                                                <button class="copy-btn ml-2" onclick="copyQuote(this, '我姑还试图让我吃我自己的胎盘。 - 转念之间')" title="复制金句">
+                                                    <i class="fas fa-copy"></i>
+                                                </button>
+                                            </div>
                                             <p class="text-gray-600 text-xs mt-1 self-end">
                                                 - <b>转念之间</b>
                                             </p>
                                         </div>
                                         <div class="bg-amber-50 border-l-4 border-amber-400 p-3 rounded-r-md flex flex-col">
-                                            <p class="text-gray-800 italic text-sm">
-                                                我初中同学每个月都会吃一次...都是托关系去医院拿的。
-                                            </p>
+                                            <div class="flex items-start justify-between mb-2">
+                                                <p class="text-gray-800 italic text-sm flex-1">
+                                                    我初中同学每个月都会吃一次...都是托关系去医院拿的。
+                                                </p>
+                                                <button class="copy-btn ml-2" onclick="copyQuote(this, '我初中同学每个月都会吃一次...都是托关系去医院拿的。 - @宝鹅')" title="复制金句">
+                                                    <i class="fas fa-copy"></i>
+                                                </button>
+                                            </div>
                                             <p class="text-gray-600 text-xs mt-1 self-end">
                                                 - <b>@宝鹅</b>
                                             </p>
                                         </div>
                                         <div class="bg-amber-50 border-l-4 border-amber-400 p-3 rounded-r-md flex flex-col">
-                                            <p class="text-gray-800 italic text-sm">
-                                                在医院生孩子之前医生会反复确认胎盘要不要...然后当我们面扔医疗垃圾桶。
-                                            </p>
+                                            <div class="flex items-start justify-between mb-2">
+                                                <p class="text-gray-800 italic text-sm flex-1">
+                                                    在医院生孩子之前医生会反复确认胎盘要不要...然后当我们面扔医疗垃圾桶。
+                                                </p>
+                                                <button class="copy-btn ml-2" onclick="copyQuote(this, '在医院生孩子之前医生会反复确认胎盘要不要...然后当我们面扔医疗垃圾桶。 - 高大壮')" title="复制金句">
+                                                    <i class="fas fa-copy"></i>
+                                                </button>
+                                            </div>
                                             <p class="text-gray-600 text-xs mt-1 self-end">
                                                 - <b>高大壮</b>
                                             </p>
@@ -775,25 +1218,40 @@
                                     <p class="text-sm font-medium text-gray-700 mb-2"><strong>金句时刻</strong></p>
                                     <div class="space-y-2">
                                         <div class="bg-amber-50 border-l-4 border-amber-400 p-3 rounded-r-md flex flex-col">
-                                            <p class="text-gray-800 italic text-sm">
-                                                想起有个恐怖片《饺子》。
-                                            </p>
+                                            <div class="flex items-start justify-between mb-2">
+                                                <p class="text-gray-800 italic text-sm flex-1">
+                                                    想起有个恐怖片《饺子》。
+                                                </p>
+                                                <button class="copy-btn ml-2" onclick="copyQuote(this, '想起有个恐怖片《饺子》。 - 绵羊')" title="复制金句">
+                                                    <i class="fas fa-copy"></i>
+                                                </button>
+                                            </div>
                                             <p class="text-gray-600 text-xs mt-1 self-end">
                                                 - <b>绵羊</b>
                                             </p>
                                         </div>
                                         <div class="bg-amber-50 border-l-4 border-amber-400 p-3 rounded-r-md flex flex-col">
-                                            <p class="text-gray-800 italic text-sm">
-                                                有啥可怕的，我觉得自己吃自己的指甲或者鼻屎更恐怖。
-                                            </p>
+                                            <div class="flex items-start justify-between mb-2">
+                                                <p class="text-gray-800 italic text-sm flex-1">
+                                                    有啥可怕的，我觉得自己吃自己的指甲或者鼻屎更恐怖。
+                                                </p>
+                                                <button class="copy-btn ml-2" onclick="copyQuote(this, '有啥可怕的，我觉得自己吃自己的指甲或者鼻屎更恐怖。 - 昍')" title="复制金句">
+                                                    <i class="fas fa-copy"></i>
+                                                </button>
+                                            </div>
                                             <p class="text-gray-600 text-xs mt-1 self-end">
                                                 - <b>昍</b>
                                             </p>
                                         </div>
                                         <div class="bg-amber-50 border-l-4 border-amber-400 p-3 rounded-r-md flex flex-col">
-                                            <p class="text-gray-800 italic text-sm">
-                                                嗜痂之癖。
-                                            </p>
+                                            <div class="flex items-start justify-between mb-2">
+                                                <p class="text-gray-800 italic text-sm flex-1">
+                                                    嗜痂之癖。
+                                                </p>
+                                                <button class="copy-btn ml-2" onclick="copyQuote(this, '嗜痂之癖。 - 昍')" title="复制金句">
+                                                    <i class="fas fa-copy"></i>
+                                                </button>
+                                            </div>
                                             <p class="text-gray-600 text-xs mt-1 self-end">
                                                 - <b>昍</b>
                                             </p>
@@ -812,8 +1270,8 @@
         <!-- === 模块二：糕论时刻・深度话题 结束 === -->
 
         <!-- === 模块三：避坑指南・问答精选 开始 === -->
-        <section class="w-full mb-12">
-            <h2 class="section-title">
+        <section id="section-qa" class="w-full mb-12" aria-labelledby="section-qa-title">
+            <h2 id="section-qa-title" class="section-title">
                 三、避坑指南・问答精选
             </h2>
             <div class="space-y-8">
@@ -959,8 +1417,8 @@
         <!-- === 模块三：避坑指南・问答精选 结束 === -->
 
         <!-- === 模块四：宝藏分享・高能精选 开始 === -->
-        <section class="w-full mb-12">
-            <h2 class="section-title">
+        <section id="section-highlights" class="w-full mb-12" aria-labelledby="section-highlights-title">
+            <h2 id="section-highlights-title" class="section-title">
                 四、宝藏分享・高能精选
             </h2>
             <!-- 列表容器: 每日精选条目 -->
@@ -1084,7 +1542,7 @@
 
         <!-- === 文件底部 开始 === -->
         <!-- HTML注释: 此模块作为文件底部，包含数据来源、报告生成时间及免责声明。 -->
-        <footer class="w-full mt-16">
+        <footer class="w-full mt-16" role="contentinfo">
             <div class="bento-card p-8">
                 <div class="text-center text-gray-700 space-y-3">
                     <div class="flex flex-col sm:flex-row justify-center items-center space-y-2 sm:space-y-0 sm:space-x-6 text-base">
@@ -1106,8 +1564,31 @@
         <!-- === 文件底部 结束 === -->
     </div>
 
+    <!-- 返回顶部按钮 -->
+    <button class="back-to-top" id="backToTop" aria-label="返回顶部" title="返回顶部">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- 主题切换按钮 -->
+    <button class="theme-toggle" id="themeToggle" aria-label="切换主题" title="切换深色/浅色模式">
+        <i class="fas fa-moon" id="themeIcon"></i>
+    </button>
+
     <script>
+
+        // 页面加载时滚动到顶部（避免保留上一页的滚动位置）
+        if ('scrollRestoration' in history) {
+            history.scrollRestoration = 'manual';
+        }
+        window.scrollTo(0, 0);
+        
+
         document.addEventListener('DOMContentLoaded', function() {
+            // 初始化所有新功能
+            initBackToTop();
+            initThemeToggle();
+            initTocHighlight();
+            
             // Bento card hover effect is handled by CSS :hover pseudo-class
 
             // Number animation effect
@@ -1286,6 +1767,128 @@
                 )
                 .catch(() => ({ ok: false }));
         }
+
+
+        // === 新增功能函数 ===
+        
+        // 目录展开/收起
+        function toggleToc() {
+            const content = document.getElementById('toc-content');
+            const icon = document.getElementById('toc-icon');
+            content.classList.toggle('active');
+            icon.style.transform = content.classList.contains('active') ? 'rotate(180deg)' : 'rotate(0deg)';
+        }
+        
+        // 平滑滚动
+        function smoothScroll(event, targetId) {
+            event.preventDefault();
+            const target = document.getElementById(targetId);
+            if (target) {
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                // 更新目录激活状态
+                document.querySelectorAll('.toc-link').forEach(link => link.classList.remove('active'));
+                event.currentTarget.classList.add('active');
+            }
+        }
+        
+        // 返回顶部功能
+        function initBackToTop() {
+            const btn = document.getElementById('backToTop');
+            
+            window.addEventListener('scroll', () => {
+                if (window.pageYOffset > 300) {
+                    btn.classList.add('visible');
+                } else {
+                    btn.classList.remove('visible');
+                }
+            });
+            
+            btn.addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        }
+        
+        // 主题切换功能
+        function initThemeToggle() {
+            const btn = document.getElementById('themeToggle');
+            const icon = document.getElementById('themeIcon');
+            
+            // 移除预加载类，添加正式的dark-mode类
+            document.documentElement.classList.remove('dark-mode-preload');
+            
+            // 检查本地存储的主题设置
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                document.body.classList.add('dark-mode');
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
+            }
+            
+            btn.addEventListener('click', () => {
+                document.body.classList.toggle('dark-mode');
+                const isDark = document.body.classList.contains('dark-mode');
+                
+                if (isDark) {
+                    icon.classList.remove('fa-moon');
+                    icon.classList.add('fa-sun');
+                    localStorage.setItem('theme', 'dark');
+                } else {
+                    icon.classList.remove('fa-sun');
+                    icon.classList.add('fa-moon');
+                    localStorage.setItem('theme', 'light');
+                }
+            });
+        }
+        
+        // 目录高亮功能（滚动时自动高亮当前章节）
+        function initTocHighlight() {
+            const sections = ['section-overview', 'section-topics', 'section-qa', 'section-highlights'];
+            const tocLinks = document.querySelectorAll('.toc-link');
+            
+            window.addEventListener('scroll', () => {
+                let current = '';
+                
+                sections.forEach(sectionId => {
+                    const section = document.getElementById(sectionId);
+                    if (section) {
+                        const sectionTop = section.offsetTop;
+                        const sectionHeight = section.clientHeight;
+                        if (window.pageYOffset >= sectionTop - 100) {
+                            current = sectionId;
+                        }
+                    }
+                });
+                
+                tocLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === '#' + current) {
+                        link.classList.add('active');
+                    }
+                });
+            });
+        }
+        
+        // 复制金句功能
+        function copyQuote(button, text) {
+            navigator.clipboard.writeText(text).then(() => {
+                const icon = button.querySelector('i');
+                const originalClass = icon.className;
+                
+                // 更改按钮状态
+                button.classList.add('copied');
+                icon.className = 'fas fa-check';
+                
+                // 2秒后恢复
+                setTimeout(() => {
+                    button.classList.remove('copied');
+                    icon.className = originalClass;
+                }, 2000);
+            }).catch(err => {
+                console.error('复制失败:', err);
+                alert('复制失败，请手动复制');
+            });
+        }
+        
 
         // HTML注释: 初始化展开功能
         function initExpandableContent() {
