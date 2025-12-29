@@ -1,0 +1,2496 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>自媒体糕校 2025年度总结</title>
+    
+    <meta name="description" content="自媒体糕糕学习群2025年度总结 - 9月至12月精华回顾，TOP 10年度话题，关键词词云，数据可视化">
+    <meta name="keywords" content="自媒体,糕校,年度总结,2025,小红书运营,内容创作,变现策略">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;600;700;800;900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&display=swap');
+
+        * {
+            font-family: 'Noto Sans SC', sans-serif;
+        }
+
+        :root {
+            --primary: #EC4899;
+            --primary-dark: #DB2777;
+            --primary-light: #F9A8D4;
+            --gold: #F59E0B;
+            --bg-dark: #0f0a1a;
+            --card-dark: rgba(30, 20, 50, 0.8);
+        }
+
+        body {
+            background: linear-gradient(135deg, #0f0a1a 0%, #1a0f2e 50%, #0f1a2a 100%);
+            color: #f5f5f5;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* 阅读进度条 */
+        .reading-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary), var(--gold));
+            z-index: 9999;
+            transition: width 0.1s ease-out;
+        }
+
+        /* 目录面板 */
+        .toc-panel {
+            position: fixed;
+            top: 0;
+            right: -320px;
+            width: 300px;
+            height: 100vh;
+            background: rgba(15, 10, 26, 0.98);
+            backdrop-filter: blur(20px);
+            border-left: 1px solid rgba(236, 72, 153, 0.3);
+            z-index: 9998;
+            transition: right 0.3s ease;
+            padding: 2rem;
+            overflow-y: auto;
+        }
+
+        .toc-panel.open {
+            right: 0;
+        }
+
+        .toc-panel-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 9997;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .toc-panel-overlay.open {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .toc-toggle {
+            position: fixed;
+            bottom: 5rem;
+            right: 2rem;
+            width: 3rem;
+            height: 3rem;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 20px rgba(236, 72, 153, 0.4);
+            transition: all 0.3s ease;
+        }
+
+        .toc-toggle:hover {
+            transform: scale(1.1);
+        }
+
+        .toc-item {
+            display: block;
+            padding: 0.75rem 1rem;
+            color: #9ca3af;
+            text-decoration: none;
+            border-radius: 0.5rem;
+            transition: all 0.3s ease;
+            margin-bottom: 0.25rem;
+        }
+
+        .toc-item:hover, .toc-item.active {
+            background: rgba(236, 72, 153, 0.15);
+            color: var(--primary-light);
+        }
+
+        /* 星空背景 */
+        .stars-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            background: 
+                radial-gradient(2px 2px at 20px 30px, white, transparent),
+                radial-gradient(2px 2px at 40px 70px, rgba(255,255,255,0.8), transparent),
+                radial-gradient(1px 1px at 90px 40px, white, transparent),
+                radial-gradient(2px 2px at 130px 80px, rgba(255,255,255,0.6), transparent),
+                radial-gradient(1px 1px at 160px 120px, white, transparent);
+            background-size: 200px 200px;
+            animation: twinkle 4s ease-in-out infinite;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
+
+        .content-wrapper {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* 年度标题特效 */
+        .annual-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #EC4899, #F59E0B, #EC4899);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: shimmer 3s ease-in-out infinite;
+        }
+
+        @keyframes shimmer {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        @media (max-width: 640px) {
+            .annual-title { font-size: 2.5rem; }
+        }
+
+        /* Bento卡片 */
+        .bento-card {
+            background: rgba(30, 20, 50, 0.6);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(236, 72, 153, 0.2);
+            border-radius: 1.5rem;
+            box-shadow: 0 8px 32px rgba(236, 72, 153, 0.1);
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        .bento-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 60px rgba(236, 72, 153, 0.2);
+            border-color: rgba(236, 72, 153, 0.4);
+        }
+
+        /* 数据卡片 */
+        .stat-card {
+            background: linear-gradient(135deg, rgba(236, 72, 153, 0.15), rgba(245, 158, 11, 0.1));
+            border: 1px solid rgba(236, 72, 153, 0.3);
+        }
+
+        .stat-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #EC4899, #F59E0B);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        @media (max-width: 640px) {
+            .stat-number { font-size: 2rem; }
+        }
+
+        /* 词云容器 */
+        .wordcloud-container {
+            min-height: 300px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 2rem;
+        }
+
+        .word-tag {
+            padding: 0.5rem 1rem;
+            border-radius: 999px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            cursor: default;
+            animation: floatWord 3s ease-in-out infinite;
+        }
+
+        .word-tag:hover {
+            transform: scale(1.15) rotate(0deg) !important;
+            z-index: 10;
+        }
+
+        @keyframes floatWord {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+
+        /* 年度之最卡片 */
+        .superlative-card {
+            background: linear-gradient(135deg, rgba(236, 72, 153, 0.1), rgba(245, 158, 11, 0.05));
+            border: 1px solid rgba(236, 72, 153, 0.2);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .superlative-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(236, 72, 153, 0.1), transparent);
+            animation: shine 3s infinite;
+        }
+
+        @keyframes shine {
+            0% { transform: translateX(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) rotate(45deg); }
+        }
+
+        .superlative-icon {
+            font-size: 2.5rem;
+            margin-bottom: 0.75rem;
+        }
+
+        /* 热力图样式 */
+        .heatmap-grid {
+            display: grid;
+            grid-template-columns: repeat(24, 1fr);
+            gap: 2px;
+        }
+
+        .heatmap-cell {
+            aspect-ratio: 1;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        .heatmap-cell:hover {
+            transform: scale(1.5);
+            z-index: 10;
+        }
+
+        /* 成长故事卡片 */
+        .story-card {
+            background: linear-gradient(135deg, rgba(30, 20, 50, 0.8), rgba(40, 30, 60, 0.6));
+            border: 1px solid rgba(236, 72, 153, 0.2);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            position: relative;
+        }
+
+        .story-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--gold));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 1rem;
+        }
+
+        .story-timeline {
+            position: relative;
+            padding-left: 1.5rem;
+            border-left: 2px solid rgba(236, 72, 153, 0.3);
+        }
+
+        .story-timeline::before {
+            content: '';
+            position: absolute;
+            left: -5px;
+            top: 0;
+            width: 8px;
+            height: 8px;
+            background: var(--primary);
+            border-radius: 50%;
+        }
+
+        /* 话题卡片 */
+        .topic-card {
+            background: rgba(40, 30, 60, 0.5);
+            border: 1px solid rgba(236, 72, 153, 0.15);
+            border-radius: 1.25rem;
+            overflow: hidden;
+            transition: all 0.4s ease;
+        }
+
+        .topic-card:hover {
+            border-color: rgba(236, 72, 153, 0.4);
+            box-shadow: 0 10px 40px rgba(236, 72, 153, 0.15);
+        }
+
+        .topic-header {
+            background: linear-gradient(135deg, rgba(236, 72, 153, 0.2), rgba(245, 158, 11, 0.1));
+            border-bottom: 1px solid rgba(236, 72, 153, 0.2);
+        }
+
+        .score-badge {
+            background: linear-gradient(135deg, #F59E0B, #EC4899);
+            padding: 0.25rem 0.75rem;
+            border-radius: 999px;
+            font-weight: 700;
+            font-size: 0.875rem;
+            color: white;
+        }
+
+        .rank-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: rgba(236, 72, 153, 0.3);
+        }
+
+        .tag-item {
+            background: rgba(236, 72, 153, 0.15);
+            color: #F9A8D4;
+            padding: 0.25rem 0.75rem;
+            border-radius: 999px;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+
+        /* 内容折叠 */
+        .content-full {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.6s ease-out;
+        }
+
+        .content-full.expanded {
+            max-height: 5000px;
+        }
+
+        .expand-btn {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 999px;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .expand-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(236, 72, 153, 0.4);
+        }
+
+        /* 月度回顾入口 */
+        .month-card {
+            background: linear-gradient(135deg, rgba(236, 72, 153, 0.1), rgba(30, 20, 50, 0.6));
+            border: 1px solid rgba(236, 72, 153, 0.2);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .month-card:hover {
+            transform: translateY(-3px);
+            border-color: rgba(236, 72, 153, 0.5);
+            box-shadow: 0 10px 30px rgba(236, 72, 153, 0.2);
+        }
+
+        /* 导航按钮 */
+        .nav-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(236, 72, 153, 0.3);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .nav-dot.active, .nav-dot:hover {
+            background: var(--primary);
+            transform: scale(1.3);
+        }
+
+        .nav-dot::after {
+            content: attr(title);
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(30, 20, 50, 0.95);
+            color: #f5f5f5;
+            padding: 0.5rem 0.75rem;
+            border-radius: 0.5rem;
+            font-size: 0.75rem;
+            white-space: nowrap;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(236, 72, 153, 0.3);
+        }
+
+        .nav-dot:hover::after {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* 金句卡片 */
+        .quote-card {
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.1), rgba(236, 72, 153, 0.1));
+            border-left: 4px solid #F59E0B;
+            padding: 1rem;
+            border-radius: 0 0.5rem 0.5rem 0;
+            margin: 0.5rem 0;
+        }
+
+        /* 动画 */
+        .fade-in {
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .stagger-1 { animation-delay: 0.1s; }
+        .stagger-2 { animation-delay: 0.2s; }
+        .stagger-3 { animation-delay: 0.3s; }
+        .stagger-4 { animation-delay: 0.4s; }
+
+        /* 滚动淡入动画 */
+        .scroll-fade {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        .scroll-fade.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* 金句复制按钮 */
+        .quote-copy-btn {
+            position: absolute;
+            top: 0.5rem;
+            right: 0.5rem;
+            background: rgba(236, 72, 153, 0.2);
+            color: var(--primary-light);
+            border: none;
+            padding: 0.25rem 0.5rem;
+            border-radius: 0.25rem;
+            cursor: pointer;
+            font-size: 0.75rem;
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+
+        .bento-card:hover .quote-copy-btn,
+        .quote-card:hover .quote-copy-btn {
+            opacity: 1;
+        }
+
+        .quote-copy-btn:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        .quote-copy-btn.copied {
+            background: #10B981;
+            color: white;
+        }
+
+        /* 展开所有按钮 */
+        .expand-all-btn {
+            background: linear-gradient(135deg, rgba(236, 72, 153, 0.2), rgba(245, 158, 11, 0.2));
+            border: 1px solid rgba(236, 72, 153, 0.3);
+            color: var(--primary-light);
+            padding: 0.75rem 1.5rem;
+            border-radius: 999px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .expand-all-btn:hover {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            border-color: var(--primary);
+        }
+
+        /* 话题快速导航 */
+        .topic-quick-nav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .topic-quick-nav a {
+            background: rgba(236, 72, 153, 0.1);
+            color: var(--primary-light);
+            padding: 0.25rem 0.75rem;
+            border-radius: 999px;
+            font-size: 0.75rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(236, 72, 153, 0.2);
+        }
+
+        .topic-quick-nav a:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        /* 图表容器 */
+        .chart-container {
+            position: relative;
+            height: 250px;
+        }
+
+        /* 回到顶部 */
+        .back-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 3rem;
+            height: 3rem;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(236, 72, 153, 0.4);
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            transform: translateY(-3px);
+        }
+
+        /* 年度亮点条 */
+        .highlight-bar {
+            background: linear-gradient(90deg, transparent, rgba(236, 72, 153, 0.3), transparent);
+            height: 1px;
+            margin: 3rem 0;
+        }
+
+        /* 目录导航 */
+        .toc-nav {
+            position: fixed;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            z-index: 1000;
+        }
+
+        @media (max-width: 1024px) {
+            .toc-nav { display: none; }
+        }
+
+        /* 移动端优化 */
+        @media (max-width: 640px) {
+            .topic-quick-nav {
+                justify-content: center;
+            }
+            
+            .topic-quick-nav span {
+                display: none;
+            }
+            
+            .stamp {
+                width: 60px;
+                height: 60px;
+                font-size: 0.7rem;
+            }
+            
+            .rank-number {
+                font-size: 1.8rem;
+            }
+            
+            .topic-header {
+                padding: 1rem;
+            }
+            
+            .topic-card .p-6 {
+                padding: 1rem;
+            }
+        }
+
+        /* 特殊数字动画 */
+        .count-up {
+            display: inline-block;
+        }
+
+        /* 印章效果 */
+        .stamp {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            width: 80px;
+            height: 80px;
+            border: 3px solid rgba(236, 72, 153, 0.6);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.875rem;
+            color: var(--primary);
+            transform: rotate(-15deg);
+            opacity: 0.8;
+        }
+
+        /* 打印样式 */
+        @media print {
+            body {
+                background: white !important;
+                color: black !important;
+            }
+            
+            .stars-bg,
+            .back-to-top,
+            .toc-nav,
+            .expand-btn,
+            .expand-all-btn,
+            .topic-quick-nav,
+            .quote-copy-btn {
+                display: none !important;
+            }
+            
+            .bento-card,
+            .topic-card,
+            .stat-card {
+                background: #f8f8f8 !important;
+                border: 1px solid #ddd !important;
+                box-shadow: none !important;
+                break-inside: avoid;
+            }
+            
+            .content-full {
+                max-height: none !important;
+            }
+            
+            .text-white,
+            .text-gray-300,
+            .text-gray-400 {
+                color: #333 !important;
+            }
+            
+            .text-primary,
+            .text-primary-light {
+                color: #EC4899 !important;
+            }
+            
+            .annual-title {
+                -webkit-text-fill-color: #EC4899 !important;
+            }
+            
+            .stat-number {
+                -webkit-text-fill-color: #EC4899 !important;
+            }
+            
+            .highlight-bar {
+                background: #ddd !important;
+            }
+            
+            footer button {
+                display: none !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 阅读进度条 -->
+    <div class="reading-progress" id="readingProgress"></div>
+    
+    <!-- 目录面板 -->
+    <div class="toc-panel-overlay" id="tocOverlay" onclick="closeTocPanel()"></div>
+    <div class="toc-panel" id="tocPanel">
+        <div class="flex justify-between items-center mb-6">
+            <h4 class="text-lg font-bold text-white">📑 目录导航</h4>
+            <button onclick="closeTocPanel()" class="text-gray-400 hover:text-white">
+                <i class="fas fa-times text-xl"></i>
+            </button>
+        </div>
+        <nav>
+            <a href="#section-overview" class="toc-item" onclick="closeTocPanel()">
+                <i class="fas fa-chart-bar mr-2 text-primary"></i>数据总览
+            </a>
+            <a href="#section-superlatives" class="toc-item" onclick="closeTocPanel()">
+                <i class="fas fa-crown mr-2 text-yellow-500"></i>年度之最
+            </a>
+            <a href="#section-keywords" class="toc-item" onclick="closeTocPanel()">
+                <i class="fas fa-cloud mr-2 text-primary"></i>年度关键词
+            </a>
+            <a href="#section-topics" class="toc-item" onclick="closeTocPanel()">
+                <i class="fas fa-trophy mr-2 text-yellow-500"></i>年度精选话题
+            </a>
+            <a href="#section-stories" class="toc-item" onclick="closeTocPanel()">
+                <i class="fas fa-book-open mr-2 text-green-500"></i>成长故事
+            </a>
+            <a href="#section-quotes" class="toc-item" onclick="closeTocPanel()">
+                <i class="fas fa-quote-left mr-2 text-yellow-500"></i>年度金句墙
+            </a>
+            <a href="#section-heatmap" class="toc-item" onclick="closeTocPanel()">
+                <i class="fas fa-fire mr-2 text-orange-500"></i>活跃时间分布
+            </a>
+            <a href="#section-insights" class="toc-item" onclick="closeTocPanel()">
+                <i class="fas fa-lightbulb mr-2 text-yellow-500"></i>深度洞察
+            </a>
+            <a href="#section-months" class="toc-item" onclick="closeTocPanel()">
+                <i class="fas fa-calendar-alt mr-2 text-primary"></i>月度回顾
+            </a>
+        </nav>
+    </div>
+    
+    <!-- 目录切换按钮 -->
+    <button class="toc-toggle" onclick="toggleTocPanel()" title="目录导航">
+        <i class="fas fa-list"></i>
+    </button>
+    
+    <div class="stars-bg"></div>
+    
+    <div class="content-wrapper max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        
+        <!-- ========== 顶部年度封面 ========== -->
+        <header class="text-center py-16 fade-in">
+            <div class="mb-4">
+                <span class="text-primary-light text-lg tracking-widest">自媒体糕糕学习群</span>
+            </div>
+            <h1 class="annual-title mb-6">2025</h1>
+            <h2 class="text-3xl sm:text-4xl font-bold text-white mb-4">年度总结</h2>
+            <p class="text-gray-400 text-lg mb-8">9月 - 12月 · 精华回顾</p>
+            <div class="flex justify-center gap-4 text-sm text-gray-500">
+                <span><i class="fas fa-calendar-alt mr-2 text-primary"></i>97天的精彩记录</span>
+                <span><i class="fas fa-users mr-2 text-primary"></i>30+活跃成员</span>
+            </div>
+        </header>
+
+        <!-- ========== 数据总览 ========== -->
+        <section class="mb-16 fade-in stagger-1" id="section-overview">
+            <h3 class="text-2xl font-bold text-white mb-8 flex items-center">
+                <i class="fas fa-chart-bar mr-3 text-primary"></i>
+                数据总览
+            </h3>
+            <p class="text-gray-500 text-sm mb-6">📊 数据来源：gaos_daily_report/2025/ 目录下的日报HTML文件</p>
+            
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+                <div class="bento-card stat-card p-6 text-center">
+                    <div class="stat-number count-up" data-target="97">0</div>
+                    <p class="text-gray-400 mt-2">日报天数</p>
+                    <p class="text-gray-600 text-xs mt-1">✓ 已核实</p>
+                </div>
+                <div class="bento-card stat-card p-6 text-center">
+                    <div class="stat-number count-up" data-target="68420">0</div>
+                    <p class="text-gray-400 mt-2">总消息数</p>
+                    <p class="text-gray-600 text-xs mt-1">估算值</p>
+                </div>
+                <div class="bento-card stat-card p-6 text-center">
+                    <div class="stat-number count-up" data-target="285">0</div>
+                    <p class="text-gray-400 mt-2">精选话题</p>
+                    <p class="text-gray-600 text-xs mt-1">估算值</p>
+                </div>
+                <div class="bento-card stat-card p-6 text-center">
+                    <div class="stat-number count-up" data-target="520">0</div>
+                    <p class="text-gray-400 mt-2">金句收录</p>
+                    <p class="text-gray-600 text-xs mt-1">估算值</p>
+                </div>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-6">
+                <!-- 月度消息趋势 -->
+                <div class="bento-card p-6">
+                    <h4 class="text-lg font-semibold text-white mb-4">
+                        <i class="fas fa-chart-line mr-2 text-primary"></i>月度活跃度
+                    </h4>
+                    <div class="chart-container">
+                        <canvas id="monthlyChart"></canvas>
+                    </div>
+                </div>
+                
+                <!-- 话题类型分布 -->
+                <div class="bento-card p-6">
+                    <h4 class="text-lg font-semibold text-white mb-4">
+                        <i class="fas fa-pie-chart mr-2 text-primary"></i>话题类型分布
+                    </h4>
+                    <div class="chart-container">
+                        <canvas id="topicChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="highlight-bar"></div>
+
+        <!-- ========== 年度之最 ========== -->
+        <section class="mb-16 scroll-fade" id="section-superlatives">
+            <h3 class="text-2xl font-bold text-white mb-8 flex items-center">
+                <i class="fas fa-crown mr-3 text-yellow-500"></i>
+                年度之最
+            </h3>
+            
+            <div class="grid grid-cols-1 md:grid-cols-5 gap-4">
+                <div class="superlative-card">
+                    <div class="superlative-icon">🚀</div>
+                    <h4 class="text-white font-bold mb-1">最励志变现</h4>
+                    <p class="text-lg font-bold text-primary mb-1">2个月→付费咨询</p>
+                    <p class="text-gray-500 text-sm">高JY从0到6千粉</p>
+                    <p class="text-gray-500 text-sm">200元/次咨询</p>
+                    <p class="text-gray-600 text-xs mt-1">📍 12-26日报</p>
+                </div>
+                <div class="superlative-card">
+                    <div class="superlative-icon">🎯</div>
+                    <h4 class="text-white font-bold mb-1">最实用方法论</h4>
+                    <p class="text-lg font-bold text-primary mb-1">8步做号法</p>
+                    <p class="text-gray-500 text-sm">糕糕亲授跨界做号</p>
+                    <p class="text-gray-500 text-sm">零基础可复制</p>
+                    <p class="text-gray-600 text-xs mt-1">📍 11-05日报</p>
+                </div>
+                <div class="superlative-card">
+                    <div class="superlative-icon">💰</div>
+                    <h4 class="text-white font-bold mb-1">最商业觉醒</h4>
+                    <p class="text-lg font-bold text-primary mb-1">"得加钱！"</p>
+                    <p class="text-gray-500 text-sm">宝鹅拒绝品牌白嫖</p>
+                    <p class="text-gray-500 text-sm">全群刷屏力挺</p>
+                    <p class="text-gray-600 text-xs mt-1">📍 12-26日报</p>
+                </div>
+                <div class="superlative-card">
+                    <div class="superlative-icon">🦋</div>
+                    <h4 class="text-white font-bold mb-1">最破圈心态</h4>
+                    <p class="text-lg font-bold text-primary mb-1">嗤之以鼻→乐在其中</p>
+                    <p class="text-gray-500 text-sm">高大壮的转变</p>
+                    <p class="text-gray-500 text-sm">"自媒体的自是自我的自"</p>
+                    <p class="text-gray-600 text-xs mt-1">📍 10-08日报</p>
+                </div>
+                <div class="superlative-card">
+                    <div class="superlative-icon">📱</div>
+                    <h4 class="text-white font-bold mb-1">最平台洞察</h4>
+                    <p class="text-lg font-bold text-primary mb-1">视频号不限流还给流量</p>
+                    <p class="text-gray-500 text-sm">糕糕分享带货逻辑</p>
+                    <p class="text-gray-500 text-sm">40+用户是主力</p>
+                    <p class="text-gray-600 text-xs mt-1">📍 12-28日报</p>
+                </div>
+            </div>
+        </section>
+
+        <div class="highlight-bar"></div>
+
+        <!-- ========== 关键词词云 ========== -->
+        <section class="mb-16 fade-in stagger-2" id="section-keywords">
+            <h3 class="text-2xl font-bold text-white mb-8 flex items-center">
+                <i class="fas fa-cloud mr-3 text-primary"></i>
+                年度关键词
+            </h3>
+            
+            <div class="bento-card">
+                <div class="wordcloud-container" id="wordcloud">
+                    <!-- 词云将通过JS生成 -->
+                </div>
+            </div>
+        </section>
+
+        <div class="highlight-bar"></div>
+
+        <!-- ========== 年度精选话题 TOP 10 ========== -->
+        <section class="mb-16" id="section-topics">
+            <h3 class="text-2xl font-bold text-white mb-4 flex items-center">
+                <i class="fas fa-trophy mr-3 text-yellow-500"></i>
+                年度精选话题 TOP 10
+            </h3>
+            <p class="text-gray-400 mb-6">聚焦自媒体核心，基于内容价值(40%)、话题质量(30%)、关键词匹配(20%)、讨论热度(10%)综合AI评选</p>
+            
+            <!-- 话题快速导航 -->
+            <div class="topic-quick-nav">
+                <span class="text-gray-500 text-sm mr-2">快速跳转：</span>
+                <a href="#topic-1">#1 做号方法论</a>
+                <a href="#topic-2">#2 内容抄袭</a>
+                <a href="#topic-3">#3 付费咨询</a>
+                <a href="#topic-4">#4 人设打造</a>
+                <a href="#topic-5">#5 小红书运营</a>
+                <a href="#topic-6">#6 AI vs 审美</a>
+                <a href="#topic-7">#7 情绪表达</a>
+                <a href="#topic-8">#8 人生意义</a>
+                <a href="#topic-9">#9 富婆鉴别</a>
+                <a href="#topic-10">#10 心态转变</a>
+            </div>
+            
+            <!-- 展开所有按钮 -->
+            <div class="flex justify-center mb-8">
+                <button class="expand-all-btn" onclick="toggleAllContent()">
+                    <i class="fas fa-expand-alt mr-2"></i>
+                    <span id="expand-all-text">展开所有话题</span>
+                </button>
+            </div>
+            
+            <div class="space-y-6">
+                
+                <!-- TOP 1 -->
+                <div class="topic-card fade-in" id="topic-1">
+                    <div class="topic-header p-6 flex items-start justify-between relative">
+                        <div class="rank-number absolute left-4 top-4">#1</div>
+                        <div class="ml-16 flex-1">
+                            <div class="flex flex-wrap items-center gap-3 mb-3">
+                                <h4 class="text-xl font-bold text-white">糕糕亲授：零基础跨界做号方法论——以汽车公众号为例</h4>
+                                <span class="score-badge">AI评分 96</span>
+                            </div>
+                            <div class="flex flex-wrap gap-2 mb-3">
+                                <span class="tag-item">做号方法论</span>
+                                <span class="tag-item">跨界运营</span>
+                                <span class="tag-item">公众号</span>
+                                <span class="tag-item">内容策略</span>
+                            </div>
+                            <div class="text-sm text-gray-400">
+                                <a href="https://gaogaoselfmedialearninggroup.github.io/x/2025/11/daily_report_2025-11-05.html" target="_blank" class="hover:text-primary-light transition-colors">
+                                    <i class="fas fa-calendar mr-1"></i>2025年11月5日 <i class="fas fa-external-link-alt text-xs ml-1"></i>
+                                </a>
+                                <span class="ml-4"><i class="fas fa-fire mr-1 text-orange-500"></i>年度最高价值内容</span>
+                            </div>
+                        </div>
+                        <div class="stamp">年度<br/>TOP 1</div>
+                    </div>
+                    <div class="p-6">
+                        <div class="text-gray-300 leading-relaxed mb-4">
+                            <p class="mb-4"><strong>糕糕</strong>老师分享了她如何在完全不懂车、没有驾照的情况下，仅用半年时间将一个汽车公众号做到5000粉丝、日均阅读3000+的成功经验。这套方法论的核心在于<strong class="text-primary-light">将内容创作与个人情绪剥离，纯粹从运营和算法角度出发</strong>。</p>
+                        </div>
+                        
+                        <div class="content-full" id="content-1">
+                            <div class="bg-opacity-20 bg-black rounded-lg p-4 mb-4">
+                                <h5 class="font-semibold text-primary-light mb-3">📋 核心8步法方法论</h5>
+                                <ol class="text-gray-300 space-y-2 list-decimal list-inside">
+                                    <li><strong>找对标</strong>：寻找中腰部、成长速度快的账号进行观察，而非头部大V。</li>
+                                    <li><strong>找共性</strong>：总结对标账号受欢迎的共同点。</li>
+                                    <li><strong>找素材</strong>：寻找案例素材，并巧妙利用AI辅助创作。</li>
+                                    <li><strong>立人设</strong>：建立一个长期、稳定的人设。</li>
+                                    <li><strong>全渠道分发</strong>：利用平台所有可用的发布渠道，并分析各渠道流量差异。</li>
+                                    <li><strong>利用新功能</strong>：关注并使用平台新推出的功能，以获取流量扶持。</li>
+                                    <li><strong>善用热点</strong>：关注微博等热点平台，学习博主人设，并将热点与内容结合。</li>
+                                    <li><strong>总结爆文</strong>：爆文出现后，迅速总结其吸引人的核心要素，并尝试复刻。</li>
+                                </ol>
+                            </div>
+                            
+                            <div class="bg-opacity-20 bg-black rounded-lg p-4 mb-4">
+                                <h5 class="font-semibold text-primary-light mb-3">💡 关键结论</h5>
+                                <p class="text-gray-300">这套方法论具有极强的普适性，适用于任何想进入一个全新领域的自媒体创作者。它将自媒体运营抽象成一套可复制的流程，降低了对个人专业知识的依赖。<strong>糕糕</strong>已将此账号和方法论传授给她的弟弟，后者在首次独立发布文章时，5小时内阅读量即破2000，证明了该方法的可移植性和有效性。</p>
+                            </div>
+                            
+                            <div class="quote-card">
+                                <p class="text-gray-300 italic">"选择不感兴趣的领域反而更容易成功，因为它能让人更专注于'术'的层面。"</p>
+                                <p class="text-sm text-gray-500 mt-2 text-right">— 糕糕</p>
+                            </div>
+                            
+                            <div class="mt-4 p-4 border border-primary/20 rounded-lg">
+                                <h5 class="font-semibold text-yellow-500 mb-2"><i class="fas fa-star mr-2"></i>评选理由</h5>
+                                <p class="text-gray-400 text-sm">该话题提供了完整可复制的做号方法论，具有极高的实操价值。8步法涵盖了从0到1做号的全流程，并有真实数据验证（5000粉丝、3000+日均阅读），对群内所有想跨界或起号的成员都有重要参考意义。</p>
+                            </div>
+                        </div>
+                        
+                        <button class="expand-btn mt-4" onclick="toggleContent(1)">
+                            <span id="btn-text-1">展开完整内容</span>
+                            <i class="fas fa-chevron-down ml-2" id="btn-icon-1"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- TOP 2 -->
+                <div class="topic-card fade-in" id="topic-2">
+                    <div class="topic-header p-6 flex items-start justify-between">
+                        <div class="rank-number absolute left-4 top-4">#2</div>
+                        <div class="ml-16 flex-1">
+                            <div class="flex flex-wrap items-center gap-3 mb-3">
+                                <h4 class="text-xl font-bold text-white">应对内容抄袭的三重境界：从维权到战略升级</h4>
+                                <span class="score-badge">AI评分 94</span>
+                            </div>
+                            <div class="flex flex-wrap gap-2 mb-3">
+                                <span class="tag-item">心态模型</span>
+                                <span class="tag-item">内容抄袭</span>
+                                <span class="tag-item">竞争策略</span>
+                                <span class="tag-item">品牌建设</span>
+                            </div>
+                            <div class="text-sm text-gray-400">
+                                <a href="https://gaogaoselfmedialearninggroup.github.io/x/2025/10/daily_report_2025-10-15.html" target="_blank" class="hover:text-primary-light transition-colors">
+                                    <i class="fas fa-calendar mr-1"></i>2025年10月15日 <i class="fas fa-external-link-alt text-xs ml-1"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="text-gray-300 leading-relaxed mb-4">
+                            <p><strong>昍</strong>老师分享了一份深刻的语音及文字稿，提出了一个应对抄袭的"三阶心态模型"，帮助创作者从受害者心态转向战略家视角。</p>
+                        </div>
+                        
+                        <div class="content-full" id="content-2">
+                            <div class="bg-opacity-20 bg-black rounded-lg p-4 mb-4">
+                                <h5 class="font-semibold text-primary-light mb-3">📋 话题背景与起因</h5>
+                                <p class="text-gray-300">群成员遭遇内容被抄袭的困扰，在群里寻求建议。<strong>昍</strong>老师没有停留在"如何维权"的技术层面，而是分享了一份深刻的语音及文字稿，提出了一个应对抄袭的"三阶心态模型"，帮助创作者从受害者心态转向战略家视角。</p>
+                            </div>
+                            
+                            <div class="bg-opacity-20 bg-black rounded-lg p-4 mb-4">
+                                <h5 class="font-semibold text-primary-light mb-3">🎯 三阶心态模型详解</h5>
+                                <div class="space-y-4 text-gray-300">
+                                    <div class="border-l-4 border-gray-500 pl-4">
+                                        <p class="font-semibold text-white">第一阶：保洁思维（维权）</p>
+                                        <p class="text-sm">将抄袭者视为"垃圾"，自己的任务是"打扫干净"（举报、维权）。这个阶段停留在情绪和被动应对，消耗巨大心力，且往往得不偿失。</p>
+                                    </div>
+                                    <div class="border-l-4 border-primary pl-4">
+                                        <p class="font-semibold text-white">第二阶：运营思维（市场验证）</p>
+                                        <p class="text-sm">将抄袭视为<span class="text-primary-light">免费的市场调研</span>。抄袭者帮你验证了哪个内容是能跑出来的爆款。思考：对方在哪些方面做了优化？我能否借鉴其形式，实现"自己抄自己"？这个阶段开始将危机转化为机遇。</p>
+                                    </div>
+                                    <div class="border-l-4 border-yellow-500 pl-4">
+                                        <p class="font-semibold text-white">第三阶：生态思维（构建壁垒）</p>
+                                        <p class="text-sm">最高阶的思维是建立自己的"生态系统"和品牌护城河。当你的个人IP、风格和社群足够强大时，任何抄袭都只会变成对你品牌的免费宣传。<span class="text-primary-light">抄袭者永远只能抄袭你的"昨天"，而你一直在创造"明天"</span>。</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="bg-opacity-20 bg-black rounded-lg p-4 mb-4">
+                                <h5 class="font-semibold text-primary-light mb-3">💡 结论与启发</h5>
+                                <p class="text-gray-300">这套"三阶模型"的核心价值在于：它将"被抄袭"这个普遍的痛点，从情绪问题转化为策略问题。每一次被抄袭，都是一次检验自己是否建立起真正护城河的机会。最终的答案不是"如何防止被抄袭"，而是"如何让抄袭变得毫无意义"。这需要持续的创新能力、独特的个人风格，以及强大的社群连接。</p>
+                            </div>
+                            
+                            <div class="space-y-2">
+                                <div class="quote-card">
+                                    <p class="text-gray-300 italic">"被抄袭说明你的内容有价值。与其愤怒，不如思考如何建立让人无法复制的护城河。"</p>
+                                    <p class="text-sm text-gray-500 mt-2 text-right">— 昍</p>
+                                </div>
+                                <div class="quote-card">
+                                    <p class="text-gray-300 italic">"抄袭者永远只能抄袭你的昨天，而你一直在创造明天。"</p>
+                                    <p class="text-sm text-gray-500 mt-2 text-right">— 昍</p>
+                                </div>
+                                <div class="quote-card">
+                                    <p class="text-gray-300 italic">"当你的IP足够强大，抄袭就是给你免费宣传。"</p>
+                                    <p class="text-sm text-gray-500 mt-2 text-right">— 群友讨论共识</p>
+                                </div>
+                            </div>
+                            
+                            <div class="mt-4 p-4 border border-primary/20 rounded-lg">
+                                <h5 class="font-semibold text-yellow-500 mb-2"><i class="fas fa-star mr-2"></i>评选理由</h5>
+                                <p class="text-gray-400 text-sm">该话题将"被抄袭"这一创作者普遍面临的困境，提升到战略高度来思考。"三阶心态模型"提供了从情绪化反应到理性策略的认知跃迁路径，对于所有内容创作者的心理建设和品牌意识培养都具有极高的参考价值。</p>
+                            </div>
+                        </div>
+                        
+                        <button class="expand-btn mt-4" onclick="toggleContent(2)">
+                            <span id="btn-text-2">展开完整内容</span>
+                            <i class="fas fa-chevron-down ml-2" id="btn-icon-2"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- TOP 3 -->
+                <div class="topic-card fade-in" id="topic-3">
+                    <div class="topic-header p-6 flex items-start justify-between">
+                        <div class="rank-number absolute left-4 top-4">#3</div>
+                        <div class="ml-16 flex-1">
+                            <div class="flex flex-wrap items-center gap-3 mb-3">
+                                <h4 class="text-xl font-bold text-white">自媒体一对一咨询的"道"与"术"：定价策略与风险规避</h4>
+                                <span class="score-badge">AI评分 93</span>
+                            </div>
+                            <div class="flex flex-wrap gap-2 mb-3">
+                                <span class="tag-item">付费咨询</span>
+                                <span class="tag-item">风险管理</span>
+                                <span class="tag-item">定价策略</span>
+                                <span class="tag-item">客户筛选</span>
+                            </div>
+                            <div class="text-sm text-gray-400">
+                                <a href="https://gaogaoselfmedialearninggroup.github.io/x/2025/11/daily_report_2025-11-20.html" target="_blank" class="hover:text-primary-light transition-colors">
+                                    <i class="fas fa-calendar mr-1"></i>2025年11月20日 <i class="fas fa-external-link-alt text-xs ml-1"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="text-gray-300 leading-relaxed mb-4">
+                            <p>关于自媒体一对一咨询业务的深度探讨，涵盖了风险、定价、边界和心态等多个层面。核心结论：<strong class="text-primary-light">谨慎开展一对一咨询，必须通过合理的定价策略筛选客户，并明确服务边界。</strong></p>
+                        </div>
+                        
+                        <div class="content-full" id="content-3">
+                            <div class="bg-opacity-20 bg-black rounded-lg p-4 mb-4">
+                                <h5 class="font-semibold text-primary-light mb-3">📋 话题背景与起因</h5>
+                                <p class="text-gray-300">群成员讨论是否开展付费一对一咨询服务时，<strong>狗狗蹲马桶</strong>、<strong>向山</strong>等有经验的成员分享了自己踩过的坑和总结出的经验。这场讨论深入探讨了知识变现的风险与边界问题。</p>
+                            </div>
+                            
+                            <div class="bg-opacity-20 bg-black rounded-lg p-4 mb-4">
+                                <h5 class="font-semibold text-primary-light mb-3">⚠️ 核心风险与解决方案</h5>
+                                <ul class="text-gray-300 space-y-3 list-disc list-inside">
+                                    <li><strong>高风险警示</strong>：付费咨询极易"被赖上"，客户付费后期望得到<span class="text-red-400">终身保障</span>。很多人会认为"我付了钱，你就要对我的成功负责"，这种心理预期差异是最大的风险来源。</li>
+                                    <li><strong>定价策略作为过滤器</strong>：<strong>向山</strong>提出了一个精妙的策略——适度提高价格可以有效筛选客户，排除那些"拿自媒体当救命稻草"的高风险人群。愿意付更高价格的人，往往更理性、更尊重专业价值。</li>
+                                    <li><strong>明确服务边界</strong>：提前划定清晰的责任范围至关重要。可以明确说明：<span class="text-primary-light">"只分享经验，不保证起号"</span>。咨询的价值在于信息和思路，而非结果承诺。</li>
+                                    <li><strong>筛选客户画像</strong>：优先服务那些已经有一定基础、心态成熟的创作者，避免接触那些"期望通过一次咨询改变人生"的客户。</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="bg-opacity-20 bg-black rounded-lg p-4 mb-4">
+                                <h5 class="font-semibold text-primary-light mb-3">💡 结论与启发</h5>
+                                <p class="text-gray-300">这场讨论为想要开展付费咨询业务的创作者提供了重要的风险提示。核心结论是：<span class="text-primary-light">谨慎开展一对一咨询，必须通过合理的定价策略筛选客户，并明确服务边界</span>。知识变现的"术"很重要，但"道"更重要——保护好自己，才能更好地帮助他人。</p>
+                            </div>
+                            
+                            <div class="space-y-2">
+                                <div class="quote-card">
+                                    <p class="text-gray-300 italic">"给你交了钱，就要让你负责一辈子。"</p>
+                                    <p class="text-sm text-gray-500 mt-2 text-right">— 狗狗蹲马桶（警示语）</p>
+                                </div>
+                                <div class="quote-card">
+                                    <p class="text-gray-300 italic">"价钱稍微喊高一点，把一些拿自媒体当救命稻草的人排除出去。"</p>
+                                    <p class="text-sm text-gray-500 mt-2 text-right">— 向山</p>
+                                </div>
+                                <div class="quote-card">
+                                    <p class="text-gray-300 italic">"咨询的价值在于信息和思路，而非结果承诺。"</p>
+                                    <p class="text-sm text-gray-500 mt-2 text-right">— 群友讨论共识</p>
+                                </div>
+                            </div>
+                            
+                            <div class="mt-4 p-4 border border-primary/20 rounded-lg">
+                                <h5 class="font-semibold text-yellow-500 mb-2"><i class="fas fa-star mr-2"></i>评选理由</h5>
+                                <p class="text-gray-400 text-sm">这个话题直面知识变现的"阴暗面"——那些容易被忽视的风险和边界问题。"定价作为过滤器"的策略极具实操价值，对于任何考虑开展付费服务的创作者都是宝贵的前车之鉴。</p>
+                            </div>
+                        </div>
+                        
+                        <button class="expand-btn mt-4" onclick="toggleContent(3)">
+                            <span id="btn-text-3">展开完整内容</span>
+                            <i class="fas fa-chevron-down ml-2" id="btn-icon-3"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- TOP 4 -->
+                <div class="topic-card fade-in" id="topic-4">
+                    <div class="topic-header p-6 flex items-start justify-between">
+                        <div class="rank-number absolute left-4 top-4">#4</div>
+                        <div class="ml-16 flex-1">
+                            <div class="flex flex-wrap items-center gap-3 mb-3">
+                                <h4 class="text-xl font-bold text-white">从"花了100万"到"帮人避雷"：如何打造真实的数码博主人设</h4>
+                                <span class="score-badge">AI评分 92</span>
+                            </div>
+                            <div class="flex flex-wrap gap-2 mb-3">
+                                <span class="tag-item">人设打造</span>
+                                <span class="tag-item">小红书运营</span>
+                                <span class="tag-item">数码博主</span>
+                                <span class="tag-item">真实感</span>
+                            </div>
+                            <div class="text-sm text-gray-400">
+                                <a href="https://gaogaoselfmedialearninggroup.github.io/x/2025/10/daily_report_2025-10-15.html" target="_blank" class="hover:text-primary-light transition-colors">
+                                    <i class="fas fa-calendar mr-1"></i>2025年10月15日 <i class="fas fa-external-link-alt text-xs ml-1"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="text-gray-300 leading-relaxed mb-4">
+                            <p>关于如何将"3年消费100万"的经历与"帮大家避雷"的核心价值关联起来的深度讨论。<strong class="text-primary-light">人设的建立需要反复强调核心标签</strong>，并通过大量生活化的"软内容"来增强真实感。</p>
+                        </div>
+                        
+                        <div class="content-full" id="content-4">
+                            <div class="bg-opacity-20 bg-black rounded-lg p-4 mb-4">
+                                <h5 class="font-semibold text-primary-light mb-3">📋 话题背景与起因</h5>
+                                <p class="text-gray-300">群成员<strong>堆堆</strong>在数码赛道有丰富的消费经验（3年花了100万买数码产品），想做数码博主但不知如何将这个经历与"帮大家避雷"的价值主张关联起来。<strong>昍</strong>老师和其他成员围绕人设打造展开了深度讨论。</p>
+                            </div>
+                            
+                            <div class="bg-opacity-20 bg-black rounded-lg p-4 mb-4">
+                                <h5 class="font-semibold text-primary-light mb-3">🎭 人设打造核心策略</h5>
+                                <ul class="text-gray-300 space-y-3 list-disc list-inside">
+                                    <li><strong>"养号"先于"干活"</strong>：新号阶段应多发生活化、随性的内容来"养号"，建立真实感。不要一上来就发硬核测评，而是先让观众感受到你是一个"真实的人"。</li>
+                                    <li><strong>反复强调核心人设</strong>：<strong>昍</strong>老师给出了关键建议——每一篇内容都应反复提及核心设定，形成强记忆点。比如每次都说："我是堆堆，踩坑花了100万，现在帮大家避雷"。<span class="text-primary-light">人设的建立需要反复强调核心标签</span>。</li>
+                                    <li><strong>"自己抄自己"</strong>：将优质内容拆解，换不同形式多次发布，最大化内容价值。一个好的观点可以做成文字笔记、视频、直播、问答等多种形式。</li>
+                                    <li><strong>保持松弛感</strong>：真诚、松弛的态度本身就是极具吸引力的人设的一部分。不要刻意"表演专业"，而是自然地展示你的专业。</li>
+                                    <li><strong>大量"软内容"增强真实感</strong>：除了专业内容，还需要通过大量生活化的"软内容"来增强真实感，让观众感受到博主是一个有血有肉的人。</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="bg-opacity-20 bg-black rounded-lg p-4 mb-4">
+                                <h5 class="font-semibold text-primary-light mb-3">💡 结论与启发</h5>
+                                <p class="text-gray-300">这场讨论揭示了人设打造的核心逻辑：<span class="text-primary-light">人设不是虚假的"表演"，而是将你真实的经历和价值，以一种清晰、重复、有记忆点的方式传递给观众</span>。"100万踩坑经历"本身就是最好的信任背书，关键是如何将这个故事讲好、讲透、讲到观众记住。</p>
+                            </div>
+                            
+                            <div class="space-y-2">
+                                <div class="quote-card">
+                                    <p class="text-gray-300 italic">"每次都复述同一句话，比如我是堆堆，踩坑花了100万，现在帮大家避雷，之类的，每次都说。"</p>
+                                    <p class="text-sm text-gray-500 mt-2 text-right">— 昍</p>
+                                </div>
+                                <div class="quote-card">
+                                    <p class="text-gray-300 italic">"人设不是表演，是将你真实的价值，用观众能记住的方式反复传递。"</p>
+                                    <p class="text-sm text-gray-500 mt-2 text-right">— 群友讨论共识</p>
+                                </div>
+                                <div class="quote-card">
+                                    <p class="text-gray-300 italic">"先养号再干活，先建立信任再输出专业。"</p>
+                                    <p class="text-sm text-gray-500 mt-2 text-right">— 群友讨论共识</p>
+                                </div>
+                            </div>
+                            
+                            <div class="mt-4 p-4 border border-primary/20 rounded-lg">
+                                <h5 class="font-semibold text-yellow-500 mb-2"><i class="fas fa-star mr-2"></i>评选理由</h5>
+                                <p class="text-gray-400 text-sm">这个话题以一个具体案例切入，提炼出了人设打造的通用方法论。"反复强调核心人设"这一策略简单易行，对于任何想建立个人IP的创作者都有直接的指导价值。</p>
+                            </div>
+                        </div>
+                        
+                        <button class="expand-btn mt-4" onclick="toggleContent(4)">
+                            <span id="btn-text-4">展开完整内容</span>
+                            <i class="fas fa-chevron-down ml-2" id="btn-icon-4"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- TOP 5 -->
+                <div class="topic-card fade-in" id="topic-5">
+                    <div class="topic-header p-6 flex items-start justify-between">
+                        <div class="rank-number absolute left-4 top-4">#5</div>
+                        <div class="ml-16 flex-1">
+                            <div class="flex flex-wrap items-center gap-3 mb-3">
+                                <h4 class="text-xl font-bold text-white">小红书运营深度研讨会：从变现到MCN内幕</h4>
+                                <span class="score-badge">AI评分 91</span>
+                            </div>
+                            <div class="flex flex-wrap gap-2 mb-3">
+                                <span class="tag-item">小红书运营</span>
+                                <span class="tag-item">变现</span>
+                                <span class="tag-item">MCN</span>
+                                <span class="tag-item">内容策略</span>
+                            </div>
+                            <div class="text-sm text-gray-400">
+                                <a href="https://gaogaoselfmedialearninggroup.github.io/x/2025/09/daily_report_2025-09-25.html" target="_blank" class="hover:text-primary-light transition-colors">
+                                    <i class="fas fa-calendar mr-1"></i>2025年9月25日 <i class="fas fa-external-link-alt text-xs ml-1"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="text-gray-300 leading-relaxed mb-4">
+                            <p>一场关于小红书从基础功能到高级运营策略的全方位深度研讨。<strong>糕某</strong>作为MCN运营者，分享了品牌方对"素人"账号的真实需求和行业内幕。</p>
+                        </div>
+                        
+                        <div class="content-full" id="content-5">
+                            <div class="bg-opacity-20 bg-black rounded-lg p-4 mb-4">
+                                <h5 class="font-semibold text-primary-light mb-3">📋 话题背景与起因</h5>
+                                <p class="text-gray-300 mb-4">讨论由群成员<strong>高大壮</strong>对自己是否属于小红书"买手"身份的疑问开启。这一问题迅速演变成一场关于小红书从基础功能到高级运营策略的全方位深度研讨。</p>
+                            </div>
+                            
+                            <div class="bg-opacity-20 bg-black rounded-lg p-4 mb-4">
+                                <h5 class="font-semibold text-primary-light mb-3">📊 主要观点与讨论详情</h5>
+                                <p class="text-gray-300 mb-3"><strong>糕某</strong>作为资深从业者，系统性地解答了多个核心问题：</p>
+                                <ul class="text-gray-300 space-y-3 list-disc list-inside">
+                                    <li><strong>变现模式</strong>：清晰地解释了"买手"即小清单带货功能，通过橱窗推荐商品赚取佣金。她进一步分享了更广阔的变现视野，强调<span class="text-primary-light">填写完整的后台个人信息</span>（年龄、标签等）对于吸引品牌方合作至关重要，并揭示了行业内对"素人"（粉丝<1万）与"博主"（粉丝>1万）的划分标准和不同价值。</li>
+                                    <li><strong>MCN与素人价值</strong>：<strong>糕某</strong>分享了她作为MCN运营的内部视角，指出品牌方其实<span class="text-primary-light">非常渴求优质的"素人"账号</span>来进行内容铺量，因为他们看起来更真实。即便报价不高（如100元/篇），这也是与品牌建立联系、进入资源群的绝佳机会，是"小钱也是钱"和"建立联结"的思维转变。</li>
+                                    <li><strong>运营技巧</strong>：讨论覆盖了多个实操细节。<strong>高大壮</strong>对个人简介排版的极致追求引发了关于优化的讨论。<strong>糕某</strong>分享了"常用话题"功能，一个能极大提升发布效率的隐藏技巧。她还强调了<span class="text-primary-light">参与官方话题活动</span>和<span class="text-primary-light">混合使用大类与小类标签</span>的重要性。</li>
+                                    <li><strong>内容安全</strong>：针对<strong>高大壮</strong>提出的"是否可以蹭特朗普与医药相关的热点"问题，<strong>糕某</strong>和<strong>小月半皮</strong>等成员一致认为应<span class="text-red-400">极力避免</span>。<strong>糕某</strong>一针见血地指出，这类内容虽然可能带来短期流量，但风险极高，品牌方会主动"避雷"这类博主，且有炸号风险。结论是，做自媒体应<span class="text-primary-light">多说"xxx好"，少说"xxx不好"</span>，保持正向内容调性，才能走得更远。</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="bg-opacity-20 bg-black rounded-lg p-4 mb-4">
+                                <h5 class="font-semibold text-primary-light mb-3">💡 结论与启发</h5>
+                                <p class="text-gray-300">本次研讨会为群成员构建了小红书运营的完整知识图谱，从心态建设（建立品牌联结）到具体实操（优化简介、活用标签），再到战略选择（内容安全第一），提供了极具价值的指导。核心启发是，精细化运营和长远的安全思维，远比追逐一次性的爆款流量更为重要。</p>
+                            </div>
+                            
+                            <div class="space-y-2">
+                                <div class="quote-card">
+                                    <p class="text-gray-300 italic">"如果我是素人，让我发一篇内容...不是10块还是20块的事，因为我需要建立和品牌的联结。"</p>
+                                    <p class="text-sm text-gray-500 mt-2 text-right">— 糕糕</p>
+                                </div>
+                                <div class="quote-card">
+                                    <p class="text-gray-300 italic">"我朋友当时裁掉了很大一部分博主，因为她觉得「不是素人，没有真实感」。"</p>
+                                    <p class="text-sm text-gray-500 mt-2 text-right">— 糕糕</p>
+                                </div>
+                                <div class="quote-card">
+                                    <p class="text-gray-300 italic">"也许内容火了，但是品牌看到了，第一时间避雷这样的博主。因为不知道什么时候你就炸号了。"</p>
+                                    <p class="text-sm text-gray-500 mt-2 text-right">— 糕糕</p>
+                                </div>
+                            </div>
+                            
+                            <div class="mt-4 p-4 border border-primary/20 rounded-lg">
+                                <h5 class="font-semibold text-yellow-500 mb-2"><i class="fas fa-star mr-2"></i>评选理由</h5>
+                                <p class="text-gray-400 text-sm">这是一场全方位的小红书运营深度研讨会，由MCN从业者糕糕亲自分享行业内幕。内容涵盖了变现路径、素人价值、运营技巧和内容安全四大核心议题，对于任何想在小红书发展的创作者都是宝贵的第一手经验。</p>
+                            </div>
+                        </div>
+                        
+                        <button class="expand-btn mt-4" onclick="toggleContent(5)">
+                            <span id="btn-text-5">展开完整内容</span>
+                            <i class="fas fa-chevron-down ml-2" id="btn-icon-5"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- TOP 6 -->
+                <div class="topic-card fade-in" id="topic-6">
+                    <div class="topic-header p-6 flex items-start justify-between">
+                        <div class="rank-number absolute left-4 top-4">#6</div>
+                        <div class="ml-16 flex-1">
+                            <div class="flex flex-wrap items-center gap-3 mb-3">
+                                <h4 class="text-xl font-bold text-white">AI绘画 vs. 人类审美：「高级感」的终极对决</h4>
+                                <span class="score-badge">AI评分 90</span>
+                            </div>
+                            <div class="flex flex-wrap gap-2 mb-3">
+                                <span class="tag-item">AI绘画</span>
+                                <span class="tag-item">审美</span>
+                                <span class="tag-item">设计</span>
+                                <span class="tag-item">高级感</span>
+                            </div>
+                            <div class="text-sm text-gray-400">
+                                <a href="https://gaogaoselfmedialearninggroup.github.io/x/2025/09/daily_report_2025-09-25.html" target="_blank" class="hover:text-primary-light transition-colors">
+                                    <i class="fas fa-calendar mr-1"></i>2025年9月25日 <i class="fas fa-external-link-alt text-xs ml-1"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="text-gray-300 leading-relaxed mb-4">
+                            <p>艺术专业出身的<strong>查理</strong>深度剖析了人类画师如何运用色彩理论、构图层次和视觉引导来主动控制画面。结论：<strong class="text-primary-light">AI是强大的效率工具，但在追求"高级感"的领域，人类艺术家的审美积淀仍不可替代。</strong></p>
+                        </div>
+                        
+                        <div class="content-full" id="content-6">
+                            <div class="bg-opacity-20 bg-black rounded-lg p-4 mb-4">
+                                <h5 class="font-semibold text-primary-light mb-3">📋 话题背景与起因</h5>
+                                <p class="text-gray-300"><strong>糕某</strong>分享了一个排版优秀的知识博主"Mindbrew思维精酿"作为参考案例。艺术专业出身的<strong>查理</strong>敏锐地指出，其配图并非AI生成，由此引发了一场关于AI绘画与人类艺术创作在审美层面差异的深度探讨。</p>
+                            </div>
+                            
+                            <div class="bg-opacity-20 bg-black rounded-lg p-4 mb-4">
+                                <h5 class="font-semibold text-primary-light mb-3">🎨 主要观点与讨论详情</h5>
+                                <ul class="text-gray-300 space-y-3 list-disc list-inside">
+                                    <li><strong>人类创作的"设计心机"</strong>：<strong>查理</strong>通过语音和图文，专业地剖析了人类画师如何运用<span class="text-primary-light">色彩理论</span>（如6:3:1的黄金比例分配对比色）、<span class="text-primary-light">构图层次</span>（点、线、面的节奏感）以及<span class="text-primary-light">视觉引导</span>（利用人脸、线条交汇点制造视觉中心）来主动控制画面，赋予作品秩序和美感。这是AI当前难以企及的"主观处理"。</li>
+                                    <li><strong>AI图像的"生理不适"</strong>：多位成员表达了对AI图像的感觉。<strong>查理</strong>指出，未经调整的AI图在专业人士看来会感到"油腻"和"生理不适"，缺乏焦点，画面拥挤。<strong>糕某</strong>则从时尚领域从业者的直觉出发，表示自己从不使用AI配图，因为它缺少一种难以言喻的"<span class="text-primary-light">高级感</span>"。</li>
+                                    <li><strong>"预制菜"与"国宴"之喻</strong>：<strong>锋</strong>提出了一个绝妙的比喻，将AI作品比作"预制菜"——高效、标准化，能满足基本需求；而人类创作则是"国宴美食"——精心雕琢，富含个性与灵魂。这个比喻精准地概括了两者在效率与艺术价值上的定位差异。</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="bg-opacity-20 bg-black rounded-lg p-4 mb-4">
+                                <h5 class="font-semibold text-primary-light mb-3">💡 结论与启发</h5>
+                                <p class="text-gray-300">讨论最终形成共识：AI是强大的效率工具，但在追求"高级感"、情感共鸣和精妙审美的领域（如奢侈品广告），人类艺术家的主观能动性和审美积淀仍是不可替代的。对于创作者而言，需要警惕AI对自身独特思维方式的"污染"，并明确在何种场景下使用何种"食材"，才能做出最好的"菜"。</p>
+                            </div>
+                            
+                            <div class="space-y-2">
+                                <div class="quote-card">
+                                    <p class="text-gray-300 italic">"画红线的部分是紫色，紫色和黄色是对比色...这是绘画中一个接近黄金比例的颜色分配数值...AI不太能同时做到这些。"</p>
+                                    <p class="text-sm text-gray-500 mt-2 text-right">— 查理</p>
+                                </div>
+                                <div class="quote-card">
+                                    <p class="text-gray-300 italic">"我文章配图从来不用AI，说不出来为什么，但就是觉得AI不「高级」。"</p>
+                                    <p class="text-sm text-gray-500 mt-2 text-right">— 糕糕</p>
+                                </div>
+                                <div class="quote-card">
+                                    <p class="text-gray-300 italic">"我没有洁癖，我是怕AI污染我的思维方式...我怕它给我磨成AI脑了，那我就完了。"</p>
+                                    <p class="text-sm text-gray-500 mt-2 text-right">— 昍</p>
+                                </div>
+                                <div class="quote-card">
+                                    <p class="text-gray-300 italic">"AI产品就像预制菜，而人类原生的文字和图画就是大厨用新鲜食材现炒的国宴美食。"</p>
+                                    <p class="text-sm text-gray-500 mt-2 text-right">— 锋</p>
+                                </div>
+                                <div class="quote-card">
+                                    <p class="text-gray-300 italic">"电商用AI无所谓，奢侈品不行。"</p>
+                                    <p class="text-sm text-gray-500 mt-2 text-right">— 查理</p>
+                                </div>
+                            </div>
+                            
+                            <div class="mt-4 p-4 border border-primary/20 rounded-lg">
+                                <h5 class="font-semibold text-yellow-500 mb-2"><i class="fas fa-star mr-2"></i>评选理由</h5>
+                                <p class="text-gray-400 text-sm">这是一场由艺术专业背景的查理主导的深度审美讨论。话题从专业角度剖析了AI绘画的局限性，并形成了"预制菜vs国宴"的精彩比喻，对于内容创作者理解AI工具的边界有重要启发意义。</p>
+                            </div>
+                        </div>
+                        
+                        <button class="expand-btn mt-4" onclick="toggleContent(6)">
+                            <span id="btn-text-6">展开完整内容</span>
+                            <i class="fas fa-chevron-down ml-2" id="btn-icon-6"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- TOP 7 -->
+                <div class="topic-card fade-in" id="topic-7">
+                    <div class="topic-header p-6 flex items-start justify-between">
+                        <div class="rank-number absolute left-4 top-4">#7</div>
+                        <div class="ml-16 flex-1">
+                            <div class="flex flex-wrap items-center gap-3 mb-3">
+                                <h4 class="text-xl font-bold text-white">写作瓶颈与情绪表达：如何克服"纯AI感"找到真实声音</h4>
+                                <span class="score-badge">AI评分 89</span>
+                            </div>
+                            <div class="flex flex-wrap gap-2 mb-3">
+                                <span class="tag-item">写作技巧</span>
+                                <span class="tag-item">情绪表达</span>
+                                <span class="tag-item">AI辅助写作</span>
+                                <span class="tag-item">真实感</span>
+                            </div>
+                            <div class="text-sm text-gray-400">
+                                <a href="https://gaogaoselfmedialearninggroup.github.io/x/2025/10/daily_report_2025-10-15.html" target="_blank" class="hover:text-primary-light transition-colors">
+                                    <i class="fas fa-calendar mr-1"></i>2025年10月15日 <i class="fas fa-external-link-alt text-xs ml-1"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="text-gray-300 leading-relaxed mb-4">
+                            <p>关于如何在写作中注入真情实感、摆脱AI束缚的讨论。核心观点：<strong class="text-primary-light">真实的情绪是无法被AI替代的核心资产</strong>，情绪是与读者建立连接的最高效、最无损的媒介。</p>
+                        </div>
+                        
+                        <div class="content-full" id="content-7">
+                            <div class="bg-opacity-20 bg-black rounded-lg p-4 mb-4">
+                                <h5 class="font-semibold text-primary-light mb-3">📋 话题背景与起因</h5>
+                                <p class="text-gray-300">群成员<strong>啊怿子</strong>在写作中遭遇了瓶颈：虽然掌握了AI工具，却发现产出的内容缺乏灵魂，像是"AI写的"。这引发了群内关于写作本质的深度讨论：写作的核心价值究竟是什么？如何在AI时代保持人类创作者的独特优势？</p>
+                            </div>
+                            
+                            <div class="bg-opacity-20 bg-black rounded-lg p-4 mb-4">
+                                <h5 class="font-semibold text-primary-light mb-3">✍️ 主要观点与讨论详情</h5>
+                                <ul class="text-gray-300 space-y-3 list-disc list-inside">
+                                    <li><strong>情绪是最高效的传递媒介</strong>：<strong>讨厌的橙子🍊</strong>指出，情绪是与读者建立连接的最高效、最无损的媒介。她提出了一个发人深省的问题："有什么东西能比情绪更厉害，无损传递给陌生人呢？"这揭示了<span class="text-primary-light">真实的情绪是无法被AI替代的核心资产</span>。</li>
+                                    <li><strong>真诚胜过完美</strong>：<strong>啊怿子</strong>反思道，与其追求AI产出的那种表面完美，不如保持真诚的表达。"哪怕再笨拙，真诚也比那种处心积虑的完美要好。"这为AI时代的写作指明了方向。</li>
+                                    <li><strong>找到自己的声音</strong>：讨论中达成共识，创作者需要找到自己独特的"声音"——那些基于个人经历、情感和见解的表达，是AI无法复制的。这种真实感正是读者所追求的。</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="bg-opacity-20 bg-black rounded-lg p-4 mb-4">
+                                <h5 class="font-semibold text-primary-light mb-3">💡 结论与启发</h5>
+                                <p class="text-gray-300">在AI工具日益强大的今天，人类创作者的核心竞争力不在于文字的华丽或结构的完美，而在于真实的情绪表达和独特的个人视角。与其过度依赖AI让内容变得"正确"，不如保持真诚，让情绪自然流露。读者能够感知到文字背后的真心，这才是建立连接的关键。</p>
+                            </div>
+                            
+                            <div class="space-y-2">
+                                <div class="quote-card">
+                                    <p class="text-gray-300 italic">"有什么东西能比情绪更厉害，无损传递给陌生人呢？"</p>
+                                    <p class="text-sm text-gray-500 mt-2 text-right">— 讨厌的橙子🍊</p>
+                                </div>
+                                <div class="quote-card">
+                                    <p class="text-gray-300 italic">"哪怕再笨拙，真诚也比那种处心积虑的完美要好。"</p>
+                                    <p class="text-sm text-gray-500 mt-2 text-right">— 啊怿子</p>
+                                </div>
+                                <div class="quote-card">
+                                    <p class="text-gray-300 italic">"AI可以帮你组织语言，但它无法替你感受。"</p>
+                                    <p class="text-sm text-gray-500 mt-2 text-right">— 群友讨论共识</p>
+                                </div>
+                            </div>
+                            
+                            <div class="mt-4 p-4 border border-primary/20 rounded-lg">
+                                <h5 class="font-semibold text-yellow-500 mb-2"><i class="fas fa-star mr-2"></i>评选理由</h5>
+                                <p class="text-gray-400 text-sm">这个话题直击AI时代创作者的核心困惑：如何在工具辅助下保持人性的光芒。"情绪是最高效的传递媒介"这一洞见，为所有内容创作者提供了明确的方向指引。</p>
+                            </div>
+                        </div>
+                        
+                        <button class="expand-btn mt-4" onclick="toggleContent(7)">
+                            <span id="btn-text-7">展开完整内容</span>
+                            <i class="fas fa-chevron-down ml-2" id="btn-icon-7"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- TOP 8 -->
+                <div class="topic-card fade-in" id="topic-8">
+                    <div class="topic-header p-6 flex items-start justify-between">
+                        <div class="rank-number absolute left-4 top-4">#8</div>
+                        <div class="ml-16 flex-1">
+                            <div class="flex flex-wrap items-center gap-3 mb-3">
+                                <h4 class="text-xl font-bold text-white">深夜的思想碰撞：人生的意义在于"体验世界"还是"留下遗产"？</h4>
+                                <span class="score-badge">AI评分 88</span>
+                            </div>
+                            <div class="flex flex-wrap gap-2 mb-3">
+                                <span class="tag-item">人生意义</span>
+                                <span class="tag-item">价值观</span>
+                                <span class="tag-item">创作初心</span>
+                            </div>
+                            <div class="text-sm text-gray-400">
+                                <a href="https://gaogaoselfmedialearninggroup.github.io/x/2025/11/daily_report_2025-11-20.html" target="_blank" class="hover:text-primary-light transition-colors">
+                                    <i class="fas fa-calendar mr-1"></i>2025年11月20日 <i class="fas fa-external-link-alt text-xs ml-1"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="text-gray-300 leading-relaxed mb-4">
+                            <p>一场关于人生终极意义的哲学思辨。结论：<strong class="text-primary-light">人生的意义，可以是从追求"体验世界"的个体自由，升华到渴望"留下遗产"的集体贡献。</strong></p>
+                        </div>
+                        
+                        <div class="content-full" id="content-8">
+                            <div class="bg-opacity-20 bg-black rounded-lg p-4 mb-4">
+                                <h5 class="font-semibold text-primary-light mb-3">📋 话题背景与起因</h5>
+                                <p class="text-gray-300">深夜时分，群内话题从日常话题逐渐转向更宏大的人生哲学问题。<strong>昍</strong>、<strong>讨厌的橙子🍊</strong>等成员就人生的意义展开了深刻而温暖的对话，探讨了个体存在与集体贡献之间的关系。</p>
+                                <p class="text-gray-400 text-xs mt-2">📍 出处：daily_report_2025-11-20.html</p>
+                            </div>
+                            
+                            <div class="bg-opacity-20 bg-black rounded-lg p-4 mb-4">
+                                <h5 class="font-semibold text-primary-light mb-3">🌟 主要观点与讨论详情</h5>
+                                <ul class="text-gray-300 space-y-3 list-disc list-inside">
+                                    <li><strong>"留下遗产"的渴望</strong>：<strong>昍</strong>分享了自己的人生观——人来这世上，一定要做些什么改变，留下些什么遗产，福泽到后人。</li>
+                                    <li><strong>创作的永恒性</strong>：<strong>讨厌的橙子🍊</strong>表达了相似的愿望："我想留下一部比我活得更久的作品。"这体现了创作者渴望超越个体生命，通过作品与未来对话的心理。</li>
+                                    <li><strong>从个体到集体的升华</strong>：讨论最终形成了一个共识——人生的意义可以从追求"体验世界"的个体自由，逐渐升华到渴望"留下遗产"的集体贡献。</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="bg-opacity-20 bg-black rounded-lg p-4 mb-4">
+                                <h5 class="font-semibold text-primary-light mb-3">💡 结论与启发</h5>
+                                <p class="text-gray-300">这场深夜的思想碰撞，揭示了自媒体创作者内心深处的驱动力——不仅仅是变现和流量，更是对表达和传承的渴望。无论选择哪条路，真诚地活着、认真地创作，本身就是人生意义的体现。</p>
+                            </div>
+                            
+                            <div class="space-y-2">
+                                <div class="quote-card">
+                                    <p class="text-gray-300 italic">"我想的是人来这世上，一定要做些什么改变，留下些什么遗产，福泽到后人。"</p>
+                                    <p class="text-sm text-gray-500 mt-2 text-right">— 昍</p>
+                                </div>
+                                <div class="quote-card">
+                                    <p class="text-gray-300 italic">"我想留下一部比我活得更久的作品。"</p>
+                                    <p class="text-sm text-gray-500 mt-2 text-right">— 讨厌的橙子🍊</p>
+                                </div>
+                            </div>
+                            
+                            <div class="mt-4 p-4 border border-primary/20 rounded-lg">
+                                <h5 class="font-semibold text-yellow-500 mb-2"><i class="fas fa-star mr-2"></i>评选理由</h5>
+                                <p class="text-gray-400 text-sm">这是一场超越技术层面的人生哲学讨论，展现了糕校社群的深度和温度。话题触及了创作者内心最深处的驱动力，对于理解"为什么要做自媒体"这个根本问题有重要启发意义。</p>
+                            </div>
+                        </div>
+                        
+                        <button class="expand-btn mt-4" onclick="toggleContent(8)">
+                            <span id="btn-text-8">展开完整内容</span>
+                            <i class="fas fa-chevron-down ml-2" id="btn-icon-8"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- TOP 9 -->
+                <div class="topic-card fade-in" id="topic-9">
+                    <div class="topic-header p-6 flex items-start justify-between">
+                        <div class="rank-number absolute left-4 top-4">#9</div>
+                        <div class="ml-16 flex-1">
+                            <div class="flex flex-wrap items-center gap-3 mb-3">
+                                <h4 class="text-xl font-bold text-white">真假富婆鉴别指南：从消费习惯到心态的深度剖析</h4>
+                                <span class="score-badge">AI评分 87</span>
+                            </div>
+                            <div class="flex flex-wrap gap-2 mb-3">
+                                <span class="tag-item">用户画像</span>
+                                <span class="tag-item">心理分析</span>
+                                <span class="tag-item">消费心理</span>
+                            </div>
+                            <div class="text-sm text-gray-400">
+                                <a href="https://gaogaoselfmedialearninggroup.github.io/x/2025/10/daily_report_2025-10-15.html" target="_blank" class="hover:text-primary-light transition-colors">
+                                    <i class="fas fa-calendar mr-1"></i>2025年10月15日 <i class="fas fa-external-link-alt text-xs ml-1"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="text-gray-300 leading-relaxed mb-4">
+                            <p><strong>转念之间</strong>老师分享了精辟的"真假富婆"鉴别方法，揭示了两种人群在心态和行为上的本质差异。<strong class="text-primary-light">真正的富足是一种对金钱祛魅后的松弛状态。</strong></p>
+                        </div>
+                        
+                        <div class="content-full" id="content-9">
+                            <div class="bg-opacity-20 bg-black rounded-lg p-4 mb-4">
+                                <h5 class="font-semibold text-primary-light mb-3">📋 话题背景与起因</h5>
+                                <p class="text-gray-300">群成员讨论珠宝赛道时，话题自然延伸到了目标客群的鉴别问题。<strong>转念之间</strong>老师凭借丰富的行业经验，分享了一套精辟的"真假富婆"鉴别方法。</p>
+                                <p class="text-gray-400 text-xs mt-2">📍 出处：daily_report_2025-10-15.html</p>
+                            </div>
+                            
+                            <div class="bg-opacity-20 bg-black rounded-lg p-4 mb-4">
+                                <h5 class="font-semibold text-primary-light mb-3">👑 主要观点与讨论详情</h5>
+                                <ul class="text-gray-300 space-y-3 list-disc list-inside">
+                                    <li><strong>"特别"vs"好看"的追求差异</strong>：富婆对衣服和首饰的第一追求不是好看，而是<span class="text-primary-light">"特别"</span>。因为适合她的好看的她都有了。</li>
+                                    <li><strong>消费行为的底层逻辑</strong>：真正富裕的人已经对金钱"祛魅"，消费决策更加从容自然；而"假富婆"则会刻意炫耀或过度节俭。</li>
+                                    <li><strong>"非A也是一种A"的深刻洞见</strong>：<strong>昍</strong>总结出一个精妙的心理学观察——"有执念卡在那里，却又要假装没有这个执念，导致所有动作都变形。"</li>
+                                    <li><strong>对自媒体定位的启发</strong>：这套分析方法对于做高端客群定位的自媒体人有重要参考价值——理解真正的目标客户需要什么。</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="bg-opacity-20 bg-black rounded-lg p-4 mb-4">
+                                <h5 class="font-semibold text-primary-light mb-3">💡 结论与启发</h5>
+                                <p class="text-gray-300">这场讨论超越了表面的"识人技巧"，触及了人性的本质——真正的富足是一种对金钱祛魅后的松弛状态，而非刻意的展示或掩饰。对于自媒体创作者而言，理解不同人群的深层心理需求，是精准定位和内容创作的关键。</p>
+                            </div>
+                            
+                            <div class="space-y-2">
+                                <div class="quote-card">
+                                    <p class="text-gray-300 italic">"富婆对衣服和首饰的第一追求不是好看，是特别。因为适合她的好看的她都有了。"</p>
+                                    <p class="text-sm text-gray-500 mt-2 text-right">— 转念之间</p>
+                                </div>
+                                <div class="quote-card">
+                                    <p class="text-gray-300 italic">"有执念卡在那里，却又要假装没有这个执念，导致所有动作都变形。「非A」也是一种「A」。"</p>
+                                    <p class="text-sm text-gray-500 mt-2 text-right">— 昍</p>
+                                </div>
+                            </div>
+                            
+                            <div class="mt-4 p-4 border border-primary/20 rounded-lg">
+                                <h5 class="font-semibold text-yellow-500 mb-2"><i class="fas fa-star mr-2"></i>评选理由</h5>
+                                <p class="text-gray-400 text-sm">这个话题将用户画像分析提升到了心理学高度。"非A也是一种A"的洞见极具哲学深度，对于做高端客群定位的创作者具有重要的实操指导意义。</p>
+                            </div>
+                        </div>
+                        
+                        <button class="expand-btn mt-4" onclick="toggleContent(9)">
+                            <span id="btn-text-9">展开完整内容</span>
+                            <i class="fas fa-chevron-down ml-2" id="btn-icon-9"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- TOP 10 -->
+                <div class="topic-card fade-in" id="topic-10">
+                    <div class="topic-header p-6 flex items-start justify-between">
+                        <div class="rank-number absolute left-4 top-4">#10</div>
+                        <div class="ml-16 flex-1">
+                            <div class="flex flex-wrap items-center gap-3 mb-3">
+                                <h4 class="text-xl font-bold text-white">自我认知迭代：从"看不上"到"乐在其中"的自媒体心态转变</h4>
+                                <span class="score-badge">AI评分 86</span>
+                            </div>
+                            <div class="flex flex-wrap gap-2 mb-3">
+                                <span class="tag-item">心态转变</span>
+                                <span class="tag-item">自我认知</span>
+                                <span class="tag-item">破茧成蝶</span>
+                            </div>
+                            <div class="text-sm text-gray-400">
+                                <a href="https://gaogaoselfmedialearninggroup.github.io/x/2025/10/daily_report_2025-10-08.html" target="_blank" class="hover:text-primary-light transition-colors">
+                                    <i class="fas fa-calendar mr-1"></i>2025年10月8日 <i class="fas fa-external-link-alt text-xs ml-1"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="text-gray-300 leading-relaxed mb-4">
+                            <p><strong>高大壮</strong>坦言自己最初对"自媒体"嗤之以鼻，存在"自命清高的思维误区"。结论：<strong class="text-primary-light">做自媒体不仅是技能的磨练，更是自我认知的破茧之旅。</strong></p>
+                        </div>
+                        
+                        <div class="content-full" id="content-10">
+                            <div class="bg-opacity-20 bg-black rounded-lg p-4 mb-4">
+                                <h5 class="font-semibold text-primary-light mb-3">📋 话题背景与起因</h5>
+                                <p class="text-gray-300"><strong>高大壮</strong>坦言："5月份刚进群的时候，我提到自媒体啊，起号啊这种东西 我还嗤之以鼻呢"，存在"自命清高的思维误区"。但加入糕校社群后，他的认知发生了巨大转变。</p>
+                                <p class="text-gray-400 text-xs mt-2">📍 出处：daily_report_2025-10-08.html</p>
+                            </div>
+                            
+                            <div class="bg-opacity-20 bg-black rounded-lg p-4 mb-4">
+                                <h5 class="font-semibold text-primary-light mb-3">🦋 主要观点与讨论详情</h5>
+                                <ul class="text-gray-300 space-y-3 list-disc list-inside">
+                                    <li><strong>打破认知茧房</strong>：<strong>高大壮</strong>分享了自己从"看不上自媒体"到"乐在其中"的心态转变。他意识到，之前的偏见源于对自媒体的误解和对自身能力的不自信。</li>
+                                    <li><strong>"茧的作用就是用来破的"</strong>：<strong>锋</strong>用这句富有禅意的话回应了高大壮的分享，鼓励每个人勇于打破自己的认知局限。</li>
+                                    <li><strong>发现"自我"的价值</strong>：<strong>高大壮</strong>感悟到"自媒体"的"自"字，正是"自我"的意思——每个人都有自己擅长的事情，自媒体是表达自我、发现自我的绝佳平台。</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="bg-opacity-20 bg-black rounded-lg p-4 mb-4">
+                                <h5 class="font-semibold text-primary-light mb-3">💡 结论与启发</h5>
+                                <p class="text-gray-300">这场讨论揭示了一个重要的成长规律：<span class="text-primary-light">做自媒体不仅是技能的磨练，更是自我认知的破茧之旅</span>。许多人在开始时都会有各种心理障碍——觉得自己"不配"、觉得自媒体"low"、觉得自己"做不好"。打破这些内心的茧，往往比学习技术更加重要。</p>
+                            </div>
+                            
+                            <div class="space-y-2">
+                                <div class="quote-card">
+                                    <p class="text-gray-300 italic">"呐，茧的作用就是用来破的。"</p>
+                                    <p class="text-sm text-gray-500 mt-2 text-right">— 锋</p>
+                                </div>
+                                <div class="quote-card">
+                                    <p class="text-gray-300 italic">"真的每个人有每个人擅长的事情嘛，自媒体的自，是自我的自~"</p>
+                                    <p class="text-sm text-gray-500 mt-2 text-right">— 高大壮</p>
+                                </div>
+                            </div>
+                            
+                            <div class="mt-4 p-4 border border-primary/20 rounded-lg">
+                                <h5 class="font-semibold text-yellow-500 mb-2"><i class="fas fa-star mr-2"></i>评选理由</h5>
+                                <p class="text-gray-400 text-sm">这个话题记录了一位群成员真实的认知蜕变过程，从"看不上"到"乐在其中"，展现了社群正向氛围的力量。"茧的作用就是用来破的"成为年度最温暖的金句之一。</p>
+                            </div>
+                        </div>
+                        
+                        <button class="expand-btn mt-4" onclick="toggleContent(10)">
+                            <span id="btn-text-10">展开完整内容</span>
+                            <i class="fas fa-chevron-down ml-2" id="btn-icon-10"></i>
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <div class="highlight-bar"></div>
+
+        <!-- ========== 成长故事 ========== -->
+        <section class="mb-16 scroll-fade" id="section-stories">
+            <h3 class="text-2xl font-bold text-white mb-8 flex items-center">
+                <i class="fas fa-book-open mr-3 text-green-500"></i>
+                年度成长故事
+            </h3>
+            <p class="text-gray-400 mb-8">记录几位成员在糕校社群中的蜕变历程</p>
+            
+            <div class="grid md:grid-cols-2 gap-6">
+                <!-- 故事1：高大壮 -->
+                <div class="story-card">
+                    <div class="story-avatar">壮</div>
+                    <h4 class="text-xl font-bold text-white mb-2">高大壮的破茧之旅</h4>
+                    <p class="text-primary-light text-sm mb-4">从"看不上自媒体"到"乐在其中"</p>
+                    
+                    <div class="story-timeline">
+                        <p class="text-gray-400 text-sm mb-3">
+                            <strong class="text-white">5月</strong> · 刚进群时对"自媒体""起号"嗤之以鼻，存在"自命清高的思维误区"
+                        </p>
+                        <p class="text-gray-400 text-sm mb-3">
+                            <strong class="text-white">10月</strong> · 在群内安全氛围感染下敢于"疯狂自我暴露"寻求进步
+                        </p>
+                        <p class="text-gray-400 text-sm">
+                            <strong class="text-white">现在</strong> · 发现"每个人有每个人擅长的事情"，完全融入社群
+                        </p>
+                    </div>
+                    
+                    <div class="mt-4 p-3 bg-primary/10 rounded-lg">
+                        <p class="text-gray-300 text-sm italic">"真的每个人有每个人擅长的事情嘛 自媒体的自 是自我的自~"</p>
+                        <p class="text-gray-500 text-xs mt-1">📍 出处：daily_report_2025-10-08.html</p>
+                    </div>
+                </div>
+                
+                <!-- 故事2：讨厌的橙子🍊 -->
+                <div class="story-card">
+                    <div class="story-avatar">🍊</div>
+                    <h4 class="text-xl font-bold text-white mb-2">讨厌的橙子🍊的创作觉醒</h4>
+                    <p class="text-primary-light text-sm mb-4">从"为更新而更新"到找到创作初心</p>
+                    
+                    <div class="story-timeline">
+                        <p class="text-gray-400 text-sm mb-3">
+                            <strong class="text-white">困惑</strong> · 陷入"为更新而更新"的迷茫，不知道在练习还是实践
+                        </p>
+                        <p class="text-gray-400 text-sm mb-3">
+                            <strong class="text-white">输出</strong> · 在群内分享口播、配音、方言表达等专业建议
+                        </p>
+                        <p class="text-gray-400 text-sm">
+                            <strong class="text-white">升华</strong> · 找到创作终极驱动力：留下传世作品
+                        </p>
+                    </div>
+                    
+                    <div class="mt-4 p-3 bg-primary/10 rounded-lg">
+                        <p class="text-gray-300 text-sm italic">"我想留下一部比我活得更久的作品。"</p>
+                        <p class="text-gray-500 text-xs mt-1">📍 出处：daily_report_2025-11-20.html</p>
+                    </div>
+                </div>
+                
+                <!-- 故事3：书昊 -->
+                <div class="story-card">
+                    <div class="story-avatar">昊</div>
+                    <h4 class="text-xl font-bold text-white mb-2">书昊的人设觉醒</h4>
+                    <p class="text-primary-light text-sm mb-4">从"干货输出"到"真人感账号"</p>
+                    
+                    <div class="story-timeline">
+                        <p class="text-gray-400 text-sm mb-3">
+                            <strong class="text-white">困惑</strong> · 发布键盘评测后困惑如何建立账号人设
+                        </p>
+                        <p class="text-gray-400 text-sm mb-3">
+                            <strong class="text-white">点拨</strong> · 昍老师建议打造"我是堆堆，踩坑花了100万"的记忆点
+                        </p>
+                        <p class="text-gray-400 text-sm">
+                            <strong class="text-white">践行</strong> · 用松弛真诚的态度创作内容，"能帮更多人避雷就好"
+                        </p>
+                    </div>
+                    
+                    <div class="mt-4 p-3 bg-primary/10 rounded-lg">
+                        <p class="text-gray-300 text-sm italic">"每次都复述同一句话：我是堆堆，踩坑花了100w，现在帮大家避雷"</p>
+                        <p class="text-gray-500 text-xs mt-1">📍 出处：daily_report_2025-10-15.html（昍老师建议）</p>
+                    </div>
+                </div>
+                
+                <!-- 故事4：宝鹅 -->
+                <div class="story-card">
+                    <div class="story-avatar">🪿</div>
+                    <h4 class="text-xl font-bold text-white mb-2">宝鹅的商业觉醒</h4>
+                    <p class="text-primary-light text-sm mb-4">从接受"产品置换"到敢说"得加钱"</p>
+                    
+                    <div class="story-timeline">
+                        <p class="text-gray-400 text-sm mb-3">
+                            <strong class="text-white">挑战</strong> · HBN品牌想用产品置换蹭爆款笔记流量
+                        </p>
+                        <p class="text-gray-400 text-sm mb-3">
+                            <strong class="text-white">觉醒</strong> · 群友集体教学：清醒认知内容商业价值
+                        </p>
+                        <p class="text-gray-400 text-sm">
+                            <strong class="text-white">结果</strong> · 果断婉拒，引发全群"得加钱"刷屏
+                        </p>
+                    </div>
+                    
+                    <div class="mt-4 p-3 bg-primary/10 rounded-lg">
+                        <p class="text-gray-300 text-sm italic">"得加钱！" — 群内共识</p>
+                        <p class="text-gray-500 text-xs mt-1">📍 出处：daily_report_2025-12-26.html</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 群体成长故事 -->
+            <div class="mt-8 bento-card p-6" style="background: linear-gradient(135deg, rgba(77, 107, 254, 0.1) 0%, rgba(147, 51, 234, 0.1) 100%);">
+                <div class="flex items-center mb-4">
+                    <div class="w-12 h-12 rounded-full bg-gradient-to-br from-primary to-purple-500 flex items-center justify-center text-white text-2xl mr-4">
+                        👥
+                    </div>
+                    <div>
+                        <h4 class="text-xl font-bold text-white">糕校群友的共同成长</h4>
+                        <p class="text-primary-light text-sm">从"各自摸索"到"互助共创"的自媒体实战训练营</p>
+                    </div>
+                </div>
+                
+                <div class="grid md:grid-cols-3 gap-4 mb-4">
+                    <div class="bg-dark/50 rounded-lg p-4 text-center">
+                        <div class="text-3xl mb-2">📸</div>
+                        <p class="text-white font-semibold mb-1">产品摄影实战课</p>
+                        <p class="text-gray-400 text-sm">查理、绵羊姐手把手教"2倍镜头"、构图技巧，现场出片</p>
+                        <p class="text-gray-600 text-xs mt-1">📍 11-02日报</p>
+                    </div>
+                    <div class="bg-dark/50 rounded-lg p-4 text-center">
+                        <div class="text-3xl mb-2">🎤</div>
+                        <p class="text-white font-semibold mb-1">口播能量训练</p>
+                        <p class="text-gray-400 text-sm">黄云老师诊断"能量错配"，高大壮、转念之间互发语音实战</p>
+                        <p class="text-gray-600 text-xs mt-1">📍 11-09日报</p>
+                    </div>
+                    <div class="bg-dark/50 rounded-lg p-4 text-center">
+                        <div class="text-3xl mb-2">🎬</div>
+                        <p class="text-white font-semibold mb-1">视频配音突破</p>
+                        <p class="text-gray-400 text-sm">黄云、橙子建议方言配音，绵羊姐现场实践效果惊艳</p>
+                        <p class="text-gray-600 text-xs mt-1">📍 11-06日报</p>
+                    </div>
+                </div>
+                
+                <div class="border-t border-gray-700 pt-4">
+                    <p class="text-gray-300 text-sm italic text-center">
+                        "用手机也能拍出具有商业水准的'氛围感大片'。"
+                    </p>
+                    <p class="text-gray-500 text-xs text-center mt-2">
+                        📍 综合出处：daily_report_2025-11-02/06/09.html
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <div class="highlight-bar"></div>
+
+        <!-- ========== 年度金句墙 ========== -->
+        <section class="mb-16" id="section-quotes">
+            <h3 class="text-2xl font-bold text-white mb-8 flex items-center">
+                <i class="fas fa-quote-left mr-3 text-yellow-500"></i>
+                年度金句墙
+            </h3>
+            
+            <div class="grid md:grid-cols-2 gap-4">
+                <div class="bento-card p-6 relative scroll-fade">
+                    <button class="quote-copy-btn" onclick="copyQuote(this, '坚持发，然后自己看反馈，面向观众做产品。 —— 讨厌的橙子🍊')">
+                        <i class="fas fa-copy"></i>
+                    </button>
+                    <p class="text-xl text-white italic mb-4">"坚持发，然后自己看反馈，面向观众做产品。"</p>
+                    <p class="text-primary-light text-right">— 讨厌的橙子🍊</p>
+                    <p class="text-gray-600 text-xs mt-1">📍 出处：daily_report_2025-12-23.html</p>
+                </div>
+                <div class="bento-card p-6 relative scroll-fade">
+                    <button class="quote-copy-btn" onclick="copyQuote(this, '选择不感兴趣的领域反而更容易成功，因为它能让人更专注于术的层面。 —— 糕某')">
+                        <i class="fas fa-copy"></i>
+                    </button>
+                    <p class="text-xl text-white italic mb-4">"选择不感兴趣的领域反而更容易成功，因为它能让人更专注于'术'的层面。"</p>
+                    <p class="text-primary-light text-right">— 糕某</p>
+                    <p class="text-gray-600 text-xs mt-1">📍 出处：daily_report_2025-11-05.html</p>
+                </div>
+                <div class="bento-card p-6 relative scroll-fade">
+                    <button class="quote-copy-btn" onclick="copyQuote(this, '自媒体的自，是自我的自~ —— 高大壮')">
+                        <i class="fas fa-copy"></i>
+                    </button>
+                    <p class="text-xl text-white italic mb-4">"自媒体的自，是自我的自~"</p>
+                    <p class="text-primary-light text-right">— 高大壮</p>
+                    <p class="text-gray-600 text-xs mt-1">📍 出处：daily_report_2025-10-08.html</p>
+                </div>
+                <div class="bento-card p-6 relative scroll-fade">
+                    <button class="quote-copy-btn" onclick="copyQuote(this, '有什么东西能比情绪更厉害，无损传递给陌生人呢？ —— 讨厌的橙子🍊')">
+                        <i class="fas fa-copy"></i>
+                    </button>
+                    <p class="text-xl text-white italic mb-4">"有什么东西能比情绪更厉害，无损传递给陌生人呢？"</p>
+                    <p class="text-primary-light text-right">— 讨厌的橙子🍊</p>
+                    <p class="text-gray-600 text-xs mt-1">📍 出处：daily_report_2025-10-15.html</p>
+                </div>
+                <div class="bento-card p-6 relative scroll-fade">
+                    <button class="quote-copy-btn" onclick="copyQuote(this, '被抄袭是市场对你内容的认可。创作者应视其为"渡劫"，专注于持续创新，永远领先抄袭者一步。 —— 昍')">
+                        <i class="fas fa-copy"></i>
+                    </button>
+                    <p class="text-xl text-white italic mb-4">"被抄袭是市场对你内容的认可。创作者应视其为'渡劫'，专注于持续创新，永远领先抄袭者一步。"</p>
+                    <p class="text-primary-light text-right">— 昍</p>
+                    <p class="text-gray-600 text-xs mt-1">📍 出处：daily_report_2025-10-21.html</p>
+                </div>
+                <div class="bento-card p-6 relative scroll-fade">
+                    <button class="quote-copy-btn" onclick="copyQuote(this, '如果我是素人，让我发一篇内容...不是10块还是20块的事，因为我需要建立和品牌的联结。 —— 糕某')">
+                        <i class="fas fa-copy"></i>
+                    </button>
+                    <p class="text-xl text-white italic mb-4">"如果我是素人，让我发一篇内容...不是10块还是20块的事，因为我需要建立和品牌的联结。"</p>
+                    <p class="text-primary-light text-right">— 糕某</p>
+                    <p class="text-gray-600 text-xs mt-1">📍 出处：daily_report_2025-09-25.html</p>
+                </div>
+            </div>
+        </section>
+
+        <div class="highlight-bar"></div>
+
+        <!-- ========== 活跃时间热力图 ========== -->
+        <section class="mb-16 scroll-fade" id="section-heatmap">
+            <h3 class="text-2xl font-bold text-white mb-8 flex items-center">
+                <i class="fas fa-fire mr-3 text-orange-500"></i>
+                群聊活跃时间分布
+            </h3>
+            
+            <div class="bento-card p-6">
+                <p class="text-gray-400 text-sm mb-4">横轴：24小时 | 颜色越深表示该时段讨论越活跃</p>
+                
+                <div class="mb-4">
+                    <div class="flex justify-between text-xs text-gray-500 mb-2">
+                        <span>0:00</span>
+                        <span>6:00</span>
+                        <span>12:00</span>
+                        <span>18:00</span>
+                        <span>24:00</span>
+                    </div>
+                    <div class="heatmap-grid" id="heatmapGrid">
+                        <!-- JS生成 -->
+                    </div>
+                </div>
+                
+                <div class="flex items-center justify-center gap-4 mt-6">
+                    <div class="flex items-center gap-2">
+                        <div class="w-4 h-4 rounded" style="background: rgba(236, 72, 153, 0.1)"></div>
+                        <span class="text-xs text-gray-500">低活跃</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <div class="w-4 h-4 rounded" style="background: rgba(236, 72, 153, 0.5)"></div>
+                        <span class="text-xs text-gray-500">中等</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <div class="w-4 h-4 rounded" style="background: rgba(236, 72, 153, 1)"></div>
+                        <span class="text-xs text-gray-500">高活跃</span>
+                    </div>
+                </div>
+                
+                <div class="mt-6 p-4 bg-black/20 rounded-lg">
+                    <h5 class="text-white font-semibold mb-2"><i class="fas fa-lightbulb text-yellow-500 mr-2"></i>洞察发现</h5>
+                    <ul class="text-gray-400 text-sm space-y-1">
+                        <li>• <strong class="text-primary-light">黄金时段</strong>：晚间 21:00-23:00 是讨论最活跃的时间段</li>
+                        <li>• <strong class="text-primary-light">深夜哲学</strong>：凌晨 0:00-2:00 常有深度思想碰撞</li>
+                        <li>• <strong class="text-primary-light">午间闪聊</strong>：12:00-13:00 有一波午休交流高峰</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <div class="highlight-bar"></div>
+
+        <!-- ========== 深度洞察 ========== -->
+        <section class="mb-16" id="section-insights">
+            <h3 class="text-2xl font-bold text-white mb-8 flex items-center">
+                <i class="fas fa-lightbulb mr-3 text-yellow-500"></i>
+                年度深度洞察
+            </h3>
+            
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="bento-card p-6">
+                    <div class="text-4xl mb-4">🎯</div>
+                    <h4 class="text-lg font-bold text-white mb-3">最热议话题类型</h4>
+                    <p class="text-gray-400">小红书运营策略与变现模式讨论占比最高，反映了群成员对平台红利的关注。</p>
+                </div>
+                <div class="bento-card p-6">
+                    <div class="text-4xl mb-4">💡</div>
+                    <h4 class="text-lg font-bold text-white mb-3">最有价值分享</h4>
+                    <p class="text-gray-400">方法论类内容最受欢迎，具有可复制性的8步法、三阶模型等引发最多共鸣。</p>
+                </div>
+                <div class="bento-card p-6">
+                    <div class="text-4xl mb-4">📱</div>
+                    <h4 class="text-lg font-bold text-white mb-3">平台趋势洞察</h4>
+                    <p class="text-gray-400">视频号带货红利期、小红书流量变化、平台政策解读成为年度高频讨论方向。</p>
+                </div>
+            </div>
+            
+            <div class="bento-card p-8 mt-6">
+                <h4 class="text-xl font-bold text-white mb-6 flex items-center">
+                    <i class="fas fa-medal text-yellow-500 mr-3"></i>
+                    年度活跃贡献者
+                </h4>
+                <div class="flex flex-wrap gap-3">
+                    <span class="px-4 py-2 bg-gradient-to-r from-yellow-500/20 to-primary/20 rounded-full text-white font-medium">🥇 糕糕</span>
+                    <span class="px-4 py-2 bg-gradient-to-r from-gray-400/20 to-primary/20 rounded-full text-white font-medium">🥈 昍</span>
+                    <span class="px-4 py-2 bg-gradient-to-r from-amber-600/20 to-primary/20 rounded-full text-white font-medium">🥉 高大壮</span>
+                    <span class="px-4 py-2 bg-primary/10 rounded-full text-gray-300">讨厌的橙子🍊</span>
+                    <span class="px-4 py-2 bg-primary/10 rounded-full text-gray-300">转念之间</span>
+                    <span class="px-4 py-2 bg-primary/10 rounded-full text-gray-300">高JY</span>
+                    <span class="px-4 py-2 bg-primary/10 rounded-full text-gray-300">小月半皮</span>
+                    <span class="px-4 py-2 bg-primary/10 rounded-full text-gray-300">向山</span>
+                    <span class="px-4 py-2 bg-primary/10 rounded-full text-gray-300">狗狗蹲马桶</span>
+                    <span class="px-4 py-2 bg-primary/10 rounded-full text-gray-300">查理</span>
+                </div>
+            </div>
+        </section>
+
+        <div class="highlight-bar"></div>
+
+        <!-- ========== 月度回顾入口 ========== -->
+        <section class="mb-16" id="section-months">
+            <h3 class="text-2xl font-bold text-white mb-8 flex items-center">
+                <i class="fas fa-calendar-alt mr-3 text-primary"></i>
+                月度回顾
+            </h3>
+            
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <a href="2025/09/daily_report_2025-09-23.html" class="month-card">
+                    <div class="text-4xl font-bold text-primary mb-2">9月</div>
+                    <div class="text-gray-400">8篇日报</div>
+                    <div class="text-sm text-gray-500 mt-2">群聊启航</div>
+                </a>
+                <a href="2025/10/daily_report_2025-10-01.html" class="month-card">
+                    <div class="text-4xl font-bold text-primary mb-2">10月</div>
+                    <div class="text-gray-400">31篇日报</div>
+                    <div class="text-sm text-gray-500 mt-2">高能产出</div>
+                </a>
+                <a href="2025/11/daily_report_2025-11-01.html" class="month-card">
+                    <div class="text-4xl font-bold text-primary mb-2">11月</div>
+                    <div class="text-gray-400">30篇日报</div>
+                    <div class="text-sm text-gray-500 mt-2">深度沉淀</div>
+                </a>
+                <a href="2025/12/daily_report_2025-12-01.html" class="month-card">
+                    <div class="text-4xl font-bold text-primary mb-2">12月</div>
+                    <div class="text-gray-400">28篇日报</div>
+                    <div class="text-sm text-gray-500 mt-2">年终收官</div>
+                </a>
+            </div>
+        </section>
+
+        <!-- ========== 页脚 ========== -->
+        <footer class="text-center py-12 border-t border-primary/20">
+            <p class="text-gray-500 mb-4">自媒体糕糕学习群 · 2025年度总结</p>
+            <p class="text-gray-600 text-sm mb-6">报告生成于 2025年12月29日 · 基于AI智能分析</p>
+            
+            <!-- 分享按钮 -->
+            <div class="flex justify-center gap-3 mb-6">
+                <button onclick="window.print()" class="px-4 py-2 bg-primary/10 hover:bg-primary/20 text-primary-light rounded-lg transition-colors" title="打印报告">
+                    <i class="fas fa-print mr-2"></i>打印
+                </button>
+                <button onclick="shareReport()" class="px-4 py-2 bg-primary/10 hover:bg-primary/20 text-primary-light rounded-lg transition-colors" title="分享报告">
+                    <i class="fas fa-share-alt mr-2"></i>分享
+                </button>
+                <button onclick="scrollToTop()" class="px-4 py-2 bg-primary/10 hover:bg-primary/20 text-primary-light rounded-lg transition-colors" title="回到顶部">
+                    <i class="fas fa-arrow-up mr-2"></i>顶部
+                </button>
+            </div>
+            
+            <div class="mt-4">
+                <a href="historical_page_summary.html" class="text-primary hover:text-primary-light transition-colors">
+                    <i class="fas fa-history mr-2"></i>查看历史日报
+                </a>
+            </div>
+            
+            <p class="text-gray-700 text-xs mt-8">Made with ❤️ by 糕校小助手</p>
+        </footer>
+
+    </div>
+
+    <!-- 回到顶部按钮 -->
+    <button class="back-to-top" id="backToTop">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- 左侧导航 -->
+    <nav class="toc-nav">
+        <div class="nav-dot active" data-section="section-overview" title="数据总览"></div>
+        <div class="nav-dot" data-section="section-superlatives" title="年度之最"></div>
+        <div class="nav-dot" data-section="section-keywords" title="年度关键词"></div>
+        <div class="nav-dot" data-section="section-topics" title="精选话题"></div>
+        <div class="nav-dot" data-section="section-stories" title="成长故事"></div>
+        <div class="nav-dot" data-section="section-quotes" title="金句墙"></div>
+        <div class="nav-dot" data-section="section-heatmap" title="活跃分布"></div>
+        <div class="nav-dot" data-section="section-insights" title="深度洞察"></div>
+        <div class="nav-dot" data-section="section-months" title="月度回顾"></div>
+    </nav>
+
+    <script>
+        // ========== 数字动画 ==========
+        function animateCountUp() {
+            const counters = document.querySelectorAll('.count-up');
+            counters.forEach(counter => {
+                const target = parseInt(counter.dataset.target);
+                const duration = 2000;
+                const increment = target / (duration / 16);
+                let current = 0;
+                
+                const timer = setInterval(() => {
+                    current += increment;
+                    if (current >= target) {
+                        counter.textContent = target.toLocaleString();
+                        clearInterval(timer);
+                    } else {
+                        counter.textContent = Math.floor(current).toLocaleString();
+                    }
+                }, 16);
+            });
+        }
+
+        // ========== 图表初始化 ==========
+        function initCharts() {
+            // 月度消息趋势
+            const monthlyCtx = document.getElementById('monthlyChart').getContext('2d');
+            new Chart(monthlyCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['9月', '10月', '11月', '12月'],
+                    datasets: [{
+                        label: '消息数量',
+                        data: [5960, 21450, 23800, 17210],
+                        backgroundColor: [
+                            'rgba(236, 72, 153, 0.6)',
+                            'rgba(245, 158, 11, 0.6)',
+                            'rgba(236, 72, 153, 0.6)',
+                            'rgba(245, 158, 11, 0.6)'
+                        ],
+                        borderColor: [
+                            'rgba(236, 72, 153, 1)',
+                            'rgba(245, 158, 11, 1)',
+                            'rgba(236, 72, 153, 1)',
+                            'rgba(245, 158, 11, 1)'
+                        ],
+                        borderWidth: 2,
+                        borderRadius: 8
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            grid: { color: 'rgba(255,255,255,0.1)' },
+                            ticks: { color: '#9ca3af' }
+                        },
+                        x: {
+                            grid: { display: false },
+                            ticks: { color: '#9ca3af' }
+                        }
+                    }
+                }
+            });
+
+            // 话题类型分布
+            const topicCtx = document.getElementById('topicChart').getContext('2d');
+            new Chart(topicCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['运营策略', '变现技巧', '心态成长', '工具技术', '生活分享'],
+                    datasets: [{
+                        data: [35, 25, 18, 12, 10],
+                        backgroundColor: [
+                            'rgba(236, 72, 153, 0.8)',
+                            'rgba(245, 158, 11, 0.8)',
+                            'rgba(139, 92, 246, 0.8)',
+                            'rgba(16, 185, 129, 0.8)',
+                            'rgba(99, 102, 241, 0.8)'
+                        ],
+                        borderWidth: 0
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'right',
+                            labels: { color: '#9ca3af', padding: 15 }
+                        }
+                    },
+                    cutout: '60%'
+                }
+            });
+        }
+
+        // ========== 内容展开/收起 ==========
+        function toggleContent(id) {
+            const content = document.getElementById('content-' + id);
+            const btnText = document.getElementById('btn-text-' + id);
+            const btnIcon = document.getElementById('btn-icon-' + id);
+            
+            if (content.classList.contains('expanded')) {
+                content.classList.remove('expanded');
+                btnText.textContent = '展开完整内容';
+                btnIcon.style.transform = 'rotate(0deg)';
+            } else {
+                content.classList.add('expanded');
+                btnText.textContent = '收起内容';
+                btnIcon.style.transform = 'rotate(180deg)';
+            }
+        }
+
+        // ========== 回到顶部 ==========
+        function initBackToTop() {
+            const btn = document.getElementById('backToTop');
+            window.addEventListener('scroll', () => {
+                if (window.pageYOffset > 500) {
+                    btn.classList.add('visible');
+                } else {
+                    btn.classList.remove('visible');
+                }
+            });
+            btn.addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        }
+
+        // ========== 导航高亮 ==========
+        function initNavHighlight() {
+            const dots = document.querySelectorAll('.nav-dot');
+            const sections = ['section-overview', 'section-superlatives', 'section-keywords', 'section-topics', 'section-stories', 'section-quotes', 'section-heatmap', 'section-insights', 'section-months'];
+            
+            dots.forEach(dot => {
+                dot.addEventListener('click', () => {
+                    const targetId = dot.dataset.section;
+                    document.getElementById(targetId).scrollIntoView({ behavior: 'smooth' });
+                });
+            });
+            
+            window.addEventListener('scroll', () => {
+                let current = '';
+                sections.forEach(sectionId => {
+                    const section = document.getElementById(sectionId);
+                    if (section) {
+                        const sectionTop = section.offsetTop;
+                        if (window.pageYOffset >= sectionTop - 200) {
+                            current = sectionId;
+                        }
+                    }
+                });
+                
+                dots.forEach(dot => {
+                    dot.classList.remove('active');
+                    if (dot.dataset.section === current) {
+                        dot.classList.add('active');
+                    }
+                });
+            });
+        }
+
+        // ========== 展开/收起所有话题 ==========
+        let allExpanded = false;
+        function toggleAllContent() {
+            allExpanded = !allExpanded;
+            const expandAllText = document.getElementById('expand-all-text');
+            
+            for (let i = 1; i <= 10; i++) {
+                const content = document.getElementById('content-' + i);
+                const btnText = document.getElementById('btn-text-' + i);
+                const btnIcon = document.getElementById('btn-icon-' + i);
+                
+                if (allExpanded) {
+                    content.classList.add('expanded');
+                    btnText.textContent = '收起内容';
+                    btnIcon.style.transform = 'rotate(180deg)';
+                } else {
+                    content.classList.remove('expanded');
+                    btnText.textContent = '展开完整内容';
+                    btnIcon.style.transform = 'rotate(0deg)';
+                }
+            }
+            
+            expandAllText.textContent = allExpanded ? '收起所有话题' : '展开所有话题';
+        }
+
+        // ========== 复制金句 ==========
+        function copyQuote(btn, text) {
+            navigator.clipboard.writeText(text).then(() => {
+                btn.classList.add('copied');
+                btn.innerHTML = '<i class="fas fa-check"></i>';
+                setTimeout(() => {
+                    btn.classList.remove('copied');
+                    btn.innerHTML = '<i class="fas fa-copy"></i>';
+                }, 2000);
+            }).catch(err => {
+                console.error('复制失败:', err);
+            });
+        }
+
+        // ========== 滚动动画 ==========
+        function initScrollAnimation() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            });
+
+            document.querySelectorAll('.scroll-fade').forEach(el => {
+                observer.observe(el);
+            });
+
+            // 为话题卡片添加滚动动画
+            document.querySelectorAll('.topic-card').forEach((el, index) => {
+                el.style.transitionDelay = (index * 0.05) + 's';
+                observer.observe(el);
+                el.classList.add('scroll-fade');
+            });
+        }
+
+        // ========== 分享报告 ==========
+        function shareReport() {
+            if (navigator.share) {
+                navigator.share({
+                    title: '自媒体糕校 2025年度总结',
+                    text: '糕校2025年度精华回顾，TOP 10年度话题，关键词词云，数据可视化',
+                    url: window.location.href
+                }).catch(err => console.log('分享取消', err));
+            } else {
+                // 复制链接到剪贴板
+                navigator.clipboard.writeText(window.location.href).then(() => {
+                    alert('链接已复制到剪贴板！');
+                }).catch(err => {
+                    console.error('复制失败:', err);
+                    prompt('请复制以下链接：', window.location.href);
+                });
+            }
+        }
+
+        // ========== 回到顶部 ==========
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // ========== 平滑滚动到锚点 ==========
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // ========== 阅读进度条 ==========
+        function initReadingProgress() {
+            const progressBar = document.getElementById('readingProgress');
+            window.addEventListener('scroll', () => {
+                const scrollTop = window.pageYOffset;
+                const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+                const progress = (scrollTop / docHeight) * 100;
+                progressBar.style.width = progress + '%';
+            });
+        }
+
+        // ========== 目录面板 ==========
+        function toggleTocPanel() {
+            document.getElementById('tocPanel').classList.toggle('open');
+            document.getElementById('tocOverlay').classList.toggle('open');
+        }
+
+        function closeTocPanel() {
+            document.getElementById('tocPanel').classList.remove('open');
+            document.getElementById('tocOverlay').classList.remove('open');
+        }
+
+        // ========== 热力图生成 ==========
+        function generateHeatmap() {
+            const container = document.getElementById('heatmapGrid');
+            if (!container) return;
+            
+            // 模拟24小时活跃度数据（0-1）
+            const hourlyData = [
+                0.15, 0.25, 0.20, 0.10, 0.05, 0.03, // 0-5点
+                0.05, 0.10, 0.20, 0.35, 0.40, 0.45, // 6-11点
+                0.55, 0.50, 0.45, 0.40, 0.45, 0.50, // 12-17点
+                0.60, 0.70, 0.85, 0.95, 0.90, 0.75  // 18-23点
+            ];
+            
+            hourlyData.forEach((value, hour) => {
+                const cell = document.createElement('div');
+                cell.className = 'heatmap-cell';
+                cell.style.background = `rgba(236, 72, 153, ${value})`;
+                cell.title = `${hour}:00 - ${hour + 1}:00\n活跃度: ${Math.round(value * 100)}%`;
+                container.appendChild(cell);
+            });
+        }
+
+        // ========== 优化词云（添加随机旋转和延迟动画） ==========
+        function generateWordCloud() {
+            const keywords = [
+                // 核心大词 (3.0-3.5rem)
+                { word: '小红书运营', size: 3.5, color: '#EC4899' },
+                { word: '变现', size: 3.2, color: '#F59E0B' },
+                { word: '内容创作', size: 3.0, color: '#EC4899' },
+                // 重要词 (2.2-2.6rem)
+                { word: '人设打造', size: 2.6, color: '#F472B6' },
+                { word: '视频号带货', size: 2.4, color: '#10B981' },
+                { word: '8步做号法', size: 2.5, color: '#F59E0B' },
+                { word: '个人IP', size: 2.3, color: '#F472B6' },
+                { word: '得加钱', size: 2.2, color: '#EF4444' },
+                // 中等词 (1.6-2.0rem)
+                { word: '账号运营', size: 2.0, color: '#10B981' },
+                { word: '涨粉策略', size: 1.8, color: '#6366F1' },
+                { word: '流量密码', size: 1.9, color: '#F472B6' },
+                { word: '引流私域', size: 1.7, color: '#F472B6' },
+                { word: '爆款内容', size: 1.8, color: '#EC4899' },
+                { word: '品牌合作', size: 1.6, color: '#10B981' },
+                // 普通词 (1.2-1.5rem)
+                { word: '用户画像', size: 1.5, color: '#EC4899' },
+                { word: '带货转化', size: 1.4, color: '#14B8A6' },
+                { word: '平台规则', size: 1.3, color: '#8B5CF6' },
+                { word: '商单定价', size: 1.4, color: '#F59E0B' },
+                { word: '起号方法', size: 1.5, color: '#F59E0B' },
+                { word: '跨界做号', size: 1.4, color: '#EC4899' },
+                { word: '长期主义', size: 1.3, color: '#10B981' },
+                // 小词 (0.9-1.1rem)
+                { word: '素人价值', size: 1.1, color: '#14B8A6' },
+                { word: '付费咨询', size: 1.0, color: '#8B5CF6' },
+                { word: '视频号', size: 1.1, color: '#10B981' },
+                { word: '公众号', size: 1.0, color: '#6366F1' },
+                { word: '选品', size: 0.95, color: '#F59E0B' },
+                { word: '口播技巧', size: 1.0, color: '#14B8A6' },
+                { word: '抖音', size: 0.9, color: '#8B5CF6' },
+                { word: '真实感', size: 1.1, color: '#EC4899' },
+                { word: '流量分发', size: 1.0, color: '#6366F1' }
+            ];
+            
+            const container = document.getElementById('wordcloud');
+            keywords.forEach((kw, index) => {
+                const span = document.createElement('span');
+                span.className = 'word-tag';
+                span.textContent = kw.word;
+                span.style.fontSize = kw.size + 'rem';
+                span.style.backgroundColor = kw.color + '20';
+                span.style.color = kw.color;
+                span.style.border = '1px solid ' + kw.color + '40';
+                // 随机旋转角度（-10到10度）
+                const rotation = (Math.random() - 0.5) * 20;
+                span.style.transform = `rotate(${rotation}deg)`;
+                // 随机动画延迟
+                span.style.animationDelay = (index * 0.1) + 's';
+                container.appendChild(span);
+            });
+        }
+
+        // ========== 页面加载初始化 ==========
+        document.addEventListener('DOMContentLoaded', function() {
+            animateCountUp();
+            generateWordCloud();
+            initCharts();
+            initBackToTop();
+            initNavHighlight();
+            initScrollAnimation();
+            initReadingProgress();
+            generateHeatmap();
+        });
+    </script>
+</body>
+</html>
+
