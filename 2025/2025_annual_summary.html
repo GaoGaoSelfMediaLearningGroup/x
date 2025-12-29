@@ -161,6 +161,7 @@
             background: linear-gradient(135deg, #EC4899, #F59E0B, #EC4899);
             background-size: 200% 200%;
             -webkit-background-clip: text;
+            background-clip: text;
             -webkit-text-fill-color: transparent;
             animation: shimmer 3s ease-in-out infinite;
         }
@@ -202,6 +203,7 @@
             font-weight: 700;
             background: linear-gradient(135deg, #EC4899, #F59E0B);
             -webkit-background-clip: text;
+            background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
@@ -625,32 +627,470 @@
             .toc-nav { display: none; }
         }
 
-        /* 移动端优化 */
+        /* ========== 移动端优化 ========== */
+        
+        /* 平板端优化 (768px以下) */
+        @media (max-width: 768px) {
+            /* 年度之最 - 5列变2列 */
+            #section-superlatives .grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            /* 成长故事 - 2列变1列 */
+            #section-stories .grid-cols-2 {
+                grid-template-columns: 1fr;
+            }
+            
+            /* 金句墙 - 3列变2列 */
+            #section-quotes .grid-cols-3 {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            /* 月度回顾 - 4列变2列 */
+            #section-months .grid-cols-4 {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            /* 热力图滚动 */
+            .heatmap-grid {
+                overflow-x: auto;
+                padding-bottom: 0.5rem;
+            }
+            
+            /* 图表高度调整 */
+            .chart-container {
+                height: 200px;
+            }
+        }
+        
+        /* 手机端优化 (640px以下) */
         @media (max-width: 640px) {
+            /* 页面整体内边距 */
+            .content-wrapper {
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
+            
+            /* 年度封面 */
+            header.py-16 {
+                padding-top: 3rem;
+                padding-bottom: 3rem;
+            }
+            
+            header .text-lg {
+                font-size: 0.875rem;
+            }
+            
+            header h2 {
+                font-size: 1.75rem !important;
+            }
+            
+            header .flex.justify-center {
+                flex-direction: column;
+                gap: 0.5rem;
+                align-items: center;
+            }
+            
+            /* 章节标题 */
+            section h3 {
+                font-size: 1.25rem;
+            }
+            
+            /* 数据总览卡片 */
+            .stat-card {
+                padding: 1rem !important;
+            }
+            
+            .stat-number {
+                font-size: 1.5rem;
+            }
+            
+            .stat-card p {
+                font-size: 0.75rem;
+            }
+            
+            /* 年度之最 - 改为单列横向布局 */
+            #section-superlatives .grid {
+                grid-template-columns: 1fr !important;
+                gap: 0.75rem;
+            }
+            
+            .superlative-card {
+                padding: 1rem;
+                display: flex;
+                align-items: flex-start;
+                gap: 1rem;
+                text-align: left;
+            }
+            
+            .superlative-card .superlative-icon {
+                font-size: 2rem;
+                margin-bottom: 0;
+                flex-shrink: 0;
+                min-width: 2.5rem;
+                text-align: center;
+            }
+            
+            .superlative-card > div:last-child,
+            .superlative-card::before {
+                display: none;
+            }
+            
+            .superlative-card .mobile-content {
+                flex: 1;
+            }
+            
+            .superlative-card h4 {
+                font-size: 0.9rem;
+                display: inline;
+            }
+            
+            .superlative-card .text-lg {
+                font-size: 0.95rem;
+                display: inline;
+                margin-left: 0.5rem;
+            }
+            
+            .superlative-card .text-gray-500 {
+                font-size: 0.8rem;
+                display: inline;
+            }
+            
+            .superlative-card .text-gray-600 {
+                font-size: 0.7rem;
+            }
+            
+            /* 词云 */
+            .wordcloud-container {
+                padding: 1rem;
+                min-height: 200px;
+            }
+            
+            .word-tag {
+                padding: 0.35rem 0.7rem;
+                font-size: 0.8rem;
+            }
+            
+            /* 话题卡片 */
             .topic-quick-nav {
                 justify-content: center;
+                overflow-x: auto;
+                padding-bottom: 0.5rem;
+                gap: 0.35rem;
             }
             
             .topic-quick-nav span {
                 display: none;
             }
             
-            .stamp {
-                width: 60px;
-                height: 60px;
-                font-size: 0.7rem;
+            .topic-quick-nav a {
+                padding: 0.3rem 0.5rem;
+                font-size: 0.65rem;
+                white-space: nowrap;
+                flex-shrink: 0;
             }
             
-            .rank-number {
-                font-size: 1.8rem;
-            }
-            
-            .topic-header {
+            .topic-card .topic-header {
                 padding: 1rem;
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .topic-card .rank-number {
+                position: absolute;
+                font-size: 1.3rem;
+                top: 0.75rem;
+                left: 0.75rem;
+            }
+            
+            .topic-card .ml-16 {
+                margin-left: 2.5rem;
+                width: calc(100% - 2.5rem);
+            }
+            
+            .topic-card h4 {
+                font-size: 0.95rem;
+                line-height: 1.4;
+            }
+            
+            .stamp {
+                display: none;
+            }
+            
+            .topic-card .flex-wrap {
+                gap: 0.35rem;
+            }
+            
+            .topic-card .tag-item {
+                font-size: 0.6rem;
+                padding: 0.15rem 0.4rem;
+            }
+            
+            .topic-card .score-badge {
+                font-size: 0.65rem;
+                padding: 0.15rem 0.4rem;
             }
             
             .topic-card .p-6 {
                 padding: 1rem;
+            }
+            
+            .topic-card .text-gray-300 {
+                font-size: 0.875rem;
+                line-height: 1.6;
+            }
+            
+            .topic-card .text-sm {
+                font-size: 0.75rem;
+            }
+            
+            .expand-btn {
+                padding: 0.4rem 1rem;
+                font-size: 0.8rem;
+            }
+            
+            .expand-all-btn {
+                padding: 0.5rem 1rem;
+                font-size: 0.8rem;
+            }
+            
+            /* 展开内容区域 */
+            .content-full .bg-opacity-20 {
+                padding: 0.75rem;
+            }
+            
+            .content-full h5 {
+                font-size: 0.9rem;
+            }
+            
+            .content-full li {
+                font-size: 0.85rem;
+                line-height: 1.5;
+            }
+            
+            .content-full .quote-card {
+                padding: 0.75rem;
+            }
+            
+            .content-full .quote-card p {
+                font-size: 0.85rem;
+            }
+            
+            /* 成长故事 */
+            .story-card {
+                padding: 1rem;
+            }
+            
+            .story-avatar {
+                width: 45px;
+                height: 45px;
+                font-size: 1.1rem;
+            }
+            
+            .story-card h4 {
+                font-size: 0.95rem;
+            }
+            
+            .story-card > p {
+                font-size: 0.8rem;
+            }
+            
+            .story-timeline {
+                padding-left: 1rem;
+            }
+            
+            .story-timeline p {
+                font-size: 0.8rem;
+            }
+            
+            .story-card .mt-4 {
+                margin-top: 0.75rem;
+            }
+            
+            .story-card .p-3 {
+                padding: 0.75rem;
+            }
+            
+            .story-card .p-3 p {
+                font-size: 0.8rem;
+            }
+            
+            /* 群体成长故事 */
+            #section-stories .bento-card.mt-8 {
+                padding: 1rem;
+            }
+            
+            #section-stories .w-12 {
+                width: 2.5rem;
+                height: 2.5rem;
+                font-size: 1.25rem;
+            }
+            
+            #section-stories .bento-card h4 {
+                font-size: 1rem;
+            }
+            
+            #section-stories .grid.md\\:grid-cols-3 > div {
+                padding: 0.75rem;
+            }
+            
+            #section-stories .text-3xl {
+                font-size: 1.5rem;
+            }
+            
+            /* 金句墙 - 改为单列 */
+            #section-quotes .grid {
+                grid-template-columns: 1fr !important;
+            }
+            
+            #section-quotes .bento-card {
+                padding: 1rem;
+            }
+            
+            #section-quotes .text-xl {
+                font-size: 1rem;
+            }
+            
+            /* 热力图 */
+            .heatmap-grid {
+                grid-template-columns: repeat(24, minmax(10px, 1fr));
+                gap: 1px;
+            }
+            
+            .heatmap-cell {
+                border-radius: 1px;
+            }
+            
+            .heatmap-cell:hover {
+                transform: scale(1.2);
+            }
+            
+            /* 月度回顾 - 改为单列 */
+            #section-months .grid {
+                grid-template-columns: repeat(2, 1fr) !important;
+                gap: 0.5rem;
+            }
+            
+            .month-card {
+                padding: 1rem;
+            }
+            
+            .month-card h4 {
+                font-size: 1rem;
+            }
+            
+            /* 深度洞察 */
+            #section-insights .bento-card {
+                padding: 1rem;
+            }
+            
+            #section-insights h4 {
+                font-size: 1rem;
+            }
+            
+            #section-insights li {
+                font-size: 0.85rem;
+            }
+            
+            /* 图表 */
+            .chart-container {
+                height: 180px;
+            }
+            
+            /* 分隔线 */
+            .highlight-bar {
+                margin: 2rem 0;
+            }
+            
+            /* 目录面板 - 全屏宽度 */
+            .toc-panel {
+                width: 100%;
+                right: -100%;
+                padding: 1.5rem;
+            }
+            
+            .toc-item {
+                padding: 0.6rem 0.8rem;
+                font-size: 0.9rem;
+            }
+            
+            /* 浮动按钮 */
+            .toc-toggle,
+            .back-to-top {
+                width: 2.5rem;
+                height: 2.5rem;
+                right: 1rem;
+            }
+            
+            .toc-toggle {
+                bottom: 4.5rem;
+            }
+            
+            .back-to-top {
+                bottom: 1.5rem;
+            }
+            
+            /* 页脚 */
+            footer {
+                padding-top: 2rem;
+                padding-bottom: 2rem;
+            }
+            
+            footer .flex.justify-center.gap-3 {
+                flex-wrap: wrap;
+                gap: 0.5rem;
+            }
+            
+            footer button {
+                padding: 0.5rem 0.75rem;
+                font-size: 0.8rem;
+            }
+            
+            footer p {
+                font-size: 0.8rem;
+            }
+            
+            footer .text-sm {
+                font-size: 0.75rem;
+            }
+            
+            /* bento卡片通用 */
+            .bento-card {
+                border-radius: 1rem;
+            }
+            
+            /* 隐藏热力图小时标签的偶数项 */
+            .heatmap-labels span:nth-child(even) {
+                display: none;
+            }
+        }
+        
+        /* 超小屏幕 (400px以下) */
+        @media (max-width: 400px) {
+            .annual-title {
+                font-size: 2rem;
+            }
+            
+            .stat-number {
+                font-size: 1.25rem;
+            }
+            
+            .topic-quick-nav {
+                display: none;
+            }
+            
+            .superlative-card {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .month-card h4 {
+                font-size: 0.9rem;
+            }
+            
+            /* 成长故事标题换行 */
+            #section-stories h4 {
+                font-size: 0.9rem;
             }
         }
 
@@ -1913,7 +2353,7 @@
                     <p class="text-gray-600 text-xs mt-1">📍 出处：daily_report_2025-10-15.html</p>
                 </div>
                 <div class="bento-card p-6 relative scroll-fade">
-                    <button class="quote-copy-btn" onclick="copyQuote(this, '被抄袭是市场对你内容的认可。创作者应视其为"渡劫"，专注于持续创新，永远领先抄袭者一步。 —— 昍')">
+                    <button class="quote-copy-btn" onclick="copyQuote(this, '被抄袭是市场对你内容的认可。创作者应视其为渡劫，专注于持续创新，永远领先抄袭者一步。 —— 昍')">
                         <i class="fas fa-copy"></i>
                     </button>
                     <p class="text-xl text-white italic mb-4">"被抄袭是市场对你内容的认可。创作者应视其为'渡劫'，专注于持续创新，永远领先抄袭者一步。"</p>
@@ -1921,7 +2361,7 @@
                     <p class="text-gray-600 text-xs mt-1">📍 出处：daily_report_2025-10-21.html</p>
                 </div>
                 <div class="bento-card p-6 relative scroll-fade">
-                    <button class="quote-copy-btn" onclick="copyQuote(this, '如果我是素人，让我发一篇内容...不是10块还是20块的事，因为我需要建立和品牌的联结。 —— 糕某')">
+                    <button class="quote-copy-btn" onclick="copyQuote(this, '如果我是素人，让我发一篇内容，不是10块还是20块的事，因为我需要建立和品牌的联结。 —— 糕某')">
                         <i class="fas fa-copy"></i>
                     </button>
                     <p class="text-xl text-white italic mb-4">"如果我是素人，让我发一篇内容...不是10块还是20块的事，因为我需要建立和品牌的联结。"</p>
