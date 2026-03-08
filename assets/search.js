@@ -18,6 +18,7 @@
     const INITIAL_BATCH_SIZE = 3;
     const FOLLOWUP_BATCH_SIZE = 3;
     const MIN_RESULTS_TARGET = 8;
+    const SEARCH_RESULTS_PER_PAGE = 10;
 
     const state = {
         manifest: null,
@@ -636,8 +637,7 @@
                     return b.score - a.score;
                 }
                 return String(b.doc.date).localeCompare(String(a.doc.date));
-            })
-            .slice(0, 50);
+            });
     }
 
     function shardMatchesDateTerm(shard, term) {
@@ -731,6 +731,76 @@
         return `<div class="gj-search-empty">${escapeHtml(text)}</div>`;
     }
 
+    function getSearchStateKey(query, filters) {
+        const activeFilters = filters || { year: "", month: "" };
+        return JSON.stringify({
+            query: String(query || ""),
+            year: String(activeFilters.year || ""),
+            month: String(activeFilters.month || ""),
+        });
+    }
+
+    function createPaginationHtml(currentPage, totalPages, totalResults) {
+        if (totalResults <= SEARCH_RESULTS_PER_PAGE || totalPages <= 1) {
+            return "";
+        }
+        return `
+            <div class="gj-search-pagination-inner">
+                <button class="gj-search-page-btn" type="button" data-gj-page-action="prev" ${currentPage <= 1 ? "disabled" : ""}>上一页</button>
+                <div class="gj-search-page-info">第 ${currentPage} / ${totalPages} 页，共 ${totalResults} 条结果</div>
+                <button class="gj-search-page-btn" type="button" data-gj-page-action="next" ${currentPage >= totalPages ? "disabled" : ""}>下一页</button>
+            </div>
+        `;
+    }
+
+    function updatePagination(target, query, queryInfo, results, stats) {
+        const pagination = target.querySelector("[data-gj-search-pagination]");
+        if (!pagination) {
+            return results;
+        }
+
+        if (!query || !results.length) {
+            pagination.innerHTML = "";
+            pagination.hidden = true;
+            return results;
+        }
+
+        const searchStateKey = getSearchStateKey(query, stats.filters);
+        if (target.__gjSearchStateKey !== searchStateKey) {
+            target.__gjSearchStateKey = searchStateKey;
+            target.__gjSearchPage = 1;
+        }
+
+        const totalPages = Math.max(1, Math.ceil(results.length / SEARCH_RESULTS_PER_PAGE));
+        const currentPage = Math.min(Math.max(target.__gjSearchPage || 1, 1), totalPages);
+        const start = (currentPage - 1) * SEARCH_RESULTS_PER_PAGE;
+        const pagedResults = results.slice(start, start + SEARCH_RESULTS_PER_PAGE);
+
+        target.__gjSearchPage = currentPage;
+        pagination.hidden = totalPages <= 1;
+        pagination.innerHTML = createPaginationHtml(currentPage, totalPages, results.length);
+
+        const prevButton = pagination.querySelector('[data-gj-page-action="prev"]');
+        const nextButton = pagination.querySelector('[data-gj-page-action="next"]');
+        const rerenderPage = (page) => {
+            target.__gjSearchPage = page;
+            renderResults(query, queryInfo, results, target, stats);
+        };
+
+        if (prevButton) {
+            prevButton.addEventListener("click", () => {
+                rerenderPage(Math.max(1, currentPage - 1));
+            });
+        }
+        if (nextButton) {
+            nextButton.addEventListener("click", () => {
+                rerenderPage(Math.min(totalPages, currentPage + 1));
+            });
+        }
+
+        return pagedResults;
+    }
+
     function replaceHistoryHash(query, filters) {
         if (!isHistoryPage) {
             return;
@@ -788,6 +858,7 @@
         const meta = target.querySelector("[data-gj-search-meta]");
         const metaText = target.querySelector("[data-gj-search-meta-text]");
         const resultsContainer = target.querySelector("[data-gj-search-results]");
+        const pagination = target.querySelector("[data-gj-search-pagination]");
         if (!resultsContainer || !meta || !metaText) {
             return;
         }
@@ -795,6 +866,10 @@
         if (!query) {
             metaText.textContent = formatSearchMeta("", [], stats);
             updateLoadAllButton(target, "", stats, false);
+            if (pagination) {
+                pagination.innerHTML = "";
+                pagination.hidden = true;
+            }
             resultsContainer.innerHTML = createEmptyHtml("支持全文检索，例如：提示词、豆包、知识库、封面设计。输入后点击搜索即可。");
             replaceHistoryHash("", stats.filters);
             return;
@@ -803,9 +878,14 @@
         metaText.textContent = formatSearchMeta(query, results, stats);
         updateLoadAllButton(target, query, stats, false);
         if (!results.length) {
+            if (pagination) {
+                pagination.innerHTML = "";
+                pagination.hidden = true;
+            }
             resultsContainer.innerHTML = createEmptyHtml("换个关键词试试，或等待搜索自动扩展到更早历史。");
         } else {
-            resultsContainer.innerHTML = results.map((item) => createResultHtml(item, queryInfo)).join("");
+            const pagedResults = updatePagination(target, query, queryInfo, results, stats);
+            resultsContainer.innerHTML = pagedResults.map((item) => createResultHtml(item, queryInfo)).join("");
         }
         replaceHistoryHash(query, stats.filters);
     }
@@ -1086,6 +1166,7 @@
                     </div>
                 </div>
                 <div class="gj-search-results" data-gj-search-results="true"></div>
+                <div class="gj-search-pagination" data-gj-search-pagination="true" hidden></div>
             </div>
         `;
         return section;
@@ -1160,6 +1241,7 @@
                 </div>
                 <div class="gj-search-modal-body">
                     <div class="gj-search-results" data-gj-search-results="true"></div>
+                    <div class="gj-search-pagination" data-gj-search-pagination="true" hidden></div>
                 </div>
             </div>
         `;
