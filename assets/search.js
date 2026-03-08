@@ -268,8 +268,10 @@
         const triggerSearch = () => {
             const filters = getSelectedFilters(target);
             state.lastFilters = filters;
-            if (input && input.value.trim()) {
-                handleSearch(input.value.trim(), target);
+            const query = input ? input.value.trim() : "";
+            if (query) {
+                state.lastQuery = query;
+                handleSearch(query, target);
             } else {
                 renderResults("", parseQuery(""), [], target, {
                     loaded: state.shardsLoaded.size,
@@ -290,6 +292,20 @@
         monthSelect.addEventListener("change", () => {
             triggerSearch();
         });
+    }
+
+    function matchesFilters(doc, filters) {
+        const date = String(doc && doc.date ? doc.date : "");
+        if (!date) {
+            return false;
+        }
+        if (filters && filters.year && date.slice(0, 4) !== String(filters.year)) {
+            return false;
+        }
+        if (filters && filters.month && date.slice(5, 7) !== normalizeMonth(filters.month)) {
+            return false;
+        }
+        return true;
     }
 
     function countOccurrences(text, term) {
@@ -434,12 +450,13 @@
         return { score, matchedTerms };
     }
 
-    function searchDocs(queryInfo) {
+    function searchDocs(queryInfo, filters) {
         if (!queryInfo.normalized) {
             return [];
         }
 
         return state.docs
+            .filter((doc) => matchesFilters(doc, filters))
             .map((doc) => {
                 const { score, matchedTerms } = scoreDoc(doc, queryInfo);
                 return {
@@ -572,7 +589,7 @@
     function formatSearchMeta(query, results, stats) {
         const scopeLabel = getFilterScopeLabel(stats.filters || { year: "", month: "" });
         if (!query) {
-            return scopeLabel === "全站" ? "输入关键词后即可检索全部历史日报" : `已限定在 ${scopeLabel} 内搜索`;
+            return scopeLabel === "全站" ? "输入关键词后点击搜索，即可检索全部历史日报" : `已限定在 ${scopeLabel} 内搜索`;
         }
         if (!results.length && stats.loaded === stats.total) {
             return `没有找到与“${query}”相关的日报，已完成 ${scopeLabel} 搜索`;
@@ -598,7 +615,7 @@
 
         if (!query) {
             meta.textContent = formatSearchMeta("", [], stats);
-            resultsContainer.innerHTML = createEmptyHtml("支持全文检索，例如：提示词、豆包、知识库、封面设计");
+            resultsContainer.innerHTML = createEmptyHtml("支持全文检索，例如：提示词、豆包、知识库、封面设计。输入后点击搜索即可。");
             replaceHistoryHash("", stats.filters);
             return;
         }
@@ -651,7 +668,7 @@
                 if (!isCurrentSearch(version)) {
                     return;
                 }
-                renderResults(query, queryInfo, searchDocs(queryInfo), target, {
+                renderResults(query, queryInfo, searchDocs(queryInfo, filters), target, {
                     loaded: 1,
                     total: 1,
                     loadingMore: false,
@@ -667,7 +684,7 @@
                 return;
             }
 
-            let results = searchDocs(queryInfo);
+            let results = searchDocs(queryInfo, filters);
             let remainingPlan = plan.remaining.filter((shard) => !state.shardsLoaded.has(shard.id));
 
             while (remainingPlan.length && results.length < MIN_RESULTS_TARGET) {
@@ -682,7 +699,7 @@
                 if (!isCurrentSearch(version)) {
                     return;
                 }
-                results = searchDocs(queryInfo);
+                results = searchDocs(queryInfo, filters);
             }
 
             renderResults(query, queryInfo, results, target, {
@@ -704,21 +721,23 @@
     }
 
     function attachSearchBehavior(target, input) {
-        const runSearch = debounce(() => {
+        const executeSearch = () => {
             const query = input.value.trim();
             state.lastQuery = query;
             handleSearch(query, target);
-        }, 120);
+        };
 
-        input.addEventListener("input", runSearch);
         input.addEventListener("keydown", (event) => {
             if (event.key === "Enter") {
                 event.preventDefault();
-                const query = input.value.trim();
-                state.lastQuery = query;
-                handleSearch(query, target);
+                executeSearch();
             }
         });
+
+        const searchButton = target.querySelector("[data-gj-search-submit]");
+        if (searchButton) {
+            searchButton.addEventListener("click", executeSearch);
+        }
 
         const clearButton = target.querySelector("[data-gj-search-clear]");
         if (clearButton) {
@@ -757,7 +776,7 @@
                             <i class="fas fa-search"></i>
                             <span>全站全文检索</span>
                         </div>
-                        <div class="gj-search-hint">优先搜索最近月份，并自动扩展到更早历史。</div>
+                        <div class="gj-search-hint">点击搜索后先查最近月份，再按需扩展到更早历史。</div>
                     </div>
                 </div>
                 <div class="gj-search-bar">
@@ -765,6 +784,10 @@
                         <i class="fas fa-search gj-search-input-icon"></i>
                         <input class="gj-search-input" type="search" placeholder="输入关键词，例如：提示词、封面、豆包、知识库" aria-label="搜索全部日报">
                     </div>
+                    <button class="gj-search-submit" type="button" data-gj-search-submit="true">
+                        <i class="fas fa-search"></i>
+                        <span>搜索</span>
+                    </button>
                     <button class="gj-search-clear" type="button" data-gj-search-clear="true">清空</button>
                 </div>
                 <div class="gj-search-filters">
@@ -816,7 +839,7 @@
                             <i class="fas fa-search"></i>
                             <span>搜索全部日报</span>
                         </div>
-                        <div class="gj-search-hint">先搜最近月份，再自动补充更早历史。</div>
+                        <div class="gj-search-hint">输入关键词后点击搜索，先搜最近月份，再补充更早历史。</div>
                     </div>
                     <div class="gj-search-modal-actions">
                         <span class="gj-search-shortcut">快捷键 Ctrl/Cmd + K</span>
@@ -828,6 +851,10 @@
                         <i class="fas fa-search gj-search-input-icon"></i>
                         <input class="gj-search-input" type="search" placeholder="输入全文关键词" aria-label="搜索全部日报">
                     </div>
+                    <button class="gj-search-submit" type="button" data-gj-search-submit="true">
+                        <i class="fas fa-search"></i>
+                        <span>搜索</span>
+                    </button>
                     <button class="gj-search-clear" type="button" data-gj-search-clear="true">清空</button>
                     <button class="gj-search-open-history" type="button" data-gj-open-history="true">历史页</button>
                 </div>
@@ -910,8 +937,8 @@
         button.id = "gj-search-trigger";
         button.className = "toc-floating-button";
         button.type = "button";
-        button.title = "搜索历史日报";
-        button.setAttribute("aria-label", "搜索历史日报");
+        button.title = "搜索全部日报";
+        button.setAttribute("aria-label", "搜索全部日报");
         button.innerHTML = '<i class="fas fa-search"></i>';
         button.addEventListener("click", openModal);
         stack.insertBefore(button, stack.firstChild);
