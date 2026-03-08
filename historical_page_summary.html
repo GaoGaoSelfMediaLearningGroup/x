@@ -51,9 +51,6 @@
         .history-hero-stat { padding:1rem 1.05rem; border:1px solid rgba(255,255,255,0.56); border-radius:1rem; background:linear-gradient(180deg, rgba(255,255,255,0.68), rgba(255,255,255,0.52)); box-shadow:0 12px 28px rgba(15,23,42,0.05), inset 0 1px 0 rgba(255,255,255,0.92); backdrop-filter:blur(14px); }
         .history-hero-stat-label { color:#6b7280; font-size:.75rem; font-weight:700; text-transform:uppercase; letter-spacing:.08em; margin-bottom:.3rem; }
         .history-hero-stat-value { color:#111827; font-size:1rem; font-weight:700; }
-        .history-quick-nav { display:flex; flex-wrap:wrap; gap:.75rem; margin-top:1.25rem; }
-        .history-quick-link { display:inline-flex; align-items:center; gap:.55rem; padding:.8rem 1.08rem; border-radius:1rem; border:1px solid rgba(15,23,42,0.08); background:rgba(255,255,255,0.78); color:#7a284f; font-size:.9rem; font-weight:600; text-decoration:none; transition:all .2s ease; box-shadow:0 10px 24px rgba(15,23,42,0.04), inset 0 1px 0 rgba(255,255,255,0.88); backdrop-filter:blur(10px); }
-        .history-quick-link:hover { background:#ffffff; border-color:rgba(236,72,153,0.22); color:#9d174d; transform:translateY(-1px); box-shadow:0 16px 30px rgba(15,23,42,0.08), 0 8px 18px rgba(236,72,153,0.05); }
         .report-container { border:1px solid rgba(15,23,42,0.08); border-radius:1.05rem; padding:1.08rem 1.05rem 1.08rem 1.2rem; padding-right:7.5rem; margin-bottom:1rem; position:relative; overflow:hidden; transition:all .24s ease; background:linear-gradient(180deg, rgba(255,255,255,0.98), rgba(248,250,252,0.96)); box-shadow:0 12px 28px rgba(15,23,42,0.04); }
         .report-container::before { content:""; position:absolute; left:0; top:.95rem; bottom:.95rem; width:4px; border-radius:999px; background:linear-gradient(180deg, rgba(190,24,93,0.85), rgba(236,72,153,0.35)); }
         .report-container:hover { border-color:rgba(236,72,153,0.18); box-shadow:0 20px 38px rgba(15,23,42,0.08), 0 10px 18px rgba(236,72,153,0.04); transform:translateY(-2px); background:linear-gradient(180deg, rgba(255,255,255,1), rgba(250,250,252,0.98)); }
@@ -76,7 +73,6 @@
         .history-browser-header { display:flex; justify-content:space-between; align-items:flex-start; gap:1rem; flex-wrap:wrap; }
         .history-browser-copy { flex:1; min-width:15rem; }
         .history-browser-kicker { display:inline-flex; align-items:center; gap:.5rem; color:#BE185D; font-size:.875rem; font-weight:700; margin-bottom:.5rem; }
-        .history-browser-desc { color:#6b7280; font-size:.95rem; line-height:1.7; margin:0; }
         .history-browser-summary { display:flex; align-items:center; justify-content:space-between; gap:1rem; min-width:17rem; max-width:100%; padding:1.05rem 1.1rem; border:1px solid rgba(15,23,42,0.07); border-radius:1rem; background:linear-gradient(180deg, rgba(255,255,255,0.96), rgba(248,250,252,0.94)); box-shadow:0 14px 30px rgba(15,23,42,0.05); }
         .history-browser-summary-copy { min-width:0; }
         .history-browser-summary-label { color:#7a284f; font-size:.75rem; font-weight:700; text-transform:uppercase; letter-spacing:.08em; margin-bottom:.25rem; }
@@ -87,24 +83,17 @@
         .history-browser-summary-action:hover { background:#ffffff; border-color:rgba(236,72,153,0.22); box-shadow:0 12px 22px rgba(15,23,42,0.08), 0 8px 16px rgba(236,72,153,0.04); }
         .history-browser-divider { border-top:1px solid rgba(15,23,42,0.06); }
         .history-browser-controls { display:grid; grid-template-columns:repeat(2, minmax(0, 1fr)); gap:1rem; }
-        .history-browser-status { display:flex; align-items:center; justify-content:space-between; gap:1rem; flex-wrap:wrap; padding:1.05rem 1.1rem; border:1px solid rgba(15,23,42,0.07); border-radius:1rem; background:linear-gradient(180deg, rgba(255,255,255,0.96), rgba(248,250,252,0.95)); box-shadow:0 14px 30px rgba(15,23,42,0.04), inset 0 1px 0 rgba(255,255,255,0.9); }
-        .history-browser-status-copy { min-width:14rem; }
-        .history-browser-status-label { color:#7a284f; font-size:.78rem; font-weight:700; text-transform:uppercase; letter-spacing:.08em; margin-bottom:.25rem; }
-        .history-browser-status-title { color:#111827; font-size:1rem; font-weight:700; margin:0 0 .25rem; }
-        .history-browser-status-desc { color:#6b7280; font-size:.9rem; margin:0; }
-        .history-browser-status-badges { display:flex; flex-wrap:wrap; gap:.6rem; }
-        .history-browser-badge { display:inline-flex; align-items:center; padding:.48rem .82rem; border-radius:999px; background:rgba(255,255,255,0.96); border:1px solid rgba(15,23,42,0.08); color:#7a284f; font-size:.875rem; font-weight:600; box-shadow:0 8px 18px rgba(15,23,42,0.04); }
-        .history-browser-hints { display:flex; flex-wrap:wrap; gap:.75rem; }
-        .history-browser-hint { display:inline-flex; align-items:center; gap:.5rem; padding:.72rem .92rem; border-radius:.9rem; background:rgba(248,250,252,0.94); border:1px solid rgba(15,23,42,0.06); color:#4b5563; font-size:.875rem; }
         .report-results-title { font-size:1.55rem; line-height:1.2; font-weight:800; color:#111827; margin:0 0 .55rem; }
         .reports-meta-row { display:flex; align-items:center; justify-content:space-between; gap:1rem; flex-wrap:wrap; }
-        .reports-meta-badge { display:inline-flex; align-items:center; gap:.45rem; padding:.45rem .8rem; border-radius:999px; background:linear-gradient(180deg, rgba(255,255,255,0.98), rgba(248,250,252,0.95)); border:1px solid rgba(15,23,42,0.08); color:#7a284f; font-size:.875rem; font-weight:600; }
         
         /* === 深色模式样式 === */
         html.dark-mode-preload,
         html.dark-mode-preload body,
         body.dark-mode {
-            background-color: #1a1a1a;
+            background:
+                radial-gradient(circle at top left, rgba(236,72,153,0.12), transparent 22%),
+                radial-gradient(circle at top right, rgba(244,114,182,0.10), transparent 18%),
+                linear-gradient(180deg, #141419 0%, #101014 22%, #0b0d12 100%);
             color: #e5e5e5;
         }
         
@@ -154,8 +143,7 @@
             color: #f5f5f5;
         }
 
-        body.dark-mode .history-hero-desc,
-        body.dark-mode .history-browser-status-desc {
+        body.dark-mode .history-hero-desc {
             color: #b4b4b4;
         }
 
@@ -167,8 +155,7 @@
             box-shadow:0 28px 64px rgba(0,0,0,0.38), inset 0 1px 0 rgba(255,255,255,0.04);
         }
 
-        body.dark-mode .history-hero-eyebrow,
-        body.dark-mode .reports-meta-badge {
+        body.dark-mode .history-hero-eyebrow {
             background:rgba(45,31,43,0.78);
             border-color:rgba(255,255,255,0.10);
             color:#F9A8D4;
@@ -184,18 +171,6 @@
             color:#9ca3af;
         }
 
-        body.dark-mode .history-quick-link {
-            background:rgba(36,36,40,0.86);
-            border-color:rgba(255,255,255,0.10);
-            color:#F9A8D4;
-            box-shadow:0 12px 28px rgba(0,0,0,0.18), inset 0 1px 0 rgba(255,255,255,0.03);
-        }
-
-        body.dark-mode .history-quick-link:hover {
-            background:#30252f;
-            border-color:#7a4b6b;
-        }
-        
         body.dark-mode .bg-gray-100 {
             background-color: #333333 !important;
         }
@@ -235,14 +210,14 @@
         }
         
         body.dark-mode select {
-            background-color: #2a2a2a;
+            background-color: #1b1d24;
             color: #e5e5e5;
-            border-color: #4a4a4a;
+            border-color: #343844;
         }
 
-        body.dark-mode .history-browser-desc,
-        body.dark-mode .history-browser-hint {
-            color: #b4b4b4;
+        body.dark-mode select option {
+            background-color: #1b1d24;
+            color: #e5e5e5;
         }
 
         body.dark-mode .history-browser-summary {
@@ -251,17 +226,9 @@
             box-shadow:0 16px 30px rgba(0,0,0,0.18);
         }
 
-        body.dark-mode .history-browser-status {
-            background: linear-gradient(180deg, rgba(37,31,39,0.98), rgba(27,27,31,1));
-            border-color: rgba(255,255,255,0.08);
-            box-shadow:0 14px 28px rgba(0,0,0,0.16);
-        }
-
         body.dark-mode .history-browser-summary-label,
         body.dark-mode .history-browser-summary-meta,
-        body.dark-mode .history-browser-summary-action,
-        body.dark-mode .history-browser-status-label,
-        body.dark-mode .history-browser-badge {
+        body.dark-mode .history-browser-summary-action {
             color: #F9A8D4;
         }
 
@@ -279,18 +246,8 @@
             border-color:#7a4b6b;
         }
 
-        body.dark-mode .history-browser-badge {
-            background-color:#26262b;
-            border-color:rgba(255,255,255,0.10);
-        }
-
         body.dark-mode .history-browser-divider {
             border-top-color: #3a3a3a;
-        }
-
-        body.dark-mode .history-browser-hint {
-            background-color: #2b2b30;
-            border-color:rgba(255,255,255,0.08);
         }
         
         /* 主题切换按钮 */
@@ -376,7 +333,6 @@
                 margin-top: .75rem;
             }
 
-            .history-browser-status,
             .history-hero-top {
                 flex-direction: column;
                 align-items: stretch;
@@ -404,32 +360,8 @@
                             <span>历史入口总览</span>
                         </div>
                         <h1 class="history-page-title">自媒体糕校历史汇总</h1>
-                        <p class="history-hero-desc">这页现在分成两种清晰入口：上方按关键词搜索历史内容，下方按年月直接打开日报页面，减少筛选含义重叠带来的混淆。</p>
+                        <p class="history-hero-desc">按关键词搜索，或按年月浏览历史日报。</p>
                     </div>
-                    <div class="history-hero-stats">
-                        <div class="history-hero-stat">
-                            <div class="history-hero-stat-label">内容范围</div>
-                            <div class="history-hero-stat-value">2025年9月起</div>
-                        </div>
-                        <div class="history-hero-stat">
-                            <div class="history-hero-stat-label">访问环境</div>
-                            <div id="env-indicator" class="history-hero-stat-value"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="history-quick-nav">
-                    <a href="#history-search-section" class="history-quick-link">
-                        <i class="fas fa-search text-pink-500"></i>
-                        <span>先按内容搜索</span>
-                    </a>
-                    <a href="#history-browser-section" class="history-quick-link">
-                        <i class="fas fa-folder-open text-pink-500"></i>
-                        <span>按年月浏览页面</span>
-                    </a>
-                    <a href="#annual-summary-card" class="history-quick-link">
-                        <i class="fas fa-chart-line text-pink-500"></i>
-                        <span>查看年度总结</span>
-                    </a>
                 </div>
             </div>
         </header>
@@ -451,7 +383,6 @@
                                 <span>按年月浏览页面</span>
                             </div>
                             <h2 class="section-title mb-3">历史日报入口</h2>
-                            <p class="history-browser-desc">上方搜索用于按关键词找内容，这里用于按时间直接打开历史日报页面，分工更清晰。</p>
                         </div>
                         <div id="annual-summary-card" class="history-browser-summary">
                             <div class="history-browser-summary-copy">
@@ -480,28 +411,6 @@
                             </select>
                         </div>
                     </div>
-                    <div class="history-browser-status">
-                        <div class="history-browser-status-copy">
-                            <div class="history-browser-status-label">当前浏览状态</div>
-                            <h3 id="browseStatusTitle" class="history-browser-status-title">已定位到最近可浏览月份</h3>
-                            <p id="browseStatusDesc" class="history-browser-status-desc">这里展示对应月份下的所有日报页面链接。</p>
-                        </div>
-                        <div class="history-browser-status-badges">
-                            <span id="browseYearBadge" class="history-browser-badge">--年</span>
-                            <span id="browseMonthBadge" class="history-browser-badge">--月</span>
-                            <span id="browseModeBadge" class="history-browser-badge">按时间打开日报页</span>
-                        </div>
-                    </div>
-                    <div class="history-browser-hints">
-                        <div class="history-browser-hint">
-                            <i class="fas fa-search text-pink-500"></i>
-                            <span>搜索卡片查内容关键词</span>
-                        </div>
-                        <div class="history-browser-hint">
-                            <i class="fas fa-link text-pink-500"></i>
-                            <span>这里按年月查看页面链接</span>
-                        </div>
-                    </div>
                     <div class="history-browser-divider"></div>
                 </div>
                 <div id="reports-header" class="mb-4" style="display: none;">
@@ -512,10 +421,6 @@
                         <div class="flex items-center">
                             <i class="fas fa-file-alt mr-2 text-pink-500"></i>
                             <span>共找到 <span id="reports-count" class="font-semibold text-pink-600">0</span> 份日报</span>
-                        </div>
-                        <div class="reports-meta-badge">
-                            <i class="fas fa-link text-pink-500"></i>
-                            <span>点击标题或按钮即可打开</span>
                         </div>
                     </div>
                 </div>
@@ -556,14 +461,6 @@
             monthSelector = document.getElementById('monthSelector');
             reportLinksContainer = document.getElementById('reportLinksContainer');
 
-            // 显示环境指示器
-            const envIndicator = document.getElementById('env-indicator');
-            if (envIndicator) {
-                const icon = isLocalFile ? 'fa-folder-open' : 'fa-globe';
-                const text = isLocalFile ? '本地模式' : '在线模式';
-                envIndicator.innerHTML = `<i class="fas ${icon} mr-2 text-pink-500"></i><span>${text}</span>`;
-            }
-
             const today = getToday();
             populateYearSelector(today.year);
 
@@ -582,31 +479,6 @@
             return w[d.getDay()];
         }
 
-        function updateBrowseStatus(year, month, reportCount) {
-            const titleEl = document.getElementById('browseStatusTitle');
-            const descEl = document.getElementById('browseStatusDesc');
-            const yearBadge = document.getElementById('browseYearBadge');
-            const monthBadge = document.getElementById('browseMonthBadge');
-
-            if (yearBadge) yearBadge.textContent = year ? `${year}年` : '--年';
-            if (monthBadge) monthBadge.textContent = month ? `${month}月` : '--月';
-            if (!titleEl || !descEl) return;
-
-            if (year && month) {
-                titleEl.textContent = `当前浏览 ${year}年${month}月`;
-                if (typeof reportCount === 'number') {
-                    descEl.textContent = reportCount > 0
-                        ? `已找到 ${reportCount} 份可访问日报，按时间顺序展示。`
-                        : '当前月份暂无日报页面，可切换月份或改用上方搜索。';
-                } else {
-                    descEl.textContent = '这里展示对应月份下的所有日报页面链接。';
-                }
-            } else {
-                titleEl.textContent = '请选择浏览年月';
-                descEl.textContent = '这里展示对应月份下的所有日报页面链接。';
-            }
-        }
-
         function populateYearSelector(currentSystemYear) {
             yearSelector.innerHTML = '';
             for (let y = START_YEAR; y <= currentSystemYear; y++) {
@@ -615,7 +487,6 @@
                 yearSelector.appendChild(opt);
             }
             yearSelector.value = currentSystemYear;
-            updateBrowseStatus(currentSystemYear, getToday().month);
             populateMonthSelector(currentSystemYear, currentSystemYear, getToday().month);
         }
 
@@ -639,7 +510,6 @@
                 monthSelector.appendChild(opt);
             }
             monthSelector.value = (selectedYear == currentSystemYear) ? currentSystemMonth : endMonth;
-            updateBrowseStatus(selectedYear, parseInt(monthSelector.value) || null);
             if (monthSelector.value) fetchAndDisplayReports(selectedYear, parseInt(monthSelector.value));
         }
 
@@ -651,14 +521,12 @@
             } else {
                 monthSelector.innerHTML = '<option value="">请先选择年份</option>';
                 monthSelector.disabled = true;
-                updateBrowseStatus(null, null);
                 showDefaultMessage();
             }
         }
         function handleMonthChange() {
             const y = parseInt(yearSelector.value);
             const m = parseInt(monthSelector.value);
-            updateBrowseStatus(y, m);
             if (y && m) fetchAndDisplayReports(y, m);
         }
 
@@ -742,7 +610,6 @@
                     header.style.display = 'block';
                     sel.textContent = `${year}年${month}月`;
                     cnt.textContent = existing.length;
-                    updateBrowseStatus(year, month, existing.length);
 
                     reportLinksContainer.innerHTML = existing.map(r => `
                         <div class="report-container">
@@ -761,7 +628,6 @@
                     `).join('');
                 } else {
                     header.style.display = 'none';
-                    updateBrowseStatus(year, month, 0);
                     reportLinksContainer.innerHTML = `
                         <div class="text-center text-gray-500 py-8">
                             <i class="fas fa-calendar-times text-2xl mb-2"></i>
@@ -774,7 +640,6 @@
                 console.error(e);
                 const header = document.getElementById('reports-header');
                 header.style.display = 'none';
-                updateBrowseStatus(year, month);
                 reportLinksContainer.innerHTML = `
                     <div class="text-center text-red-500 py-8">
                         <i class="fas fa-exclamation-triangle text-2xl mb-2"></i>

@@ -239,52 +239,6 @@
     color: #ec4899;
 }
 
-.gj-search-hint {
-    color: #6b7280;
-    font-size: 0.875rem;
-}
-
-.gj-search-context {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    flex-wrap: wrap;
-    margin-bottom: 1rem;
-}
-
-.gj-search-context-pill,
-.gj-search-context-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.45rem;
-    border-radius: 999px;
-    padding: 0.45rem 0.8rem;
-    font-size: 0.84rem;
-    font-weight: 600;
-}
-
-.gj-search-context-pill {
-    background: linear-gradient(180deg, rgba(255,255,255,0.98), rgba(248,250,252,0.95));
-    border: 1px solid rgba(15, 23, 42, 0.08);
-    color: #7a284f;
-    box-shadow: 0 8px 18px rgba(15, 23, 42, 0.04);
-}
-
-.gj-search-context-link {
-    background: rgba(255,255,255,0.92);
-    border: 1px solid rgba(15, 23, 42, 0.08);
-    color: #4b5563;
-    text-decoration: none;
-    transition: all 0.2s ease;
-}
-
-.gj-search-context-link:hover {
-    border-color: rgba(236, 72, 153, 0.22);
-    color: #9d174d;
-    background: linear-gradient(180deg, rgba(255,255,255,1), rgba(248,250,252,0.96));
-    box-shadow: 0 12px 22px rgba(15, 23, 42, 0.06), 0 8px 16px rgba(236, 72, 153, 0.04);
-}
-
 .gj-search-bar {
     display: flex;
     align-items: center;
@@ -647,30 +601,11 @@ body.dark-mode .gj-search-result-snippet {
     color: #f3f4f6;
 }
 
-body.dark-mode .gj-search-hint,
 body.dark-mode .gj-search-meta,
 body.dark-mode .gj-search-result-date,
 body.dark-mode .gj-search-empty,
 body.dark-mode .gj-search-shortcut {
     color: #a1a1aa;
-}
-
-body.dark-mode .gj-search-context-pill {
-    background: linear-gradient(180deg, rgba(50,36,49,0.96), rgba(37,29,37,0.98));
-    border-color: rgba(255,255,255,0.10);
-    color: #f9a8d4;
-}
-
-body.dark-mode .gj-search-context-link {
-    background: rgba(36,36,40,0.92);
-    border-color: rgba(255,255,255,0.08);
-    color: #d4d4d8;
-}
-
-body.dark-mode .gj-search-context-link:hover {
-    background: #30252f;
-    border-color: #7a4b6b;
-    color: #fbcfe8;
 }
 
 body.dark-mode .gj-search-result-title {
@@ -682,15 +617,19 @@ body.dark-mode .gj-search-result-title:hover {
 }
 
 body.dark-mode .gj-search-input {
-    background: linear-gradient(180deg, rgba(30,30,34,0.98), rgba(24,24,28,0.98));
-    border-color: rgba(255,255,255,0.10);
+    background: #181a20;
+    border-color: #343844;
     color: #f5f5f5;
 }
 
 body.dark-mode .gj-search-select {
-    background: linear-gradient(180deg, rgba(30,30,34,0.98), rgba(24,24,28,0.98));
-    border-color: rgba(255,255,255,0.10);
+    background: #181a20;
+    border-color: #343844;
     color: #f5f5f5;
+}
+
+body.dark-mode .gj-search-input::placeholder {
+    color: #8b90a0;
 }
 
 body.dark-mode .gj-search-input-icon {
