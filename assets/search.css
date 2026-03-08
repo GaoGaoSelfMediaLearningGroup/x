@@ -320,6 +320,7 @@
 
 .gj-search-submit,
 .gj-search-clear,
+.gj-search-load-all,
 .gj-search-open-history,
 .gj-search-close {
     border-radius: 0.875rem;
@@ -342,6 +343,7 @@
 }
 
 .gj-search-clear,
+.gj-search-load-all,
 .gj-search-open-history,
 .gj-search-close {
     border: 1px solid rgba(15, 23, 42, 0.08);
@@ -352,6 +354,7 @@
 
 .gj-search-submit:hover,
 .gj-search-clear:hover,
+.gj-search-load-all:hover,
 .gj-search-open-history:hover,
 .gj-search-close:hover,
 .gj-search-trigger-inline:hover {
@@ -364,6 +367,7 @@
 }
 
 .gj-search-clear:hover,
+.gj-search-load-all:hover,
 .gj-search-open-history:hover,
 .gj-search-close:hover {
     border-color: rgba(236, 72, 153, 0.22);
@@ -379,6 +383,24 @@
     margin-bottom: 0.75rem;
     color: #6b7280;
     font-size: 0.875rem;
+}
+
+.gj-search-meta-actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.gj-search-load-all[hidden] {
+    display: none !important;
+}
+
+.gj-search-load-all:disabled {
+    cursor: wait;
+    opacity: 0.7;
+    transform: none;
 }
 
 .gj-search-results {
@@ -643,6 +665,7 @@ body.dark-mode .gj-search-submit {
 }
 
 body.dark-mode .gj-search-clear,
+body.dark-mode .gj-search-load-all,
 body.dark-mode .gj-search-open-history,
 body.dark-mode .gj-search-close,
 body.dark-mode .gj-search-trigger-inline,
@@ -678,6 +701,7 @@ body.dark-mode .gj-search-overlay {
 
     .gj-search-submit,
     .gj-search-clear,
+    .gj-search-load-all,
     .gj-search-open-history,
     .gj-search-close,
     .gj-search-trigger-inline {

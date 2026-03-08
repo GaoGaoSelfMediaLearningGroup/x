@@ -769,21 +769,39 @@
         return `找到 ${results.length} 条结果，已完成 ${scopeLabel} 搜索（${stats.total} 个月索引）`;
     }
 
+    function shouldOfferLoadAll(query, stats) {
+        return Boolean(query && stats && !stats.loadingMore && stats.loaded < stats.total);
+    }
+
+    function updateLoadAllButton(target, query, stats, loading) {
+        const loadAllButton = target.querySelector("[data-gj-search-load-all]");
+        if (!loadAllButton) {
+            return;
+        }
+        const visible = loading || shouldOfferLoadAll(query, stats);
+        loadAllButton.hidden = !visible;
+        loadAllButton.disabled = Boolean(loading);
+        loadAllButton.textContent = loading ? "正在全量检索..." : "继续全量检索";
+    }
+
     function renderResults(query, queryInfo, results, target, stats) {
         const meta = target.querySelector("[data-gj-search-meta]");
+        const metaText = target.querySelector("[data-gj-search-meta-text]");
         const resultsContainer = target.querySelector("[data-gj-search-results]");
-        if (!resultsContainer || !meta) {
+        if (!resultsContainer || !meta || !metaText) {
             return;
         }
 
         if (!query) {
-            meta.textContent = formatSearchMeta("", [], stats);
+            metaText.textContent = formatSearchMeta("", [], stats);
+            updateLoadAllButton(target, "", stats, false);
             resultsContainer.innerHTML = createEmptyHtml("支持全文检索，例如：提示词、豆包、知识库、封面设计。输入后点击搜索即可。");
             replaceHistoryHash("", stats.filters);
             return;
         }
 
-        meta.textContent = formatSearchMeta(query, results, stats);
+        metaText.textContent = formatSearchMeta(query, results, stats);
+        updateLoadAllButton(target, query, stats, false);
         if (!results.length) {
             resultsContainer.innerHTML = createEmptyHtml("换个关键词试试，或等待搜索自动扩展到更早历史。");
         } else {
@@ -796,10 +814,89 @@
         return version === state.searchVersion;
     }
 
+    async function handleLoadAllSearch(query, target) {
+        const version = ++state.searchVersion;
+        const queryInfo = parseQuery(query);
+        const metaText = target.querySelector("[data-gj-search-meta-text]");
+        const resultsContainer = target.querySelector("[data-gj-search-results]");
+        const filters = getSelectedFilters(target);
+        state.lastQuery = query;
+        state.lastFilters = filters;
+
+        if (!queryInfo.normalized) {
+            return;
+        }
+
+        if (metaText) {
+            metaText.textContent = "正在加载剩余月份索引...";
+        }
+        updateLoadAllButton(target, query, {
+            loaded: 0,
+            total: 1,
+            loadingMore: false,
+            filters,
+        }, true);
+
+        try {
+            const manifest = await loadManifest();
+            if (!isCurrentSearch(version)) {
+                return;
+            }
+
+            if (Array.isArray(manifest.docs)) {
+                await ensureLegacyDocs(manifest);
+                if (!isCurrentSearch(version)) {
+                    return;
+                }
+                renderResults(query, queryInfo, searchDocs(queryInfo, filters), target, {
+                    loaded: 1,
+                    total: 1,
+                    loadingMore: false,
+                    filters,
+                });
+                return;
+            }
+
+            const plan = getShardPlan(manifest, queryInfo, filters);
+            const allPlanShards = plan.initial.concat(plan.remaining);
+            const pendingShards = allPlanShards.filter((shard) => !state.shardsLoaded.has(shard.id));
+
+            if (resultsContainer && !resultsContainer.innerHTML.trim()) {
+                resultsContainer.innerHTML = createEmptyHtml("正在补齐更早月份索引，请稍候...");
+            }
+
+            await loadShardBatch(pendingShards);
+            if (!isCurrentSearch(version)) {
+                return;
+            }
+
+            renderResults(query, queryInfo, searchDocs(queryInfo, filters), target, {
+                loaded: plan.total,
+                total: plan.total,
+                loadingMore: false,
+                filters,
+            });
+        } catch (error) {
+            console.error(error);
+            if (metaText) {
+                metaText.textContent = "剩余月份索引加载失败";
+            }
+            updateLoadAllButton(target, query, {
+                loaded: 0,
+                total: 1,
+                loadingMore: false,
+                filters,
+            }, false);
+            if (resultsContainer) {
+                resultsContainer.innerHTML = createEmptyHtml("补齐全量索引失败，请稍后刷新页面重试。");
+            }
+        }
+    }
+
     async function handleSearch(query, target) {
         const version = ++state.searchVersion;
         const queryInfo = parseQuery(query);
-        const meta = target.querySelector("[data-gj-search-meta]");
+        const metaText = target.querySelector("[data-gj-search-meta-text]");
         const filters = getSelectedFilters(target);
         state.lastFilters = filters;
         const manifest = state.manifest;
@@ -816,9 +913,15 @@
             return;
         }
 
-        if (meta) {
-            meta.textContent = "正在加载搜索索引...";
+        if (metaText) {
+            metaText.textContent = "正在加载搜索索引...";
         }
+        updateLoadAllButton(target, query, {
+            loaded: 0,
+            total: 1,
+            loadingMore: false,
+            filters,
+        }, false);
 
         try {
             const manifest = await loadManifest();
@@ -874,9 +977,15 @@
         } catch (error) {
             console.error(error);
             const resultsContainer = target.querySelector("[data-gj-search-results]");
-            if (meta) {
-                meta.textContent = "搜索索引加载失败";
+            if (metaText) {
+                metaText.textContent = "搜索索引加载失败";
             }
+            updateLoadAllButton(target, query, {
+                loaded: 0,
+                total: 1,
+                loadingMore: false,
+                filters,
+            }, false);
             if (resultsContainer) {
                 resultsContainer.innerHTML = createEmptyHtml("索引暂时不可用，请稍后刷新页面重试。");
             }
@@ -917,6 +1026,15 @@
                     filters: getSelectedFilters(target),
                 });
                 input.focus();
+            });
+        }
+
+        const loadAllButton = target.querySelector("[data-gj-search-load-all]");
+        if (loadAllButton) {
+            loadAllButton.addEventListener("click", () => {
+                const query = input.value.trim();
+                state.lastQuery = query;
+                handleLoadAllSearch(query, target);
             });
         }
 
@@ -961,7 +1079,12 @@
                         <select class="gj-search-select" data-gj-filter-month="true" aria-label="按月份筛选"></select>
                     </div>
                 </div>
-                <div class="gj-search-meta" data-gj-search-meta="true"></div>
+                <div class="gj-search-meta" data-gj-search-meta="true">
+                    <span data-gj-search-meta-text="true"></span>
+                    <div class="gj-search-meta-actions">
+                        <button class="gj-search-open-history gj-search-load-all" type="button" data-gj-search-load-all="true" hidden>继续全量检索</button>
+                    </div>
+                </div>
                 <div class="gj-search-results" data-gj-search-results="true"></div>
             </div>
         `;
@@ -1029,7 +1152,12 @@
                         <select class="gj-search-select" data-gj-filter-month="true" aria-label="按月份筛选"></select>
                     </div>
                 </div>
-                <div class="gj-search-meta" data-gj-search-meta="true"></div>
+                <div class="gj-search-meta" data-gj-search-meta="true">
+                    <span data-gj-search-meta-text="true"></span>
+                    <div class="gj-search-meta-actions">
+                        <button class="gj-search-open-history gj-search-load-all" type="button" data-gj-search-load-all="true" hidden>继续全量检索</button>
+                    </div>
+                </div>
                 <div class="gj-search-modal-body">
                     <div class="gj-search-results" data-gj-search-results="true"></div>
                 </div>
