@@ -31,6 +31,169 @@
         searchVersion: 0,
     };
 
+    const ICON_FALLBACK_STYLE_ID = "gj-inline-icon-style";
+    const ICON_SVG_CLASS = "gj-inline-icon";
+
+    function createIconSvg(paths, options) {
+        const attrs = options || {};
+        const viewBox = attrs.viewBox || "0 0 24 24";
+        const fill = attrs.fill || "none";
+        const stroke = attrs.stroke || "currentColor";
+        const strokeWidth = attrs.strokeWidth || "2";
+        const extraAttrs = attrs.extra || "";
+        return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="${viewBox}" fill="${fill}" stroke="${stroke}" stroke-width="${strokeWidth}" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" ${extraAttrs}>${paths}</svg>`;
+    }
+
+    const ICON_SVGS = {
+        "fa-arrow-up": createIconSvg('<path d="m6 11 6-6 6 6"/><path d="M12 5v14"/>'),
+        "fa-book-open": createIconSvg('<path d="M3 6.5A2.5 2.5 0 0 1 5.5 4H11v16H5.5A2.5 2.5 0 0 0 3 22z"/><path d="M21 6.5A2.5 2.5 0 0 0 18.5 4H13v16h5.5A2.5 2.5 0 0 1 21 22z"/>'),
+        "fa-calendar": createIconSvg('<path d="M7 2v4"/><path d="M17 2v4"/><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18"/>'),
+        "fa-calendar-alt": createIconSvg('<path d="M7 2v4"/><path d="M17 2v4"/><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18"/>'),
+        "fa-calendar-day": createIconSvg('<path d="M7 2v4"/><path d="M17 2v4"/><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18"/><circle cx="12" cy="15" r="2.5"/>'),
+        "fa-calendar-days": createIconSvg('<path d="M7 2v4"/><path d="M17 2v4"/><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18"/><path d="M8 14h.01M12 14h.01M16 14h.01M8 18h.01M12 18h.01M16 18h.01"/>'),
+        "fa-calendar-times": createIconSvg('<path d="M7 2v4"/><path d="M17 2v4"/><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18"/><path d="m10 14 4 4"/><path d="m14 14-4 4"/>'),
+        "fa-chart-bar": createIconSvg('<path d="M4 20V10"/><path d="M10 20V4"/><path d="M16 20v-7"/><path d="M22 20v-11"/>'),
+        "fa-chart-line": createIconSvg('<path d="M3 17 9 11l4 4 8-8"/><path d="M21 7v6h-6"/>'),
+        "fa-check": createIconSvg('<path d="m5 13 4 4L19 7"/>'),
+        "fa-chevron-down": createIconSvg('<path d="m6 9 6 6 6-6"/>'),
+        "fa-chevron-left": createIconSvg('<path d="m15 18-6-6 6-6"/>'),
+        "fa-chevron-right": createIconSvg('<path d="m9 18 6-6-6-6"/>'),
+        "fa-clock": createIconSvg('<circle cx="12" cy="12" r="9"/><path d="M12 7v6l4 2"/>'),
+        "fa-cloud": createIconSvg('<path d="M7 18a4 4 0 1 1 .9-7.9A5.5 5.5 0 1 1 19 11.5 3.5 3.5 0 1 1 18.5 18z"/>'),
+        "fa-copy": createIconSvg('<rect x="9" y="9" width="10" height="12" rx="2"/><path d="M15 9V7a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h2"/>'),
+        "fa-crown": createIconSvg('<path d="m3 8 4.5 5L12 5l4.5 8L21 8l-2 11H5L3 8z"/>'),
+        "fa-database": createIconSvg('<ellipse cx="12" cy="5" rx="7" ry="3"/><path d="M5 5v6c0 1.7 3.1 3 7 3s7-1.3 7-3V5"/><path d="M5 11v6c0 1.7 3.1 3 7 3s7-1.3 7-3v-6"/>'),
+        "fa-exclamation-triangle": createIconSvg('<path d="M12 3 2.6 19.5A1.2 1.2 0 0 0 3.64 21h16.72a1.2 1.2 0 0 0 1.04-1.5z"/><path d="M12 9v4"/><path d="M12 17h.01"/>'),
+        "fa-expand-alt": createIconSvg('<path d="M9 3H3v6"/><path d="M15 3h6v6"/><path d="M9 21H3v-6"/><path d="M21 21h-6v-6"/><path d="M3 9 9 3"/><path d="m15 3 6 6"/><path d="m3 15 6 6"/><path d="m15 21 6-6"/>'),
+        "fa-external-link-alt": createIconSvg('<path d="M14 5h5v5"/><path d="M10 14 19 5"/><path d="M19 14v4a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h4"/>'),
+        "fa-file-alt": createIconSvg('<path d="M14 2H7a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7z"/><path d="M14 2v5h5"/><path d="M9 13h6"/><path d="M9 17h6"/><path d="M9 9h2"/>'),
+        "fa-fire": createIconSvg('<path d="M12 3s2.5 2.2 2.5 5.2c0 1.3-.7 2.2-1.5 3.1-.8-1-1.4-2-1.4-3.5C11.6 5.5 12 3 12 3z"/><path d="M8.5 12.5A5 5 0 1 0 17 16.2c0-1.6-.8-3.1-2.1-4.5-.4 1.5-1.4 2.7-2.9 3.3-.2-1.2-.9-2-1.5-2.5-.9 1-2 2.4-2 4z"/>'),
+        "fa-folder-open": createIconSvg('<path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v1"/><path d="M3 10h18l-2 8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>'),
+        "fa-globe": createIconSvg('<circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3a14 14 0 0 1 0 18"/><path d="M12 3a14 14 0 0 0 0 18"/>'),
+        "fa-history": createIconSvg('<path d="M3 12a9 9 0 1 0 3-6.7"/><path d="M3 4v5h5"/><path d="M12 8v5l3 2"/>'),
+        "fa-info-circle": createIconSvg('<circle cx="12" cy="12" r="9"/><path d="M12 11v5"/><path d="M12 8h.01"/>'),
+        "fa-lightbulb": createIconSvg('<path d="M9 18h6"/><path d="M10 22h4"/><path d="M8 14c-1.2-1-2-2.8-2-4.5a6 6 0 1 1 12 0c0 1.7-.8 3.5-2 4.5-.8.7-1.2 1.7-1.5 2.5h-5c-.3-.8-.7-1.8-1.5-2.5z"/>'),
+        "fa-link": createIconSvg('<path d="M10 13a5 5 0 0 1 0-7l1.5-1.5a5 5 0 0 1 7 7L17 13"/><path d="M14 11a5 5 0 0 1 0 7L12.5 19.5a5 5 0 0 1-7-7L7 11"/>'),
+        "fa-list": createIconSvg('<path d="M8 6h13"/><path d="M8 12h13"/><path d="M8 18h13"/><path d="M3 6h.01"/><path d="M3 12h.01"/><path d="M3 18h.01"/>'),
+        "fa-medal": createIconSvg('<path d="M8 3h8l-2 6h-4L8 3z"/><circle cx="12" cy="16" r="5"/><path d="m12 13 1 2 2 .3-1.5 1.4.4 2.3-1.9-1-1.9 1 .4-2.3L9 15.3l2-.3z"/>'),
+        "fa-moon": createIconSvg('<path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8z"/>'),
+        "fa-pie-chart": createIconSvg('<path d="M12 3v9h9"/><path d="M21 12a9 9 0 1 1-9-9"/>'),
+        "fa-print": createIconSvg('<path d="M7 8V4h10v4"/><rect x="5" y="12" width="14" height="8" rx="2"/><path d="M7 16h10"/><path d="M7 20h10"/>'),
+        "fa-question-circle": createIconSvg('<circle cx="12" cy="12" r="9"/><path d="M9.1 9a3 3 0 1 1 5.4 1.8c-.8 1-1.8 1.5-1.8 3.2"/><path d="M12 17h.01"/>'),
+        "fa-quote-left": createIconSvg('<path d="M10 8H6a2 2 0 0 0-2 2v4h4v4H4"/><path d="M20 8h-4a2 2 0 0 0-2 2v4h4v4h-4"/>'),
+        "fa-robot": createIconSvg('<rect x="5" y="8" width="14" height="10" rx="2"/><path d="M12 4v4"/><path d="M8 3h8"/><circle cx="9" cy="13" r="1"/><circle cx="15" cy="13" r="1"/><path d="M9 18v2"/><path d="M15 18v2"/><path d="M5 12H3"/><path d="M21 12h-2"/>'),
+        "fa-search": createIconSvg('<circle cx="11" cy="11" r="6.5"/><path d="m16 16 4 4"/>'),
+        "fa-share-alt": createIconSvg('<circle cx="18" cy="5" r="2"/><circle cx="6" cy="12" r="2"/><circle cx="18" cy="19" r="2"/><path d="m8 12 8-6"/><path d="m8 12 8 6"/>'),
+        "fa-star": createIconSvg('<path d="m12 3 2.7 5.5 6.1.9-4.4 4.3 1 6.1-5.4-2.9-5.4 2.9 1-6.1L3.2 9.4l6.1-.9z"/>'),
+        "fa-sun": createIconSvg('<circle cx="12" cy="12" r="4"/><path d="M12 2v2.2"/><path d="M12 19.8V22"/><path d="m4.93 4.93 1.56 1.56"/><path d="m17.51 17.51 1.56 1.56"/><path d="M2 12h2.2"/><path d="M19.8 12H22"/><path d="m4.93 19.07 1.56-1.56"/><path d="m17.51 6.49 1.56-1.56"/>'),
+        "fa-times": createIconSvg('<path d="M18 6 6 18"/><path d="m6 6 12 12"/>'),
+        "fa-trophy": createIconSvg('<path d="M8 4h8v4a4 4 0 0 1-8 0z"/><path d="M10 16h4"/><path d="M9 20h6"/><path d="M6 6H4a2 2 0 0 0 0 4h2"/><path d="M18 6h2a2 2 0 0 1 0 4h-2"/>'),
+        "fa-users": createIconSvg('<path d="M16 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="10" cy="8" r="4"/><path d="M20 21v-2a4 4 0 0 0-3-3.9"/><path d="M16 4.1a4 4 0 0 1 0 7.8"/>'),
+    };
+
+    const ICON_NAMES = Object.keys(ICON_SVGS);
+
+    function ensureInlineIconStyles() {
+        if (document.getElementById(ICON_FALLBACK_STYLE_ID)) {
+            return;
+        }
+        const style = document.createElement("style");
+        style.id = ICON_FALLBACK_STYLE_ID;
+        style.textContent = `
+            i.${ICON_SVG_CLASS} {
+                display: inline-block;
+                width: 1em;
+                height: 1em;
+                line-height: 1;
+                vertical-align: -0.125em;
+                font-style: normal;
+                flex: 0 0 auto;
+            }
+            i.${ICON_SVG_CLASS}::before {
+                content: none !important;
+            }
+            i.${ICON_SVG_CLASS} > svg {
+                display: block;
+                width: 100%;
+                height: 100%;
+                overflow: visible;
+            }
+        `;
+        document.head.appendChild(style);
+    }
+
+    function getSupportedIconName(element) {
+        for (const iconName of ICON_NAMES) {
+            if (element.classList.contains(iconName)) {
+                return iconName;
+            }
+        }
+        return "";
+    }
+
+    function applyInlineIcon(element) {
+        if (!(element instanceof HTMLElement) || element.tagName !== "I") {
+            return;
+        }
+        const iconName = getSupportedIconName(element);
+        if (!iconName) {
+            return;
+        }
+        if (element.dataset.gjInlineIcon === iconName) {
+            return;
+        }
+        element.classList.add(ICON_SVG_CLASS);
+        element.innerHTML = ICON_SVGS[iconName];
+        element.dataset.gjInlineIcon = iconName;
+        element.setAttribute("aria-hidden", "true");
+    }
+
+    function applyInlineIcons(root) {
+        if (!root) {
+            return;
+        }
+        if (root instanceof HTMLElement && root.tagName === "I") {
+            applyInlineIcon(root);
+        }
+        if (root.querySelectorAll) {
+            root.querySelectorAll("i").forEach(applyInlineIcon);
+        }
+    }
+
+    function observeInlineIcons() {
+        if (document.body && document.body.__gjInlineIconObserver) {
+            return;
+        }
+        const observer = new MutationObserver((mutations) => {
+            mutations.forEach((mutation) => {
+                if (mutation.type === "attributes") {
+                    applyInlineIcon(mutation.target);
+                    return;
+                }
+                mutation.addedNodes.forEach((node) => {
+                    if (node instanceof HTMLElement) {
+                        applyInlineIcons(node);
+                    }
+                });
+            });
+        });
+        observer.observe(document.body, {
+            subtree: true,
+            childList: true,
+            attributes: true,
+            attributeFilter: ["class"],
+        });
+        document.body.__gjInlineIconObserver = observer;
+    }
+
+    function initInlineIcons() {
+        ensureInlineIconStyles();
+        applyInlineIcons(document);
+        if (document.body) {
+            observeInlineIcons();
+        }
+    }
+
     function normalizeText(text) {
         return String(text || "")
             .toLowerCase()
@@ -968,6 +1131,7 @@
     }
 
     function init() {
+        initInlineIcons();
         parseHashSearchState();
         if (isHistoryPage) {
             initHistorySearch();

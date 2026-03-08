@@ -505,8 +505,7 @@
 .floating-action-stack .toc-floating-button,
 .floating-action-stack .theme-toggle,
 .floating-action-stack .back-to-top,
-.floating-action-stack #gj-search-trigger,
-.theme-toggle {
+.floating-action-stack #gj-search-trigger {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -518,8 +517,7 @@
 .floating-action-stack .toc-floating-button i,
 .floating-action-stack .theme-toggle i,
 .floating-action-stack .back-to-top i,
-.floating-action-stack #gj-search-trigger i,
-.theme-toggle i {
+.floating-action-stack #gj-search-trigger i {
     position: absolute;
     width: 0;
     height: 0;
@@ -533,8 +531,7 @@
 .floating-action-stack .toc-floating-button::before,
 .floating-action-stack .theme-toggle::before,
 .floating-action-stack .back-to-top::before,
-.floating-action-stack #gj-search-trigger::before,
-.theme-toggle::before {
+.floating-action-stack #gj-search-trigger::before {
     content: "";
     display: block;
     width: 1rem;
@@ -548,13 +545,11 @@
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2.2' stroke-linecap='round'%3E%3Cpath d='M4 7h16M4 12h16M4 17h16'/%3E%3C/svg%3E");
 }
 
-.floating-action-stack .theme-toggle::before,
-.theme-toggle::before {
+.floating-action-stack .theme-toggle::before {
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M21 12.79A9 9 0 1 1 11.21 3c0.06 0 0.11 0 0.17 0.01A7 7 0 0 0 21 12.79Z'/%3E%3C/svg%3E");
 }
 
-body.dark-mode .floating-action-stack .theme-toggle::before,
-body.dark-mode .theme-toggle::before {
+body.dark-mode .floating-action-stack .theme-toggle::before {
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='4'/%3E%3Cpath d='M12 2v2.2M12 19.8V22M4.93 4.93l1.56 1.56M17.51 17.51l1.56 1.56M2 12h2.2M19.8 12H22M4.93 19.07l1.56-1.56M17.51 6.49l1.56-1.56'/%3E%3C/svg%3E");
 }
 
