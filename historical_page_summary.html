@@ -61,6 +61,13 @@
         .view-details-btn { background:linear-gradient(180deg, rgba(255,255,255,0.98), rgba(248,250,252,0.96)); color:#7a284f; border:1px solid rgba(15,23,42,0.08); border-radius:.8rem; padding:.6rem 1rem; font-size:.875rem; font-weight:600; display:inline-flex; align-items:center; position:absolute; right:1.25rem; top:50%; transform:translateY(-50%); box-shadow:0 10px 18px rgba(15,23,42,0.05), inset 0 1px 0 rgba(255,255,255,0.88); transition:all .2s ease; }
         .view-details-btn:hover { border-color:rgba(236,72,153,0.22); color:#9d174d; box-shadow:0 14px 24px rgba(15,23,42,0.08), 0 8px 16px rgba(236,72,153,0.05); }
         .view-details-btn i { margin-right:.5rem; color:#9d174d; }
+        .report-pagination { margin-top:1.1rem; }
+        .report-pagination[hidden] { display:none !important; }
+        .report-pagination-inner { display:flex; align-items:center; justify-content:center; gap:.75rem; flex-wrap:wrap; }
+        .report-page-info { color:#6b7280; font-size:.875rem; }
+        .report-page-btn { border:1px solid rgba(15,23,42,0.08); background:linear-gradient(180deg, rgba(255,255,255,0.98), rgba(248,250,252,0.96)); color:#7a284f; border-radius:.8rem; padding:.6rem 1rem; font-size:.875rem; font-weight:600; display:inline-flex; align-items:center; justify-content:center; box-shadow:0 10px 18px rgba(15,23,42,0.05), inset 0 1px 0 rgba(255,255,255,0.88); transition:all .2s ease; }
+        .report-page-btn:hover { border-color:rgba(236,72,153,0.22); color:#9d174d; box-shadow:0 14px 24px rgba(15,23,42,0.08), 0 8px 16px rgba(236,72,153,0.05); transform:translateY(-1px); }
+        .report-page-btn:disabled { opacity:.55; cursor:not-allowed; transform:none; box-shadow:none; }
         .loading-spinner { display:inline-block; width:20px; height:20px; border:3px solid #f3f3f3; border-top:3px solid #EC4899; border-radius:50%; animation:spin 1s linear infinite; }
         @keyframes spin { 0%{transform:rotate(0)}100%{transform:rotate(360deg)} }
         .error-message { display:none; color:#dc2626; background:#fef2f2; border:1px solid #fecaca; border-radius:.5rem; padding:1rem; margin:1rem 0; }
@@ -208,6 +215,21 @@
             background:linear-gradient(180deg, rgba(62,41,60,0.96), rgba(43,31,43,0.98));
             border-color:#7a4b6b;
         }
+
+        body.dark-mode .report-page-info {
+            color:#a1a1aa;
+        }
+
+        body.dark-mode .report-page-btn {
+            background:linear-gradient(180deg, rgba(50,36,49,0.96), rgba(37,29,37,0.98));
+            color:#F9A8D4;
+            border-color:rgba(255,255,255,0.10);
+        }
+
+        body.dark-mode .report-page-btn:hover {
+            background:linear-gradient(180deg, rgba(62,41,60,0.96), rgba(43,31,43,0.98));
+            border-color:#7a4b6b;
+        }
         
         body.dark-mode select {
             background-color: #1b1d24;
@@ -333,6 +355,11 @@
                 margin-top: .75rem;
             }
 
+            .report-pagination-inner {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
             .history-hero-top {
                 flex-direction: column;
                 align-items: stretch;
@@ -430,6 +457,7 @@
                         <p>请选择浏览年份和月份以查看日报页面</p>
                     </div>
                 </div>
+                <div id="reportPagination" class="report-pagination" hidden></div>
             </div>
         </section>
     </div>
@@ -450,8 +478,11 @@
         const START_YEAR = 2025;
         const START_MONTH_FOR_START_YEAR = 9; // 2025年9月起
         const START_DAY_FOR_START_YEAR = 23;
+        const REPORTS_PER_PAGE = 5;
 
-        let yearSelector, monthSelector, reportLinksContainer;
+        let yearSelector, monthSelector, reportLinksContainer, reportPaginationContainer;
+        let currentReportsPage = 1;
+        let currentReportItems = [];
 
         document.addEventListener('DOMContentLoaded', function() {
             // 初始化深色模式
@@ -460,6 +491,7 @@
             yearSelector = document.getElementById('yearSelector');
             monthSelector = document.getElementById('monthSelector');
             reportLinksContainer = document.getElementById('reportLinksContainer');
+            reportPaginationContainer = document.getElementById('reportPagination');
 
             const today = getToday();
             populateYearSelector(today.year);
@@ -567,6 +599,79 @@
             return '';
         }
 
+        function createReportCardsHtml(reports) {
+            return reports.map(r => `
+                <div class="report-container">
+                    <a href="${r.url}" class="report-title-link" target="_blank">
+                        自媒体糕校 ${r.year}.${r.month}.${r.day}
+                    </a>
+                    <div class="report-date-info">
+                        <i class="fas fa-calendar-day"></i>
+                        <span>${r.weekday}</span>
+                    </div>
+                    <a href="${r.url}" class="view-details-btn" target="_blank">
+                        <i class="fas fa-external-link-alt"></i>
+                        查看详情
+                    </a>
+                </div>
+            `).join('');
+        }
+
+        function hideReportPagination() {
+            currentReportItems = [];
+            currentReportsPage = 1;
+            if (!reportPaginationContainer) {
+                return;
+            }
+            reportPaginationContainer.innerHTML = '';
+            reportPaginationContainer.hidden = true;
+        }
+
+        function renderReportPagination() {
+            if (!reportPaginationContainer) {
+                return;
+            }
+            const totalPages = Math.ceil(currentReportItems.length / REPORTS_PER_PAGE);
+            if (!currentReportItems.length || totalPages <= 1) {
+                reportPaginationContainer.innerHTML = '';
+                reportPaginationContainer.hidden = true;
+                return;
+            }
+
+            reportPaginationContainer.hidden = false;
+            reportPaginationContainer.innerHTML = `
+                <div class="report-pagination-inner">
+                    <button class="report-page-btn" type="button" data-report-page-action="prev" ${currentReportsPage <= 1 ? 'disabled' : ''}>上一页</button>
+                    <div class="report-page-info">第 ${currentReportsPage} / ${totalPages} 页，共 ${currentReportItems.length} 份日报</div>
+                    <button class="report-page-btn" type="button" data-report-page-action="next" ${currentReportsPage >= totalPages ? 'disabled' : ''}>下一页</button>
+                </div>
+            `;
+
+            const prevButton = reportPaginationContainer.querySelector('[data-report-page-action="prev"]');
+            const nextButton = reportPaginationContainer.querySelector('[data-report-page-action="next"]');
+            if (prevButton) {
+                prevButton.addEventListener('click', () => renderReportPage(currentReportsPage - 1));
+            }
+            if (nextButton) {
+                nextButton.addEventListener('click', () => renderReportPage(currentReportsPage + 1));
+            }
+        }
+
+        function renderReportPage(page) {
+            const totalPages = Math.max(1, Math.ceil(currentReportItems.length / REPORTS_PER_PAGE));
+            currentReportsPage = Math.min(Math.max(page, 1), totalPages);
+            const startIndex = (currentReportsPage - 1) * REPORTS_PER_PAGE;
+            const currentPageItems = currentReportItems.slice(startIndex, startIndex + REPORTS_PER_PAGE);
+            reportLinksContainer.innerHTML = createReportCardsHtml(currentPageItems);
+            renderReportPagination();
+        }
+
+        function showReportList(reports) {
+            currentReportItems = reports.slice();
+            currentReportsPage = 1;
+            renderReportPage(1);
+        }
+
         async function fetchAndDisplayReports(year, month) {
             const loadingMsg = isLocalFile 
                 ? '正在生成日报列表...' 
@@ -578,6 +683,7 @@
                     <p>${loadingMsg}</p>
                 </div>
             `;
+            hideReportPagination();
             const today = getToday();
             let dayStart = (year==START_YEAR && month==START_MONTH_FOR_START_YEAR) ? START_DAY_FOR_START_YEAR : 1;
             let dayEnd = (year==today.year && month==today.month) ? today.day : daysInMonth(year, month);
@@ -610,24 +716,10 @@
                     header.style.display = 'block';
                     sel.textContent = `${year}年${month}月`;
                     cnt.textContent = existing.length;
-
-                    reportLinksContainer.innerHTML = existing.map(r => `
-                        <div class="report-container">
-                            <a href="${r.url}" class="report-title-link" target="_blank">
-                                自媒体糕校 ${r.year}.${r.month}.${r.day}
-                            </a>
-                            <div class="report-date-info">
-                                <i class="fas fa-calendar-day"></i>
-                                <span>${r.weekday}</span>
-                            </div>
-                            <a href="${r.url}" class="view-details-btn" target="_blank">
-                                <i class="fas fa-external-link-alt"></i>
-                                查看详情
-                            </a>
-                        </div>
-                    `).join('');
+                    showReportList(existing);
                 } else {
                     header.style.display = 'none';
+                    hideReportPagination();
                     reportLinksContainer.innerHTML = `
                         <div class="text-center text-gray-500 py-8">
                             <i class="fas fa-calendar-times text-2xl mb-2"></i>
@@ -640,6 +732,7 @@
                 console.error(e);
                 const header = document.getElementById('reports-header');
                 header.style.display = 'none';
+                hideReportPagination();
                 reportLinksContainer.innerHTML = `
                     <div class="text-center text-red-500 py-8">
                         <i class="fas fa-exclamation-triangle text-2xl mb-2"></i>
@@ -653,6 +746,7 @@
         function showDefaultMessage() {
             const header = document.getElementById('reports-header');
             if (header) header.style.display = 'none';
+            hideReportPagination();
             reportLinksContainer.innerHTML = `
                 <div class="text-center text-gray-500 py-8">
                     <i class="fas fa-info-circle text-2xl mb-2"></i>

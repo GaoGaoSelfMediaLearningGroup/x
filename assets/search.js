@@ -18,7 +18,7 @@
     const INITIAL_BATCH_SIZE = 3;
     const FOLLOWUP_BATCH_SIZE = 3;
     const MIN_RESULTS_TARGET = 8;
-    const SEARCH_RESULTS_PER_PAGE = 10;
+    const SEARCH_RESULTS_PER_PAGE = 5;
 
     const state = {
         manifest: null,
