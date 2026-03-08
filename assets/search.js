@@ -931,16 +931,27 @@
     function buildInlineCard() {
         const section = document.createElement("section");
         section.className = "w-full mb-6";
+        section.id = "history-search-section";
         section.innerHTML = `
             <div class="gj-search-card">
                 <div class="gj-search-header">
                     <div>
                         <div class="gj-search-title">
                             <i class="fas fa-search"></i>
-                            <span>全站全文检索</span>
+                            <span>搜索历史内容</span>
                         </div>
-                        <div class="gj-search-hint">点击搜索后先查最近月份，再按需扩展到更早历史。</div>
+                        <div class="gj-search-hint">按关键词查内容片段；下方“历史日报入口”区域负责按年月打开页面链接。</div>
                     </div>
+                </div>
+                <div class="gj-search-context">
+                    <span class="gj-search-context-pill gj-search-context-pill-active">
+                        <i class="fas fa-file-alt"></i>
+                        <span>当前模式：查内容</span>
+                    </span>
+                    <a class="gj-search-context-link" href="#history-browser-section">
+                        <i class="fas fa-folder-open"></i>
+                        <span>切换到按时间浏览页面</span>
+                    </a>
                 </div>
                 <div class="gj-search-bar">
                     <div class="gj-search-input-wrap">
@@ -955,11 +966,11 @@
                 </div>
                 <div class="gj-search-filters">
                     <div class="gj-search-filter-group">
-                        <span class="gj-search-filter-label">年份</span>
+                        <span class="gj-search-filter-label">搜索年份</span>
                         <select class="gj-search-select" data-gj-filter-year="true" aria-label="按年份筛选"></select>
                     </div>
                     <div class="gj-search-filter-group">
-                        <span class="gj-search-filter-label">月份</span>
+                        <span class="gj-search-filter-label">搜索月份</span>
                         <select class="gj-search-select" data-gj-filter-month="true" aria-label="按月份筛选"></select>
                     </div>
                 </div>

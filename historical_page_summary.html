@@ -25,10 +25,24 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
         * { font-family: 'Inter', ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"; }
+        html { scroll-behavior: smooth; }
         body { background-color: #ffffff; color: #000000; }
         .bento-card { background-color:#fff; border:1px solid #e9e9eb; border-radius:1rem; box-shadow:0 4px 6px -1px rgba(0,0,0,0.07),0 2px 4px -2px rgba(0,0,0,0.05); transition:all .3s cubic-bezier(.25,.8,.25,1); }
         .bento-card:hover { box-shadow:0 10px 15px -3px rgba(0,0,0,0.07),0 4px 6px -4px rgba(0,0,0,0.05); transform:translateY(-2px); }
         .section-title { font-weight:800; font-size:2rem; color:#000; margin-bottom:1rem; }
+        .history-hero { padding:1.5rem 1.75rem; }
+        .history-hero-top { display:flex; justify-content:space-between; gap:1.25rem; align-items:flex-start; flex-wrap:wrap; }
+        .history-hero-copy { flex:1; min-width:16rem; }
+        .history-hero-eyebrow { display:inline-flex; align-items:center; gap:.5rem; padding:.35rem .75rem; border-radius:999px; background:#fdf2f8; color:#BE185D; font-size:.8rem; font-weight:700; margin-bottom:.9rem; }
+        .history-page-title { font-size:2.35rem; line-height:1.08; font-weight:900; color:#111827; margin:0 0 .65rem; }
+        .history-hero-desc { color:#4b5563; font-size:1rem; line-height:1.8; max-width:38rem; margin:0; }
+        .history-hero-stats { display:grid; gap:.75rem; min-width:14rem; }
+        .history-hero-stat { padding:.85rem 1rem; border:1px solid #f3f4f6; border-radius:1rem; background:#fafafa; }
+        .history-hero-stat-label { color:#6b7280; font-size:.75rem; font-weight:700; text-transform:uppercase; letter-spacing:.05em; margin-bottom:.3rem; }
+        .history-hero-stat-value { color:#111827; font-size:1rem; font-weight:700; }
+        .history-quick-nav { display:flex; flex-wrap:wrap; gap:.75rem; margin-top:1.25rem; }
+        .history-quick-link { display:inline-flex; align-items:center; gap:.55rem; padding:.7rem 1rem; border-radius:.95rem; border:1px solid #fbcfe8; background:#fff; color:#9d174d; font-size:.9rem; font-weight:600; text-decoration:none; transition:all .2s ease; }
+        .history-quick-link:hover { background:#FDF2F8; border-color:#f9a8d4; transform:translateY(-1px); }
         .report-container { border:1px solid #e9e9eb; border-radius:.75rem; padding:1rem; padding-right:7.5rem; margin-bottom:.75rem; position:relative; transition:all .2s ease; }
         .report-container:hover { border-color:#EC4899; box-shadow:0 8px 12px -2px rgba(0,0,0,.08), 0 3px 6px -3px rgba(0,0,0,.06); }
         .report-title-link { color:#EC4899; font-weight:600; font-size:1.125rem; text-decoration:none; display:block; margin-bottom:.25rem; }
@@ -45,6 +59,33 @@
         select:focus { outline:none; border-color:#EC4899; box-shadow:0 0 0 3px rgba(236,72,153,.1); }
         select option { color: #1f2937; background-color: #fff; }
         select option:checked { background-color:#EC4899; color:#fff; }
+        .history-browser-card { display:flex; flex-direction:column; gap:1.25rem; }
+        .history-browser-header { display:flex; justify-content:space-between; align-items:flex-start; gap:1rem; flex-wrap:wrap; }
+        .history-browser-copy { flex:1; min-width:15rem; }
+        .history-browser-kicker { display:inline-flex; align-items:center; gap:.5rem; color:#BE185D; font-size:.875rem; font-weight:700; margin-bottom:.5rem; }
+        .history-browser-desc { color:#6b7280; font-size:.95rem; line-height:1.7; margin:0; }
+        .history-browser-summary { display:flex; align-items:center; justify-content:space-between; gap:1rem; min-width:17rem; max-width:100%; padding:.9rem 1rem; border:1px solid #fbcfe8; border-radius:1rem; background:#fdf2f8; }
+        .history-browser-summary-copy { min-width:0; }
+        .history-browser-summary-label { color:#9d174d; font-size:.75rem; font-weight:700; text-transform:uppercase; letter-spacing:.04em; margin-bottom:.25rem; }
+        .history-browser-summary-title { color:#BE185D; font-weight:700; text-decoration:none; display:block; margin-bottom:.1rem; }
+        .history-browser-summary-title:hover { color:#DB2777; text-decoration:underline; }
+        .history-browser-summary-meta { color:#9d174d; font-size:.875rem; margin:0; }
+        .history-browser-summary-action { display:inline-flex; align-items:center; justify-content:center; white-space:nowrap; border:1px solid #f9a8d4; border-radius:.75rem; background:#fff; color:#9d174d; padding:.55rem .9rem; font-size:.875rem; font-weight:600; }
+        .history-browser-summary-action:hover { background:#FCE7F3; }
+        .history-browser-divider { border-top:1px solid #f3f4f6; }
+        .history-browser-controls { display:grid; grid-template-columns:repeat(2, minmax(0, 1fr)); gap:1rem; }
+        .history-browser-status { display:flex; align-items:center; justify-content:space-between; gap:1rem; flex-wrap:wrap; padding:1rem 1.1rem; border:1px solid #fce7f3; border-radius:1rem; background:linear-gradient(135deg, rgba(253,242,248,0.9), rgba(255,255,255,1)); }
+        .history-browser-status-copy { min-width:14rem; }
+        .history-browser-status-label { color:#9d174d; font-size:.78rem; font-weight:700; text-transform:uppercase; letter-spacing:.04em; margin-bottom:.25rem; }
+        .history-browser-status-title { color:#111827; font-size:1rem; font-weight:700; margin:0 0 .25rem; }
+        .history-browser-status-desc { color:#6b7280; font-size:.9rem; margin:0; }
+        .history-browser-status-badges { display:flex; flex-wrap:wrap; gap:.6rem; }
+        .history-browser-badge { display:inline-flex; align-items:center; padding:.45rem .8rem; border-radius:999px; background:#fff; border:1px solid #fbcfe8; color:#9d174d; font-size:.875rem; font-weight:600; }
+        .history-browser-hints { display:flex; flex-wrap:wrap; gap:.75rem; }
+        .history-browser-hint { display:inline-flex; align-items:center; gap:.5rem; padding:.7rem .9rem; border-radius:.85rem; background:#f9fafb; color:#4b5563; font-size:.875rem; }
+        .report-results-title { font-size:1.55rem; line-height:1.2; font-weight:800; color:#111827; margin:0 0 .55rem; }
+        .reports-meta-row { display:flex; align-items:center; justify-content:space-between; gap:1rem; flex-wrap:wrap; }
+        .reports-meta-badge { display:inline-flex; align-items:center; gap:.45rem; padding:.45rem .8rem; border-radius:999px; background:#fdf2f8; color:#9d174d; font-size:.875rem; font-weight:600; }
         
         /* === 深色模式样式 === */
         html.dark-mode-preload,
@@ -91,6 +132,44 @@
         body.dark-mode .text-red-500 {
             color: #ef4444 !important;
         }
+
+        body.dark-mode .history-page-title,
+        body.dark-mode .history-hero-stat-value,
+        body.dark-mode .history-browser-status-title,
+        body.dark-mode .report-results-title {
+            color: #f5f5f5;
+        }
+
+        body.dark-mode .history-hero-desc,
+        body.dark-mode .history-browser-status-desc {
+            color: #b4b4b4;
+        }
+
+        body.dark-mode .history-hero-eyebrow,
+        body.dark-mode .reports-meta-badge {
+            background:#3d2940;
+            color:#F9A8D4;
+        }
+
+        body.dark-mode .history-hero-stat {
+            background:#242424;
+            border-color:#343434;
+        }
+
+        body.dark-mode .history-hero-stat-label {
+            color:#9ca3af;
+        }
+
+        body.dark-mode .history-quick-link {
+            background:#2a2a2a;
+            border-color:#5a3a5f;
+            color:#F9A8D4;
+        }
+
+        body.dark-mode .history-quick-link:hover {
+            background:#342236;
+            border-color:#6b456f;
+        }
         
         body.dark-mode .bg-gray-100 {
             background-color: #333333 !important;
@@ -132,6 +211,55 @@
             background-color: #2a2a2a;
             color: #e5e5e5;
             border-color: #4a4a4a;
+        }
+
+        body.dark-mode .history-browser-desc,
+        body.dark-mode .history-browser-hint {
+            color: #b4b4b4;
+        }
+
+        body.dark-mode .history-browser-summary {
+            background-color: #3d2940;
+            border-color: #5a3a5f;
+        }
+
+        body.dark-mode .history-browser-status {
+            background: linear-gradient(135deg, rgba(61,41,64,0.95), rgba(42,42,42,1));
+            border-color: #5a3a5f;
+        }
+
+        body.dark-mode .history-browser-summary-label,
+        body.dark-mode .history-browser-summary-meta,
+        body.dark-mode .history-browser-summary-action,
+        body.dark-mode .history-browser-status-label,
+        body.dark-mode .history-browser-badge {
+            color: #F9A8D4;
+        }
+
+        body.dark-mode .history-browser-summary-title {
+            color: #FBCFE8;
+        }
+
+        body.dark-mode .history-browser-summary-action {
+            background-color: #2a2a2a;
+            border-color: #6b456f;
+        }
+
+        body.dark-mode .history-browser-summary-action:hover {
+            background-color: #342236;
+        }
+
+        body.dark-mode .history-browser-badge {
+            background-color:#2a2a2a;
+            border-color:#6b456f;
+        }
+
+        body.dark-mode .history-browser-divider {
+            border-top-color: #3a3a3a;
+        }
+
+        body.dark-mode .history-browser-hint {
+            background-color: #2f2f2f;
         }
         
         /* 主题切换按钮 */
@@ -190,6 +318,39 @@
         
         /* 移动端优化 */
         @media (max-width: 640px) {
+            .history-hero {
+                padding: 1.2rem;
+            }
+
+            .history-page-title {
+                font-size: 1.9rem;
+            }
+
+            .history-browser-controls {
+                grid-template-columns: 1fr;
+            }
+
+            .history-browser-summary {
+                min-width: 0;
+                width: 100%;
+            }
+
+            .report-container {
+                padding-right: 1rem;
+            }
+
+            .view-details-btn {
+                position: static;
+                transform: none;
+                margin-top: .75rem;
+            }
+
+            .history-browser-status,
+            .history-hero-top {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
             .theme-toggle {
                 bottom: 1rem;
                 right: 1rem;
@@ -204,44 +365,43 @@
 <body class="bg-white text-black min-h-screen">
     <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
         <header class="w-full mb-6">
-            <div class="bento-card p-8">
-                <div class="text-center">
-                    <h1 class="text-5xl font-black text-black mb-4">自媒体糕校历史汇总</h1>
-                    <div class="flex flex-col sm:flex-row justify-center items-center space-y-2 sm:space-y-0 sm:space-x-6 text-lg">
-                        <div class="flex items-center text-gray-700">
-                            <i class="fas fa-history mr-2 text-pink-500"></i>
-                            <span>按年/月快速检索</span>
+            <div class="bento-card history-hero">
+                <div class="history-hero-top">
+                    <div class="history-hero-copy">
+                        <div class="history-hero-eyebrow">
+                            <i class="fas fa-history text-pink-500"></i>
+                            <span>历史入口总览</span>
                         </div>
-                        <div class="flex items-center text-gray-700">
-                            <i class="fas fa-calendar-alt mr-2 text-pink-500"></i>
-                            <span>2025年9月起</span>
-                        </div>
-                        <div id="env-indicator" class="flex items-center text-gray-600 text-sm"></div>
+                        <h1 class="history-page-title">自媒体糕校历史汇总</h1>
+                        <p class="history-hero-desc">这页现在分成两种清晰入口：上方按关键词搜索历史内容，下方按年月直接打开日报页面，减少筛选含义重叠带来的混淆。</p>
                     </div>
+                    <div class="history-hero-stats">
+                        <div class="history-hero-stat">
+                            <div class="history-hero-stat-label">内容范围</div>
+                            <div class="history-hero-stat-value">2025年9月起</div>
+                        </div>
+                        <div class="history-hero-stat">
+                            <div class="history-hero-stat-label">访问环境</div>
+                            <div id="env-indicator" class="history-hero-stat-value"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="history-quick-nav">
+                    <a href="#history-search-section" class="history-quick-link">
+                        <i class="fas fa-search text-pink-500"></i>
+                        <span>先按内容搜索</span>
+                    </a>
+                    <a href="#history-browser-section" class="history-quick-link">
+                        <i class="fas fa-folder-open text-pink-500"></i>
+                        <span>按年月浏览页面</span>
+                    </a>
+                    <a href="#annual-summary-card" class="history-quick-link">
+                        <i class="fas fa-chart-line text-pink-500"></i>
+                        <span>查看年度总结</span>
+                    </a>
                 </div>
             </div>
         </header>
-
-        <section class="w-full mb-6">
-            <div class="bento-card p-6">
-                <h3 class="text-lg font-semibold text-gray-800 mb-3 flex items-center">
-                    <i class="fas fa-chart-line mr-2 text-pink-500"></i>年度总结
-                </h3>
-                <div class="report-container">
-                    <a href="2025/2025_annual_summary.html" class="report-title-link" target="_blank">
-                        2025年度总结
-                    </a>
-                    <div class="report-date-info">
-                        <i class="fas fa-calendar-alt"></i>
-                        <span>2025年全年数据汇总</span>
-                    </div>
-                    <a href="2025/2025_annual_summary.html" class="view-details-btn" target="_blank">
-                        <i class="fas fa-external-link-alt"></i>
-                        查看详情
-                    </a>
-                </div>
-            </div>
-        </section>
 
         <div id="error-message" class="error-message">
             <div class="flex items-center">
@@ -250,71 +410,88 @@
             </div>
         </div>
 
-        <section class="w-full mb-6">
+        <section id="history-browser-section" class="w-full mb-12">
             <div class="bento-card p-6">
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div>
-                        <label for="yearSelector" class="block text-sm font-semibold text-gray-800 mb-2">
-                            <i class="fas fa-calendar mr-2 text-pink-500"></i>选择年份
-                        </label>
-                        <select id="yearSelector" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-pink-500 transition-colors">
-                            <option value="">请选择年份</option>
-                        </select>
+                <div class="history-browser-card">
+                    <div class="history-browser-header">
+                        <div class="history-browser-copy">
+                            <div class="history-browser-kicker">
+                                <i class="fas fa-folder-open text-pink-500"></i>
+                                <span>按年月浏览页面</span>
+                            </div>
+                            <h2 class="section-title mb-3">历史日报入口</h2>
+                            <p class="history-browser-desc">上方搜索用于按关键词找内容，这里用于按时间直接打开历史日报页面，分工更清晰。</p>
+                        </div>
+                        <div id="annual-summary-card" class="history-browser-summary">
+                            <div class="history-browser-summary-copy">
+                                <div class="history-browser-summary-label">年度总结</div>
+                                <a href="2025/2025_annual_summary.html" class="history-browser-summary-title" target="_blank">2025年度总结</a>
+                                <p class="history-browser-summary-meta">全年数据汇总入口</p>
+                            </div>
+                            <a href="2025/2025_annual_summary.html" class="history-browser-summary-action" target="_blank">查看</a>
+                        </div>
                     </div>
-                    <div>
-                        <label for="monthSelector" class="block text-sm font-semibold text-gray-800 mb-2">
-                            <i class="fas fa-calendar-days mr-2 text-pink-500"></i>选择月份
-                        </label>
-                        <select id="monthSelector" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-pink-500 transition-colors" disabled>
-                            <option value="">请先选择年份</option>
-                        </select>
+                    <div class="history-browser-controls">
+                        <div>
+                            <label for="yearSelector" class="block text-sm font-semibold text-gray-800 mb-2">
+                                <i class="fas fa-calendar mr-2 text-pink-500"></i>浏览年份
+                            </label>
+                            <select id="yearSelector" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-pink-500 transition-colors">
+                                <option value="">请选择年份</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="monthSelector" class="block text-sm font-semibold text-gray-800 mb-2">
+                                <i class="fas fa-calendar-days mr-2 text-pink-500"></i>浏览月份
+                            </label>
+                            <select id="monthSelector" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-pink-500 transition-colors" disabled>
+                                <option value="">请先选择年份</option>
+                            </select>
+                        </div>
                     </div>
+                    <div class="history-browser-status">
+                        <div class="history-browser-status-copy">
+                            <div class="history-browser-status-label">当前浏览状态</div>
+                            <h3 id="browseStatusTitle" class="history-browser-status-title">已定位到最近可浏览月份</h3>
+                            <p id="browseStatusDesc" class="history-browser-status-desc">这里展示对应月份下的所有日报页面链接。</p>
+                        </div>
+                        <div class="history-browser-status-badges">
+                            <span id="browseYearBadge" class="history-browser-badge">--年</span>
+                            <span id="browseMonthBadge" class="history-browser-badge">--月</span>
+                            <span id="browseModeBadge" class="history-browser-badge">按时间打开日报页</span>
+                        </div>
+                    </div>
+                    <div class="history-browser-hints">
+                        <div class="history-browser-hint">
+                            <i class="fas fa-search text-pink-500"></i>
+                            <span>搜索卡片查内容关键词</span>
+                        </div>
+                        <div class="history-browser-hint">
+                            <i class="fas fa-link text-pink-500"></i>
+                            <span>这里按年月查看页面链接</span>
+                        </div>
+                    </div>
+                    <div class="history-browser-divider"></div>
                 </div>
-            </div>
-        </section>
-
-        <section class="w-full mb-12">
-            <div class="bento-card p-6">
                 <div id="reports-header" class="mb-4" style="display: none;">
-                    <h2 class="section-title">
+                    <h2 class="report-results-title">
                         <span id="selected-period">所选时期</span> 的日报
                     </h2>
-                    <div class="flex items-center text-gray-600 mb-2">
-                        <i class="fas fa-file-alt mr-2 text-pink-500"></i>
-                        <span>共找到 <span id="reports-count" class="font-semibold text-pink-600">0</span> 份日报</span>
+                    <div class="reports-meta-row text-gray-600 mb-2">
+                        <div class="flex items-center">
+                            <i class="fas fa-file-alt mr-2 text-pink-500"></i>
+                            <span>共找到 <span id="reports-count" class="font-semibold text-pink-600">0</span> 份日报</span>
+                        </div>
+                        <div class="reports-meta-badge">
+                            <i class="fas fa-link text-pink-500"></i>
+                            <span>点击标题或按钮即可打开</span>
+                        </div>
                     </div>
                 </div>
                 <div id="reportLinksContainer" class="min-h-[160px]">
                     <div class="text-center text-gray-500 py-8">
                         <i class="fas fa-info-circle text-2xl mb-2"></i>
-                        <p>请选择年份和月份以查看日报</p>
-                    </div>
-                </div>
-                <div id="empty-state" class="text-center py-10" style="display: none;">
-                    <div class="bento-card p-8">
-                        <i class="fas fa-calendar-times text-gray-400 text-3xl mb-3"></i>
-                        <h3 class="text-lg font-semibold text-gray-700 mb-1">暂无日报数据</h3>
-                        <p class="text-gray-500 text-sm">所选时间段内没有找到相关的日报记录</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-
-
-        <section class="w-full mb-8">
-            <div class="bento-card p-6">
-                <h3 class="text-lg font-semibold text-gray-800 mb-3 flex items-center">
-                    <i class="fas fa-info-circle mr-2 text-pink-500"></i>使用说明
-                </h3>
-                <div class="space-y-2 text-sm text-gray-700">
-                    <div class="flex items-start">
-                        <i class="fas fa-search mr-2 text-pink-500 mt-0.5"></i>
-                        <span>使用上方的年份和月份选择器来筛选查看特定时期的日报</span>
-                    </div>
-                    <div class="flex items-start">
-                        <i class="fas fa-link mr-2 text-pink-500 mt-0.5"></i>
-                        <span>点击日报标题即可跳转到对应的详细日报页面</span>
+                        <p>请选择浏览年份和月份以查看日报页面</p>
                     </div>
                 </div>
             </div>
@@ -374,6 +551,31 @@
             return w[d.getDay()];
         }
 
+        function updateBrowseStatus(year, month, reportCount) {
+            const titleEl = document.getElementById('browseStatusTitle');
+            const descEl = document.getElementById('browseStatusDesc');
+            const yearBadge = document.getElementById('browseYearBadge');
+            const monthBadge = document.getElementById('browseMonthBadge');
+
+            if (yearBadge) yearBadge.textContent = year ? `${year}年` : '--年';
+            if (monthBadge) monthBadge.textContent = month ? `${month}月` : '--月';
+            if (!titleEl || !descEl) return;
+
+            if (year && month) {
+                titleEl.textContent = `当前浏览 ${year}年${month}月`;
+                if (typeof reportCount === 'number') {
+                    descEl.textContent = reportCount > 0
+                        ? `已找到 ${reportCount} 份可访问日报，按时间顺序展示。`
+                        : '当前月份暂无日报页面，可切换月份或改用上方搜索。';
+                } else {
+                    descEl.textContent = '这里展示对应月份下的所有日报页面链接。';
+                }
+            } else {
+                titleEl.textContent = '请选择浏览年月';
+                descEl.textContent = '这里展示对应月份下的所有日报页面链接。';
+            }
+        }
+
         function populateYearSelector(currentSystemYear) {
             yearSelector.innerHTML = '';
             for (let y = START_YEAR; y <= currentSystemYear; y++) {
@@ -382,6 +584,7 @@
                 yearSelector.appendChild(opt);
             }
             yearSelector.value = currentSystemYear;
+            updateBrowseStatus(currentSystemYear, getToday().month);
             populateMonthSelector(currentSystemYear, currentSystemYear, getToday().month);
         }
 
@@ -405,6 +608,7 @@
                 monthSelector.appendChild(opt);
             }
             monthSelector.value = (selectedYear == currentSystemYear) ? currentSystemMonth : endMonth;
+            updateBrowseStatus(selectedYear, parseInt(monthSelector.value) || null);
             if (monthSelector.value) fetchAndDisplayReports(selectedYear, parseInt(monthSelector.value));
         }
 
@@ -416,12 +620,14 @@
             } else {
                 monthSelector.innerHTML = '<option value="">请先选择年份</option>';
                 monthSelector.disabled = true;
+                updateBrowseStatus(null, null);
                 showDefaultMessage();
             }
         }
         function handleMonthChange() {
             const y = parseInt(yearSelector.value);
             const m = parseInt(monthSelector.value);
+            updateBrowseStatus(y, m);
             if (y && m) fetchAndDisplayReports(y, m);
         }
 
@@ -505,6 +711,7 @@
                     header.style.display = 'block';
                     sel.textContent = `${year}年${month}月`;
                     cnt.textContent = existing.length;
+                    updateBrowseStatus(year, month, existing.length);
 
                     reportLinksContainer.innerHTML = existing.map(r => `
                         <div class="report-container">
@@ -523,11 +730,12 @@
                     `).join('');
                 } else {
                     header.style.display = 'none';
+                    updateBrowseStatus(year, month, 0);
                     reportLinksContainer.innerHTML = `
                         <div class="text-center text-gray-500 py-8">
                             <i class="fas fa-calendar-times text-2xl mb-2"></i>
-                            <p>该月份暂无日报</p>
-                            <p class="text-sm mt-1">请选择其他月份或等待新日报上传</p>
+                            <p>该月份暂无可浏览的日报页面</p>
+                            <p class="text-sm mt-1">可切换其他月份，或使用上方搜索直接查历史内容</p>
                         </div>
                     `;
                 }
@@ -535,6 +743,7 @@
                 console.error(e);
                 const header = document.getElementById('reports-header');
                 header.style.display = 'none';
+                updateBrowseStatus(year, month);
                 reportLinksContainer.innerHTML = `
                     <div class="text-center text-red-500 py-8">
                         <i class="fas fa-exclamation-triangle text-2xl mb-2"></i>
@@ -551,7 +760,7 @@
             reportLinksContainer.innerHTML = `
                 <div class="text-center text-gray-500 py-8">
                     <i class="fas fa-info-circle text-2xl mb-2"></i>
-                    <p>请选择年份和月份以查看日报</p>
+                    <p>请选择浏览年份和月份以查看日报页面</p>
                 </div>
             `;
         }
