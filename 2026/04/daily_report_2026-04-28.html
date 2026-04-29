@@ -827,4 +827,27 @@
                             }
                             currentLength += node.textContent.length;
                         } else if (node.nodeType === Node.ELEMENT_NODE) {
-                            Array.from(node.childNodes).forEach(child => truncat
+                            Array.from(node.childNodes).forEach(child => truncateNode(child));
+                        }
+                    }
+                    truncateNode(tempDiv);
+                    const previewContent = tempDiv.innerHTML;
+                    contentPreview.innerHTML = previewContent;
+                    contentPreview.classList.add('collapsed');
+                    expandBtn.style.display = 'flex';
+                    expandBtn.addEventListener('click', function() {
+                        const isExpanded = this.classList.toggle('expanded');
+                        contentPreview.classList.toggle('collapsed');
+                        contentPreview.innerHTML = isExpanded ? fullContent : previewContent;
+                        this.querySelector('.expand-text').textContent = isExpanded ? '收起' : '展开全文';
+                    });
+                } else {
+                    expandBtn.style.display = 'none';
+                }
+            });
+        }
+    </script>
+    <!-- Shared site search -->
+    <script src="../../assets/search.js" defer data-gj-search-script="true"></script>
+</body>
+</html>
