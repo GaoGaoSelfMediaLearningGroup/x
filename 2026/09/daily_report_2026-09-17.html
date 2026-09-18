@@ -1,0 +1,1854 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>自媒体糕校日报 2026-09-17</title>
+    
+    <!-- SEO 元数据 -->
+    <meta name="description" content="自媒体糕校日报 2026年9月17日 - 新手赛道选择与标签策略、美食赛道实操、众测收入机制揭秘、AI手办模板等精彩内容分享">
+    <meta name="keywords" content="自媒体,糕校日报,赛道选择,标签策略,美食赛道,众测,AI手办,小红书运营">
+    <meta name="author" content="自媒体糕校">
+    
+    <!-- Open Graph / 社交媒体分享标签 -->
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="自媒体糕校日报 2026-09-17">
+    <meta property="og:description" content="新手赛道选择与标签策略、美食赛道实操、众测收入机制揭秘、AI手办模板">
+    <meta property="og:site_name" content="自媒体糕校">
+    <meta property="og:locale" content="zh_CN">
+    
+    <!-- Twitter Card 标签 -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="自媒体糕校日报 2026-09-17">
+    <meta name="twitter:description" content="新手赛道选择与标签策略、美食赛道实操、众测收入机制揭秘等精彩内容分享">
+    
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-6C9T7FPDT2"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-6C9T7FPDT2');
+    </script>
+    
+    <!-- 深色模式预加载脚本 - 终极防闪烁方案 -->
+    <script>
+        // 在DOM解析前立即执行，最大程度避免闪烁
+        (function() {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                // 方案1：为html元素添加类
+                document.documentElement.classList.add('dark-mode-preload');
+                
+                // 方案2：直接设置body的内联样式（更早生效）
+                const style = document.createElement('style');
+                style.textContent = `
+                    html, body { background-color: #1a1a1a !important; color: #e5e5e5 !important; }
+                `;
+                document.head.appendChild(style);
+            }
+        })();
+    </script>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+        * {
+            font-family: 'Inter', ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+        }
+
+        body {
+            background-color: #ffffff;
+            color: #000000;
+        }
+
+        .bento-card {
+            background-color: #ffffff;
+            border: 1px solid #e9e9eb;
+            border-radius: 1rem;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.07), 0 2px 4px -2px rgba(0,0,0,0.05);
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        .bento-card:hover {
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.07), 0 4px 6px -4px rgba(0,0,0,0.05);
+            transform: translateY(-3px);
+        }
+
+        .number-display {
+            font-weight: 900;
+            font-size: 4rem;
+            line-height: 1;
+        }
+
+        .section-title {
+            font-weight: 800;
+            font-size: 2.25rem;
+            color: #000000;
+            margin-bottom: 2rem;
+            white-space: nowrap;
+        }
+
+        @media (max-width: 640px) {
+            .section-title {
+                font-size: 1.5rem;
+                margin-bottom: 1.5rem;
+            }
+            .number-display {
+                font-size: 3rem;
+            }
+            .bento-card.p-8 {
+                padding: 1.25rem !important;
+            }
+            .bento-card.p-6 {
+                padding: 1rem !important;
+            }
+            .bento-card.p-5 {
+                padding: 0.875rem !important;
+            }
+            h1.text-5xl {
+                font-size: 2rem !important;
+                margin-bottom: 1.25rem !important;
+            }
+            h4.text-xl {
+                font-size: 1.125rem !important;
+            }
+            p.text-xl {
+                font-size: 1rem !important;
+            }
+        }
+
+        .tag-item {
+            background-color: rgba(236, 72, 153, 0.10);
+            color: #EC4899;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+
+        .expandable-content {
+            position: relative;
+        }
+
+        .content-preview.collapsed {
+            max-height: 11rem;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .content-preview.collapsed::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 30px;
+            background: linear-gradient(transparent, rgba(255, 255, 255, 0.9));
+            pointer-events: none;
+        }
+
+        .content-preview.collapsed p,
+        .content-preview.collapsed ul,
+        .content-preview.collapsed ol,
+        .content-preview.collapsed li,
+        .content-preview.collapsed h1,
+        .content-preview.collapsed h2,
+        .content-preview.collapsed h3,
+        .content-preview.collapsed h4,
+        .content-preview.collapsed h5,
+        .content-preview.collapsed h6 {
+            margin-top: 0.25rem !important;
+            margin-bottom: 0.25rem !important;
+            line-height: 1.5 !important;
+        }
+        .content-preview.collapsed br {
+            display: none;
+        }
+        .content-preview.collapsed b + br {
+            display: inline;
+        }
+
+        .expand-btn {
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+            background: none;
+            padding: 0;
+        }
+
+        .expand-btn:hover {
+            transform: translateY(-1px);
+        }
+
+        .expand-icon {
+            transition: transform 0.3s ease;
+        }
+
+        .expand-btn.expanded .expand-icon {
+            transform: rotate(180deg);
+        }
+
+        .text-\[\#4D6BFE\] { color: #EC4899 !important; }
+        .border-\[\#4D6BFE\] { border-color: #EC4899 !important; }
+        .border-\[\#93c5fd\] { border-color: #F9A8D4 !important; }
+        
+        .from-\[\#4D6BFE\]\/20 { --tw-gradient-from: rgb(236 72 153 / 0.20) !important; }
+        .via-\[\#4D6BFE\]\/10 { --tw-gradient-stops: var(--tw-gradient-from), rgb(236 72 153 / 0.10), var(--tw-gradient-to) !important; }
+        .to-\[\#4D6BFE\]\/5 { --tw-gradient-to: rgb(236 72 153 / 0.05) !important; }
+
+        .bg-purple-50   { background-color: #FDF2F8 !important; }
+        .border-purple-200 { border-color: #FBCFE8 !important; }
+        .text-purple-700   { color: #BE185D !important; }
+        .text-purple-600   { color: #DB2777 !important; }
+        
+        .hover\:text-blue-700:hover { color: #BE185D !important; }
+        .bg-blue-50 { background-color: #FDF2F8 !important; }
+
+        .floating-action-stack {
+            position: fixed;
+            right: 2rem;
+            bottom: 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 0.75rem;
+            z-index: 1000;
+        }
+        
+        .toc-floating-container {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 0.75rem;
+        }
+        
+        .toc-floating-button {
+            width: 3rem;
+            height: 3rem;
+            border-radius: 9999px;
+            background: #EC4899;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            border: none;
+            box-shadow: 0 4px 12px rgba(236, 72, 153, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .toc-floating-button:hover {
+            background: #DB2777;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 16px rgba(236, 72, 153, 0.4);
+        }
+        
+        .toc-floating-button.active {
+            background: #DB2777;
+        }
+        
+        .toc-panel {
+            position: absolute;
+            right: 0;
+            bottom: calc(100% + 0.75rem);
+            width: 20rem;
+            max-width: calc(100vw - 2.5rem);
+            max-height: 70vh;
+            overflow-y: auto;
+            background-color: #ffffff;
+            border: 1px solid #e9e9eb;
+            border-radius: 1rem;
+            box-shadow: 0 12px 30px rgba(236, 72, 153, 0.25);
+            padding: 1.25rem;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+        }
+        
+        .toc-panel.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        
+        .toc-panel-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+        }
+        
+        .toc-panel-title {
+            display: flex;
+            align-items: center;
+            font-size: 1rem;
+            font-weight: 700;
+            color: #000000;
+        }
+        
+        .toc-panel-title i {
+            margin-right: 0.5rem;
+            color: #EC4899;
+        }
+        
+        .toc-close {
+            background: transparent;
+            border: none;
+            padding: 0.25rem;
+            border-radius: 0.5rem;
+            color: #9ca3af;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .toc-close:hover {
+            color: #EC4899;
+            background: rgba(236, 72, 153, 0.1);
+        }
+        
+        .toc-items {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+        
+        .toc-link {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            padding: 0.5rem 0.75rem;
+            color: #6b7280;
+            text-decoration: none;
+            font-size: 0.875rem;
+            border-radius: 0.75rem;
+            transition: all 0.2s ease;
+        }
+        
+        .toc-link i {
+            width: 1rem;
+            text-align: center;
+            color: #EC4899;
+        }
+        
+        .toc-link:hover {
+            color: #EC4899;
+            background-color: #FDF2F8;
+            box-shadow: inset 2px 0 0 0 #EC4899;
+        }
+        
+        .toc-link.active {
+            color: #EC4899;
+            font-weight: 600;
+            background-color: #FDF2F8;
+            box-shadow: inset 2px 0 0 0 #EC4899;
+        }
+        
+        body.dark-mode .floating-action-stack {
+            gap: 0.75rem;
+        }
+        
+        body.dark-mode .toc-panel {
+            background-color: #2a2a2a;
+            border-color: #3a3a3a;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6);
+        }
+        
+        body.dark-mode .toc-panel-title {
+            color: #f5f5f5;
+        }
+        
+        body.dark-mode .toc-panel-title i {
+            color: #f472b6;
+        }
+        
+        body.dark-mode .toc-close {
+            color: #d1d5db;
+        }
+        
+        body.dark-mode .toc-close:hover {
+            background: rgba(236, 72, 153, 0.2);
+            color: #f472b6;
+        }
+        
+        body.dark-mode .toc-link {
+            color: #d1d5db !important;
+        }
+        
+        body.dark-mode .toc-link i {
+            color: #f472b6;
+        }
+        
+        body.dark-mode .toc-link:hover,
+        body.dark-mode .toc-link.active {
+            color: #f472b6 !important;
+            background-color: rgba(236, 72, 153, 0.18) !important;
+            box-shadow: inset 2px 0 0 0 rgba(236, 72, 153, 0.6);
+        }
+        
+        .back-to-top {
+            width: 3rem;
+            height: 3rem;
+            background: #EC4899;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(236, 72, 153, 0.3);
+        }
+        
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .back-to-top:hover {
+            background: #DB2777;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 16px rgba(236, 72, 153, 0.4);
+        }
+        
+        .copy-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.25rem;
+            padding: 0.25rem 0.5rem;
+            background: transparent;
+            color: #EC4899;
+            border: 1px solid #EC4899;
+            border-radius: 0.375rem;
+            font-size: 0.75rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .copy-btn:hover {
+            background: #EC4899;
+            color: white;
+        }
+        
+        .copy-btn.copied {
+            background: #10b981;
+            border-color: #10b981;
+            color: white;
+        }
+        
+        html.dark-mode-preload,
+        html.dark-mode-preload body,
+        body.dark-mode {
+            background-color: #1a1a1a;
+            color: #e5e5e5;
+        }
+        
+        html.dark-mode-preload .bento-card,
+        body.dark-mode .bento-card {
+            background-color: #2a2a2a;
+            border-color: #3a3a3a;
+        }
+        
+        body.dark-mode .section-title {
+            color: #f5f5f5;
+        }
+        
+        body.dark-mode .text-black {
+            color: #e5e5e5 !important;
+        }
+        
+        body.dark-mode .text-gray-700 {
+            color: #a0a0a0 !important;
+        }
+        
+        body.dark-mode .text-gray-600 {
+            color: #909090 !important;
+        }
+        
+        body.dark-mode .text-gray-800 {
+            color: #c0c0c0 !important;
+        }
+        
+        body.dark-mode .bg-slate-50 {
+            background-color: #2f2f2f !important;
+        }
+        
+        body.dark-mode .bg-gray-50 {
+            background-color: #2f2f2f !important;
+        }
+        
+        body.dark-mode .bg-gray-100 {
+            background-color: #333333 !important;
+        }
+        
+        body.dark-mode .bg-purple-50 {
+            background-color: #3d2940 !important;
+        }
+        
+        body.dark-mode .bg-amber-50 {
+            background-color: #3d3420 !important;
+        }
+        
+        body.dark-mode .border-gray-200 {
+            border-color: #3a3a3a !important;
+        }
+        
+        body.dark-mode .border-purple-200 {
+            border-color: #5a3a5f !important;
+        }
+        
+        body.dark-mode .bg-blue-50 {
+            background-color: #1e3a5f !important;
+        }
+        
+        body.dark-mode .border-amber-400 {
+            border-color: #d97706 !important;
+        }
+        
+        body.dark-mode .content-preview.collapsed::after {
+            background: linear-gradient(transparent, rgba(26, 26, 26, 0.95));
+        }
+        
+        body.dark-mode b,
+        body.dark-mode strong {
+            color: #f5f5f5 !important;
+            font-weight: 700;
+            text-shadow: 0 0 0.5px rgba(255, 255, 255, 0.3);
+        }
+        
+        body.dark-mode a {
+            color: #F9A8D4;
+        }
+        
+        body.dark-mode a:hover {
+            color: #FBCFE8;
+        }
+        
+        body.dark-mode .tag-item {
+            background-color: rgba(236, 72, 153, 0.2);
+            color: #F9A8D4;
+        }
+        
+        body.dark-mode .text-pink-600 {
+            color: #F9A8D4 !important;
+        }
+        
+        body.dark-mode .text-pink-700 {
+            color: #FBCFE8 !important;
+        }
+        
+        body.dark-mode .text-green-700 {
+            color: #86efac !important;
+        }
+        
+        body.dark-mode .text-green-600 {
+            color: #4ade80 !important;
+        }
+        
+        body.dark-mode h1,
+        body.dark-mode h2,
+        body.dark-mode h3,
+        body.dark-mode h4,
+        body.dark-mode h5 {
+            color: #f5f5f5 !important;
+        }
+        
+        body.dark-mode .border-l-4 {
+            opacity: 0.8;
+        }
+        
+        body.dark-mode .copy-btn {
+            border-color: #F9A8D4;
+            color: #F9A8D4;
+        }
+        
+        body.dark-mode .copy-btn:hover {
+            background: #F9A8D4;
+            color: #1a1a1a;
+        }
+        
+        .theme-toggle {
+            width: 3rem;
+            height: 3rem;
+            background: #EC4899;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(236, 72, 153, 0.3);
+        }
+        
+        .theme-toggle:hover {
+            background: #DB2777;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 16px rgba(236, 72, 153, 0.4);
+        }
+        
+        @media print {
+            .floating-action-stack, nav, .copy-btn, .expand-btn {
+                display: none !important;
+            }
+            body {
+                background: white;
+                color: black;
+            }
+            .bento-card {
+                box-shadow: none;
+                border: 1px solid #ddd;
+                page-break-inside: avoid;
+            }
+            .content-preview.collapsed {
+                max-height: none !important;
+            }
+            .content-preview.collapsed::after {
+                display: none;
+            }
+        }
+        
+        @media (max-width: 640px) {
+            .floating-action-stack {
+                right: 1rem;
+                bottom: 1rem;
+                gap: 0.5rem;
+            }
+            .floating-action-stack .toc-floating-button,
+            .floating-action-stack .theme-toggle,
+            .floating-action-stack .back-to-top {
+                width: 2.75rem;
+                height: 2.75rem;
+            }
+            .toc-panel {
+                width: calc(100vw - 2rem);
+                max-width: calc(100vw - 2rem);
+                max-height: 60vh;
+                padding: 1rem;
+            }
+        }
+
+        body {
+            animation: fadeIn 0.3s ease-in;
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+    </style>
+    <!-- Shared site search -->
+    <link rel="stylesheet" href="../../assets/search.css" data-gj-search-style="true">
+</head>
+<body class="bg-white text-black min-h-screen">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+
+        <header class="w-full mb-8" role="banner">
+            <div class="bento-card p-8">
+                <div class="text-center">
+                    <h1 class="text-5xl font-black text-black mb-6">
+                        自媒体糕校
+                    </h1>
+                    <div class="flex flex-col sm:flex-row justify-center items-center space-y-2 sm:space-y-0 sm:space-x-6 text-lg mb-4">
+                        <div class="flex items-center text-gray-700">
+                            <i class="fas fa-calendar-alt mr-2 text-[#4D6BFE]"></i>
+                            <span id="report-date">2026年9月17日</span>
+                        </div>
+                        <div class="flex items-center text-gray-700">
+                            <i class="fas fa-clock mr-2 text-[#4D6BFE]"></i>
+                            <span>09:57 - 23:59</span>
+                        </div>
+                    </div>
+                    <div class="mt-4">
+                        <a id="history-link" href="https://gaogaoselfmedialearninggroup.github.io/x/historical_page_summary.html" 
+                           class="inline-flex items-center gap-2 text-pink-600 hover:text-pink-700 bg-pink-50 hover:bg-pink-100 border border-pink-200 hover:border-pink-300 px-4 py-2 rounded-lg transition-all text-sm font-medium shadow-sm hover:shadow">
+                            <i class="fas fa-history"></i>
+                            <span>糕校历史日报</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </header>
+        
+        <nav class="w-full mb-8" aria-label="日期导航">
+            <div class="bento-card p-5">
+                <div class="flex items-center justify-between mb-4">
+                    <button id="prev-day" class="inline-flex items-center gap-2 bg-pink-500 hover:bg-pink-600 text-white px-4 py-2 rounded-lg shadow disabled:bg-gray-200 disabled:text-gray-400 transition-all" aria-label="查看前一天日报">
+                        <i class="fas fa-chevron-left"></i>
+                        <span class="hidden sm:inline">上一天</span>
+                        <span class="sm:hidden">上一天</span>
+                    </button>
+                    <button id="next-day" class="inline-flex items-center gap-2 bg-pink-500 hover:bg-pink-600 text-white px-4 py-2 rounded-lg shadow disabled:bg-gray-200 disabled:text-gray-400 transition-all" aria-label="查看后一天日报">
+                        <span class="hidden sm:inline">下一天</span>
+                        <span class="sm:hidden">下一天</span>
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+        </nav>
+
+        <section id="section-overview" class="w-full mb-12" aria-labelledby="section-overview-title">
+            <h2 id="section-overview-title" class="section-title">
+                一、今日群聊速览
+            </h2>
+            <div class="bento-card p-8 bg-gradient-to-br from-[#EC4899]/20 via-[#EC4899]/10 to-[#EC4899]/5 text-center rounded-2xl">
+                <div class="number-display text-[#4D6BFE]">
+                    186
+                </div>
+                <p class="text-xl font-semibold text-black mt-3">总消息数量</p>
+            </div>
+        </section>
+
+        <section id="section-topics" class="w-full mb-12" aria-labelledby="section-topics-title">
+            <h2 id="section-topics-title" class="section-title">
+                二、糕论时刻・深度话题
+            </h2>
+            <div class="space-y-8">
+
+                <!-- 话题1 -->
+                <div class="bento-card p-6 rounded-xl"> 
+                    <div class="flex flex-col sm:flex-row items-start justify-between mb-4">
+                        <h4 class="text-xl font-bold text-black flex-1 mb-2 sm:mb-0">
+                            新手自媒体起步：赛道选择与标签策略深度研讨
+                        </h4>
+                        <span class="text-sm text-gray-600 ml-0 sm:ml-4 whitespace-nowrap bg-gray-100 px-3 py-1.5 rounded-md">
+                            <i class="fas fa-clock mr-1.5 text-gray-500"></i>
+                            17:13 - 18:20
+                        </span>
+                    </div>
+
+                    <div class="mb-4 bg-purple-50 border border-purple-200 rounded-md p-3">
+                        <p class="text-sm font-medium text-purple-700 mb-1">爬楼关键词</p>
+                        <p class="text-sm text-purple-600 italic">
+                            胡小窝：“既然叫糕校，那叫同学就没错了哈~~向大家请教一下，我是发完才反应过来充分利用ima知识库。”
+                        </p>
+                    </div>
+
+                    <div class="mb-5">
+                        <p class="text-sm font-semibold text-gray-800 mb-2">相关关键词</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="tag-item">赛道选择</span>
+                            <span class="tag-item">标签策略</span>
+                            <span class="tag-item">冷启动</span>
+                            <span class="tag-item">账号多开</span>
+                            <span class="tag-item">人设垂直</span>
+                        </div>
+                    </div>
+
+                    <div class="mb-5">
+                        <p class="text-sm font-semibold text-gray-800 mb-2">详细内容</p>
+                        <div class="text-gray-700 text-base leading-relaxed bg-slate-50 p-4 rounded-md prose prose-sm max-w-none">
+                            <div class="expandable-content" data-char-limit="200">
+                                <div class="content-preview">
+                                    <b>一、话题背景与起因</b><br>新群友<b>胡小窝</b>发完第一篇小红书后，发现自己犯了几个常见错误（定时发布、tag乱打、修改重发），同时对赛道选择和标签策略感到迷茫。她的提问引发了群内关于新手起步的系统性指导。<br><br><b>二、主要观点与讨论详情</b><br>1. <b>赛道要自己找，不能问AI</b>：<b>糕效率</b>明确指出，“赛道要自己找，不能问ai”，并强调“Ai是一个数据检索工具，不是能帮你做决定的人”。她引用<b>黄云</b>老师此前发的“赛道与定位”清单，引导<b>胡小窝</b>明确目标用户和自身标签。<br>2. <b>先定赛道再打标签</b>：针对<b>胡小窝</b>关于“怎么决定打什么标签”的困惑，<b>糕效率</b>给出明确路径——“先定赛道，再打标签”，并以盒马一人食为例，说明标签推算逻辑（一人食、盒马、预制菜、减脂餐）。<b>不渡</b>也分享了自己的方法：先搜同主题帖子，看别人的tag怎么打，同时关注活动标签的流量机会。<br>3. <b>不要着相，赛道可以换</b>：<b>Suerte</b>提醒“不要着相，赛道只是个方便交流的概念”。<b>糕效率</b>进一步降低大家的心理门槛——“就算担心转赛道会流量差，账号注销重开不就好了”“群里很多人都是一人多号，什么赛道都摸索一下，不要给自己上压力”。<br>4. <b>从最简单的赛道开始练手</b>：<b>糕效率</b>建议<b>胡小窝</b>“选一个最简单的赛道，比如类似群友的超市好吃的推荐，拿着手上拍，讲两句，就当是用来熟悉一下自媒体的流程和规则”，等有了沉淀再开主号。<br><br><b>三、结论与启发</b><br>新手起步的核心原则：<b>赛道由自己决定，AI只能辅助检索；先定赛道再打标签；放下心理包袱，用最简单的方式先跑通流程；一人可多号，多赛道摸索培养网感。</b>
+                                </div>
+                                <button class="expand-btn text-[#4D6BFE] hover:text-blue-700 text-sm font-medium mt-2 flex items-center" style="display: none;">
+                                    <span class="expand-text">展开全文</span>
+                                    <i class="fas fa-chevron-down ml-1 expand-icon"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <p class="text-sm font-semibold text-gray-800 mb-3">关键结论与金句时刻</p>
+                        <div class="space-y-6">
+                            <div class="border border-gray-200 rounded-lg p-4 bg-gray-50">
+                                <div class="mb-4">
+                                    <h5 class="text-base font-semibold text-gray-800 mb-2">关键结论</h5>
+                                    <div class="border-l-4 border-[#4D6BFE] pl-4 py-3 bg-blue-50 rounded-r-md">
+                                        <p class="text-black text-base">
+                                            <b>赛道选择是创作者的自主决策，AI只能作为数据检索工具；先定赛道再打标签，放下包袱用最小成本跑通流程。</b>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div>
+                                    <p class="text-sm font-medium text-gray-700 mb-2"><strong>金句时刻</strong></p>
+                                    <div class="space-y-2">
+                                        <div class="bg-amber-50 border-l-4 border-amber-400 p-3 rounded-r-md flex flex-col">
+                                            <div class="flex items-start justify-between mb-2">
+                                                <p class="text-gray-800 italic text-sm flex-1">
+                                                    赛道要自己找，不能问ai。Ai是一个数据检索工具，不是能帮你做决定的人啊。
+                                                </p>
+                                                <button class="copy-btn ml-2" onclick="copyQuote(this, '赛道要自己找，不能问ai。Ai是一个数据检索工具，不是能帮你做决定的人啊。 - 糕效率')" title="复制金句">
+                                                    <i class="fas fa-copy"></i>
+                                                </button>
+                                            </div>
+                                            <p class="text-gray-600 text-xs mt-1 self-end">
+                                                - <b>糕效率</b>
+                                            </p>
+                                        </div>
+                                        <div class="bg-amber-50 border-l-4 border-amber-400 p-3 rounded-r-md flex flex-col">
+                                            <div class="flex items-start justify-between mb-2">
+                                                <p class="text-gray-800 italic text-sm flex-1">
+                                                    不要着相，赛道只是个方便交流的概念。
+                                                </p>
+                                                <button class="copy-btn ml-2" onclick="copyQuote(this, '不要着相，赛道只是个方便交流的概念。 - Suerte')" title="复制金句">
+                                                    <i class="fas fa-copy"></i>
+                                                </button>
+                                            </div>
+                                            <p class="text-gray-600 text-xs mt-1 self-end">
+                                                - <b>Suerte</b>
+                                            </p>
+                                        </div>
+                                        <div class="bg-amber-50 border-l-4 border-amber-400 p-3 rounded-r-md flex flex-col">
+                                            <div class="flex items-start justify-between mb-2">
+                                                <p class="text-gray-800 italic text-sm flex-1">
+                                                    你还没想好怎么做什么，当然不知道要打什么标签了。
+                                                </p>
+                                                <button class="copy-btn ml-2" onclick="copyQuote(this, '你还没想好怎么做什么，当然不知道要打什么标签了。 - 糕效率')" title="复制金句">
+                                                    <i class="fas fa-copy"></i>
+                                                </button>
+                                            </div>
+                                            <p class="text-gray-600 text-xs mt-1 self-end">
+                                                - <b>糕效率</b>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 话题2 -->
+                <div class="bento-card p-6 rounded-xl"> 
+                    <div class="flex flex-col sm:flex-row items-start justify-between mb-4">
+                        <h4 class="text-xl font-bold text-black flex-1 mb-2 sm:mb-0">
+                            美食赛道实操：从盒马一人食到视频化转型的讨论
+                        </h4>
+                        <span class="text-sm text-gray-600 ml-0 sm:ml-4 whitespace-nowrap bg-gray-100 px-3 py-1.5 rounded-md">
+                            <i class="fas fa-clock mr-1.5 text-gray-500"></i>
+                            12:46 - 14:33
+                        </span>
+                    </div>
+
+                    <div class="mb-4 bg-purple-50 border border-purple-200 rounded-md p-3">
+                        <p class="text-sm font-medium text-purple-700 mb-1">爬楼关键词</p>
+                        <p class="text-sm text-purple-600 italic">
+                            史大来：“我试着照着盒马一人食，发了一篇小红书，反馈比我想象的好，我还以为没人看👀”
+                        </p>
+                    </div>
+
+                    <div class="mb-5">
+                        <p class="text-sm font-semibold text-gray-800 mb-2">相关关键词</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="tag-item">盒马一人食</span>
+                            <span class="tag-item">美食赛道</span>
+                            <span class="tag-item">拍摄技巧</span>
+                            <span class="tag-item">启动心态</span>
+                            <span class="tag-item">视频化转型</span>
+                        </div>
+                    </div>
+
+                    <div class="mb-5">
+                        <p class="text-sm font-semibold text-gray-800 mb-2">详细内容</p>
+                        <div class="text-gray-700 text-base leading-relaxed bg-slate-50 p-4 rounded-md prose prose-sm max-w-none">
+                            <div class="expandable-content" data-char-limit="200">
+                                <div class="content-preview">
+                                    <b>一、话题背景与起因</b><br><b>史大来</b>分享了自己照着盒马一人食系列发小红书的经历，反馈超出预期。这引发了群内关于美食赛道内容创作、拍摄技巧和启动心态的热烈讨论。<br><br><b>二、主要观点与讨论详情</b><br>1. <b>先发再说，降低启动门槛</b>：<b>史大来</b>分享自己的心得——“越想认真做就越难启动”“说服自己不想那么多，先发再说”，并且照片用的是之前随手拍的。这种低门槛启动方式获得了大家的认可。<br>2. <b>美食内容拍摄技巧</b>：<b>宇世无争</b>表示自己虽然做得好但一直没行动，正在认真考虑雇人拍视频剪片子。<b>糕效率</b>建议“你不能先做图片？一上来就要视频剪辑，这种图不是随便拍嘛”。<b>子蟹</b>给出了极简拍摄方案——“切之前拍一下，切好很漂亮拍一下，摆盘拍一下，三个点”。<b>Suerte</b>补充“练习单手一直保持干燥”“尽量不要碰油脂”。<b>一起发财</b>提醒可以用头戴式支架。<br>3. <b>甲鱼非鱼的案例分享</b>：<b>甲鱼非鱼</b>分享朋友账号案例——“发鱼的流量比较好”“我那个朋友粉丝都三千多了，连怎么看数据，什么是蒲公英都不知道”，被群友笑称“自媒体圣体”。<b>糕效率</b>随即@阿南和宇世无争“抄这个”。<br>4. <b>盒马一人食系列资源分享</b>：<b>糕效率</b>连续分享了多个盒马一人食笔记链接（海带牛肉豆腐汤、盒马这个真的太绝了等），为大家提供了可直接参考的对标内容。<br><br><b>三、结论与启发</b><br>美食赛道的核心经验：<b>降低启动门槛，先发再说；图片先行，不必一上来就做视频；掌握极简拍摄三拍法（切前、切好、摆盘）；保持手部干燥避免油脂。</b>
+                                </div>
+                                <button class="expand-btn text-[#4D6BFE] hover:text-blue-700 text-sm font-medium mt-2 flex items-center" style="display: none;">
+                                    <span class="expand-text">展开全文</span>
+                                    <i class="fas fa-chevron-down ml-1 expand-icon"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <p class="text-sm font-semibold text-gray-800 mb-3">关键结论与金句时刻</p>
+                        <div class="space-y-6">
+                            <div class="border border-gray-200 rounded-lg p-4 bg-gray-50">
+                                <div class="mb-4">
+                                    <h5 class="text-base font-semibold text-gray-800 mb-2">关键结论</h5>
+                                    <div class="border-l-4 border-[#4D6BFE] pl-4 py-3 bg-blue-50 rounded-r-md">
+                                        <p class="text-black text-base">
+                                            <b>美食赛道先图后视频，降低启动门槛；掌握“切前-切好-摆盘”三拍法，先发再说比追求完美更重要。</b>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div>
+                                    <p class="text-sm font-medium text-gray-700 mb-2"><strong>金句时刻</strong></p>
+                                    <div class="space-y-2">
+                                        <div class="bg-amber-50 border-l-4 border-amber-400 p-3 rounded-r-md flex flex-col">
+                                            <div class="flex items-start justify-between mb-2">
+                                                <p class="text-gray-800 italic text-sm flex-1">
+                                                    越想认真做就越难启动，说服自己不想那么多，先发再说。
+                                                </p>
+                                                <button class="copy-btn ml-2" onclick="copyQuote(this, '越想认真做就越难启动，说服自己不想那么多，先发再说。 - 史大来')" title="复制金句">
+                                                    <i class="fas fa-copy"></i>
+                                                </button>
+                                            </div>
+                                            <p class="text-gray-600 text-xs mt-1 self-end">
+                                                - <b>史大来</b>
+                                            </p>
+                                        </div>
+                                        <div class="bg-amber-50 border-l-4 border-amber-400 p-3 rounded-r-md flex flex-col">
+                                            <div class="flex items-start justify-between mb-2">
+                                                <p class="text-gray-800 italic text-sm flex-1">
+                                                    你就切之前拍一下，切好很漂亮拍一下，摆盘拍一下，三个点。
+                                                </p>
+                                                <button class="copy-btn ml-2" onclick="copyQuote(this, '你就切之前拍一下，切好很漂亮拍一下，摆盘拍一下，三个点。 - 子蟹')" title="复制金句">
+                                                    <i class="fas fa-copy"></i>
+                                                </button>
+                                            </div>
+                                            <p class="text-gray-600 text-xs mt-1 self-end">
+                                                - <b>子蟹</b>
+                                            </p>
+                                        </div>
+                                        <div class="bg-amber-50 border-l-4 border-amber-400 p-3 rounded-r-md flex flex-col">
+                                            <div class="flex items-start justify-between mb-2">
+                                                <p class="text-gray-800 italic text-sm flex-1">
+                                                    你不能先做图片？一上来就要视频剪辑，这种图不是随便拍嘛。
+                                                </p>
+                                                <button class="copy-btn ml-2" onclick="copyQuote(this, '你不能先做图片？一上来就要视频剪辑，这种图不是随便拍嘛。 - 糕效率')" title="复制金句">
+                                                    <i class="fas fa-copy"></i>
+                                                </button>
+                                            </div>
+                                            <p class="text-gray-600 text-xs mt-1 self-end">
+                                                - <b>糕效率</b>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 话题3 -->
+                <div class="bento-card p-6 rounded-xl"> 
+                    <div class="flex flex-col sm:flex-row items-start justify-between mb-4">
+                        <h4 class="text-xl font-bold text-black flex-1 mb-2 sm:mb-0">
+                            自媒体合作与变现：众测收入机制与品牌合作报价揭秘
+                        </h4>
+                        <span class="text-sm text-gray-600 ml-0 sm:ml-4 whitespace-nowrap bg-gray-100 px-3 py-1.5 rounded-md">
+                            <i class="fas fa-clock mr-1.5 text-gray-500"></i>
+                            17:33 - 18:25
+                        </span>
+                    </div>
+
+                    <div class="mb-4 bg-purple-50 border border-purple-200 rounded-md p-3">
+                        <p class="text-sm font-medium text-purple-700 mb-1">爬楼关键词</p>
+                        <p class="text-sm text-purple-600 italic">
+                            梅内耗：“今天和市场部聊到我们自己的投放，才知道像众测那种，也是我们在后台充值进去。”
+                        </p>
+                    </div>
+
+                    <div class="mb-5">
+                        <p class="text-sm font-semibold text-gray-800 mb-2">相关关键词</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="tag-item">众测机制</span>
+                            <span class="tag-item">CPM</span>
+                            <span class="tag-item">合作报价</span>
+                            <span class="tag-item">双十一</span>
+                            <span class="tag-item">品牌合作</span>
+                        </div>
+                    </div>
+
+                    <div class="mb-5">
+                        <p class="text-sm font-semibold text-gray-800 mb-2">详细内容</p>
+                        <div class="text-gray-700 text-base leading-relaxed bg-slate-50 p-4 rounded-md prose prose-sm max-w-none">
+                            <div class="expandable-content" data-char-limit="200">
+                                <div class="content-preview">
+                                    <b>一、话题背景与起因</b><br><b>梅内耗</b>分享了自己与市场部沟通投放机制后的发现，揭开了众测合作背后的收入分配逻辑。同时，<b>宝鹅</b>因合作成绩优秀获得群友红包庆祝，引发了关于品牌合作报价的讨论。<br><br><b>二、主要观点与讨论详情</b><br>1. <b>众测收入机制揭秘</b>：<b>梅内耗</b>透露——“像众测那种，也是我们在后台充值进去，系统根据CPM之类的指标来看给达人分多少钱”。这一机制解释让群友对众测合作的收益逻辑有了更清晰的认识。<br>2. <b>宝鹅的合作成绩与庆祝</b>：<b>宝鹅</b>此前收到了流量券任务，且合作成绩优异，群友纷纷发红包庆祝。<b>糕效率</b>开玩笑说“下个月合作涨到2k？”，<b>宝鹅</b>谦虚回应“我先看看这个月的行情”。<br>3. <b>双十一涨价预期</b>：<b>子蟹</b>给出专业判断——“怕什么，鹅老师，快双十一了，单价要暴涨啊”“爱来不来，亏得是品牌方”。<b>溏心蛋（慢慢来）</b>也表示认同。<br>4. <b>合作机会分享</b>：<b>糕效率</b>在晚间连续分享了两个品牌合作招募——深圳探展（人体工学椅，单人预算4000内返点45%）和伊菲丹置换招募（唇膏/护手霜，要求账号人设25+贵气姐姐/精致宝妈）。<b>糕效率</b>还表示“这个婴儿车我好想报名。。。”，<b>阿南</b>调侃“就差婴儿了”。<br><br><b>三、结论与启发</b><br>自媒体变现的关键认知：<b>众测收入由CPM等指标决定；双十一是品牌合作涨价窗口期；优质合作成绩能带来更多品牌方主动邀约；群内合作资源丰富，需根据账号人设精准匹配。</b>
+                                </div>
+                                <button class="expand-btn text-[#4D6BFE] hover:text-blue-700 text-sm font-medium mt-2 flex items-center" style="display: none;">
+                                    <span class="expand-text">展开全文</span>
+                                    <i class="fas fa-chevron-down ml-1 expand-icon"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <p class="text-sm font-semibold text-gray-800 mb-3">关键结论与金句时刻</p>
+                        <div class="space-y-6">
+                            <div class="border border-gray-200 rounded-lg p-4 bg-gray-50">
+                                <div class="mb-4">
+                                    <h5 class="text-base font-semibold text-gray-800 mb-2">关键结论</h5>
+                                    <div class="border-l-4 border-[#4D6BFE] pl-4 py-3 bg-blue-50 rounded-r-md">
+                                        <p class="text-black text-base">
+                                            <b>众测收入由CPM等后台指标决定；双十一是品牌合作涨价黄金窗口；优质内容带来品牌方主动邀约。</b>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div>
+                                    <p class="text-sm font-medium text-gray-700 mb-2"><strong>金句时刻</strong></p>
+                                    <div class="space-y-2">
+                                        <div class="bg-amber-50 border-l-4 border-amber-400 p-3 rounded-r-md flex flex-col">
+                                            <div class="flex items-start justify-between mb-2">
+                                                <p class="text-gray-800 italic text-sm flex-1">
+                                                    像众测那种，也是我们在后台充值进去，系统根据CPM之类的指标来看给达人分多少钱。
+                                                </p>
+                                                <button class="copy-btn ml-2" onclick="copyQuote(this, '像众测那种，也是我们在后台充值进去，系统根据CPM之类的指标来看给达人分多少钱。 - 梅内耗')" title="复制金句">
+                                                    <i class="fas fa-copy"></i>
+                                                </button>
+                                            </div>
+                                            <p class="text-gray-600 text-xs mt-1 self-end">
+                                                - <b>梅内耗</b>
+                                            </p>
+                                        </div>
+                                        <div class="bg-amber-50 border-l-4 border-amber-400 p-3 rounded-r-md flex flex-col">
+                                            <div class="flex items-start justify-between mb-2">
+                                                <p class="text-gray-800 italic text-sm flex-1">
+                                                    怕什么，鹅老师，快双十一了，单价要暴涨啊。
+                                                </p>
+                                                <button class="copy-btn ml-2" onclick="copyQuote(this, '怕什么，鹅老师，快双十一了，单价要暴涨啊。 - 子蟹')" title="复制金句">
+                                                    <i class="fas fa-copy"></i>
+                                                </button>
+                                            </div>
+                                            <p class="text-gray-600 text-xs mt-1 self-end">
+                                                - <b>子蟹</b>
+                                            </p>
+                                        </div>
+                                        <div class="bg-amber-50 border-l-4 border-amber-400 p-3 rounded-r-md flex flex-col">
+                                            <div class="flex items-start justify-between mb-2">
+                                                <p class="text-gray-800 italic text-sm flex-1">
+                                                    爱来不来，亏得是品牌方。
+                                                </p>
+                                                <button class="copy-btn ml-2" onclick="copyQuote(this, '爱来不来，亏得是品牌方。 - 子蟹')" title="复制金句">
+                                                    <i class="fas fa-copy"></i>
+                                                </button>
+                                            </div>
+                                            <p class="text-gray-600 text-xs mt-1 self-end">
+                                                - <b>子蟹</b>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 话题4 -->
+                <div class="bento-card p-6 rounded-xl"> 
+                    <div class="flex flex-col sm:flex-row items-start justify-between mb-4">
+                        <h4 class="text-xl font-bold text-black flex-1 mb-2 sm:mb-0">
+                            AI手办模板：小红书内容创作的新玩法探索
+                        </h4>
+                        <span class="text-sm text-gray-600 ml-0 sm:ml-4 whitespace-nowrap bg-gray-100 px-3 py-1.5 rounded-md">
+                            <i class="fas fa-clock mr-1.5 text-gray-500"></i>
+                            23:15 - 23:37
+                        </span>
+                    </div>
+
+                    <div class="mb-4 bg-purple-50 border border-purple-200 rounded-md p-3">
+                        <p class="text-sm font-medium text-purple-700 mb-1">爬楼关键词</p>
+                        <p class="text-sm text-purple-600 italic">
+                            书昊：“请根据我上传的人物照片，创作一套‘八种酷飒风格的3D收藏玩偶包装图’。”
+                        </p>
+                    </div>
+
+                    <div class="mb-5">
+                        <p class="text-sm font-semibold text-gray-800 mb-2">相关关键词</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="tag-item">AI手办</span>
+                            <span class="tag-item">提示词模板</span>
+                            <span class="tag-item">小红书玩法</span>
+                            <span class="tag-item">内容创新</span>
+                        </div>
+                    </div>
+
+                    <div class="mb-5">
+                        <p class="text-sm font-semibold text-gray-800 mb-2">详细内容</p>
+                        <div class="text-gray-700 text-base leading-relaxed bg-slate-50 p-4 rounded-md prose prose-sm max-w-none">
+                            <div class="expandable-content" data-char-limit="200">
+                                <div class="content-preview">
+                                    <b>一、话题背景与起因</b><br><b>书昊</b>在群内分享了一套完整的AI手办生成提示词模板，并展示了依据<b>橙子在写戏🍊</b>照片生成的八种风格3D收藏玩偶包装图。这引发了大家对小红书内容创新玩法的热烈讨论。<br><br><b>二、主要观点与讨论详情</b><br>1. <b>AI手办模板展示</b>：<b>书昊</b>分享的提示词模板极为详尽，包含人物与系列统一要求（保留可辨识五官、完整换装、3D树脂质感等）、统一包装与构图规范（2:3竖版、纸卡背板+透明吸塑外壳、顶部Instagram图标），以及八款具体造型设计（现场总控·黑橙工业、外景勘景·山野机能、黑白棚拍·极简专业、霓虹MV·潮流舞台、复古胶片·文艺硬朗、夜戏雨场·冷峻行动、都市广告·利落时装、黑金主理人·克制奢华）。<br>2. <b>糕糕的建议与启发</b>：<b>GO糕糕</b>看到后立即建议——“@书昊 你的小红书不如就用这个开始更”“征集愿意在你小红书发原图的群友朋友，然后做成这个AI手办”。这个建议为<b>书昊</b>指明了一个极具潜力的内容方向。<br>3. <b>橙子的反馈</b>：<b>橙子在写戏🍊</b>看到自己的AI手办后感叹“梦里的我就长这样”，并发现“我有一双很像的鞋甚至！！！去年在糕糕店里买的哈哈哈哈”，这种真实互动进一步印证了内容的吸引力。<br>4. <b>图片去水印细节</b>：<b>GO糕糕</b>提醒“当然这个记得去掉”（指去掉某些不该出现的水印），<b>Mr x²g</b>随即展示了处理后的版本。<br><br><b>三、结论与启发</b><br>AI手办模板为小红书内容创作提供了新思路：<b>利用AI生成个性化、系列化的手办形象，既能展示技术能力，又能引发用户互动和参与（征集照片），是一种极具传播潜力的内容形式。</b>
+                                </div>
+                                <button class="expand-btn text-[#4D6BFE] hover:text-blue-700 text-sm font-medium mt-2 flex items-center" style="display: none;">
+                                    <span class="expand-text">展开全文</span>
+                                    <i class="fas fa-chevron-down ml-1 expand-icon"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <p class="text-sm font-semibold text-gray-800 mb-3">关键结论与金句时刻</p>
+                        <div class="space-y-6">
+                            <div class="border border-gray-200 rounded-lg p-4 bg-gray-50">
+                                <div class="mb-4">
+                                    <h5 class="text-base font-semibold text-gray-800 mb-2">关键结论</h5>
+                                    <div class="border-l-4 border-[#4D6BFE] pl-4 py-3 bg-blue-50 rounded-r-md">
+                                        <p class="text-black text-base">
+                                            <b>AI手办模板将技术展示与用户互动结合，通过征集群友照片生成个性化玩偶，是一种极具传播潜力的内容创新形式。</b>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div>
+                                    <p class="text-sm font-medium text-gray-700 mb-2"><strong>金句时刻</strong></p>
+                                    <div class="space-y-2">
+                                        <div class="bg-amber-50 border-l-4 border-amber-400 p-3 rounded-r-md flex flex-col">
+                                            <div class="flex items-start justify-between mb-2">
+                                                <p class="text-gray-800 italic text-sm flex-1">
+                                                    你的小红书不如就用这个开始更，征集愿意在你小红书发原图的群友朋友，然后做成这个AI手办。
+                                                </p>
+                                                <button class="copy-btn ml-2" onclick="copyQuote(this, '你的小红书不如就用这个开始更，征集愿意在你小红书发原图的群友朋友，然后做成这个AI手办。 - GO糕糕')" title="复制金句">
+                                                    <i class="fas fa-copy"></i>
+                                                </button>
+                                            </div>
+                                            <p class="text-gray-600 text-xs mt-1 self-end">
+                                                - <b>GO糕糕</b>
+                                            </p>
+                                        </div>
+                                        <div class="bg-amber-50 border-l-4 border-amber-400 p-3 rounded-r-md flex flex-col">
+                                            <div class="flex items-start justify-between mb-2">
+                                                <p class="text-gray-800 italic text-sm flex-1">
+                                                    梦里的我就长这样。
+                                                </p>
+                                                <button class="copy-btn ml-2" onclick="copyQuote(this, '梦里的我就长这样。 - 橙子在写戏🍊')" title="复制金句">
+                                                    <i class="fas fa-copy"></i>
+                                                </button>
+                                            </div>
+                                            <p class="text-gray-600 text-xs mt-1 self-end">
+                                                - <b>橙子在写戏🍊</b>
+                                            </p>
+                                        </div>
+                                        <div class="bg-amber-50 border-l-4 border-amber-400 p-3 rounded-r-md flex flex-col">
+                                            <div class="flex items-start justify-between mb-2">
+                                                <p class="text-gray-800 italic text-sm flex-1">
+                                                    这个不发小红书可惜了小马同学。
+                                                </p>
+                                                <button class="copy-btn ml-2" onclick="copyQuote(this, '这个不发小红书可惜了小马同学。 - GO糕糕')" title="复制金句">
+                                                    <i class="fas fa-copy"></i>
+                                                </button>
+                                            </div>
+                                            <p class="text-gray-600 text-xs mt-1 self-end">
+                                                - <b>GO糕糕</b>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="section-qa" class="w-full mb-12" aria-labelledby="section-qa-title">
+            <h2 id="section-qa-title" class="section-title">
+                三、避坑指南・问答精选
+            </h2>
+            <div class="space-y-8">
+                <!-- 问答1 -->
+                <div class="bento-card p-6 rounded-xl border-l-4 border-[#93c5fd]"> 
+                    <div class="mb-4">
+                        <h4 class="text-xl font-semibold text-black flex items-center">
+                            <i class="fas fa-question-circle mr-2.5 text-[#4D6BFE] text-lg"></i>
+                            提问：小红书标签到底怎么打？先定赛道再打标签
+                        </h4>
+                    </div>
+
+                    <div class="mb-4 bg-purple-50 border border-purple-200 rounded-md p-3">
+                        <p class="text-sm font-medium text-purple-700 mb-1">爬楼关键词</p>
+                        <p class="text-sm text-purple-600 italic">
+                            胡小窝：“我继续提问啊，那你们怎么决定自己打什么标签的？ima说一般3-5，我拿不准。”
+                        </p>
+                    </div>
+
+                    <div class="border-t border-gray-200 pt-4">
+                        <h5 class="text-lg font-semibold text-green-700 flex items-center mb-2">
+                            <i class="fas fa-lightbulb mr-2.5 text-lg text-green-600"></i>
+                            解答
+                        </h5>
+                        <div class="text-gray-700 text-base leading-relaxed prose prose-sm max-w-none">
+                            <div class="expandable-content" data-char-limit="200">
+                                <div class="content-preview">
+                                    <b>一、问题背景</b><br><b>胡小窝</b>在发完第一篇小红书后，对标签选择感到困惑。她提到ima建议“一般3-5个”，但自己拿不准，想了解大家是如何决定标签的。<br><br><b>二、核心原因分析</b><br>群友们指出，标签困惑的根源在于<b>赛道尚未明确</b>。<b>糕效率</b>一针见血地指出：“你还没想好怎么做什么，当然不知道要打什么标签了。”这说明标签问题本质上是定位问题的延伸。<br><br><b>三、解决方案与建议</b><br>1. <b>先定赛道再打标签</b>：<b>糕效率</b>给出明确路径——“先定赛道，再打标签”，并以盒马一人食为例，标签推算逻辑为“一人食，盒马，预制菜，减脂餐”，系统也会推荐相似标签。<br>2. <b>搜索对标法</b>：<b>不渡</b>分享了自己的实操方法——“我在写之前就会去搜我这个主题的帖子，想一些关键词去搜，然后找到我想写的那个方向，然后看看他的tag是怎么打的”，同时关注活动标签的流量机会。<br>3. <b>人设垂直优于内容垂直</b>：<b>胡小窝</b>经过与AI的讨论后得出初步结论——“把内容垂直改成人设垂直”，冷启动从人物观察+关系思考开始，分类对标学习。这一思路得到了群友的认可。<br><br><b>最终，胡小窝表示“反正按大家建议，先干吧”，完成了从困惑到行动的转变。</b>
+                                </div>
+                                <button class="expand-btn text-[#4D6BFE] hover:text-blue-700 text-sm font-medium mt-2 flex items-center" style="display: none;">
+                                    <span class="expand-text">展开全文</span>
+                                    <i class="fas fa-chevron-down ml-1 expand-icon"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-5 pt-4 border-t border-gray-200">
+                        <div class="flex flex-wrap gap-2">
+                            <span class="tag-item">标签策略</span>
+                            <span class="tag-item">赛道定位</span>
+                            <span class="tag-item">对标学习</span>
+                            <span class="tag-item">人设垂直</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 问答2 -->
+                <div class="bento-card p-6 rounded-xl border-l-4 border-[#93c5fd]"> 
+                    <div class="mb-4">
+                        <h4 class="text-xl font-semibold text-black flex items-center">
+                            <i class="fas fa-question-circle mr-2.5 text-[#4D6BFE] text-lg"></i>
+                            提问：小红书笔记标题如何优化才有情绪和互动？
+                        </h4>
+                    </div>
+
+                    <div class="mb-4 bg-purple-50 border border-purple-200 rounded-md p-3">
+                        <p class="text-sm font-medium text-purple-700 mb-1">爬楼关键词</p>
+                        <p class="text-sm text-purple-600 italic">
+                            阿南：“我发布了一篇笔记：小象超市 广式烧鸭”
+                        </p>
+                    </div>
+
+                    <div class="border-t border-gray-200 pt-4">
+                        <h5 class="text-lg font-semibold text-green-700 flex items-center mb-2">
+                            <i class="fas fa-lightbulb mr-2.5 text-lg text-green-600"></i>
+                            解答
+                        </h5>
+                        <div class="text-gray-700 text-base leading-relaxed prose prose-sm max-w-none">
+                            <div class="expandable-content" data-char-limit="200">
+                                <div class="content-preview">
+                                    <b>一、问题背景</b><br><b>阿南</b>发布了一篇小象超市广式烧鸭的笔记，但标题较为平淡（“小象超市 广式烧鸭”），并提到“不能放订单截图，被提醒了”，说明他在内容创作中遇到了标题缺乏吸引力和平台规则限制的问题。<br><br><b>二、核心原因分析</b><br><b>糕效率</b>指出标题可以更有情绪，并给出了具体方向——“小象超市的广式烧鸭也太xxxx了吧！”，通过感叹句式制造情绪张力。<br><br><b>三、解决方案与建议</b><br>1. <b>用AI生成情绪化标题</b>：<b>糕效率</b>建议阿南“可以问问豆包”，并给出了具体的提示词模板——“帮我写10个小红书标题，我要有情绪，带钩子的，能引起互动欲望的”。<br>2. <b>阿南的快速迭代</b>：阿南随即修改了标题，将“小象超市 广式烧鸭”改为“<b>14块7的预制烧鸭，凭什么这么好吃！</b>”，通过价格锚点+反问句式制造悬念和情绪，获得了<b>嘟嘟车</b>的认可——“南哥这个标题好”。<br>3. <b>书昊的后续响应</b>：<b>书昊</b>也表示“明天早上我来起标题，有情绪有钩子的”，说明这个标题优化需求引发了大家的共鸣。<br><br><b>这次问答展示了从“平淡标题”到“情绪化标题”的快速迭代过程，以及AI工具在标题创作中的实用价值。</b>
+                                </div>
+                                <button class="expand-btn text-[#4D6BFE] hover:text-blue-700 text-sm font-medium mt-2 flex items-center" style="display: none;">
+                                    <span class="expand-text">展开全文</span>
+                                    <i class="fas fa-chevron-down ml-1 expand-icon"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-5 pt-4 border-t border-gray-200">
+                        <div class="flex flex-wrap gap-2">
+                            <span class="tag-item">标题优化</span>
+                            <span class="tag-item">情绪钩子</span>
+                            <span class="tag-item">AI辅助</span>
+                            <span class="tag-item">互动率</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 问答3 -->
+                <div class="bento-card p-6 rounded-xl border-l-4 border-[#93c5fd]"> 
+                    <div class="mb-4">
+                        <h4 class="text-xl font-semibold text-black flex items-center">
+                            <i class="fas fa-question-circle mr-2.5 text-[#4D6BFE] text-lg"></i>
+                            提问：新手发布笔记常犯哪些错误？如何快速修正？
+                        </h4>
+                    </div>
+
+                    <div class="mb-4 bg-purple-50 border border-purple-200 rounded-md p-3">
+                        <p class="text-sm font-medium text-purple-700 mb-1">爬楼关键词</p>
+                        <p class="text-sm text-purple-600 italic">
+                            胡小窝：“我是发完才反应过来充分利用ima知识库。然后发现自己已经犯了以下错误：1. 用了定时发布，2，tag乱打一通，3，发现内容有错字又修改重发”
+                        </p>
+                    </div>
+
+                    <div class="border-t border-gray-200 pt-4">
+                        <h5 class="text-lg font-semibold text-green-700 flex items-center mb-2">
+                            <i class="fas fa-lightbulb mr-2.5 text-lg text-green-600"></i>
+                            解答
+                        </h5>
+                        <div class="text-gray-700 text-base leading-relaxed prose prose-sm max-w-none">
+                            <div class="expandable-content" data-char-limit="200">
+                                <div class="content-preview">
+                                    <b>一、问题背景</b><br><b>胡小窝</b>作为新手，在发布第一篇小红书后才发现自己犯了三个常见错误：使用了定时发布、标签乱打、内容有错字后修改重发。她担心“知识库说要100篇笔记之后，再根据反馈去调整内容……那岂不是日更三个月！”<br><br><b>二、核心原因分析</b><br>这些错误的根源在于<b>对平台规则和运营节奏不熟悉</b>。新手往往在发布后才开始学习，导致操作顺序颠倒。但群友们认为这些错误并不可怕，关键是要快速调整心态和方法。<br><br><b>三、解决方案与建议</b><br>1. <b>不要被“100篇”吓到</b>：<b>糕效率</b>直接回应“哈哈哈哈不用，你随时转发，你要主动，才有回应”，鼓励她放下对数量的执念，主动与用户互动。<br>2. <b>接受学习曲线</b>：<b>胡小窝</b>自己也意识到“感觉每一步都有讲究”，但“好歹我动起来了”，这种行动优先的心态获得了群友的认可。<br>3. <b>先干再说</b>：结合前面话题中<b>史大来</b>的“先发再说”和<b>糕效率</b>的“选一个最简单的赛道先熟悉流程”，新手应该降低启动门槛，不要追求一步到位。<br><br><b>总结：新手犯错是常态，关键是快速行动、主动互动、降低心理门槛，在实操中逐步掌握平台规则。</b>
+                                </div>
+                                <button class="expand-btn text-[#4D6BFE] hover:text-blue-700 text-sm font-medium mt-2 flex items-center" style="display: none;">
+                                    <span class="expand-text">展开全文</span>
+                                    <i class="fas fa-chevron-down ml-1 expand-icon"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-5 pt-4 border-t border-gray-200">
+                        <div class="flex flex-wrap gap-2">
+                            <span class="tag-item">新手避坑</span>
+                            <span class="tag-item">发布规范</span>
+                            <span class="tag-item">行动优先</span>
+                            <span class="tag-item">心理建设</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="section-highlights" class="w-full mb-12" aria-labelledby="section-highlights-title">
+            <h2 id="section-highlights-title" class="section-title">
+                四、宝藏分享・高能精选
+            </h2>
+            <div class="space-y-8">
+                <!-- 分享1 -->
+                <div class="bento-card p-6 rounded-xl border-l-4 border-[#93c5fd]">
+                    <h4 class="text-xl font-semibold text-black mb-3">
+                        AI手办提示词模板：八种酷飒风格3D玩偶包装图
+                    </h4>
+
+                    <div class="mb-4 bg-purple-50 border border-purple-200 rounded-md p-3">
+                        <p class="text-sm font-medium text-purple-700 mb-1">爬楼关键词</p>
+                        <p class="text-sm text-purple-600 italic">
+                            书昊：“请根据我上传的人物照片，创作一套‘八种酷飒风格的3D收藏玩偶包装图’。”
+                        </p>
+                    </div>
+
+                    <div class="text-gray-700 text-base mb-4 leading-relaxed prose prose-sm max-w-none">
+                        <div class="expandable-content" data-char-limit="200">
+                            <div class="content-preview">
+                                <b>一、推荐内容</b> <br><b>书昊</b>在群内分享了一套极为详尽的AI手办生成提示词模板，并展示了依据<b>橙子在写戏🍊</b>照片生成的八种风格3D收藏玩偶包装图。这套模板包含人物与系列统一要求（保留可辨识五官、完整换装与角色造型设计、3D树脂质感）、统一包装与构图规范（2:3竖版、纸卡背板+透明吸塑外壳、顶部Instagram图标），以及八款具体造型设计：<br><br>01 现场总控·黑橙工业 | 02 外景勘景·山野机能 | 03 黑白棚拍·极简专业 | 04 霓虹MV·潮流舞台<br>05 复古胶片·文艺硬朗 | 06 夜戏雨场·冷峻行动 | 07 都市广告·利落时装 | 08 黑金主理人·克制奢华<br><br><b>二、核心价值与特点</b> <br>这套模板的核心价值在于<b>将AI手办生成标准化、系列化</b>，通过8种不同风格的包装设计展示同一人物的多面性。模板中特别强调了“每张都重新参考本次最初的人物照片，不用上一张生成图替代原照，以免人物逐渐变样”的技术细节，以及“如实际工具或额度限制导致中断，说明已经完成的编号及剩余编号”的容错处理。<br><br><b>三、适用场景</b> <br>此模板适用于小红书内容创新，尤其适合<b>艺术创作、个人IP打造、互动征集类内容</b>。<b>GO糕糕</b>建议“征集愿意在你小红书发原图的群友朋友，然后做成这个AI手办”，为<b>书昊</b>指明了一个极具互动性和传播潜力的内容方向。
+                            </div>
+                            <button class="expand-btn text-[#4D6BFE] hover:text-blue-700 text-sm font-medium mt-2 flex items-center" style="display: none;">
+                                <span class="expand-text">展开全文</span>
+                                <i class="fas fa-chevron-down ml-1 expand-icon"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="tag-item">AI提示词</span>
+                        <span class="tag-item">手办设计</span>
+                        <span class="tag-item">内容创新</span>
+                        <span class="tag-item">小红书玩法</span>
+                    </div>
+                </div>
+
+                <!-- 分享2 -->
+                <div class="bento-card p-6 rounded-xl border-l-4 border-[#93c5fd]">
+                    <h4 class="text-xl font-semibold text-black mb-3">
+                        盒马一人食系列：懒人食谱合集与内容对标
+                    </h4>
+
+                    <div class="mb-4 bg-purple-50 border border-purple-200 rounded-md p-3">
+                        <p class="text-sm font-medium text-purple-700 mb-1">爬楼关键词</p>
+                        <p class="text-sm text-purple-600 italic">
+                            糕效率：“[链接|盒马 海带牛肉豆腐汤 10分钟一人食]”
+                        </p>
+                    </div>
+
+                    <div class="text-gray-700 text-base mb-4 leading-relaxed prose prose-sm max-w-none">
+                        <div class="expandable-content" data-char-limit="200">
+                            <div class="content-preview">
+                                <b>一、推荐内容</b> <br>群内分享了多篇盒马一人食系列的优质笔记作为对标参考，包括<b>史大来</b>的“盒马懒人食：粉藕排骨汤”和<b>糕效率</b>分享的“盒马 海带牛肉豆腐汤 10分钟一人食”“盒马这个真的太绝了，冲”等。这些笔记以简单的食材、快捷的烹饪方式和真实的呈现风格获得了不错的流量反馈。<br><br><b>二、核心价值与特点</b> <br>这套内容的价值在于<b>极低的创作门槛和清晰的标签体系</b>。正如<b>糕效率</b>所说，盒马一人食的标签推算逻辑是“一人食，盒马，预制菜，减脂餐”，系统会自动推荐相似标签。这种内容不需要复杂的拍摄和剪辑，随手拍即可，非常适合新手作为<b>自媒体流程练手</b>的起点。<br><br><b>三、适用场景</b> <br>适用于<b>美食赛道新手起步、日常生活记录、超市好物推荐</b>等场景。<b>史大来</b>分享了自己的心得——“越想认真做就越难启动”“说服自己不想那么多，先发再说”，这种低门槛启动方式对新手极具参考价值。
+                            </div>
+                            <button class="expand-btn text-[#4D6BFE] hover:text-blue-700 text-sm font-medium mt-2 flex items-center" style="display: none;">
+                                <span class="expand-text">展开全文</span>
+                                <i class="fas fa-chevron-down ml-1 expand-icon"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="tag-item">盒马一人食</span>
+                        <span class="tag-item">懒人食谱</span>
+                        <span class="tag-item">美食赛道</span>
+                        <span class="tag-item">新手起步</span>
+                    </div>
+                </div>
+
+                <!-- 分享3 -->
+                <div class="bento-card p-6 rounded-xl border-l-4 border-[#93c5fd]">
+                    <h4 class="text-xl font-semibold text-black mb-3">
+                        品牌合作招募信息：深圳探展与伊菲丹置换
+                    </h4>
+
+                    <div class="mb-4 bg-purple-50 border border-purple-200 rounded-md p-3">
+                        <p class="text-sm font-medium text-purple-700 mb-1">爬楼关键词</p>
+                        <p class="text-sm text-purple-600 italic">
+                            糕效率：“【深圳探展】某品牌人体工学椅小红书线下探展活动”
+                        </p>
+                    </div>
+
+                    <div class="text-gray-700 text-base mb-4 leading-relaxed prose prose-sm max-w-none">
+                        <div class="expandable-content" data-char-limit="200">
+                            <div class="content-preview">
+                                <b>一、推荐内容</b> <br><b>糕效率</b>在晚间连续分享了两条品牌合作招募信息：<br><br><b>1. 深圳探展合作</b>：某品牌人体工学椅小红书线下探展活动，地点为深圳京东mall超体南山店，粉丝量要求5k+，探展时间9月20-21日，账号类型为探展/探店类、家居家装类达人，合作形式为报备图文/视频，内容原创，单人预算4000内返点45%，报名截止09/23。<br><br><b>2. 伊菲丹置换招募</b>：产品为唇膏/护手霜，合集单推均可，账号人设要求25+贵气姐姐/精致宝妈等，主页贵价品居多，近期有国际大牌内容，日常有手干、唇干等需求，篇均互动200+，优先单推，图文2张图以上，视频介绍20s+。<br><br><b>二、核心价值与特点</b> <br>这两条招募信息为群内有相应粉丝基础和账号定位的创作者提供了直接的<b>变现机会</b>。探展合作预算明确（4000内返点45%），伊菲丹置换则适合美妆护肤类账号。<br><br><b>三、适用场景</b> <br>适用于<b>探展/探店类、家居家装类、美妆护肤类</b>账号。有意向的群友可直接填写报名表或点击链接了解详情。
+                            </div>
+                            <button class="expand-btn text-[#4D6BFE] hover:text-blue-700 text-sm font-medium mt-2 flex items-center" style="display: none;">
+                                <span class="expand-text">展开全文</span>
+                                <i class="fas fa-chevron-down ml-1 expand-icon"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="tag-item">品牌合作</span>
+                        <span class="tag-item">探展招募</span>
+                        <span class="tag-item">美妆置换</span>
+                        <span class="tag-item">变现机会</span>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <nav class="w-full mt-12" aria-label="日期导航（底部）">
+            <div class="bento-card p-5">
+                <div class="flex items-center justify-between mb-4">
+                    <button id="prev-day-bottom" class="inline-flex items-center gap-2 bg-pink-500 hover:bg-pink-600 text-white px-4 py-2 rounded-lg shadow disabled:bg-gray-200 disabled:text-gray-400 transition-all" aria-label="查看前一天日报">
+                        <i class="fas fa-chevron-left"></i>
+                        <span class="hidden sm:inline">上一天</span>
+                        <span class="sm:hidden">上一天</span>
+                    </button>
+                    <button id="next-day-bottom" class="inline-flex items-center gap-2 bg-pink-500 hover:bg-pink-600 text-white px-4 py-2 rounded-lg shadow disabled:bg-gray-200 disabled:text-gray-400 transition-all" aria-label="查看后一天日报">
+                        <span class="hidden sm:inline">下一天</span>
+                        <span class="sm:hidden">下一天</span>
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+        </nav>
+
+        <footer class="w-full mt-16" role="contentinfo">
+            <div class="bento-card p-8">
+                <div class="text-center text-gray-700 space-y-3">
+                    <div class="flex flex-col sm:flex-row justify-center items-center space-y-2 sm:space-y-0 sm:space-x-6 text-base">
+                        <div class="flex items-center">
+                            <i class="fas fa-database mr-2 text-[#4D6BFE]"></i>
+                            <span>微信群聊记录 - 自媒体糕糕学习群</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-robot mr-2 text-[#4D6BFE]"></i>
+                            <span>报告生成于 2026-09-17 12:00:00</span>
+                        </div>
+                    </div>
+                    <p class="text-sm text-gray-500 max-w-2xl mx-auto leading-relaxed">
+                        本报告基于群聊数据自动生成，仅供参考。内容可能包含个人观点，不代表群组官方立场。数据处理过程中已尽量匿名化处理敏感信息。
+                    </p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <div class="floating-action-stack" aria-label="页面快捷操作">
+        <div class="toc-floating-container" aria-label="内容导航">
+            <button id="toc-toggle" class="toc-floating-button" onclick="toggleToc(event)" aria-label="打开目录" aria-expanded="false" title="内容导航">
+                <i class="fas fa-list"></i>
+            </button>
+            <div id="toc-panel" class="toc-panel" aria-hidden="true">
+                <div class="toc-panel-header">
+                    <h3 class="toc-panel-title">
+                        <i class="fas fa-list text-pink-500"></i>
+                        <span>内容导航</span>
+                    </h3>
+                    <button class="toc-close" onclick="toggleToc(event)" aria-label="关闭目录">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <nav class="toc-items" aria-label="内容导航">
+                    <a href="#section-overview" class="toc-link" onclick="smoothScroll(event, 'section-overview')">
+                        <i class="fas fa-chart-line"></i>
+                        <span>今日群聊速览</span>
+                    </a>
+                    <a href="#section-topics" class="toc-link" onclick="smoothScroll(event, 'section-topics')">
+                        <i class="fas fa-fire"></i>
+                        <span>糕论时刻・深度话题</span>
+                    </a>
+                    <a href="#section-qa" class="toc-link" onclick="smoothScroll(event, 'section-qa')">
+                        <i class="fas fa-question-circle"></i>
+                        <span>避坑指南・问答精选</span>
+                    </a>
+                    <a href="#section-highlights" class="toc-link" onclick="smoothScroll(event, 'section-highlights')">
+                        <i class="fas fa-star"></i>
+                        <span>宝藏分享・高能精选</span>
+                    </a>
+                </nav>
+            </div>
+        </div>
+        <button class="theme-toggle" id="themeToggle" aria-label="切换主题" title="切换深色/浅色模式">
+            <i class="fas fa-moon" id="themeIcon"></i>
+        </button>
+        <button class="back-to-top" id="backToTop" aria-label="返回顶部" title="返回顶部">
+            <i class="fas fa-arrow-up"></i>
+        </button>
+    </div>
+
+    <script>
+        const GJ_BASE_URL = 'https://gaogaoselfmedialearninggroup.github.io/x';
+        const GJ_DIR = window.location.pathname.includes('gaos_daily_report/') ? 'gaos_daily_report/' : '';
+        const GJ_FILE_PREFIX = 'daily_report_';
+        const GJ_SUFFIX = '.html';
+        const GJ_LOCAL_MIN = '2026-09-16';
+        const GJ_LOCAL_MAX = '2026-09-18';
+
+        if ('scrollRestoration' in history) {
+            history.scrollRestoration = 'manual';
+        }
+        window.scrollTo(0, 0);
+
+        document.addEventListener('DOMContentLoaded', function() {
+            initBackToTop();
+            initThemeToggle();
+            initTocHighlight();
+            
+            const numberElements = document.querySelectorAll('.number-display');
+            numberElements.forEach(element => {
+                const finalValueText = element.textContent.replace(/,/g, '');
+                const finalValue = parseInt(finalValueText, 10);
+
+                if (isNaN(finalValue)) return;
+
+                let currentValue = 0;
+                const duration = 1500;
+                const frameRate = 1000 / 60;
+                const totalFrames = Math.round(duration / frameRate);
+                const increment = finalValue / totalFrames;
+
+                let currentFrame = 0;
+                const timer = setInterval(() => {
+                    currentFrame++;
+                    currentValue += increment;
+
+                    if (currentFrame >= totalFrames) {
+                        currentValue = finalValue;
+                        clearInterval(timer);
+                    }
+                    element.textContent = Math.floor(currentValue).toLocaleString('en-US');
+                }, frameRate);
+            });
+
+            initExpandableContent();
+            
+            try {
+                initDailyNavigation();
+            } catch (e) {
+                console.warn('初始化导航失败', e);
+            }
+        });
+
+        function initDailyNavigation() {
+            const currentDateStr = getCurrentDateFromPage();
+            if (!currentDateStr) return;
+
+            const dt = new Date(currentDateStr);
+            const prev = new Date(dt); prev.setDate(prev.getDate() - 1);
+            const next = new Date(dt); next.setDate(next.getDate() + 1);
+
+            const prevStr = formatDate(prev);
+            const nextStr = formatDate(next);
+
+            const prevButtons = ['prev-day', 'prev-day-bottom']
+                .map(id => document.getElementById(id))
+                .filter(Boolean);
+            const nextButtons = ['next-day', 'next-day-bottom']
+                .map(id => document.getElementById(id))
+                .filter(Boolean);
+
+            if (!prevButtons.length && !nextButtons.length) {
+                return;
+            }
+
+            const updateButtons = (buttons, enabled, handler) => {
+                buttons.forEach(btn => {
+                    btn.disabled = !enabled;
+                    btn.onclick = enabled ? handler : null;
+                });
+            };
+
+            const isLocalFile = window.location.protocol === 'file:';
+            
+            if (isLocalFile) {
+                const prevHandler = () => {
+                    const [year, month] = prevStr.split('-');
+                    window.location.href = `../${month}/${GJ_FILE_PREFIX}${prevStr}${GJ_SUFFIX}`;
+                };
+                const nextHandler = () => {
+                    const [year, month] = nextStr.split('-');
+                    window.location.href = `../${month}/${GJ_FILE_PREFIX}${nextStr}${GJ_SUFFIX}`;
+                };
+
+                if (prevButtons.length) {
+                    updateButtons(prevButtons, true, prevHandler);
+                }
+                if (nextButtons.length) {
+                    updateButtons(nextButtons, true, nextHandler);
+                }
+            } else {
+                Promise.all([checkExists(prevStr), checkExists(nextStr)]).then(([pe, ne]) => {
+                    const prevHandler = () => window.location.href = pe.url;
+                    const nextHandler = () => window.location.href = ne.url;
+
+                    updateButtons(prevButtons, !!pe.ok, prevHandler);
+                    updateButtons(nextButtons, !!ne.ok, nextHandler);
+                }).catch(()=>{
+                    updateButtons(prevButtons, false, null);
+                    updateButtons(nextButtons, false, null);
+                });
+            }
+        }
+
+        function checkExists(dateStr) {
+            const [year, month] = dateStr.split('-');
+            const url = `${GJ_BASE_URL}/${year}/${month}/${GJ_FILE_PREFIX}${dateStr}${GJ_SUFFIX}`;
+            
+            return fetch(url, { method: 'HEAD', cache: 'no-store' })
+                .then(r => r.ok ? { ok: true, url: url } : 
+                    fetch(url, { method: 'GET', cache: 'no-store' })
+                        .then(r2 => r2.ok ? { ok: true, url: url } : { ok: false })
+                )
+                .catch(() => ({ ok: false }));
+        }
+
+        function pad2(value) {
+            const str = String(value);
+            return str.length < 2 ? '0' + str : str;
+        }
+
+        function getCurrentDateFromPage() {
+            const el = document.getElementById('report-date');
+            if (el) {
+                const m = el.textContent.match(/(\d{4})年(\d{1,2})月(\d{1,2})日/);
+                if (m) return `${m[1]}-${pad2(m[2])}-${pad2(m[3])}`;
+            }
+            const fn = window.location.pathname.match(/daily_report_(\d{4}-\d{2}-\d{2})\.html/);
+            if (fn) return fn[1];
+            const tm = document.title.match(/(\d{4}-\d{2}-\d{2})/);
+            if (tm) return tm[1];
+            return null;
+        }
+
+        function formatDate(d) {
+            const y = d.getFullYear();
+            const m = pad2(d.getMonth()+1);
+            const dd = pad2(d.getDate());
+            return `${y}-${m}-${dd}`;
+        }
+
+        function toggleToc(event) {
+            if (event) {
+                event.preventDefault();
+                event.stopPropagation();
+            }
+            const panel = document.getElementById('toc-panel');
+            const button = document.getElementById('toc-toggle');
+            if (!panel || !button) return;
+
+            if (panel.classList.contains('active')) {
+                closeTocPanel();
+            } else {
+                panel.classList.add('active');
+                button.classList.add('active');
+                button.setAttribute('aria-expanded', 'true');
+                panel.setAttribute('aria-hidden', 'false');
+                setTimeout(() => {
+                    document.addEventListener('click', handleTocOutsideClick);
+                }, 0);
+            }
+        }
+
+        function closeTocPanel() {
+            const panel = document.getElementById('toc-panel');
+            const button = document.getElementById('toc-toggle');
+            if (!panel || !button) return;
+
+            panel.classList.remove('active');
+            panel.setAttribute('aria-hidden', 'true');
+            button.classList.remove('active');
+            button.setAttribute('aria-expanded', 'false');
+            document.removeEventListener('click', handleTocOutsideClick);
+        }
+
+        function handleTocOutsideClick(event) {
+            const panel = document.getElementById('toc-panel');
+            const button = document.getElementById('toc-toggle');
+            if (!panel || !button) return;
+
+            if (!panel.contains(event.target) && !button.contains(event.target)) {
+                closeTocPanel();
+            }
+        }
+        
+        function smoothScroll(event, targetId) {
+            event.preventDefault();
+            const target = document.getElementById(targetId);
+            if (target) {
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                document.querySelectorAll('.toc-link').forEach(link => link.classList.remove('active'));
+                event.currentTarget.classList.add('active');
+                closeTocPanel();
+            }
+        }
+        
+        function initBackToTop() {
+            const btn = document.getElementById('backToTop');
+            
+            window.addEventListener('scroll', () => {
+                if (window.pageYOffset > 300) {
+                    btn.classList.add('visible');
+                } else {
+                    btn.classList.remove('visible');
+                }
+            });
+            
+            btn.addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        }
+        
+        function initThemeToggle() {
+            const btn = document.getElementById('themeToggle');
+            const icon = document.getElementById('themeIcon');
+            
+            document.documentElement.classList.remove('dark-mode-preload');
+            
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                document.body.classList.add('dark-mode');
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
+            }
+            
+            btn.addEventListener('click', () => {
+                document.body.classList.toggle('dark-mode');
+                const isDark = document.body.classList.contains('dark-mode');
+                
+                if (isDark) {
+                    icon.classList.remove('fa-moon');
+                    icon.classList.add('fa-sun');
+                    localStorage.setItem('theme', 'dark');
+                } else {
+                    icon.classList.remove('fa-sun');
+                    icon.classList.add('fa-moon');
+                    localStorage.setItem('theme', 'light');
+                }
+            });
+        }
+        
+        function initTocHighlight() {
+            const sections = ['section-overview', 'section-topics', 'section-qa', 'section-highlights'];
+            const tocLinks = document.querySelectorAll('.toc-link');
+            
+            window.addEventListener('scroll', () => {
+                let current = '';
+                
+                sections.forEach(sectionId => {
+                    const section = document.getElementById(sectionId);
+                    if (section) {
+                        const sectionTop = section.offsetTop;
+                        const sectionHeight = section.clientHeight;
+                        if (window.pageYOffset >= sectionTop - 100) {
+                            current = sectionId;
+                        }
+                    }
+                });
+                
+                tocLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === '#' + current) {
+                        link.classList.add('active');
+                    }
+                });
+            });
+        }
+        
+        function copyQuote(button, text) {
+            navigator.clipboard.writeText(text).then(() => {
+                const icon = button.querySelector('i');
+                const originalClass = icon.className;
+                
+                button.classList.add('copied');
+                icon.className = 'fas fa-check';
+                
+                setTimeout(() => {
+                    button.classList.remove('copied');
+                    icon.className = originalClass;
+                }, 2000);
+            }).catch(err => {
+                console.error('复制失败:', err);
+                alert('复制失败，请手动复制');
+            });
+        }
+        
+        function initExpandableContent() {
+            const expandableContents = document.querySelectorAll('.expandable-content');
+            
+            expandableContents.forEach(container => {
+                const charLimit = parseInt(container.getAttribute('data-char-limit')) || 200;
+                const contentPreview = container.querySelector('.content-preview');
+                const expandBtn = container.querySelector('.expand-btn');
+                
+                if (!contentPreview || !expandBtn) return;
+                
+                const fullContent = contentPreview.innerHTML;
+                const fullText = contentPreview.textContent || contentPreview.innerText;
+                
+                if (fullText.length > charLimit) {
+                    const tempDiv = document.createElement('div');
+                    tempDiv.innerHTML = fullContent;
+                    
+                    const truncatedText = fullText.substring(0, charLimit);
+                    
+                    let truncatedContent = '';
+                    let charCount = 0;
+                    
+                    const walker = document.createTreeWalker(
+                        tempDiv,
+                        NodeFilter.SHOW_TEXT,
+                        null,
+                        false
+                    );
+                    
+                    let node;
+                    const textNodes = [];
+                    while (node = walker.nextNode()) {
+                        textNodes.push(node);
+                    }
+                    
+                    for (let textNode of textNodes) {
+                        const text = textNode.textContent;
+                        if (charCount + text.length <= charLimit) {
+                            charCount += text.length;
+                        } else {
+                            const remainingChars = charLimit - charCount;
+                            textNode.textContent = text.substring(0, remainingChars) + '...';
+                            charCount = charLimit;
+                            
+                            let currentNodeToClearAfter = textNode;
+                            while (currentNodeToClearAfter && currentNodeToClearAfter !== tempDiv) {
+                                let sibling = currentNodeToClearAfter.nextSibling;
+                                while (sibling) {
+                                    const nodeToRemove = sibling;
+                                    sibling = sibling.nextSibling;
+                                    nodeToRemove.remove();
+                                }
+                                currentNodeToClearAfter = currentNodeToClearAfter.parentElement;
+                            }
+                            break;
+                        }
+                    }
+                    
+                    const previewContent = tempDiv.innerHTML;
+                    
+                    contentPreview.innerHTML = previewContent;
+                    contentPreview.classList.add('collapsed');
+                    expandBtn.style.display = 'flex';
+                    
+                    expandBtn.addEventListener('click', function() {
+                        const isExpanded = expandBtn.classList.contains('expanded');
+                        
+                        if (isExpanded) {
+                            contentPreview.innerHTML = previewContent;
+                            contentPreview.classList.add('collapsed');
+                            expandBtn.querySelector('.expand-text').textContent = '展开全文';
+                            expandBtn.classList.remove('expanded');
+                        } else {
+                            contentPreview.innerHTML = fullContent;
+                            contentPreview.classList.remove('collapsed');
+                            expandBtn.querySelector('.expand-text').textContent = '收起';
+                            expandBtn.classList.add('expanded');
+                        }
+                    });
+                } else {
+                    expandBtn.style.display = 'none';
+                }
+            });
+        }
+    </script>
+    <!-- Shared site search -->
+    <script src="../../assets/search.js" defer data-gj-search-script="true"></script>
+</body>
+</html>
