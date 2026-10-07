@@ -1,0 +1,1864 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>自媒体糕校日报 2026-10-07</title>
+    
+    <!-- SEO 元数据 -->
+    <meta name="description" content="自媒体糕校日报 2026年10月7日 - 商单识别与账号健康度、起号选题的梗、试色笔记避雷、蓝V商单定价等精彩内容分享">
+    <meta name="keywords" content="自媒体,糕校日报,小红书运营,商单识别,起号选题,试色笔记,蓝V报价,内容变现">
+    <meta name="author" content="自媒体糕校">
+    
+    <!-- Open Graph / 社交媒体分享标签 -->
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="自媒体糕校日报 2026-10-07">
+    <meta property="og:description" content="从商单密度看账号健康度：人设、引流、商单三类内容必须分开">
+    <meta property="og:site_name" content="自媒体糕校">
+    <meta property="og:locale" content="zh_CN">
+    
+    <!-- Twitter Card 标签 -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="自媒体糕校日报 2026-10-07">
+    <meta name="twitter:description" content="商单识别、起号选题、试色笔记、蓝V定价等精彩内容分享">
+    
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-6C9T7FPDT2"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-6C9T7FPDT2');
+    </script>
+    
+    <!-- 深色模式预加载脚本 - 终极防闪烁方案 -->
+    <script>
+        // 在DOM解析前立即执行，最大程度避免闪烁
+        (function() {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                // 方案1：为html元素添加类
+                document.documentElement.classList.add('dark-mode-preload');
+                
+                // 方案2：直接设置body的内联样式（更早生效）
+                const style = document.createElement('style');
+                style.textContent = `
+                    html, body { background-color: #1a1a1a !important; color: #e5e5e5 !important; }
+                `;
+                document.head.appendChild(style);
+            }
+        })();
+    </script>
+    
+    <!-- 正常标题格式应为：群聊日报 yyyy-mm-dd，以便外部链接查看时了解日报日期 -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+        * {
+            font-family: 'Inter', ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+        }
+
+        body {
+            background-color: #ffffff;
+            color: #000000;
+        }
+
+        .bento-card {
+            background-color: #ffffff;
+            border: 1px solid #e9e9eb;
+            border-radius: 1rem; /* 16px */
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.07), 0 2px 4px -2px rgba(0,0,0,0.05);
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        .bento-card:hover {
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.07), 0 4px 6px -4px rgba(0,0,0,0.05);
+            transform: translateY(-3px);
+        }
+
+        .number-display {
+            font-weight: 900; /* black */
+            font-size: 4rem;
+            line-height: 1;
+            /* Color will be set by Tailwind, e.g., text-[#4D6BFE] or text-black */
+        }
+
+        .section-title {
+            font-weight: 800; /* extrabold */
+            font-size: 2.25rem; /* 36px */
+            color: #000000;
+            margin-bottom: 2rem; /* 32px, consistent with Tailwind mb-8 */
+            white-space: nowrap; /* 防止标题换行 */
+        }
+
+        /* 手机端响应式调整 */
+        @media (max-width: 640px) {
+            .section-title {
+                font-size: 1.5rem; /* 24px，手机上使用更小的字体 */
+                margin-bottom: 1.5rem;
+            }
+            
+            /* 大数字显示在手机上缩小 */
+            .number-display {
+                font-size: 3rem; /* 手机上从64px缩小到48px */
+            }
+            
+            /* 卡片内边距在手机上缩小，节省空间 */
+            .bento-card.p-8 {
+                padding: 1.25rem !important; /* 从32px缩小到20px */
+            }
+            
+            .bento-card.p-6 {
+                padding: 1rem !important; /* 从24px缩小到16px */
+            }
+            
+            .bento-card.p-5 {
+                padding: 0.875rem !important; /* 从20px缩小到14px */
+            }
+            
+            /* 主标题在手机上缩小 */
+            h1.text-5xl {
+                font-size: 2rem !important; /* 从48px缩小到32px */
+                margin-bottom: 1.25rem !important;
+            }
+            
+            /* 话题标题在手机上缩小 */
+            h4.text-xl {
+                font-size: 1.125rem !important; /* 从20px缩小到18px */
+            }
+            
+            /* 总消息数量文字在手机上缩小 */
+            p.text-xl {
+                font-size: 1rem !important; /* 从20px缩小到16px */
+            }
+        }
+
+        .tag-item {
+            background-color: rgba(236, 72, 153, 0.10); /* pink-500 @ 10% */
+            color: #EC4899; /* pink-500 */
+            padding: 0.25rem 0.75rem; /* py-1 px-3 */
+            border-radius: 9999px; /* rounded-full */
+            font-size: 0.75rem; /* text-xs */
+            font-weight: 500; /* medium */
+        }
+
+
+        /* HTML注释: 展开功能相关样式 */
+        .expandable-content {
+            position: relative;
+        }
+
+        .content-preview.collapsed {
+            max-height: 11rem; /* 控制预览高度，结合渐变遮罩更紧凑 */
+            overflow: hidden;
+            position: relative;
+        }
+
+        .content-preview.collapsed::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 30px;
+            background: linear-gradient(transparent, rgba(255, 255, 255, 0.9));
+            pointer-events: none;
+        }
+
+        /* 收起态样式优化：收紧段间距，弱化多余换行，避免空白过大 */
+        .content-preview.collapsed p,
+        .content-preview.collapsed ul,
+        .content-preview.collapsed ol,
+        .content-preview.collapsed li,
+        .content-preview.collapsed h1,
+        .content-preview.collapsed h2,
+        .content-preview.collapsed h3,
+        .content-preview.collapsed h4,
+        .content-preview.collapsed h5,
+        .content-preview.collapsed h6 {
+            margin-top: 0.25rem !important;
+            margin-bottom: 0.25rem !important;
+            line-height: 1.5 !important;
+        }
+        /* 多重 <br> 在收起态容易拉大间距，这里统一弱化 */
+        .content-preview.collapsed br {
+            display: none;
+        }
+        /* 允许小标题<b>后的首个换行保留，确保分行 */
+        .content-preview.collapsed b + br {
+            display: inline;
+        }
+
+        .expand-btn {
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+            background: none;
+            padding: 0;
+        }
+
+        .expand-btn:hover {
+            transform: translateY(-1px);
+        }
+
+        .expand-icon {
+            transition: transform 0.3s ease;
+        }
+
+        .expand-btn.expanded .expand-icon {
+            transform: rotate(180deg);
+        }
+
+        /* === 粉色主题统一样式 === */
+        /* 蓝色元素统一替换为粉色 */
+        .text-\[\#4D6BFE\] { color: #EC4899 !important; }              /* pink-500 */
+        .border-\[\#4D6BFE\] { border-color: #EC4899 !important; }
+        .border-\[\#93c5fd\] { border-color: #F9A8D4 !important; }    /* pink-300 */
+        
+        /* 渐变色统一为粉色 */
+        .from-\[\#4D6BFE\]\/20 { --tw-gradient-from: rgb(236 72 153 / 0.20) !important; }
+        .via-\[\#4D6BFE\]\/10 { --tw-gradient-stops: var(--tw-gradient-from), rgb(236 72 153 / 0.10), var(--tw-gradient-to) !important; }
+        .to-\[\#4D6BFE\]\/5 { --tw-gradient-to: rgb(236 72 153 / 0.05) !important; }
+
+        /* 紫色块（爬楼关键词）替换为粉色 */
+        .bg-purple-50   { background-color: #FDF2F8 !important; }     /* pink-50 */
+        .border-purple-200 { border-color: #FBCFE8 !important; }      /* pink-200 */
+        .text-purple-700   { color: #BE185D !important; }             /* pink-700 */
+        .text-purple-600   { color: #DB2777 !important; }             /* pink-600 */
+        
+        /* 交互与背景色 */
+        .hover\:text-blue-700:hover { color: #BE185D !important; }
+        .bg-blue-50 { background-color: #FDF2F8 !important; }
+
+        /* === 新增功能样式 === */
+        
+        /* 悬浮操作按钮栈 */
+        .floating-action-stack {
+            position: fixed;
+            right: 2rem;
+            bottom: 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 0.75rem;
+            z-index: 1000;
+        }
+        
+        .toc-floating-container {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 0.75rem;
+        }
+        
+        .toc-floating-button {
+            width: 3rem;
+            height: 3rem;
+            border-radius: 9999px;
+            background: #EC4899;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            border: none;
+            box-shadow: 0 4px 12px rgba(236, 72, 153, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .toc-floating-button:hover {
+            background: #DB2777;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 16px rgba(236, 72, 153, 0.4);
+        }
+        
+        .toc-floating-button.active {
+            background: #DB2777;
+        }
+        
+        .toc-panel {
+            position: absolute;
+            right: 0;
+            bottom: calc(100% + 0.75rem);
+            width: 20rem;
+            max-width: calc(100vw - 2.5rem);
+            max-height: 70vh;
+            overflow-y: auto;
+            background-color: #ffffff;
+            border: 1px solid #e9e9eb;
+            border-radius: 1rem;
+            box-shadow: 0 12px 30px rgba(236, 72, 153, 0.25);
+            padding: 1.25rem;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+        }
+        
+        .toc-panel.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        
+        .toc-panel-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+        }
+        
+        .toc-panel-title {
+            display: flex;
+            align-items: center;
+            font-size: 1rem;
+            font-weight: 700;
+            color: #000000;
+        }
+        
+        .toc-panel-title i {
+            margin-right: 0.5rem;
+            color: #EC4899;
+        }
+        
+        .toc-close {
+            background: transparent;
+            border: none;
+            padding: 0.25rem;
+            border-radius: 0.5rem;
+            color: #9ca3af;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .toc-close:hover {
+            color: #EC4899;
+            background: rgba(236, 72, 153, 0.1);
+        }
+        
+        .toc-items {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+        
+        .toc-link {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            padding: 0.5rem 0.75rem;
+            color: #6b7280;
+            text-decoration: none;
+            font-size: 0.875rem;
+            border-radius: 0.75rem;
+            transition: all 0.2s ease;
+        }
+        
+        .toc-link i {
+            width: 1rem;
+            text-align: center;
+            color: #EC4899;
+        }
+        
+        .toc-link:hover {
+            color: #EC4899;
+            background-color: #FDF2F8;
+            box-shadow: inset 2px 0 0 0 #EC4899;
+        }
+        
+        .toc-link.active {
+            color: #EC4899;
+            font-weight: 600;
+            background-color: #FDF2F8;
+            box-shadow: inset 2px 0 0 0 #EC4899;
+        }
+        
+        body.dark-mode .floating-action-stack {
+            gap: 0.75rem;
+        }
+        
+        body.dark-mode .toc-panel {
+            background-color: #2a2a2a;
+            border-color: #3a3a3a;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6);
+        }
+        
+        body.dark-mode .toc-panel-title {
+            color: #f5f5f5;
+        }
+        
+        body.dark-mode .toc-panel-title i {
+            color: #f472b6;
+        }
+        
+        body.dark-mode .toc-close {
+            color: #d1d5db;
+        }
+        
+        body.dark-mode .toc-close:hover {
+            background: rgba(236, 72, 153, 0.2);
+            color: #f472b6;
+        }
+        
+        body.dark-mode .toc-link {
+            color: #d1d5db !important;
+        }
+        
+        body.dark-mode .toc-link i {
+            color: #f472b6;
+        }
+        
+        body.dark-mode .toc-link:hover,
+        body.dark-mode .toc-link.active {
+            color: #f472b6 !important;
+            background-color: rgba(236, 72, 153, 0.18) !important;
+            box-shadow: inset 2px 0 0 0 rgba(236, 72, 153, 0.6);
+        }
+        
+        /* 返回顶部按钮样式 */
+        .back-to-top {
+            width: 3rem;
+            height: 3rem;
+            background: #EC4899;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(236, 72, 153, 0.3);
+        }
+        
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .back-to-top:hover {
+            background: #DB2777;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 16px rgba(236, 72, 153, 0.4);
+        }
+        
+        /* 复制按钮样式 */
+        .copy-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.25rem;
+            padding: 0.25rem 0.5rem;
+            background: transparent;
+            color: #EC4899;
+            border: 1px solid #EC4899;
+            border-radius: 0.375rem;
+            font-size: 0.75rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .copy-btn:hover {
+            background: #EC4899;
+            color: white;
+        }
+        
+        .copy-btn.copied {
+            background: #10b981;
+            border-color: #10b981;
+            color: white;
+        }
+        
+        /* 暗色模式样式 */
+        /* 预加载类：在JavaScript执行前就应用深色模式 */
+        html.dark-mode-preload,
+        html.dark-mode-preload body,
+        body.dark-mode {
+            background-color: #1a1a1a;
+            color: #e5e5e5;
+        }
+        
+        html.dark-mode-preload .bento-card,
+        body.dark-mode .bento-card {
+            background-color: #2a2a2a;
+            border-color: #3a3a3a;
+        }
+        
+        body.dark-mode .section-title {
+            color: #f5f5f5;
+        }
+        
+        body.dark-mode .text-black {
+            color: #e5e5e5 !important;
+        }
+        
+        body.dark-mode .text-gray-700 {
+            color: #a0a0a0 !important;
+        }
+        
+        body.dark-mode .text-gray-600 {
+            color: #909090 !important;
+        }
+        
+        body.dark-mode .text-gray-800 {
+            color: #c0c0c0 !important;
+        }
+        
+        body.dark-mode .bg-slate-50 {
+            background-color: #2f2f2f !important;
+        }
+        
+        body.dark-mode .bg-gray-50 {
+            background-color: #2f2f2f !important;
+        }
+        
+        body.dark-mode .bg-gray-100 {
+            background-color: #333333 !important;
+        }
+        
+        body.dark-mode .bg-purple-50 {
+            background-color: #3d2940 !important;
+        }
+        
+        body.dark-mode .bg-amber-50 {
+            background-color: #3d3420 !important;
+        }
+        
+        body.dark-mode .border-gray-200 {
+            border-color: #3a3a3a !important;
+        }
+        
+        body.dark-mode .border-purple-200 {
+            border-color: #5a3a5f !important;
+        }
+        
+        body.dark-mode .bg-blue-50 {
+            background-color: #1e3a5f !important;
+        }
+        
+        body.dark-mode .border-amber-400 {
+            border-color: #d97706 !important;
+        }
+        
+        /* 深色模式下的渐变遮罩 */
+        body.dark-mode .content-preview.collapsed::after {
+            background: linear-gradient(transparent, rgba(26, 26, 26, 0.95));
+        }
+        
+        /* 深色模式下的加粗文字增强 */
+        body.dark-mode b,
+        body.dark-mode strong {
+            color: #f5f5f5 !important;
+            font-weight: 700;
+            text-shadow: 0 0 0.5px rgba(255, 255, 255, 0.3);
+        }
+        
+        /* 深色模式下的链接样式 */
+        body.dark-mode a {
+            color: #F9A8D4;
+        }
+        
+        body.dark-mode a:hover {
+            color: #FBCFE8;
+        }
+        
+        /* 深色模式下的标签样式 */
+        body.dark-mode .tag-item {
+            background-color: rgba(236, 72, 153, 0.2);
+            color: #F9A8D4;
+        }
+        
+        /* 深色模式下的按钮文字 */
+        body.dark-mode .text-pink-600 {
+            color: #F9A8D4 !important;
+        }
+        
+        body.dark-mode .text-pink-700 {
+            color: #FBCFE8 !important;
+        }
+        
+        body.dark-mode .text-green-700 {
+            color: #86efac !important;
+        }
+        
+        body.dark-mode .text-green-600 {
+            color: #4ade80 !important;
+        }
+        
+        /* 深色模式下的h标签 */
+        body.dark-mode h1,
+        body.dark-mode h2,
+        body.dark-mode h3,
+        body.dark-mode h4,
+        body.dark-mode h5 {
+            color: #f5f5f5 !important;
+        }
+        
+        /* 深色模式下的边框和分隔线 */
+        body.dark-mode .border-l-4 {
+            opacity: 0.8;
+        }
+        
+        /* 深色模式下复制按钮 */
+        body.dark-mode .copy-btn {
+            border-color: #F9A8D4;
+            color: #F9A8D4;
+        }
+        
+        body.dark-mode .copy-btn:hover {
+            background: #F9A8D4;
+            color: #1a1a1a;
+        }
+        
+        /* 主题切换按钮 */
+        .theme-toggle {
+            width: 3rem;
+            height: 3rem;
+            background: #EC4899;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(236, 72, 153, 0.3);
+        }
+        
+        .theme-toggle:hover {
+            background: #DB2777;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 16px rgba(236, 72, 153, 0.4);
+        }
+        
+        /* 打印样式 */
+        @media print {
+            .floating-action-stack, nav, .copy-btn, .expand-btn {
+                display: none !important;
+            }
+            
+            body {
+                background: white;
+                color: black;
+            }
+            
+            .bento-card {
+                box-shadow: none;
+                border: 1px solid #ddd;
+                page-break-inside: avoid;
+            }
+            
+            .content-preview.collapsed {
+                max-height: none !important;
+            }
+            
+            .content-preview.collapsed::after {
+                display: none;
+            }
+        }
+        
+        /* 移动端优化 */
+        @media (max-width: 640px) {
+            .floating-action-stack {
+                right: 1rem;
+                bottom: 1rem;
+                gap: 0.5rem;
+            }
+
+            .floating-action-stack .toc-floating-button,
+            .floating-action-stack .theme-toggle,
+            .floating-action-stack .back-to-top {
+                width: 2.75rem;
+                height: 2.75rem;
+            }
+
+            .toc-panel {
+                width: calc(100vw - 2rem);
+                max-width: calc(100vw - 2rem);
+                max-height: 60vh;
+                padding: 1rem;
+            }
+        }
+
+        /* 页面淡入效果 - 让切换更平滑 */
+        body {
+            animation: fadeIn 0.3s ease-in;
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+    </style>
+    <!-- Shared site search -->
+    <link rel="stylesheet" href="../../assets/search.css" data-gj-search-style="true">
+</head>
+<body class="bg-white text-black min-h-screen">
+    <!-- HTML注释: 整体宽度通过 max-w-4xl 控制，实现日报宽度调小并保持响应式。-->
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+
+        <!-- === "群聊日报" 文件头区域 开始 === -->
+        <!-- HTML注释: 此模块作为单独一行，占据整行宽度。包含日报主标题、报告日期和时间范围。 -->
+        <!-- HTML注释: 新增了"群聊历史日报"链接，样式与整体设计保持统一协调 -->
+        <header class="w-full mb-8" role="banner">
+            <div class="bento-card p-8">
+                <div class="text-center">
+                    <h1 class="text-5xl font-black text-black mb-6">
+                        自媒体糕校
+                    </h1>
+                    <div class="flex flex-col sm:flex-row justify-center items-center space-y-2 sm:space-y-0 sm:space-x-6 text-lg mb-4">
+                        <div class="flex items-center text-gray-700">
+                            <i class="fas fa-calendar-alt mr-2 text-[#4D6BFE]"></i>
+                            <span id="report-date">2026年10月7日</span>
+                        </div>
+                        <div class="flex items-center text-gray-700">
+                            <i class="fas fa-clock mr-2 text-[#4D6BFE]"></i>
+                            <span>08:11 - 00:54(次日)</span>
+                        </div>
+                    </div>
+                    <!-- 历史日报入口 -->
+                    <div class="mt-4">
+                        <a id="history-link" href="https://gaogaoselfmedialearninggroup.github.io/x/historical_page_summary.html" 
+                           class="inline-flex items-center gap-2 text-pink-600 hover:text-pink-700 bg-pink-50 hover:bg-pink-100 border border-pink-200 hover:border-pink-300 px-4 py-2 rounded-lg transition-all text-sm font-medium shadow-sm hover:shadow">
+                            <i class="fas fa-history"></i>
+                            <span>糕校历史日报</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </header>
+        
+        <!-- 导航与历史入口 -->
+        <nav class="w-full mb-8" aria-label="日期导航">
+            <div class="bento-card p-5">
+                <!-- 日期导航 -->
+                <div class="flex items-center justify-between mb-4">
+                    <button id="prev-day" class="inline-flex items-center gap-2 bg-pink-500 hover:bg-pink-600 text-white px-4 py-2 rounded-lg shadow disabled:bg-gray-200 disabled:text-gray-400 transition-all" aria-label="查看前一天日报">
+                        <i class="fas fa-chevron-left"></i>
+                        <span class="hidden sm:inline">上一天</span>
+                        <span class="sm:hidden">上一天</span>
+                    </button>
+                    <button id="next-day" class="inline-flex items-center gap-2 bg-pink-500 hover:bg-pink-600 text-white px-4 py-2 rounded-lg shadow disabled:bg-gray-200 disabled:text-gray-400 transition-all" aria-label="查看后一天日报">
+                        <span class="hidden sm:inline">下一天</span>
+                        <span class="sm:hidden">下一天</span>
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+        </nav>
+        <!-- === "群聊日报" 文件头区域 结束 === -->
+
+        <!-- === 内容目录导航（通过右下角悬浮按钮呈现） === -->
+
+        <!-- === 模块一：总消息概览 开始 === -->
+        <!-- HTML注释: 此模块作为单独一行，占据整行宽度。显示当日群聊总消息数量。 -->
+        <section id="section-overview" class="w-full mb-12" aria-labelledby="section-overview-title">
+            <h2 id="section-overview-title" class="section-title">
+                一、今日群聊速览
+            </h2>
+            <div class="bento-card p-8 bg-gradient-to-br from-[#EC4899]/20 via-[#EC4899]/10 to-[#EC4899]/5 text-center rounded-2xl">
+                <div class="number-display text-[#4D6BFE]">
+                    126
+                </div>
+                <p class="text-xl font-semibold text-black mt-3">总消息数量</p>
+            </div>
+        </section>
+        <!-- === 模块一：总消息概览 结束 === -->
+
+        <!-- === 模块二：火花碰撞时刻・热点话题 开始 === -->
+        <!-- HTML注释: 此模块作为单独一行，占据整行宽度。用于展示群内讨论的热点话题。 -->
+        <section id="section-topics" class="w-full mb-12" aria-labelledby="section-topics-title">
+            <h2 id="section-topics-title" class="section-title">
+                二、糕论时刻・深度话题
+            </h2>
+            <!-- 列表容器: 讨论话题 -->
+            <div class="space-y-8">
+
+                <!-- 热点话题卡片 开始 -->
+                <div class="bento-card p-6 rounded-xl"> 
+                    <div class="flex flex-col sm:flex-row items-start justify-between mb-4">
+                        <h4 class="text-xl font-bold text-black flex-1 mb-2 sm:mb-0">
+                            如何识别"看起来能变现"的账号：商单透视法
+                        </h4>
+                        <span class="text-sm text-gray-600 ml-0 sm:ml-4 whitespace-nowrap bg-gray-100 px-3 py-1.5 rounded-md">
+                            <i class="fas fa-clock mr-1.5 text-gray-500"></i>
+                            14:03 - 15:37
+                        </span>
+                    </div>
+
+                    <div class="mb-4 bg-purple-50 border border-purple-200 rounded-md p-3">
+                        <p class="text-sm font-medium text-purple-700 mb-1">爬楼关键词</p>
+                        <p class="text-sm text-purple-600 italic">
+                            七七是只三花猫："粉丝量看起来是突然起来的"
+                        </p>
+                    </div>
+
+                    <div class="mb-5">
+                        <p class="text-sm font-semibold text-gray-800 mb-2">相关关键词</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="tag-item">账号拆解</span>
+                            <span class="tag-item">商单识别</span>
+                            <span class="tag-item">买流量</span>
+                            <span class="tag-item">人设内容</span>
+                            <span class="tag-item">变现能力</span>
+                        </div>
+                    </div>
+
+                    <div class="mb-5">
+                        <p class="text-sm font-semibold text-gray-800 mb-2">详细内容</p>
+                        <div class="text-gray-700 text-base leading-relaxed bg-slate-50 p-4 rounded-md prose prose-sm max-w-none">
+                            <div class="expandable-content" data-char-limit="200">
+                                <div class="content-preview">
+                                    <b>一、话题背景与起因</b><br><b>七七是只三花猫</b>分享了一个"高性价比人生指南"的个人主页，并指出"粉丝量看起来是突然起来的"，由此引发了一场关于如何判断一个账号是否真正具备变现能力的拆解讨论。<br><br><b>二、主要观点与讨论详情</b><br>1. <b>先看商单，不看粉丝量</b>：<b>每周给群友分享一个赚钱妙招</b>（糕糕）直接给出判断："这个号可以抄。这个人绝对是品牌内部人，知道什么内容能获得投放。"当<b>小红书-另见</b>疑惑为什么主页上有两篇笔记不在截图里时，糕糕解释自己截图只截商单，"因为能直观看到这个人有没有变现的能力"。<br><br>2. <b>硬广的阅读量天然不高</b>：<b>小红书-另见</b>发现该账号阅读与点赞转化率不错，但阅读量没有想象中高。糕糕解释："品牌资讯其实算硬广。阅读量不会高的。"<br><br>3. <b>警惕"买流量式繁荣"</b>：糕糕进一步提醒，这类账号如果是靠纯自然流量是起不来的，因为"真实用户没有几个会爱看这样的内容"，大概率是花钱买了流量。虽然看起来变现很强，但这一点必须提醒。<br><br>4. <b>健康账号的三段式结构</b>：糕糕给出了本次讨论最重要的判断框架——<b>一个健康的能成长的号，一定是有部分内容负责你的人设，部分内容负责给你主页带流量，部分内容负责商单，它们是分开的</b>。<br><br><b>三、结论与启发</b><br>看账号不要被粉丝量和"变现很强"的表象迷惑：<b>先看商单密度，再看内容结构</b>。人设内容、引流内容、商单内容分工明确的账号才是可持续的；而靠投流撑起来的账号，模仿其内容形式往往会掉进坑里。
+                                </div>
+                                <button class="expand-btn text-[#4D6BFE] hover:text-blue-700 text-sm font-medium mt-2 flex items-center" style="display: none;">
+                                    <span class="expand-text">展开全文</span>
+                                    <i class="fas fa-chevron-down ml-1 expand-icon"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <p class="text-sm font-semibold text-gray-800 mb-3">关键结论与金句时刻</p>
+                        <div class="space-y-6">
+                            <!-- 关键结论 1 开始 -->
+                            <div class="border border-gray-200 rounded-lg p-4 bg-gray-50">
+                                <div class="mb-4">
+                                    <h5 class="text-base font-semibold text-gray-800 mb-2">关键结论</h5>
+                                    <div class="border-l-4 border-[#4D6BFE] pl-4 py-3 bg-blue-50 rounded-r-md">
+                                        <p class="text-black text-base">
+                                            判断一个账号值不值得学，看的不是粉丝量，而是<b>商单密度与内容结构</b>：人设、引流、商单三类内容分工分明，才是能成长的号。
+                                        </p>
+                                    </div>
+                                </div>
+                                <div>
+                                    <p class="text-sm font-medium text-gray-700 mb-2"><strong>金句时刻</strong></p>
+                                    <div class="space-y-2">
+                                        <div class="bg-amber-50 border-l-4 border-amber-400 p-3 rounded-r-md flex flex-col">
+                                            <div class="flex items-start justify-between mb-2">
+                                                <p class="text-gray-800 italic text-sm flex-1">
+                                                    一个健康的能成长的号，一定是有部分内容负责你的人设，部分内容负责给你主页带流量，部分内容负责商单。它们是分开的。
+                                                </p>
+                                                <button class="copy-btn ml-2" onclick="copyQuote(this, '一个健康的能成长的号，一定是有部分内容负责你的人设，部分内容负责给你主页带流量，部分内容负责商单。它们是分开的。 - 每周给群友分享一个赚钱妙招')" title="复制金句">
+                                                    <i class="fas fa-copy"></i>
+                                                </button>
+                                            </div>
+                                            <p class="text-gray-600 text-xs mt-1 self-end">
+                                                - <b>每周给群友分享一个赚钱妙招</b>
+                                            </p>
+                                        </div>
+                                        <div class="bg-amber-50 border-l-4 border-amber-400 p-3 rounded-r-md flex flex-col">
+                                            <div class="flex items-start justify-between mb-2">
+                                                <p class="text-gray-800 italic text-sm flex-1">
+                                                    我截图都是截图商单的，因为能直观看到这个人有没有变现的能力。
+                                                </p>
+                                                <button class="copy-btn ml-2" onclick="copyQuote(this, '我截图都是截图商单的，因为能直观看到这个人有没有变现的能力。 - 每周给群友分享一个赚钱妙招')" title="复制金句">
+                                                    <i class="fas fa-copy"></i>
+                                                </button>
+                                            </div>
+                                            <p class="text-gray-600 text-xs mt-1 self-end">
+                                                - <b>每周给群友分享一个赚钱妙招</b>
+                                            </p>
+                                        </div>
+                                        <div class="bg-amber-50 border-l-4 border-amber-400 p-3 rounded-r-md flex flex-col">
+                                            <div class="flex items-start justify-between mb-2">
+                                                <p class="text-gray-800 italic text-sm flex-1">
+                                                    这个人绝对是品牌内部人，知道什么内容能获得投放。
+                                                </p>
+                                                <button class="copy-btn ml-2" onclick="copyQuote(this, '这个人绝对是品牌内部人，知道什么内容能获得投放。 - 每周给群友分享一个赚钱妙招')" title="复制金句">
+                                                    <i class="fas fa-copy"></i>
+                                                </button>
+                                            </div>
+                                            <p class="text-gray-600 text-xs mt-1 self-end">
+                                                - <b>每周给群友分享一个赚钱妙招</b>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- 关键结论 1 结束 -->
+                        </div>
+                    </div>
+                </div>
+                <!-- 热点话题卡片 结束 -->
+                
+                <!-- 热点话题卡片 开始 -->
+                <div class="bento-card p-6 rounded-xl"> 
+                    <div class="flex flex-col sm:flex-row items-start justify-between mb-4">
+                        <h4 class="text-xl font-bold text-black flex-1 mb-2 sm:mb-0">
+                            起号选题的"梗"：从"500块吃一个月"到强行平账
+                        </h4>
+                        <span class="text-sm text-gray-600 ml-0 sm:ml-4 whitespace-nowrap bg-gray-100 px-3 py-1.5 rounded-md">
+                            <i class="fas fa-clock mr-1.5 text-gray-500"></i>
+                            11:33 - 15:46
+                        </span>
+                    </div>
+
+                    <div class="mb-4 bg-purple-50 border border-purple-200 rounded-md p-3">
+                        <p class="text-sm font-medium text-purple-700 mb-1">爬楼关键词</p>
+                        <p class="text-sm text-purple-600 italic">
+                            蓉么么不扎针｜大明湖畔的蓉么么："但我有个疑惑，广告主会不会觉得'500块过一个月'的主题比较'穷酸'呢？"
+                        </p>
+                    </div>
+
+                    <div class="mb-5">
+                        <p class="text-sm font-semibold text-gray-800 mb-2">相关关键词</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="tag-item">起号选题</span>
+                            <span class="tag-item">内容梗</span>
+                            <span class="tag-item">猎奇流量</span>
+                            <span class="tag-item">广告主逻辑</span>
+                            <span class="tag-item">追更动力</span>
+                        </div>
+                    </div>
+
+                    <div class="mb-5">
+                        <p class="text-sm font-semibold text-gray-800 mb-2">详细内容</p>
+                        <div class="text-gray-700 text-base leading-relaxed bg-slate-50 p-4 rounded-md prose prose-sm max-w-none">
+                            <div class="expandable-content" data-char-limit="200">
+                                <div class="content-preview">
+                                    <b>一、话题背景与起因</b><br><b>蓉么么不扎针｜大明湖畔的蓉么么</b>分享了一条"省钱日记｜一人食｜500块吃一个月的存钱生活"的笔记，并观察到"这种视频广告位很多"。随后她提出一个很实际的问题：<b>广告主会不会觉得"500块过一个月"的主题比较"穷酸"？</b><br><br><b>二、主要观点与讨论详情</b><br>1. <b>猎奇本身就是流量</b>：<b>羽绒有烟｜LadySu</b>认为完全不用担心——"起号的主题而已，多猎奇的东西都有人看"。<br><br>2. <b>人设不崩，靠"超标"续命</b>：<b>仙人球成掌｜海边退休蟹</b>一针见血地指出，这类博主"过不下去了不会真的吃糠咽菜的，会写预算超标了"，既保住真实感，又留住了后续内容空间。<br><br>3. <b>"总是失败"会变成一个梗</b>：<b>是斑马不是牛马/蜗牛下班啦/白矮星</b>进一步补充，如果每次都超标，反而会沉淀成一个固定梗——"看看他这个月能成功吗"，并类比了邓峰早期出名的算账（强行平账）视频。这种可预期的"翻车"，恰恰是用户持续追更的理由。<br><br>4. <b>细节重复也能成梗</b>：<b>房租涨了开始做饭</b>分享了自己的观察：关注的一个博主每次做饭都会煎个荷包蛋然后稀碎，最后这个细节成了评论区的梗。<br><br>5. <b>广告主只看带货能力</b>：针对"穷酸"的顾虑，<b>每周给群友分享一个赚钱妙招</b>（糕糕）给出最直接的答案——"广告主看这个人能不能给自己带货，你直接考虑这一点。"<br><br><b>三、结论与启发</b><br>选题"体面不体面"不是广告主关心的问题，<b>账号能不能带得动货才是</b>。对创作者而言，与其纠结主题是否"低端"，不如设计一个可持续、可预期的内容梗：允许失败、允许超标、允许重复的小事故，反而更容易形成用户记忆点和追更动力。
+                                </div>
+                                <button class="expand-btn text-[#4D6BFE] hover:text-blue-700 text-sm font-medium mt-2 flex items-center" style="display: none;">
+                                    <span class="expand-text">展开全文</span>
+                                    <i class="fas fa-chevron-down ml-1 expand-icon"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <p class="text-sm font-semibold text-gray-800 mb-3">关键结论与金句时刻</p>
+                        <div class="space-y-6">
+                            <!-- 关键结论 1 开始 -->
+                            <div class="border border-gray-200 rounded-lg p-4 bg-gray-50">
+                                <div class="mb-4">
+                                    <h5 class="text-base font-semibold text-gray-800 mb-2">关键结论</h5>
+                                    <div class="border-l-4 border-[#4D6BFE] pl-4 py-3 bg-blue-50 rounded-r-md">
+                                        <p class="text-black text-base">
+                                            广告主评估的是<b>带货能力</b>而非主题体面度；而持续可预期的"翻车"细节，会沉淀成用户追更的内容梗。
+                                        </p>
+                                    </div>
+                                </div>
+                                <div>
+                                    <p class="text-sm font-medium text-gray-700 mb-2"><strong>金句时刻</strong></p>
+                                    <div class="space-y-2">
+                                        <div class="bg-amber-50 border-l-4 border-amber-400 p-3 rounded-r-md flex flex-col">
+                                            <div class="flex items-start justify-between mb-2">
+                                                <p class="text-gray-800 italic text-sm flex-1">
+                                                    广告主看这个人能不能给自己带货，你直接考虑这一点。
+                                                </p>
+                                                <button class="copy-btn ml-2" onclick="copyQuote(this, '广告主看这个人能不能给自己带货，你直接考虑这一点。 - 每周给群友分享一个赚钱妙招')" title="复制金句">
+                                                    <i class="fas fa-copy"></i>
+                                                </button>
+                                            </div>
+                                            <p class="text-gray-600 text-xs mt-1 self-end">
+                                                - <b>每周给群友分享一个赚钱妙招</b>
+                                            </p>
+                                        </div>
+                                        <div class="bg-amber-50 border-l-4 border-amber-400 p-3 rounded-r-md flex flex-col">
+                                            <div class="flex items-start justify-between mb-2">
+                                                <p class="text-gray-800 italic text-sm flex-1">
+                                                    我觉得不会，起号的主题而已，多猎奇的东西都有人看。
+                                                </p>
+                                                <button class="copy-btn ml-2" onclick="copyQuote(this, '我觉得不会，起号的主题而已，多猎奇的东西都有人看。 - 羽绒有烟｜LadySu')" title="复制金句">
+                                                    <i class="fas fa-copy"></i>
+                                                </button>
+                                            </div>
+                                            <p class="text-gray-600 text-xs mt-1 self-end">
+                                                - <b>羽绒有烟｜LadySu</b>
+                                            </p>
+                                        </div>
+                                        <div class="bg-amber-50 border-l-4 border-amber-400 p-3 rounded-r-md flex flex-col">
+                                            <div class="flex items-start justify-between mb-2">
+                                                <p class="text-gray-800 italic text-sm flex-1">
+                                                    而且如果每次都超标还会变成一个梗"看看他这个月能成功吗"。
+                                                </p>
+                                                <button class="copy-btn ml-2" onclick="copyQuote(this, '而且如果每次都超标还会变成一个梗“看看他这个月能成功吗”。 - 是斑马不是牛马/蜗牛下班啦/白矮星')" title="复制金句">
+                                                    <i class="fas fa-copy"></i>
+                                                </button>
+                                            </div>
+                                            <p class="text-gray-600 text-xs mt-1 self-end">
+                                                - <b>是斑马不是牛马/蜗牛下班啦/白矮星</b>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- 关键结论 1 结束 -->
+                        </div>
+                    </div>
+                </div>
+                <!-- 热点话题卡片 结束 -->
+
+                <!-- 热点话题卡片 开始 -->
+                <div class="bento-card p-6 rounded-xl"> 
+                    <div class="flex flex-col sm:flex-row items-start justify-between mb-4">
+                        <h4 class="text-xl font-bold text-black flex-1 mb-2 sm:mb-0">
+                            试色笔记：不准，但大家就是爱看
+                        </h4>
+                        <span class="text-sm text-gray-600 ml-0 sm:ml-4 whitespace-nowrap bg-gray-100 px-3 py-1.5 rounded-md">
+                            <i class="fas fa-clock mr-1.5 text-gray-500"></i>
+                            13:02 - 13:10
+                        </span>
+                    </div>
+
+                    <div class="mb-4 bg-purple-50 border border-purple-200 rounded-md p-3">
+                        <p class="text-sm font-medium text-purple-700 mb-1">爬楼关键词</p>
+                        <p class="text-sm text-purple-600 italic">
+                            爱河游泳健将～福豹了："自己想买，干脆做个试色笔记，发小红书。"
+                        </p>
+                    </div>
+
+                    <div class="mb-5">
+                        <p class="text-sm font-semibold text-gray-800 mb-2">相关关键词</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="tag-item">美妆内容</span>
+                            <span class="tag-item">试色笔记</span>
+                            <span class="tag-item">避雷选题</span>
+                            <span class="tag-item">真实体验</span>
+                        </div>
+                    </div>
+
+                    <div class="mb-5">
+                        <p class="text-sm font-semibold text-gray-800 mb-2">详细内容</p>
+                        <div class="text-gray-700 text-base leading-relaxed bg-slate-50 p-4 rounded-md prose prose-sm max-w-none">
+                            <div class="expandable-content" data-char-limit="200">
+                                <div class="content-preview">
+                                    <b>一、话题背景与起因</b><br><b>爱河游泳健将～福豹了</b>分享了自己在MUJI拍试色的经历——"自己想买，干脆做个试色笔记，发小红书"。这个把消费行为顺手转化成内容素材的思路，得到了<b>小红书-另见</b>"好点子！"的认可。<br><br><b>二、主要观点与讨论详情</b><br>1. <b>试色内容的前提提醒</b>：<b>兔师傅爱种草</b>提醒"手上和眼皮上两个效果"，建议别急着下单，可以先在眼皮上试试看合不合适。<br><br>2. <b>颜色准不准，其实不重要</b>：<b>小红书-另见</b>提出关键疑问——"感觉灯光偏黄，和实物颜色比起来准吗？"<b>每周给群友分享一个赚钱妙招</b>（糕糕）直言"其实是不准的"，但紧接着给出结论：<b>"试色都是不准的，但大家就是爱看。"</b>另见也分享了自己的经历：之前纠结色号，看半天发现各个博主的实物试色很不准。<br><br>3. <b>翻车本身就是选题</b>：<b>爱河游泳健将～福豹了</b>吐槽自己买了一个号称香奈儿Warm平替的产品，"结果涂在脸上，抹不开，眼皮亮得跟孙悟空似的"。<b>小红书-另见</b>立刻给出内容转化建议——"噱头来着，出期避雷"。<br><br>4. <b>专柜试色是普遍行为</b>：糕糕补充，"很多人试色都是去柜台专柜"，说明试色内容的搜索需求真实且稳定。<br><br><b>三、结论与启发</b><br>试色内容的流量密码不在于色彩还原的绝对准确，而在于<b>真实体验和决策参考价值</b>。与其追求"拍得准"，不如把"用起来怎样""踩了什么雷"讲透；一次翻车，往往就是一期天然的避雷选题。
+                                </div>
+                                <button class="expand-btn text-[#4D6BFE] hover:text-blue-700 text-sm font-medium mt-2 flex items-center" style="display: none;">
+                                    <span class="expand-text">展开全文</span>
+                                    <i class="fas fa-chevron-down ml-1 expand-icon"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <p class="text-sm font-semibold text-gray-800 mb-3">关键结论与金句时刻</p>
+                        <div class="space-y-6">
+                            <!-- 关键结论 1 开始 -->
+                            <div class="border border-gray-200 rounded-lg p-4 bg-gray-50">
+                                <div class="mb-4">
+                                    <h5 class="text-base font-semibold text-gray-800 mb-2">关键结论</h5>
+                                    <div class="border-l-4 border-[#4D6BFE] pl-4 py-3 bg-blue-50 rounded-r-md">
+                                        <p class="text-black text-base">
+                                            试色内容的流量不依赖颜色绝对准确，而依赖<b>真实体验与避雷价值</b>；一次翻车就是一期天然的好选题。
+                                        </p>
+                                    </div>
+                                </div>
+                                <div>
+                                    <p class="text-sm font-medium text-gray-700 mb-2"><strong>金句时刻</strong></p>
+                                    <div class="space-y-2">
+                                        <div class="bg-amber-50 border-l-4 border-amber-400 p-3 rounded-r-md flex flex-col">
+                                            <div class="flex items-start justify-between mb-2">
+                                                <p class="text-gray-800 italic text-sm flex-1">
+                                                    试色都是不准的，但大家就是爱看。
+                                                </p>
+                                                <button class="copy-btn ml-2" onclick="copyQuote(this, '试色都是不准的，但大家就是爱看。 - 每周给群友分享一个赚钱妙招')" title="复制金句">
+                                                    <i class="fas fa-copy"></i>
+                                                </button>
+                                            </div>
+                                            <p class="text-gray-600 text-xs mt-1 self-end">
+                                                - <b>每周给群友分享一个赚钱妙招</b>
+                                            </p>
+                                        </div>
+                                        <div class="bg-amber-50 border-l-4 border-amber-400 p-3 rounded-r-md flex flex-col">
+                                            <div class="flex items-start justify-between mb-2">
+                                                <p class="text-gray-800 italic text-sm flex-1">
+                                                    我就是买了一个号称香奈儿 Warm 平替的，结果涂在脸上，抹不开，眼皮亮得跟孙悟空似的。
+                                                </p>
+                                                <button class="copy-btn ml-2" onclick="copyQuote(this, '我就是买了一个号称香奈儿 Warm 平替的，结果涂在脸上，抹不开，眼皮亮得跟孙悟空似的。 - 爱河游泳健将～福豹了')" title="复制金句">
+                                                    <i class="fas fa-copy"></i>
+                                                </button>
+                                            </div>
+                                            <p class="text-gray-600 text-xs mt-1 self-end">
+                                                - <b>爱河游泳健将～福豹了</b>
+                                            </p>
+                                        </div>
+                                        <div class="bg-amber-50 border-l-4 border-amber-400 p-3 rounded-r-md flex flex-col">
+                                            <div class="flex items-start justify-between mb-2">
+                                                <p class="text-gray-800 italic text-sm flex-1">
+                                                    噱头来着，出期避雷。
+                                                </p>
+                                                <button class="copy-btn ml-2" onclick="copyQuote(this, '噱头来着，出期避雷。 - 小红书-另见')" title="复制金句">
+                                                    <i class="fas fa-copy"></i>
+                                                </button>
+                                            </div>
+                                            <p class="text-gray-600 text-xs mt-1 self-end">
+                                                - <b>小红书-另见</b>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- 关键结论 1 结束 -->
+                        </div>
+                    </div>
+                </div>
+                <!-- 热点话题卡片 结束 -->
+
+            </div>
+            <!-- 列表容器结束: 讨论话题 -->
+        </section>
+        <!-- === 模块二：火花碰撞时刻・热点话题 结束 === -->
+
+        <!-- === 模块三：解惑一点通・有问必答 开始 === -->
+        <section id="section-qa" class="w-full mb-12" aria-labelledby="section-qa-title">
+            <h2 id="section-qa-title" class="section-title">
+                三、避坑指南・问答精选
+            </h2>
+            <!-- 列表容器: 问题解答条目 -->
+            <div class="space-y-8">
+                <!-- 问答卡片 开始 -->
+                <div class="bento-card p-6 rounded-xl border-l-4 border-[#93c5fd]"> 
+                    <div class="mb-4">
+                        <h4 class="text-xl font-semibold text-black flex items-center">
+                            <i class="fas fa-question-circle mr-2.5 text-[#4D6BFE] text-lg"></i>
+                            提问：新号做菜视频一晚上6000播放，算多吗？接下来该怎么做？
+                        </h4>
+                    </div>
+
+                    <div class="mb-4 bg-purple-50 border border-purple-200 rounded-md p-3">
+                        <p class="text-sm font-medium text-purple-700 mb-1">爬楼关键词</p>
+                        <p class="text-sm text-purple-600 italic">
+                            房租涨了开始做饭："天啊！昨天上午发的做菜视频今天早上起来有6000多观看了，这算多吗？还有评论的。"
+                        </p>
+                    </div>
+
+                    <div class="border-t border-gray-200 pt-4">
+                        <h5 class="text-lg font-semibold text-green-700 flex items-center mb-2">
+                            <i class="fas fa-lightbulb mr-2.5 text-lg text-green-600"></i>
+                            解答
+                        </h5>
+                        <div class="text-gray-700 text-base leading-relaxed prose prose-sm max-w-none">
+                            <div class="expandable-content" data-char-limit="200">
+                                <div class="content-preview">
+                                    <b>一、问题背景</b><br><b>房租涨了开始做饭</b>是刚起步的做菜账号，昨天上午发的视频，第二天早上起来已经有6000多观看，还收到了评论。她同时坦诚了自己的困惑：思路不清晰、没有主题、属于有啥发啥、画面一团糟，很多好看的做菜画面都只用了一个镜头完事。<br><br><b>二、核心判断</b><br>群友给出的答案非常明确。<b>小帕奇又去哪逛了&苏维尔的日记</b>直接回应："算很多了。"<b>小红书-另见</b>也简短有力地回复："多！"对于一个尚无明确定位的新号来说，单条视频6000+播放并带来评论互动，已经属于值得继续投入的正向反馈。<br><br><b>三、解决方案与建议</b><br><b>小帕奇又去哪逛了&苏维尔的日记</b>给出了最关键的一步建议：<b>"此时你应该把笔记分享出来。"</b>也就是说，与其在自我怀疑中反复纠结"算不算多""画面是不是乱"，不如把笔记拿到群里做一次公开诊断，让有经验的人直接指出可优化点。<br><br>对于"一镜到底"的问题，结合本群以往的讨论经验，做菜视频的优化优先级应是：先把<b>内容主题固定下来</b>（比如固定系列或固定场景），再逐步改善画面与镜头节奏。新号阶段的核心任务不是拍得完美，而是持续发布并获取真实反馈。
+                                </div>
+                                <button class="expand-btn text-[#4D6BFE] hover:text-blue-700 text-sm font-medium mt-2 flex items-center" style="display: none;">
+                                    <span class="expand-text">展开全文</span>
+                                    <i class="fas fa-chevron-down ml-1 expand-icon"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-5 pt-4 border-t border-gray-200">
+                        <div class="flex flex-wrap gap-2">
+                            <span class="tag-item">新号冷启动</span>
+                            <span class="tag-item">做菜赛道</span>
+                            <span class="tag-item">数据判断</span>
+                            <span class="tag-item">群友互助</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- 问答卡片 结束 -->
+                
+                <!-- 问答卡片 开始 -->
+                <div class="bento-card p-6 rounded-xl border-l-4 border-[#93c5fd]"> 
+                    <div class="mb-4">
+                        <h4 class="text-xl font-semibold text-black flex items-center">
+                            <i class="fas fa-question-circle mr-2.5 text-[#4D6BFE] text-lg"></i>
+                            提问：蓝V账号的商务发稿报价300元，是不是偏低？商单价格该怎么定？
+                        </h4>
+                    </div>
+
+                    <div class="mb-4 bg-purple-50 border border-purple-200 rounded-md p-3">
+                        <p class="text-sm font-medium text-purple-700 mb-1">爬楼关键词</p>
+                        <p class="text-sm text-purple-600 italic">
+                            小红书-另见："对于这个账号体量，报价是不是偏低了，糕糕你是基于什么设置的商单价格"
+                        </p>
+                    </div>
+
+                    <div class="border-t border-gray-200 pt-4">
+                        <h5 class="text-lg font-semibold text-green-700 flex items-center mb-2">
+                            <i class="fas fa-lightbulb mr-2.5 text-lg text-green-600"></i>
+                            解答
+                        </h5>
+                        <div class="text-gray-700 text-base leading-relaxed prose prose-sm max-w-none">
+                            <div class="expandable-content" data-char-limit="200">
+                                <div class="content-preview">
+                                    <b>一、问题背景</b><br><b>每周给群友分享一个赚钱妙招</b>（糕糕）分享了自己公司的蓝V账号作为案例：因为是蓝V，品牌方看不到阅读数据，但依然自然接到了一些发稿合作，点赞其实也不高，报价是300元。当天她接了两个合作，并附上了一篇品牌合作笔记作为示例。<b>小红书-另见</b>由此提出疑问：对于这个账号体量，报价是不是偏低了？定价依据是什么？<br><br><b>二、核心原因分析</b><br>糕糕给出了两点解释：<br>1. <b>商务发稿的价格本身就偏低</b>。这类合作与常规种草商单的定价逻辑不同，报价天花板不高是行业常态。<br>2. <b>账号数据会影响定价</b>。她明确指出"这个账号数据不好，点赞比低，也会有影响"——点赞比等互动指标直接关系到报价空间。<br><br><b>三、解决方案与建议</b><br>结合讨论可以提炼出几点定价思路：<br>1. <b>看数据，不看感觉</b>：报价应基于账号的互动数据（尤其是点赞比）而非主观期待。<br>2. <b>区分合作类型</b>：商务发稿、品牌活动发稿与常规种草商单的价格体系不同，不能用同一标准衡量。<br>3. <b>找到需求更集中的场景</b>：糕糕在分享中提到，"线下展会、品牌活动，确实是推广需求比较多"，这类场景的接单机会相对更多，值得作为切入口。<br>4. <b>蓝V的独特价值</b>：虽然品牌方看不到阅读数据，但蓝V身份本身就具备合作资质优势，可以自然接到发稿合作。
+                                </div>
+                                <button class="expand-btn text-[#4D6BFE] hover:text-blue-700 text-sm font-medium mt-2 flex items-center" style="display: none;">
+                                    <span class="expand-text">展开全文</span>
+                                    <i class="fas fa-chevron-down ml-1 expand-icon"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-5 pt-4 border-t border-gray-200">
+                        <div class="flex flex-wrap gap-2">
+                            <span class="tag-item">商单报价</span>
+                            <span class="tag-item">蓝V账号</span>
+                            <span class="tag-item">品牌合作</span>
+                            <span class="tag-item">内容变现</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- 问答卡片 结束 -->
+
+                <!-- 问答卡片 开始 -->
+                <div class="bento-card p-6 rounded-xl border-l-4 border-[#93c5fd]"> 
+                    <div class="mb-4">
+                        <h4 class="text-xl font-semibold text-black flex items-center">
+                            <i class="fas fa-question-circle mr-2.5 text-[#4D6BFE] text-lg"></i>
+                            提问：看到别人做得不错的账号，直接抄过来可以吗？
+                        </h4>
+                    </div>
+
+                    <div class="mb-4 bg-purple-50 border border-purple-200 rounded-md p-3">
+                        <p class="text-sm font-medium text-purple-700 mb-1">爬楼关键词</p>
+                        <p class="text-sm text-purple-600 italic">
+                            房租涨了开始做饭："这种的可以抄吗？"
+                        </p>
+                    </div>
+
+                    <div class="border-t border-gray-200 pt-4">
+                        <h5 class="text-lg font-semibold text-green-700 flex items-center mb-2">
+                            <i class="fas fa-lightbulb mr-2.5 text-lg text-green-600"></i>
+                            解答
+                        </h5>
+                        <div class="text-gray-700 text-base leading-relaxed prose prose-sm max-w-none">
+                            <div class="expandable-content" data-char-limit="200">
+                                <div class="content-preview">
+                                    <b>一、问题背景</b><br><b>房租涨了开始做饭</b>在群里分享了一个省钱类账号的主页链接，并直接提问"这种的可以抄吗？"这是很多新手在起号阶段都会遇到的实际困惑：看到一个数据不错、形式简单的账号，能不能照着做？<br><br><b>二、分析与处理方式</b><br>面对这个问题，<b>每周给群友分享一个赚钱妙招</b>（糕糕）没有直接下结论，而是先要求提供账号ID——"把id给我看看""我看看后台报价"。在拿到ID后，她查阅后台并给出了明确回复：<b>"暂时没有合作。"</b><br><br>这个处理过程本身就是答案：判断一个账号能不能抄，不能只看表面内容和粉丝量，而要<b>先验证它是否真的接到过商单</b>。后台没有投放记录的账号，说明其"看起来不错"更多停留在形式上。<br><br><b>三、解决方案与建议</b><br>1. <b>先验证变现，再决定学习</b>：对标一个账号之前，先确认它是否有真实的商单投放记录，这是最直接的"值不值得学"的判断依据。<br>2. <b>抄结构，不抄形式</b>：可以借鉴的是内容结构与选题逻辑（如人设内容、引流内容、商单内容的分工），而不是照搬某条笔记的表面形式。<br>3. <b>借助群体经验做判断</b>：群里可以直接查后台报价，遇到拿不准的对标账号，先问一句再动手，能省下大量试错时间。
+                                </div>
+                                <button class="expand-btn text-[#4D6BFE] hover:text-blue-700 text-sm font-medium mt-2 flex items-center" style="display: none;">
+                                    <span class="expand-text">展开全文</span>
+                                    <i class="fas fa-chevron-down ml-1 expand-icon"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-5 pt-4 border-t border-gray-200">
+                        <div class="flex flex-wrap gap-2">
+                            <span class="tag-item">对标账号</span>
+                            <span class="tag-item">内容借鉴</span>
+                            <span class="tag-item">后台报价</span>
+                            <span class="tag-item">变现验证</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- 问答卡片 结束 -->
+            </div>
+            <!-- 列表容器结束: 问题解答条目 -->
+        </section>
+        <!-- === 模块三：解惑一点通・有问必答 结束 === -->
+
+        <!-- === 模块四：智慧火花匣・每日精选 开始 === -->
+        <section id="section-highlights" class="w-full mb-12" aria-labelledby="section-highlights-title">
+            <h2 id="section-highlights-title" class="section-title">
+                四、宝藏分享・高能精选
+            </h2>
+            <!-- 列表容器: 每日精选条目 -->
+            <div class="space-y-8">
+                <!-- 知识卡片 开始 -->
+                <div class="bento-card p-6 rounded-xl border-l-4 border-[#93c5fd]">
+                    <h4 class="text-xl font-semibold text-black mb-3">
+                        溏心蛋手搓的「小红书长文编辑器」（无偿分享）
+                    </h4>
+
+                    <div class="mb-4 bg-purple-50 border border-purple-200 rounded-md p-3">
+                        <p class="text-sm font-medium text-purple-700 mb-1">爬楼关键词</p>
+                        <p class="text-sm text-purple-600 italic">
+                            溏心蛋｜Tanja的德语日记："这是之前我手搓的小红书长文编辑器，有同志当时说很风格很喜欢，无偿分享给大家"
+                        </p>
+                    </div>
+
+                    <div class="text-gray-700 text-base mb-4 leading-relaxed prose prose-sm max-w-none">
+                        <div class="expandable-content" data-char-limit="200">
+                            <div class="content-preview">
+                                <b>一、推荐内容</b><br><b>溏心蛋｜Tanja的德语日记</b>在群里无偿分享了自己手搓的<b>小红书长文编辑器</b>，并附上了可直接使用的访问地址。此前有群友表示很喜欢它的排版风格，这次她把它开放给所有群友使用。<br><br><b>二、核心价值与特点</b><br>1. <b>专为小红书长文场景设计</b>：解决长文排版繁琐、格式难统一的问题，适合需要输出长图文笔记的创作者。<br>2. <b>排版风格已获群友认可</b>：分享者提到"有同志当时说很风格很喜欢"，说明其视觉呈现是经过实际使用验证的。<br>3. <b>无偿开放使用</b>：没有门槛、没有收费，直接可用。<br><br>分享者本人的态度也值得记录：她坦言"我也在尝试新的工具，需要学习的地方还有很多"，并强调<b>"工具终归是工具，做得好还是得靠内容"</b>，与群友共勉。<br><br><b>三、适用场景或补充信息</b><br>适用于需要批量产出小红书长图文、注重排版一致性、希望减少编辑时间的内容创作者。分享发布后，<b>福尔梅斯/查理的大厂妈妈</b>、<b>行之@水牛@木头</b>、<b>初夏小太阳</b>、<b>羽绒有烟｜LadySu</b>、<b>花生米鸭 | 持之以瘦</b>、<b>菠萝（xhs：低卡煎饼狗子）</b>、<b>一只弄潮鹅</b>、<b>静群-卤蛋｜静推荐｜FashionDaily</b>、<b>九条爱玩跑步机、猫猫虫_鼠鼠</b> 等多位群友先后致谢，群内反响热烈。
+                            </div>
+                            <button class="expand-btn text-[#4D6BFE] hover:text-blue-700 text-sm font-medium mt-2 flex items-center" style="display: none;">
+                                <span class="expand-text">展开全文</span>
+                                <i class="fas fa-chevron-down ml-1 expand-icon"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="tag-item">效率工具</span>
+                        <span class="tag-item">小红书排版</span>
+                        <span class="tag-item">长文编辑器</span>
+                        <span class="tag-item">无偿分享</span>
+                    </div>
+                    <p class="text-sm text-gray-600">
+                        <i class="fas fa-link mr-1.5 text-[#4D6BFE]"></i>
+                        资源链接：<a href="https://490132156d0e4b65a495f8ef006b72f8.app.workbuddy.host" target="_blank" class="underline break-all">https://490132156d0e4b65a495f8ef006b72f8.app.workbuddy.host</a>
+                    </p>
+                </div>
+                <!-- 知识卡片 结束 -->
+
+                <!-- 知识卡片 开始 -->
+                <div class="bento-card p-6 rounded-xl border-l-4 border-[#93c5fd]">
+                    <h4 class="text-xl font-semibold text-black mb-3">
+                        蓝V账号接单实录：商务发稿报价与合作案例
+                    </h4>
+
+                    <div class="mb-4 bg-purple-50 border border-purple-200 rounded-md p-3">
+                        <p class="text-sm font-medium text-purple-700 mb-1">爬楼关键词</p>
+                        <p class="text-sm text-purple-600 italic">
+                            每周给群友分享一个赚钱妙招："分享一下我公司的蓝v账号，因为是蓝v，品牌看不到阅读数据，但是自然有接到一些发稿的合作"
+                        </p>
+                    </div>
+
+                    <div class="text-gray-700 text-base mb-4 leading-relaxed prose prose-sm max-w-none">
+                        <div class="expandable-content" data-char-limit="200">
+                            <div class="content-preview">
+                                <b>一、推荐内容</b><br><b>每周给群友分享一个赚钱妙招</b>（糕糕）公开分享了自己公司的<b>蓝V账号</b>作为参考案例，并同步给出了真实的后台数据情况、合作报价与当天的接单成果。这是一次少见的、带真实数据的账号运营示范。<br><br><b>二、核心价值与特点</b><br>1. <b>蓝V的天然优势</b>：由于是蓝V，品牌方看不到阅读数据，因此"自然有接到一些发稿的合作"——不需要用公开阅读量证明自己，也能拿到发稿机会。<br>2. <b>真实的数据与报价</b>：账号点赞其实并不高，报价是<b>300元</b>。这份坦诚让群友能够对照自身账号做出更现实的预期。<br>3. <b>合作类型的可复制性</b>：她现场分享了一篇已完成的品牌合作笔记（FELIN枫凌培育钻石相关内容）作为示例，并透露<b>"今天接了两个"</b>。<br>4. <b>需求集中的场景提示</b>：由这次接单经验，她总结出"线下展会、品牌活动，确实是推广需求比较多"，为群友指明了容易拿到合作的方向。<br><br><b>三、适用场景或补充信息</b><br>适合正在探索商务发稿变现路径、拥有或计划注册蓝V账号、希望了解真实商单报价区间的创作者参考。配合本次日报中"商单定价"问答一起阅读，效果更佳。
+                            </div>
+                            <button class="expand-btn text-[#4D6BFE] hover:text-blue-700 text-sm font-medium mt-2 flex items-center" style="display: none;">
+                                <span class="expand-text">展开全文</span>
+                                <i class="fas fa-chevron-down ml-1 expand-icon"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="tag-item">蓝V账号</span>
+                        <span class="tag-item">商务发稿</span>
+                        <span class="tag-item">真实报价</span>
+                        <span class="tag-item">品牌活动</span>
+                    </div>
+                    <p class="text-sm text-gray-600">
+                        <i class="fas fa-link mr-1.5 text-[#4D6BFE]"></i>
+                        资源链接：<a href="https://www.xiaohongshu.com/user/profile/5575ac48e4b1cf6c117965df" target="_blank" class="underline break-all">西橙文化 · 蓝V账号主页</a>
+                    </p>
+                </div>
+                <!-- 知识卡片 结束 -->
+
+            </div>
+            <!-- 列表容器结束: 每日精选条目 -->
+        </section>
+        <!-- === 模块四：智慧火花匣・每日精选 结束 === -->
+
+        <!-- 底部日期导航 -->
+        <nav class="w-full mt-12" aria-label="日期导航（底部）">
+            <div class="bento-card p-5">
+                <div class="flex items-center justify-between mb-4">
+                    <button id="prev-day-bottom" class="inline-flex items-center gap-2 bg-pink-500 hover:bg-pink-600 text-white px-4 py-2 rounded-lg shadow disabled:bg-gray-200 disabled:text-gray-400 transition-all" aria-label="查看前一天日报">
+                        <i class="fas fa-chevron-left"></i>
+                        <span class="hidden sm:inline">上一天</span>
+                        <span class="sm:hidden">上一天</span>
+                    </button>
+                    <button id="next-day-bottom" class="inline-flex items-center gap-2 bg-pink-500 hover:bg-pink-600 text-white px-4 py-2 rounded-lg shadow disabled:bg-gray-200 disabled:text-gray-400 transition-all" aria-label="查看后一天日报">
+                        <span class="hidden sm:inline">下一天</span>
+                        <span class="sm:hidden">下一天</span>
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+        </nav>
+
+        <!-- === 文件底部 开始 === -->
+        <footer class="w-full mt-16" role="contentinfo">
+            <div class="bento-card p-8">
+                <div class="text-center text-gray-700 space-y-3">
+                    <div class="flex flex-col sm:flex-row justify-center items-center space-y-2 sm:space-y-0 sm:space-x-6 text-base">
+                        <div class="flex items-center">
+                            <i class="fas fa-database mr-2 text-[#4D6BFE]"></i>
+                            <span>微信群聊记录 - 自媒体糕糕学习群</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-robot mr-2 text-[#4D6BFE]"></i>
+                            <span>报告生成于 2026-10-07 12:00:00</span>
+                        </div>
+                    </div>
+                    <p class="text-sm text-gray-500 max-w-2xl mx-auto leading-relaxed">
+                        本报告基于群聊数据自动生成，仅供参考。内容可能包含个人观点，不代表群组官方立场。数据处理过程中已尽量匿名化处理敏感信息。
+                    </p>
+                </div>
+            </div>
+        </footer>
+        <!-- === 文件底部 结束 === -->
+    </div>
+
+    <!-- 页面右下角悬浮按钮集 -->
+    <div class="floating-action-stack" aria-label="页面快捷操作">
+        <div class="toc-floating-container" aria-label="内容导航">
+            <button id="toc-toggle" class="toc-floating-button" onclick="toggleToc(event)" aria-label="打开目录" aria-expanded="false" title="内容导航">
+                <i class="fas fa-list"></i>
+            </button>
+            <div id="toc-panel" class="toc-panel" aria-hidden="true">
+                <div class="toc-panel-header">
+                    <h3 class="toc-panel-title">
+                        <i class="fas fa-list text-pink-500"></i>
+                        <span>内容导航</span>
+                    </h3>
+                    <button class="toc-close" onclick="toggleToc(event)" aria-label="关闭目录">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <nav class="toc-items" aria-label="内容导航">
+                    <a href="#section-overview" class="toc-link" onclick="smoothScroll(event, 'section-overview')">
+                        <i class="fas fa-chart-line"></i>
+                        <span>今日群聊速览</span>
+                    </a>
+                    <a href="#section-topics" class="toc-link" onclick="smoothScroll(event, 'section-topics')">
+                        <i class="fas fa-fire"></i>
+                        <span>糕论时刻・深度话题</span>
+                    </a>
+                    <a href="#section-qa" class="toc-link" onclick="smoothScroll(event, 'section-qa')">
+                        <i class="fas fa-question-circle"></i>
+                        <span>避坑指南・问答精选</span>
+                    </a>
+                    <a href="#section-highlights" class="toc-link" onclick="smoothScroll(event, 'section-highlights')">
+                        <i class="fas fa-star"></i>
+                        <span>宝藏分享・高能精选</span>
+                    </a>
+                </nav>
+            </div>
+        </div>
+        <button class="theme-toggle" id="themeToggle" aria-label="切换主题" title="切换深色/浅色模式">
+            <i class="fas fa-moon" id="themeIcon"></i>
+        </button>
+        <button class="back-to-top" id="backToTop" aria-label="返回顶部" title="返回顶部">
+            <i class="fas fa-arrow-up"></i>
+        </button>
+    </div>
+
+    <script>
+        // 自媒体糕校日报：历史汇总与导航（新增）
+        const GJ_BASE_URL = 'https://gaogaoselfmedialearninggroup.github.io/x';
+        // 动态路径前缀兼容：根目录 或 子目录 gaos_daily_report/
+        const GJ_DIR = window.location.pathname.includes('gaos_daily_report/') ? 'gaos_daily_report/' : '';
+        const GJ_FILE_PREFIX = 'daily_report_';
+        const GJ_SUFFIX = '.html';
+        // 本地文件浏览回退范围（仅在 file:// 下生效）
+        const GJ_LOCAL_MIN = '2026-10-07';
+        const GJ_LOCAL_MAX = '2026-10-07';
+
+
+        // 页面加载时滚动到顶部（避免保留上一页的滚动位置）
+        if ('scrollRestoration' in history) {
+            history.scrollRestoration = 'manual';
+        }
+        window.scrollTo(0, 0);
+        
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // 初始化所有新功能
+            initBackToTop();
+            initThemeToggle();
+            initTocHighlight();
+            
+            // Bento card hover effect is handled by CSS :hover pseudo-class
+
+            // Number animation effect
+            const numberElements = document.querySelectorAll('.number-display');
+            numberElements.forEach(element => {
+                const finalValueText = element.textContent.replace(/,/g, '');
+                const finalValue = parseInt(finalValueText, 10);
+
+                if (isNaN(finalValue)) return;
+
+                let currentValue = 0;
+                const duration = 1500; // Animation duration in ms
+                const frameRate = 1000 / 60; // 60fps
+                const totalFrames = Math.round(duration / frameRate);
+                const increment = finalValue / totalFrames;
+
+                let currentFrame = 0;
+                const timer = setInterval(() => {
+                    currentFrame++;
+                    currentValue += increment;
+
+                    if (currentFrame >= totalFrames) {
+                        currentValue = finalValue;
+                        clearInterval(timer);
+                    }
+                    // Format number with commas for display
+                    element.textContent = Math.floor(currentValue).toLocaleString('en-US');
+                }, frameRate);
+            });
+
+
+            // HTML注释: 初始化展开功能
+            initExpandableContent();
+            
+            // 初始化日报导航
+            try {
+                initDailyNavigation();
+            } catch (e) {
+                console.warn('初始化导航失败', e);
+            }
+        });
+
+        function initDailyNavigation() {
+            const currentDateStr = getCurrentDateFromPage();
+            if (!currentDateStr) return;
+
+            const dt = new Date(currentDateStr);
+            const prev = new Date(dt); prev.setDate(prev.getDate() - 1);
+            const next = new Date(dt); next.setDate(next.getDate() + 1);
+
+            const prevStr = formatDate(prev);
+            const nextStr = formatDate(next);
+
+            const prevButtons = ['prev-day', 'prev-day-bottom']
+                .map(id => document.getElementById(id))
+                .filter(Boolean);
+            const nextButtons = ['next-day', 'next-day-bottom']
+                .map(id => document.getElementById(id))
+                .filter(Boolean);
+
+            if (!prevButtons.length && !nextButtons.length) {
+                return;
+            }
+
+            const updateButtons = (buttons, enabled, handler) => {
+                buttons.forEach(btn => {
+                    btn.disabled = !enabled;
+                    btn.onclick = enabled ? handler : null;
+                });
+            };
+
+            const isLocalFile = window.location.protocol === 'file:';
+            
+            if (isLocalFile) {
+                const prevHandler = () => {
+                    const [year, month] = prevStr.split('-');
+                    window.location.href = `../${month}/${GJ_FILE_PREFIX}${prevStr}${GJ_SUFFIX}`;
+                };
+                const nextHandler = () => {
+                    const [year, month] = nextStr.split('-');
+                    window.location.href = `../${month}/${GJ_FILE_PREFIX}${nextStr}${GJ_SUFFIX}`;
+                };
+
+                if (prevButtons.length) {
+                    updateButtons(prevButtons, true, prevHandler);
+                }
+                if (nextButtons.length) {
+                    updateButtons(nextButtons, true, nextHandler);
+                }
+            } else {
+                // GitHub Pages模式：使用fetch检查文件是否存在
+                Promise.all([checkExists(prevStr), checkExists(nextStr)]).then(([pe, ne]) => {
+                    const prevHandler = () => window.location.href = pe.url;
+                    const nextHandler = () => window.location.href = ne.url;
+
+                    updateButtons(prevButtons, !!pe.ok, prevHandler);
+                    updateButtons(nextButtons, !!ne.ok, nextHandler);
+                }).catch(()=>{
+                    updateButtons(prevButtons, false, null);
+                    updateButtons(nextButtons, false, null);
+                });
+            }
+        }
+
+        function checkExists(dateStr) {
+            // 从日期字符串中提取年月 (格式: YYYY-MM-DD)
+            const [year, month] = dateStr.split('-');
+            
+            // 新的层级目录结构: gaos_daily_report/YYYY/MM/daily_report_YYYY-MM-DD.html
+            const url = `${GJ_BASE_URL}/${year}/${month}/${GJ_FILE_PREFIX}${dateStr}${GJ_SUFFIX}`;
+            
+            return fetch(url, { method: 'HEAD', cache: 'no-store' })
+                .then(r => r.ok ? { ok: true, url: url } : 
+                    fetch(url, { method: 'GET', cache: 'no-store' })
+                        .then(r2 => r2.ok ? { ok: true, url: url } : { ok: false })
+                )
+                .catch(() => ({ ok: false }));
+        }
+
+        function pad2(value) {
+            const str = String(value);
+            return str.length < 2 ? '0' + str : str;
+        }
+
+        function getCurrentDateFromPage() {
+            // 1) 从报告日期
+            const el = document.getElementById('report-date');
+            if (el) {
+                const m = el.textContent.match(/(\d{4})年(\d{1,2})月(\d{1,2})日/);
+                if (m) return `${m[1]}-${pad2(m[2])}-${pad2(m[3])}`;
+            }
+            // 2) 从 URL 文件名
+            const fn = window.location.pathname.match(/daily_report_(\d{4}-\d{2}-\d{2})\.html/);
+            if (fn) return fn[1];
+            // 3) 从标题
+            const tm = document.title.match(/(\d{4}-\d{2}-\d{2})/);
+            if (tm) return tm[1];
+            return null;
+        }
+
+        function formatDate(d) {
+            const y = d.getFullYear();
+            const m = pad2(d.getMonth()+1);
+            const dd = pad2(d.getDate());
+            return `${y}-${m}-${dd}`;
+        }
+
+        // === 新增功能函数 ===
+        
+        // 目录浮动按钮展开/收起
+        function toggleToc(event) {
+            if (event) {
+                event.preventDefault();
+                event.stopPropagation();
+            }
+            const panel = document.getElementById('toc-panel');
+            const button = document.getElementById('toc-toggle');
+            if (!panel || !button) return;
+
+            if (panel.classList.contains('active')) {
+                closeTocPanel();
+            } else {
+                panel.classList.add('active');
+                button.classList.add('active');
+                button.setAttribute('aria-expanded', 'true');
+                panel.setAttribute('aria-hidden', 'false');
+                setTimeout(() => {
+                    document.addEventListener('click', handleTocOutsideClick);
+                }, 0);
+            }
+        }
+
+        function closeTocPanel() {
+            const panel = document.getElementById('toc-panel');
+            const button = document.getElementById('toc-toggle');
+            if (!panel || !button) return;
+
+            panel.classList.remove('active');
+            panel.setAttribute('aria-hidden', 'true');
+            button.classList.remove('active');
+            button.setAttribute('aria-expanded', 'false');
+            document.removeEventListener('click', handleTocOutsideClick);
+        }
+
+        function handleTocOutsideClick(event) {
+            const panel = document.getElementById('toc-panel');
+            const button = document.getElementById('toc-toggle');
+            if (!panel || !button) return;
+
+            if (!panel.contains(event.target) && !button.contains(event.target)) {
+                closeTocPanel();
+            }
+        }
+        
+        // 平滑滚动
+        function smoothScroll(event, targetId) {
+            event.preventDefault();
+            const target = document.getElementById(targetId);
+            if (target) {
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                // 更新目录激活状态
+                document.querySelectorAll('.toc-link').forEach(link => link.classList.remove('active'));
+                event.currentTarget.classList.add('active');
+                closeTocPanel();
+            }
+        }
+        
+        // 返回顶部功能
+        function initBackToTop() {
+            const btn = document.getElementById('backToTop');
+            
+            window.addEventListener('scroll', () => {
+                if (window.pageYOffset > 300) {
+                    btn.classList.add('visible');
+                } else {
+                    btn.classList.remove('visible');
+                }
+            });
+            
+            btn.addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        }
+        
+        // 主题切换功能
+        function initThemeToggle() {
+            const btn = document.getElementById('themeToggle');
+            const icon = document.getElementById('themeIcon');
+            
+            // 将预加载类转换为正式的dark-mode类
+            document.documentElement.classList.remove('dark-mode-preload');
+            
+            // 检查本地存储的主题设置
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                document.body.classList.add('dark-mode');
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
+            }
+            
+            btn.addEventListener('click', () => {
+                document.body.classList.toggle('dark-mode');
+                const isDark = document.body.classList.contains('dark-mode');
+                
+                if (isDark) {
+                    icon.classList.remove('fa-moon');
+                    icon.classList.add('fa-sun');
+                    localStorage.setItem('theme', 'dark');
+                } else {
+                    icon.classList.remove('fa-sun');
+                    icon.classList.add('fa-moon');
+                    localStorage.setItem('theme', 'light');
+                }
+            });
+        }
+        
+        // 目录高亮功能（滚动时自动高亮当前章节）
+        function initTocHighlight() {
+            const sections = ['section-overview', 'section-topics', 'section-qa', 'section-highlights'];
+            const tocLinks = document.querySelectorAll('.toc-link');
+            
+            window.addEventListener('scroll', () => {
+                let current = '';
+                
+                sections.forEach(sectionId => {
+                    const section = document.getElementById(sectionId);
+                    if (section) {
+                        const sectionTop = section.offsetTop;
+                        const sectionHeight = section.clientHeight;
+                        if (window.pageYOffset >= sectionTop - 100) {
+                            current = sectionId;
+                        }
+                    }
+                });
+                
+                tocLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === '#' + current) {
+                        link.classList.add('active');
+                    }
+                });
+            });
+        }
+        
+        // 复制金句功能
+        function copyQuote(button, text) {
+            navigator.clipboard.writeText(text).then(() => {
+                const icon = button.querySelector('i');
+                const originalClass = icon.className;
+                
+                // 更改按钮状态
+                button.classList.add('copied');
+                icon.className = 'fas fa-check';
+                
+                // 2秒后恢复
+                setTimeout(() => {
+                    button.classList.remove('copied');
+                    icon.className = originalClass;
+                }, 2000);
+            }).catch(err => {
+                console.error('复制失败:', err);
+                alert('复制失败，请手动复制');
+            });
+        }
+        
+        // HTML注释: 初始化展开功能
+        function initExpandableContent() {
+            const expandableContents = document.querySelectorAll('.expandable-content');
+            
+            expandableContents.forEach(container => {
+                const charLimit = parseInt(container.getAttribute('data-char-limit')) || 200;
+                const contentPreview = container.querySelector('.content-preview');
+                const expandBtn = container.querySelector('.expand-btn');
+                
+                if (!contentPreview || !expandBtn) return;
+                
+                const fullContent = contentPreview.innerHTML;
+                const fullText = contentPreview.textContent || contentPreview.innerText;
+                
+                // HTML注释: 如果内容长度超过限制，则显示展开按钮
+                if (fullText.length > charLimit) {
+                    // HTML注释: 创建一个临时元素来正确截取HTML内容
+                    const tempDiv = document.createElement('div');
+                    tempDiv.innerHTML = fullContent;
+                    
+                    // HTML注释: 截取文本内容到指定长度
+                    const truncatedText = fullText.substring(0, charLimit);
+                    
+                    // HTML注释: 使用更简单可靠的方法截取内容
+                    let truncatedContent = '';
+                    let charCount = 0;
+                    
+                    // HTML注释: 逐字符遍历，保持简单的HTML结构
+                    const walker = document.createTreeWalker(
+                        tempDiv,
+                        NodeFilter.SHOW_TEXT,
+                        null,
+                        false
+                    );
+                    
+                    let node;
+                    const textNodes = [];
+                    while (node = walker.nextNode()) {
+                        textNodes.push(node);
+                    }
+                    
+                    // HTML注释: 计算需要保留的文本内容
+                    for (let textNode of textNodes) {
+                        const text = textNode.textContent;
+                        if (charCount + text.length <= charLimit) {
+                            charCount += text.length;
+                        } else {
+                            const remainingChars = charLimit - charCount;
+                            textNode.textContent = text.substring(0, remainingChars) + '...';
+                            charCount = charLimit;
+                            
+                            // HTML注释: 新的、更干净的移除后续所有节点的逻辑
+                            let currentNodeToClearAfter = textNode;
+                            while (currentNodeToClearAfter && currentNodeToClearAfter !== tempDiv) {
+                                let sibling = currentNodeToClearAfter.nextSibling;
+                                while (sibling) {
+                                    const nodeToRemove = sibling;
+                                    sibling = sibling.nextSibling;
+                                    nodeToRemove.remove();
+                                }
+                                currentNodeToClearAfter = currentNodeToClearAfter.parentElement;
+                            }
+                            break; // 完成截断和清理，跳出 textNodes 循环
+                        }
+                    }
+                    
+                    const previewContent = tempDiv.innerHTML;
+                    
+                    contentPreview.innerHTML = previewContent;
+                    contentPreview.classList.add('collapsed');
+                    expandBtn.style.display = 'flex';
+                    
+                    // HTML注释: 绑定展开/收起事件
+                    expandBtn.addEventListener('click', function() {
+                        const isExpanded = expandBtn.classList.contains('expanded');
+                        
+                        if (isExpanded) {
+                            // HTML注释: 收起内容
+                            contentPreview.innerHTML = previewContent;
+                            contentPreview.classList.add('collapsed');
+                            expandBtn.querySelector('.expand-text').textContent = '展开全文';
+                            expandBtn.classList.remove('expanded');
+                        } else {
+                            // HTML注释: 展开内容
+                            contentPreview.innerHTML = fullContent;
+                            contentPreview.classList.remove('collapsed');
+                            expandBtn.querySelector('.expand-text').textContent = '收起';
+                            expandBtn.classList.add('expanded');
+                        }
+                    });
+                } else {
+                    // HTML注释: 内容较短，隐藏展开按钮
+                    expandBtn.style.display = 'none';
+                }
+            });
+        }
+    </script>
+    <!-- Shared site search -->
+    <script src="../../assets/search.js" defer data-gj-search-script="true"></script>
+</body>
+</html>
